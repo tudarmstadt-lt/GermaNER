@@ -10,6 +10,7 @@ import org.apache.uima.util.Level;
 import org.apache.uima.util.Logger;
 import org.uimafit.component.JCasAnnotator_ImplBase;
 
+import de.tu.darmstadt.lt.lqa.webapp.PositionFeature;
 import de.tu.darmstadt.lt.lqa.webapp.types.GoldNamedEntity;
 import de.tu.darmstadt.lt.lqa.webapp.types.SimilarWord1;
 import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
@@ -53,7 +54,6 @@ public class NERReader extends JCasAnnotator_ImplBase
 		Token token = null;
 		POS posTag;
 		GoldNamedEntity NamedEntityTag;
-		SimilarWord1 sw;
 		String pos;
 		String NamedEntity;
 		boolean initSentence = false;
@@ -78,6 +78,7 @@ public class NERReader extends JCasAnnotator_ImplBase
 				String word = tag[0];
 				pos = tag.length >= 15 ? tag[14] : "";
 				NamedEntity = tag.length >= 19 ? tag[19] : "";
+				PositionFeature.pos.add(Integer.parseInt(tag[1]));
 				docText.append(word);
 				if (!word.matches("^(\\p{Punct}).*"))
 				{

@@ -3,124 +3,13 @@
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions/>
   </org.cleartk.classifier.feature.function.FeatureFunctionExtractor>
-  <org.cleartk.classifier.feature.extractor.CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
-    <contexts>
-      <org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
-        <begin>0</begin>
-        <end>2</end>
-        <name>Preceding_0_2</name>
-      </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
-    </contexts>
-  </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <org.cleartk.classifier.feature.extractor.CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
-    <contexts>
-      <org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
-        <begin>0</begin>
-        <end>2</end>
-        <name>Following_0_2</name>
-      </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
-    </contexts>
-  </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <org.cleartk.classifier.feature.extractor.CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
-      <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
-      <featureFunctions>
-        <org.cleartk.classifier.feature.function.CapitalTypeFeatureFunction/>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
-        <begin>0</begin>
-        <end>2</end>
-        <name>Preceding_0_2</name>
-      </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
-    </contexts>
-  </org.cleartk.classifier.feature.extractor.CleartkExtractor>
   <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
-      <org.cleartk.classifier.feature.function.CapitalTypeFeatureFunction/>
+      <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.UnsupervisedPosExtractor>
+        <unPosFile>unsupervised_pos</unPosFile>
+      </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.UnsupervisedPosExtractor>
     </featureFunctions>
   </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
-  <org.cleartk.classifier.feature.extractor.CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
-      <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
-      <featureFunctions>
-        <org.cleartk.classifier.feature.function.CapitalTypeFeatureFunction/>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
-        <begin>0</begin>
-        <end>2</end>
-        <name>Following_0_2</name>
-      </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
-    </contexts>
-  </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <org.cleartk.classifier.feature.extractor.CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
-      <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
-      <featureFunctions>
-        <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
-          <orientation>LEFT_TO_RIGHT</orientation>
-          <start>0</start>
-          <end>1</end>
-          <minimumValueLength>1</minimumValueLength>
-          <lowerCase>false</lowerCase>
-          <name>NGram_Left_0_1_1</name>
-        </org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Preceding_0_1</name>
-      </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
-    </contexts>
-  </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
-    <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
-    <featureFunctions>
-      <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
-        <orientation>LEFT_TO_RIGHT</orientation>
-        <start>0</start>
-        <end>1</end>
-        <minimumValueLength>1</minimumValueLength>
-        <lowerCase>false</lowerCase>
-        <name>NGram_Left_0_1_1</name>
-      </org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
-    </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
-  <org.cleartk.classifier.feature.extractor.CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
-      <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
-      <featureFunctions>
-        <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
-          <orientation>LEFT_TO_RIGHT</orientation>
-          <start>0</start>
-          <end>1</end>
-          <minimumValueLength>1</minimumValueLength>
-          <lowerCase>false</lowerCase>
-          <name>NGram_Left_0_1_1</name>
-        </org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Following_0_1</name>
-      </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
-    </contexts>
-  </org.cleartk.classifier.feature.extractor.CleartkExtractor>
 </list>
 
