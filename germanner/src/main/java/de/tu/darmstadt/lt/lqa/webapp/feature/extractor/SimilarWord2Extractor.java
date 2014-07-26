@@ -11,27 +11,25 @@ import java.util.List;
 import org.cleartk.classifier.Feature;
 import org.cleartk.classifier.feature.function.FeatureFunction;
 
-public class SimilarWord1Extractor implements FeatureFunction {
+public class SimilarWord2Extractor implements FeatureFunction {
 
 	File simWord=new File("200k_2d_wordlists");
 
-	public SimilarWord1Extractor() {
+	public SimilarWord2Extractor() {
 		 
 	}
 
-	public static final String DEFAULT_NAME = "SimilarWord1";
+	public static final String DEFAULT_NAME = "SimilarWord2";
 
 	public List<Feature> apply(Feature feature) {
 		String featureName = Feature
 				.createName(DEFAULT_NAME, feature.getName());
 		Object featureValue = feature.getValue();
-		
-	
 
 		if (featureValue == null)
 			return Collections.emptyList();
 		else if (featureValue instanceof String) {
-		 
+
 			String value = featureValue.toString();
 			if (value == null || value.length() == 0)
 				return Collections.emptyList();
@@ -40,14 +38,13 @@ public class SimilarWord1Extractor implements FeatureFunction {
 			try {
 				BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(
 						simWord), "UTF8"));
-			
 
 				while ((input = br.readLine()) != null) {
 					String[] sep = input.split("\\t");
 					if (value.equals(sep[0])) {
 						//br.close();
-						return Collections.singletonList(new Feature("SIMWO1",
-								sep[1]));
+						return Collections.singletonList(new Feature("SIMWO2",
+								sep[2]));
 					}
 					//br.close();
 				}
@@ -56,7 +53,7 @@ public class SimilarWord1Extractor implements FeatureFunction {
 				e.printStackTrace();
 			}
 
-			return Collections.singletonList(new Feature("SIMWO1", "NA"));
+			return Collections.singletonList(new Feature("SIMWO2", "NA"));
 			 
 		} else
 			return Collections.emptyList();

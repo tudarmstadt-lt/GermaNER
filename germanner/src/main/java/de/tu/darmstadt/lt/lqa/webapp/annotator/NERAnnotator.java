@@ -22,66 +22,64 @@ import de.tudarmstadt.ukp.dkpro.core.api.ner.type.NamedEntity;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 
-public class NERAnnotator extends CleartkSequenceAnnotator<String>
-{
+public class NERAnnotator extends CleartkSequenceAnnotator<String> {
 	public static final String PARAM_FEATURE_EXTRACTION_FILE = "FeatureExtractionFile";
 
 	/**
 	 * if a feature extraction/context extractor filename is given the xml file
 	 * is parsed and the features are used, otherwise it will not be used
 	 */
-	@ConfigurationParameter(name = PARAM_FEATURE_EXTRACTION_FILE,
-			mandatory = false)
+	@ConfigurationParameter(name = PARAM_FEATURE_EXTRACTION_FILE, mandatory = false)
 	private String featureExtractionFile = null;
 
 	private List<SimpleFeatureExtractor> featureExtractors;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void initialize(UimaContext context) throws ResourceInitializationException
-	{
+	public void initialize(UimaContext context)
+			throws ResourceInitializationException {
 		super.initialize(context);
 
 		// load the settings from a file
 		// initialize the XStream if a xml file is given:
 		XStream xstream = XStreamFactory.createXStream();
-		featureExtractors = (List<SimpleFeatureExtractor>) xstream.fromXML(new File(featureExtractionFile));
+		featureExtractors = (List<SimpleFeatureExtractor>) xstream
+				.fromXML(new File(featureExtractionFile));
 	}
 
 	@Override
-	public void process(JCas jCas) throws AnalysisEngineProcessException
-	{
-		List<Instance<String>> instances = new ArrayList<Instance<String>>();
-		Collection<Token> tokens = select(jCas, Token.class);
-		for (Token token : tokens)
-		{
-			Instance<String> instance = new Instance<String>();
-			for (SimpleFeatureExtractor extractor : this.featureExtractors)
-				instance.addAll(extractor.extract(jCas, token));
+	public void process(JCas jCas) throws AnalysisEngineProcessException {
+		for (Sentence sentence : select(jCas, Sentence.class)) {
+			List<Instance<String>> instances = new ArrayList<Instance<String>>();
+			List<Token> tokens = selectCovered(jCas, Token.class, sentence);
+			for (Token token : tokens) {
+				Instance<String> instance = new Instance<String>();
+				for (SimpleFeatureExtractor extractor : this.featureExtractors)
+					instance.addAll(extractor.extract(jCas, token));
 
-			if (this.isTraining())
-			{
-				GoldNamedEntity goldNE = JCasUtil.selectCovered(jCas, GoldNamedEntity.class, token).get(0);
-				instance.setOutcome(goldNE.getNamedEntityType());
+				if (this.isTraining()) {
+					GoldNamedEntity goldNE = JCasUtil.selectCovered(jCas,
+							GoldNamedEntity.class, token).get(0);
+					instance.setOutcome(goldNE.getNamedEntityType());
+				}
+
+				// add the instance to the list !!!
+				instances.add(instance);
 			}
-
-			// add the instance to the list !!!
-			instances.add(instance);
-		}
-		// differentiate between training and classifying
-		if (this.isTraining())
-			this.dataWriter.write(instances);
-		else
-		{
-			List<String> namedEntities = this.classify(instances);
-			int i = 0;
-			for (Token token : tokens)
-			{
-					NamedEntity namedEntity = new NamedEntity(jCas, token.getBegin(), token.getEnd());
+			// differentiate between training and classifying
+			if (this.isTraining())
+				this.dataWriter.write(instances);
+			else {
+				List<String> namedEntities = this.classify(instances);
+				int i = 0;
+				for (Token token : tokens) {
+					NamedEntity namedEntity = new NamedEntity(jCas,
+							token.getBegin(), token.getEnd());
 					namedEntity.setValue(namedEntities.get(i));
 					namedEntity.addToIndexes();
 
-				i++;
+					i++;
+				}
 			}
 		}
 	}

@@ -11,11 +11,11 @@ import java.util.List;
 import org.cleartk.classifier.Feature;
 import org.cleartk.classifier.feature.function.FeatureFunction;
 
-public class SimilarWord1Extractor implements FeatureFunction {
+public class UnsupervisedPosExtractor implements FeatureFunction {
 
-	File simWord=new File("200k_2d_wordlists");
+	File unPosFile=new File("unsupervised_pos");
 
-	public SimilarWord1Extractor() {
+	public UnsupervisedPosExtractor() {
 		 
 	}
 
@@ -39,24 +39,31 @@ public class SimilarWord1Extractor implements FeatureFunction {
 			String input;
 			try {
 				BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(
-						simWord), "UTF8"));
+						unPosFile), "UTF8"));
 			
 
 				while ((input = br.readLine()) != null) {
-					String[] sep = input.split("\\t");
-					if (value.equals(sep[0])) {
-						//br.close();
-						return Collections.singletonList(new Feature("SIMWO1",
-								sep[1]));
+					String[] _sep = input.split("\\t");
+					String[] sep = _sep[2].split("\\s");
+					for(int i=0;i<sep.length;i++)
+					{
+						//System.out.println(sep[i]);
+						if(sep.length!=1)
+						sep[i]=sep[i].substring(0,sep[i].length()-1);
+						//System.out.println(sep[i]);
+						if(sep[i].equals(value))
+						{
+							return Collections.singletonList(new Feature("UnSuperPOS",
+									_sep[0]));
+						}
 					}
-					//br.close();
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			return Collections.singletonList(new Feature("SIMWO1", "NA"));
+			return Collections.singletonList(new Feature("UnSuperPOS","none"));
 			 
 		} else
 			return Collections.emptyList();
