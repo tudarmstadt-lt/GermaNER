@@ -11,16 +11,13 @@ import org.cleartk.classifier.feature.extractor.CleartkExtractor.Following;
 import org.cleartk.classifier.feature.extractor.CleartkExtractor.Preceding;
 import org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor;
 import org.cleartk.classifier.feature.extractor.simple.SimpleFeatureExtractor;
-import org.cleartk.classifier.feature.extractor.simple.TypePathExtractor;
 import org.cleartk.classifier.feature.function.CapitalTypeFeatureFunction;
 import org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction;
 import org.cleartk.classifier.feature.function.FeatureFunctionExtractor;
-import org.cleartk.classifier.feature.function.LowerCaseFeatureFunction;
-import org.cleartk.classifier.feature.function.NumericTypeFeatureFunction;
-
 import com.thoughtworks.xstream.XStream;
 
 import de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.FreeBaseFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor;
@@ -29,7 +26,6 @@ import de.tu.darmstadt.lt.ner.feature.extractor.SttsFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UnivPosFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor;
-import de.tu.darmstadt.lt.ner.types.SimilarWord1;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 
 public class Features2Xml {
@@ -215,10 +211,15 @@ public class Features2Xml {
 				new MyFeatureFunctionExtractor(new CoveredTextExtractor(),
 						new UnsupervisedPosExtractor()), new Following(1)));
 		
+		//SpanVNL Feature
+		
 		//Universal Part Of Speech Feature
 		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
 				new CoveredTextExtractor(), new UnivPosFeatureExtractor()));
-		//SpanVNL
+		
+		//FreeBase Feature
+		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+				new CoveredTextExtractor(), new FreeBaseFeatureExtractor()));
 		
 		//SttsFeature
 		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
