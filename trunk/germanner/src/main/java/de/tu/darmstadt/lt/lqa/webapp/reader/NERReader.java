@@ -11,6 +11,8 @@ import org.apache.uima.util.Logger;
 import org.uimafit.component.JCasAnnotator_ImplBase;
 
 import de.tu.darmstadt.lt.lqa.webapp.PositionFeature;
+import de.tu.darmstadt.lt.lqa.webapp.SttsFeature;
+import de.tu.darmstadt.lt.lqa.webapp.UnivPosFeature;
 import de.tu.darmstadt.lt.lqa.webapp.types.GoldNamedEntity;
 import de.tu.darmstadt.lt.lqa.webapp.types.SimilarWord1;
 import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
@@ -79,6 +81,8 @@ public class NERReader extends JCasAnnotator_ImplBase
 				pos = tag.length >= 15 ? tag[14] : "";
 				NamedEntity = tag.length >= 19 ? tag[19] : "";
 				PositionFeature.pos.add(Integer.parseInt(tag[1]));
+				UnivPosFeature.pos.add(tag[12]);
+				SttsFeature.pos.add(tag[14]);
 				docText.append(word);
 				if (!word.matches("^(\\p{Punct}).*"))
 				{

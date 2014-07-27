@@ -6,16 +6,17 @@ import java.util.List;
 import org.cleartk.classifier.Feature;
 import org.cleartk.classifier.feature.function.FeatureFunction;
 
-import de.tu.darmstadt.lt.lqa.webapp.PositionFeature;
+import de.tu.darmstadt.lt.lqa.webapp.SttsFeature;
+import de.tu.darmstadt.lt.lqa.webapp.UnivPosFeature;
 
-public class PositionFeatureExtractor implements FeatureFunction {
+public class SttsFeatureExtractor implements FeatureFunction {
 
 
-	public PositionFeatureExtractor() {
+	public SttsFeatureExtractor() {
 		 
 	}
 
-	public static final String DEFAULT_NAME = "PositionFeature";
+	public static final String DEFAULT_NAME = "SttsFeature";
 
 	public List<Feature> apply(Feature feature) {
 		String featureName = Feature
@@ -28,13 +29,13 @@ public class PositionFeatureExtractor implements FeatureFunction {
 			return Collections.emptyList();
 		else if (featureValue instanceof String) {
 			
-			int k=PositionFeature.pos.remove();
+			String k=SttsFeature.pos.remove();
 		 
 			String value = featureValue.toString();
 			if (value == null || value.length() == 0)
 				return Collections.emptyList();
 
-			return Collections.singletonList(new Feature("Position",Integer.toString(k)));
+			return Collections.singletonList(new Feature("SttsPos",k));
 			 
 		} else
 			return Collections.emptyList();
