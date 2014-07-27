@@ -10,11 +10,11 @@ import org.apache.uima.util.Level;
 import org.apache.uima.util.Logger;
 import org.uimafit.component.JCasAnnotator_ImplBase;
 
+import de.tu.darmstadt.lt.ner.FreeBaseFeature;
 import de.tu.darmstadt.lt.ner.PositionFeature;
 import de.tu.darmstadt.lt.ner.SttsFeature;
 import de.tu.darmstadt.lt.ner.UnivPosFeature;
 import de.tu.darmstadt.lt.ner.types.GoldNamedEntity;
-import de.tu.darmstadt.lt.ner.types.SimilarWord1;
 import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
@@ -83,6 +83,7 @@ public class NERReader extends JCasAnnotator_ImplBase
 				PositionFeature.pos.add(Integer.parseInt(tag[1]));
 				UnivPosFeature.pos.add(tag[12]);
 				SttsFeature.pos.add(tag[14]);
+				FreeBaseFeature.pos.add(tag[13]);
 				docText.append(word);
 				if (!word.matches("^(\\p{Punct}).*"))
 				{
