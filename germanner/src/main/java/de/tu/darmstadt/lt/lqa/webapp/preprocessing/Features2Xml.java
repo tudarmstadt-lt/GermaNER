@@ -25,6 +25,8 @@ import de.tu.darmstadt.lt.lqa.webapp.feature.extractor.PositionFeatureExtractor;
 import de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord1Extractor;
 import de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord2Extractor;
 import de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord3Extractor;
+import de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SttsFeatureExtractor;
+import de.tu.darmstadt.lt.lqa.webapp.feature.extractor.UnivPosFeatureExtractor;
 import de.tu.darmstadt.lt.lqa.webapp.feature.extractor.UnsupervisedPosExtractor;
 import de.tu.darmstadt.lt.lqa.webapp.feature.extractor.VornameListFeatureExtractor;
 import de.tu.darmstadt.lt.lqa.webapp.types.SimilarWord1;
@@ -83,16 +85,16 @@ public class Features2Xml {
 		// German Word feature
 		tokenFeatureExtractors.add(new FeatureFunctionExtractor(
 				new CoveredTextExtractor()));
-/*		
-		//Position Feature
-		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-				new CoveredTextExtractor(), new PositionFeatureExtractor()));
 		
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
 				new CoveredTextExtractor(), new Preceding(2)));
 
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
 				new CoveredTextExtractor(), new Following(2)));
+				
+		//Position Feature
+		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+				new CoveredTextExtractor(), new PositionFeatureExtractor()));
 
 		// Capital Type Feature Function
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
@@ -199,7 +201,7 @@ public class Features2Xml {
 		//Vorname List Feature
 		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
 				new CoveredTextExtractor(), new VornameListFeatureExtractor()));
-*/
+
 		//Unsupervised POS tag
 		
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
@@ -212,9 +214,17 @@ public class Features2Xml {
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
 				new MyFeatureFunctionExtractor(new CoveredTextExtractor(),
 						new UnsupervisedPosExtractor()), new Following(1)));
+		
+		//Universal Part Of Speech Feature
+		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+				new CoveredTextExtractor(), new UnivPosFeatureExtractor()));
+		//SpanVNL
+		
+		//SttsFeature
+		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+				new CoveredTextExtractor(), new SttsFeatureExtractor()));
 
 		
-/*	
 		// SimilarWord1 Feature
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
 				new MyFeatureFunctionExtractor(new CoveredTextExtractor(),
@@ -250,7 +260,7 @@ public class Features2Xml {
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
 				new MyFeatureFunctionExtractor(new CoveredTextExtractor(),
 						new SimilarWord3Extractor()), new Following(1)));
-*/
+						
 		XStream xstream = XStreamFactory.createXStream();
 		String x = xstream.toXML(tokenFeatureExtractors);
 		x = removeLogger(x);
