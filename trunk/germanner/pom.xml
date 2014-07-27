@@ -8,11 +8,8 @@
 		<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 		<version>3</version>
 	</parent>
-	<groupId>qa</groupId>
-	<artifactId>de.tu-darmstadt.lt.lqa</artifactId>
+	<artifactId>de.tu-darmstadt.lt.ner</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>de.tu-darmstadt.lt.lqa Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencyManagement>
 		<dependencies>
@@ -176,7 +173,7 @@
 			</dependency>
 	</dependencies>
 	<build>
-		<finalName>de.tu-darmstadt.lt.lqa</finalName>
+		<finalName>de.tu-darmstadt.lt.ner</finalName>
 		<resources>
 			<resource>
 				<filtering>false</filtering>
@@ -205,4 +202,6 @@
 		<wicket.version>1.5.8</wicket.version>
 		<dkpro.version>1.4.0</dkpro.version>
 	</properties>
+	<groupId>ner</groupId>
+	<name>ner</name>
 </project>
