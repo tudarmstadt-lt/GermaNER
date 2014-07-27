@@ -63,24 +63,10 @@
 
 		<!-- WICKET dependency -->
 
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-core</artifactId>
-		</dependency>
 
 		<!-- SOLR dependency -->
 
-		<dependency>
-			<groupId>org.apache.solr</groupId>
-			<artifactId>solr-core</artifactId>
-			<version>4.5.0</version>
-		</dependency>
 
-		<dependency>
-			<groupId>org.apache.solr</groupId>
-			<artifactId>solr-solrj</artifactId>
-			<version>4.5.0</version>
-		</dependency>
 
 		<!-- LOGGING dependency -->
 
@@ -91,11 +77,6 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-		</dependency>
 		<!-- DKPRO dependency -->
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
@@ -108,7 +89,7 @@
   			de.tudarmstadt.ukp.dkpro.core.io.xmi-asl
   		</artifactId>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.api.segmentation-asl</artifactId>
 		</dependency>
@@ -145,11 +126,6 @@
 			<version>0.6.2</version>
 		</dependency>
 		<dependency>
-			<groupId>org.sweble.wikitext</groupId>
-			<artifactId>swc-engine</artifactId>
-			<version>1.1.0</version>
-		</dependency>
-		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
 			<version>1.4.1</version>
@@ -170,10 +146,10 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			</dependency>
+		</dependency>
 	</dependencies>
 	<build>
-		<finalName>de.tu-darmstadt.lt.ner</finalName>
+		<finalName>germanner</finalName>
 		<resources>
 			<resource>
 				<filtering>false</filtering>
@@ -190,6 +166,51 @@
 				</excludes>
 			</resource>
 		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>de.tu.darmstadt.lt.ner.preprocessing.TrainNERModel</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>de.tu.darmstadt.lt.ner.preprocessing.TrainNERModel</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-my-jar-with-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 	<distributionManagement>
 		<repository>
