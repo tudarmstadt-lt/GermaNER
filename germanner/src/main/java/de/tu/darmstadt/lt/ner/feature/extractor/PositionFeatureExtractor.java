@@ -11,6 +11,7 @@ import de.tu.darmstadt.lt.ner.PositionFeature;
 
 public class PositionFeatureExtractor implements FeatureFunction {
 
+	
 
 	public PositionFeatureExtractor() {
 		 
@@ -19,12 +20,8 @@ public class PositionFeatureExtractor implements FeatureFunction {
 	public static final String DEFAULT_NAME = "PositionFeature";
 
 	public List<Feature> apply(Feature feature) {
-		String featureName = Feature
-				.createName(DEFAULT_NAME, feature.getName());
 		Object featureValue = feature.getValue();
 		
-	
-
 		if (featureValue == null)
 			return Collections.emptyList();
 		else if (featureValue instanceof String) {
