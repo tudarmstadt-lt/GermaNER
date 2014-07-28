@@ -4,8 +4,11 @@ import static org.uimafit.factory.AnalysisEngineFactory.createPrimitiveDescripti
 import static org.uimafit.pipeline.SimplePipeline.runPipeline;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.apache.uima.UIMAException;
 import org.apache.uima.UIMAFramework;
@@ -72,22 +75,20 @@ public class TrainNERModel {
 						EvaluatedNERWriter.OUTPUT_FILE, outputFile));
 	}
 
-	public static void main(String[] arg) throws Exception {
+	public static void main(String[] args) throws Exception {
 		String usage = "USAGE: java -jar germanner.jar (f OR ft OR t) modelDir (trainFile OR testFile) "
 				+ "where f means training mode, t means testing mode, modelDir is model directory, trainFile is a training file,  and "
 				+ "testFile is a Test file";
 		long start = System.currentTimeMillis();
-		String []args = {"","","",""};
-		args[0]="ft";
-		args[1]="src/main/resources/model/";
-		args[2]="ner_de_sample_train";
-		args[3]="ner_de_sample_test";
+
+		ChangeColon c = new ChangeColon();
 
 		String featureExtractionDirectory = "./";
 		String language = "de";
 		File outputFile = new File("./res.txt");
 		try {
-			if (!(args[0].equals("f") || args[0].equals("t") ||args[0].equals("ft"))
+			if (!(args[0].equals("f") || args[0].equals("t") || args[0]
+					.equals("ft"))
 					|| !new File(args[1]).exists()
 					|| !new File(args[2]).exists()) {
 				LOG.error(usage);
@@ -97,27 +98,38 @@ public class TrainNERModel {
 				LOG.error(usage);
 				System.exit(1);
 			}
-			String modelDirectory = args[1];
+			String modelDirectory = args[1]+"/";
 			new File(modelDirectory).mkdirs();
+			
+			IOUtils.copyLarge(new FileInputStream(TrainNERModel.class
+					.getResource("/model/").getPath() + "/model.jar"),
+					new FileOutputStream(new File(modelDirectory,"model.jar")));
+			IOUtils.copyLarge(new FileInputStream(TrainNERModel.class
+					.getResource("/model/").getPath() + "/MANIFEST.MF"),
+					new FileOutputStream(new File(modelDirectory,"MANIFEST.MF")));
+		
 			if (args[0].equals("f")) {
-				writeModel(new File(args[2]), featureExtractionDirectory,
-						modelDirectory, language);
+				c.run(args[2], args[2] + ".c");
+				writeModel(new File(args[2] + ".c"),
+						featureExtractionDirectory, modelDirectory, language);
 				trainModel(modelDirectory);
 			} else if (args[0].equals("ft")) {
-				writeModel(new File(args[2]), featureExtractionDirectory,
-						modelDirectory, language);
+				c.run(args[2], args[2] + ".c");
+				c.run(args[3], args[3] + ".c");
+				writeModel(new File(args[2] + ".c"),
+						featureExtractionDirectory, modelDirectory, language);
 				trainModel(modelDirectory);
-				classifyTestFile(TrainNERModel.class.getResource("/model/").getPath(), featureExtractionDirectory,
-						new File(args[3]), language, outputFile);
+				classifyTestFile(modelDirectory, featureExtractionDirectory,
+						new File(args[3] + ".c"), language, outputFile);
 			} else {
-				classifyTestFile(TrainNERModel.class.getResource("/model/").getPath(), featureExtractionDirectory,
-						new File(args[2]), language, outputFile);
+				c.run(args[2], args[2] + ".c");
+				classifyTestFile(modelDirectory, featureExtractionDirectory,
+						new File(args[2] + ".c"), language, outputFile);
 			}
 			long now = System.currentTimeMillis();
 			UIMAFramework.getLogger().log(Level.INFO,
 					"Time: " + (now - start) + "ms");
-			System.out.println("Time: " + (now - start) + "ms");
-		} catch (Exception e) {			
+		} catch (Exception e) {
 			LOG.error(usage);
 			e.printStackTrace();
 		}

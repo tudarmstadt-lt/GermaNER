@@ -34,7 +34,8 @@ public class VornameListFeatureExtractor implements FeatureFunction {
 		BufferedReader br;
 		try {
 			br = new BufferedReader(new InputStreamReader(new FileInputStream(
-					vornameListFile), "UTF8"));
+					VornameListFeatureExtractor.class.getResource(
+							"/data/").getPath()+vornameListFile.getName()), "UTF8"));
 			String input;
 			while((input=br.readLine())!=null)
 			{

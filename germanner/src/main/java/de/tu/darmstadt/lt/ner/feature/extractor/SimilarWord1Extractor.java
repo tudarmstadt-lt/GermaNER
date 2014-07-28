@@ -34,7 +34,8 @@ public class SimilarWord1Extractor implements FeatureFunction {
 		BufferedReader br;
 		try {
 			br = new BufferedReader(new InputStreamReader(new FileInputStream(
-					simWord), "UTF8"));
+					SimilarWord1Extractor.class.getResource(
+							"/data/").getPath()+simWord.getName()), "UTF8"));
 			String input;
 			while((input=br.readLine())!=null)
 			{
@@ -52,7 +53,7 @@ public class SimilarWord1Extractor implements FeatureFunction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Size:"+simWord1.size());
+		//System.out.println("Size:"+simWord1.size());
 		
 		i++;
 		}
