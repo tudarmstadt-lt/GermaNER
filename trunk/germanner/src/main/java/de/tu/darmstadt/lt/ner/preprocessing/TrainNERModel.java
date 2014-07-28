@@ -72,11 +72,16 @@ public class TrainNERModel {
 						EvaluatedNERWriter.OUTPUT_FILE, outputFile));
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] arg) throws Exception {
 		String usage = "USAGE: java -jar germanner.jar (f OR ft OR t) modelDir (trainFile OR testFile) "
 				+ "where f means training mode, t means testing mode, modelDir is model directory, trainFile is a training file,  and "
 				+ "testFile is a Test file";
 		long start = System.currentTimeMillis();
+		String []args = {"","","",""};
+		args[0]="ft";
+		args[1]="src/main/resources/model/";
+		args[2]="ner_de_sample_train";
+		args[3]="ner_de_sample_test";
 
 		String featureExtractionDirectory = "./";
 		String language = "de";
