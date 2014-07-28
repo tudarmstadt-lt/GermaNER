@@ -52,7 +52,7 @@ public class TrainNERModel {
 		org.cleartk.classifier.jar.Train.main(modelDirectory);
 	}
 
-	public static void classifyTestFile(String modelDirectory,
+	public static void classifyTestFile(String aClassifierJarPath,
 			String featureExtractionDirectory, File testPosFile,
 			String language, File outputFile)
 			throws ResourceInitializationException, UIMAException, IOException {
@@ -67,7 +67,7 @@ public class TrainNERModel {
 						NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
 						featureExtractionDirectory + "feature.xml",
 						GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
-						modelDirectory + "model.jar"),
+						aClassifierJarPath + "model.jar"),
 				createPrimitiveDescription(EvaluatedNERWriter.class,
 						EvaluatedNERWriter.OUTPUT_FILE, outputFile));
 	}
@@ -102,18 +102,19 @@ public class TrainNERModel {
 				writeModel(new File(args[2]), featureExtractionDirectory,
 						modelDirectory, language);
 				trainModel(modelDirectory);
-				classifyTestFile(modelDirectory, featureExtractionDirectory,
+				classifyTestFile(TrainNERModel.class.getResource("/model/").getPath()+"/model.jar", featureExtractionDirectory,
 						new File(args[3]), language, outputFile);
 			} else {
-				classifyTestFile(modelDirectory, featureExtractionDirectory,
+				classifyTestFile(TrainNERModel.class.getResource("/model/").getPath(), featureExtractionDirectory,
 						new File(args[2]), language, outputFile);
 			}
 			long now = System.currentTimeMillis();
 			UIMAFramework.getLogger().log(Level.INFO,
 					"Time: " + (now - start) + "ms");
 			System.out.println("Time: " + (now - start) + "ms");
-		} catch (Exception e) {
+		} catch (Exception e) {			
 			LOG.error(usage);
+			e.printStackTrace();
 		}
 
 	}
