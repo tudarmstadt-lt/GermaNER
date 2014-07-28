@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -83,8 +84,7 @@ public class TrainNERModel {
 
 		ChangeColon c = new ChangeColon();
 
-		String featureExtractionDirectory = Features2Xml.class
-				.getResource("/feature/").getPath()+"/";
+		
 		String language = "de";
 		File outputFile = new File("./res.txt");
 		try {
@@ -99,32 +99,33 @@ public class TrainNERModel {
 				LOG.error(usage);
 				System.exit(1);
 			}
-			String modelDirectory = args[1]+"/";
+			String modelDirectory = args[1] + "/";
 			new File(modelDirectory).mkdirs();
-			
-			IOUtils.copyLarge(new FileInputStream(TrainNERModel.class
-					.getResource("/model/").getPath() + "/model.jar"),
-					new FileOutputStream(new File(modelDirectory,"model.jar")));
-			IOUtils.copyLarge(new FileInputStream(TrainNERModel.class
-					.getResource("/model/").getPath() + "/MANIFEST.MF"),
-					new FileOutputStream(new File(modelDirectory,"MANIFEST.MF")));
-		
+
+			IOUtils.copyLarge(
+					ClassLoader.getSystemResourceAsStream("model/model.jar"),
+					new FileOutputStream(new File(modelDirectory, "model.jar")));
+			IOUtils.copyLarge(ClassLoader
+					.getSystemResourceAsStream("model/MANIFEST.MF"),
+					new FileOutputStream(
+							new File(modelDirectory, "MANIFEST.MF")));
+
 			if (args[0].equals("f")) {
 				c.run(args[2], args[2] + ".c");
 				writeModel(new File(args[2] + ".c"),
-						featureExtractionDirectory, modelDirectory, language);
+						modelDirectory, modelDirectory, language);
 				trainModel(modelDirectory);
 			} else if (args[0].equals("ft")) {
 				c.run(args[2], args[2] + ".c");
 				c.run(args[3], args[3] + ".c");
 				writeModel(new File(args[2] + ".c"),
-						featureExtractionDirectory, modelDirectory, language);
+						modelDirectory, modelDirectory, language);
 				trainModel(modelDirectory);
-				classifyTestFile(modelDirectory, featureExtractionDirectory,
+				classifyTestFile(modelDirectory, modelDirectory,
 						new File(args[3] + ".c"), language, outputFile);
 			} else {
 				c.run(args[2], args[2] + ".c");
-				classifyTestFile(modelDirectory, featureExtractionDirectory,
+				classifyTestFile(modelDirectory, modelDirectory,
 						new File(args[2] + ".c"), language, outputFile);
 			}
 			long now = System.currentTimeMillis();
