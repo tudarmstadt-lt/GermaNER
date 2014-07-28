@@ -7,7 +7,7 @@ import org.cleartk.classifier.Feature;
 import org.cleartk.classifier.feature.function.FeatureFunction;
 
 import de.tu.darmstadt.lt.ner.SttsFeature;
-import de.tu.darmstadt.lt.ner.UnivPosFeature;
+
 
 public class SttsFeatureExtractor implements FeatureFunction {
 

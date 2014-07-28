@@ -6,7 +6,7 @@
   <vendor/>
   <types>
    <typeDescription>
-      <name>de.tu.darmstadt.lt.lqa.webapp.types.GoldNamedEntity</name>
+      <name>de.tu.darmstadt.lt.ner.types.GoldNamedEntity</name>
       <description/>
       <supertypeName>uima.tcas.Annotation</supertypeName>
       <features>

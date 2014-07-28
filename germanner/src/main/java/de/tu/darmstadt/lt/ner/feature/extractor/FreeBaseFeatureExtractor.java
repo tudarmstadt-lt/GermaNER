@@ -8,6 +8,7 @@ import org.cleartk.classifier.feature.function.FeatureFunction;
 
 import de.tu.darmstadt.lt.ner.FreeBaseFeature;
 
+
 public class FreeBaseFeatureExtractor implements FeatureFunction {
 
 
