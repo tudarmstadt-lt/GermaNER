@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Fri Jul 11 16:01:56 CEST 2014
- * XML source: /home/likewise-open/UKP/yimam/git/iu98obib-qa_project_2014/src/main/resources/desc/type/GoldNamedEntity.xml
+ * Updated by JCasGen Mon Jul 28 09:50:42 CEST 2014
+ * XML source: /home/prabhakarans/ner/src/main/resources/desc/type/GoldNamedEntity.xml
  * @generated */
 public class GoldNamedEntity extends Annotation {
   /** @generated
@@ -85,7 +85,7 @@ public class GoldNamedEntity extends Annotation {
    */
   public String getNamedEntityType() {
     if (GoldNamedEntity_Type.featOkTst && ((GoldNamedEntity_Type)jcasType).casFeat_NamedEntityType == null)
-      jcasType.jcas.throwFeatMissing("NamedEntityType", "de.tu.darmstadt.lt.lqa.webapp.types.GoldNamedEntity");
+      jcasType.jcas.throwFeatMissing("NamedEntityType", "de.tu.darmstadt.lt.ner.types.GoldNamedEntity");
     return jcasType.ll_cas.ll_getStringValue(addr, ((GoldNamedEntity_Type)jcasType).casFeatCode_NamedEntityType);}
     
   /** setter for NamedEntityType - sets  
@@ -94,7 +94,7 @@ public class GoldNamedEntity extends Annotation {
    */
   public void setNamedEntityType(String v) {
     if (GoldNamedEntity_Type.featOkTst && ((GoldNamedEntity_Type)jcasType).casFeat_NamedEntityType == null)
-      jcasType.jcas.throwFeatMissing("NamedEntityType", "de.tu.darmstadt.lt.lqa.webapp.types.GoldNamedEntity");
+      jcasType.jcas.throwFeatMissing("NamedEntityType", "de.tu.darmstadt.lt.ner.types.GoldNamedEntity");
     jcasType.ll_cas.ll_setStringValue(addr, ((GoldNamedEntity_Type)jcasType).casFeatCode_NamedEntityType, v);}    
   }
 
