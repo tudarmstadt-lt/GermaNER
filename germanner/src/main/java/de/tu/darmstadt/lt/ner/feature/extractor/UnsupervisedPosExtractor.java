@@ -33,9 +33,8 @@ public class UnsupervisedPosExtractor implements FeatureFunction {
 		{
 		BufferedReader br;
 		try {
-			br = new BufferedReader(new InputStreamReader(new FileInputStream(
-					UnsupervisedPosExtractor.class.getResource(
-							"/data/").getPath()+unPosFile.getName()), "UTF8"));
+			br = new BufferedReader(new InputStreamReader(
+					ClassLoader.getSystemResourceAsStream("data/"+unPosFile.getName()), "UTF8"));
 			String input;
 			while((input=br.readLine())!=null)
 			{

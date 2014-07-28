@@ -33,14 +33,13 @@ public class SimilarWord3Extractor implements FeatureFunction {
 		{
 		BufferedReader br;
 		try {
-			br = new BufferedReader(new InputStreamReader(new FileInputStream(
-					SimilarWord3Extractor.class.getResource(
-							"/data/").getPath()+simWord.getName()), "UTF8"));
+			br = new BufferedReader(new InputStreamReader(
+					ClassLoader.getSystemResourceAsStream("data/"+simWord.getName()), "UTF8"));
 			String input;
 			while((input=br.readLine())!=null)
 			{
 				String []sep=input.split("\\t");
-				simWord3.put(sep[0],sep[1]);
+				simWord3.put(sep[0],sep[3]);
 			}
 			br.close();
 		} catch (UnsupportedEncodingException e) {
