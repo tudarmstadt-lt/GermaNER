@@ -34,7 +34,8 @@ public class SimilarWord3Extractor implements FeatureFunction {
 		BufferedReader br;
 		try {
 			br = new BufferedReader(new InputStreamReader(new FileInputStream(
-					simWord), "UTF8"));
+					SimilarWord3Extractor.class.getResource(
+							"/data/").getPath()+simWord.getName()), "UTF8"));
 			String input;
 			while((input=br.readLine())!=null)
 			{
