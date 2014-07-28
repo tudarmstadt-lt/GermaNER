@@ -1,6 +1,7 @@
 package de.tu.darmstadt.lt.ner.preprocessing;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 
 public class Features2Xml {
 	public static void generateFeatureExtractors(String filename)
-			throws FileNotFoundException, UnsupportedEncodingException {
+			throws IOException {
 		CharacterNGramFeatureFunction.Orientation fromLeft = CharacterNGramFeatureFunction.Orientation.LEFT_TO_RIGHT;
 		CharacterNGramFeatureFunction.Orientation fromRight = CharacterNGramFeatureFunction.Orientation.RIGHT_TO_LEFT;
 		List<SimpleFeatureExtractor> tokenFeatureExtractors;
@@ -315,8 +316,7 @@ public class Features2Xml {
 		return buffer.toString();
 	}
 
-	public static void main(String[] args) throws FileNotFoundException,
-			UnsupportedEncodingException {
+	public static void main(String[] args) throws IOException {
 		String featureFileName = "./feature.xml";
 		generateFeatureExtractors(featureFileName);
 	}
