@@ -102,7 +102,7 @@ public class TrainNERModel {
 				writeModel(new File(args[2]), featureExtractionDirectory,
 						modelDirectory, language);
 				trainModel(modelDirectory);
-				classifyTestFile(TrainNERModel.class.getResource("/model/").getPath()+"/model.jar", featureExtractionDirectory,
+				classifyTestFile(TrainNERModel.class.getResource("/model/").getPath(), featureExtractionDirectory,
 						new File(args[3]), language, outputFile);
 			} else {
 				classifyTestFile(TrainNERModel.class.getResource("/model/").getPath(), featureExtractionDirectory,
