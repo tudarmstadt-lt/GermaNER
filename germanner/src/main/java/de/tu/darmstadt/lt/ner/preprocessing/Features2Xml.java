@@ -41,48 +41,6 @@ public class Features2Xml {
 		List<SimpleFeatureExtractor> tokenFeatureExtractors;
 		tokenFeatureExtractors = new ArrayList<SimpleFeatureExtractor>();
 
-		/*
-		 * tokenFeatureExtractors.add(new CoveredTextExtractor());
-		 * tokenFeatureExtractors.add(new FeatureFunctionExtractor( new
-		 * CoveredTextExtractor(), new NumericTypeFeatureFunction(), new
-		 * CapitalTypeFeatureFunction(), new LowerCaseFeatureFunction(), //new
-		 * SimilarWord1Extractor(), new CharacterNGramFeatureFunction(fromLeft,
-		 * 0, 2), new CharacterNGramFeatureFunction(fromLeft, 0, 4), new
-		 * CharacterNGramFeatureFunction(fromRight, 0, 4), new
-		 * CharacterNGramFeatureFunction(fromRight, 0, 2)
-		 * 
-		 * ) );
-		 */
-		/*
-		 * tokenFeatureExtractors.add(new CleartkExtractor( Token.class, new
-		 * FeatureFunctionExtractor( new CoveredTextExtractor(), new
-		 * CharacterNGramFeatureFunction(fromLeft, 0, 2), new
-		 * CharacterNGramFeatureFunction(fromRight, 0, 4), new
-		 * CharacterNGramFeatureFunction(fromRight, 0, 2)), new Preceding(2),
-		 * new Preceding(1), new Following(2)) ); tokenFeatureExtractors.add(new
-		 * CleartkExtractor( Token.class, new CoveredTextExtractor(), new
-		 * Preceding(1), new Preceding(1), new Following(2)) );
-		 * tokenFeatureExtractors.add(new
-		 * TypePathExtractor(SimilarWord1.class,"Value"));
-		 */
-		/*
-		 * tokenFeatureExtractors.add(new CleartkExtractor( Token.class, new
-		 * FeatureFunctionExtractor( new CoveredTextExtractor(),new
-		 * SimilarWord1Extractor()), new Preceding(1), new Preceding(2), new
-		 * Following(1), new Following(2))); /*tokenFeatureExtractors.add(new
-		 * CleartkExtractor( Token.class, new CoveredTextExtractor(), new
-		 * Preceding(1), new Preceding(2), new Following(1), new Following(2))
-		 * );
-		 */
-		/*
-		 * tokenFeatureExtractors.add(new FeatureFunctionExtractor( new
-		 * CoveredTextExtractor(),new SimilarWord1Extractor()) );
-		 * tokenFeatureExtractors.add(new CleartkExtractor( Token.class, new
-		 * MyFeatureFunctionExtractor( new CoveredTextExtractor(),new
-		 * SimilarWord1Extractor()), new Preceding(1), //new Preceding(2), new
-		 * Following(1) //new Following(2) ));
-		 */
-
 		// German Word feature
 		tokenFeatureExtractors.add(new FeatureFunctionExtractor(
 				new CoveredTextExtractor()));
@@ -317,7 +275,10 @@ public class Features2Xml {
 	}
 
 	public static void main(String[] args) throws IOException {
-		String featureFileName = "./feature.xml";
+		
+		String featureFileName = Features2Xml.class
+				.getResource("/feature/").getPath()
+				+"/feature.xml";
 		generateFeatureExtractors(featureFileName);
 	}
 }
