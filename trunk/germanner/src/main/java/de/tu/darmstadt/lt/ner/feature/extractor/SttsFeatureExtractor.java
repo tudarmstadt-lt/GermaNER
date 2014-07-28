@@ -8,7 +8,6 @@ import org.cleartk.classifier.feature.function.FeatureFunction;
 
 import de.tu.darmstadt.lt.ner.SttsFeature;
 
-
 public class SttsFeatureExtractor implements FeatureFunction {
 
 
@@ -19,8 +18,6 @@ public class SttsFeatureExtractor implements FeatureFunction {
 	public static final String DEFAULT_NAME = "SttsFeature";
 
 	public List<Feature> apply(Feature feature) {
-		String featureName = Feature
-				.createName(DEFAULT_NAME, feature.getName());
 		Object featureValue = feature.getValue();
 		
 	
