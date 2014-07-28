@@ -83,7 +83,8 @@ public class TrainNERModel {
 
 		ChangeColon c = new ChangeColon();
 
-		String featureExtractionDirectory = "./";
+		String featureExtractionDirectory = Features2Xml.class
+				.getResource("/feature/").getPath()+"/";
 		String language = "de";
 		File outputFile = new File("./res.txt");
 		try {
