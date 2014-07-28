@@ -25,15 +25,15 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.PositionFeatureExtractor/>
+      <de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor/>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CapitalTypeFeatureFunction/>
@@ -47,15 +47,15 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
       <org.cleartk.classifier.feature.function.CapitalTypeFeatureFunction/>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CapitalTypeFeatureFunction/>
@@ -71,7 +71,7 @@
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -92,7 +92,7 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
       <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -104,10 +104,10 @@
         <name>NGram_Left_0_1_1</name>
       </org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -130,7 +130,7 @@
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -151,7 +151,7 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
       <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -163,10 +163,10 @@
         <name>NGram_Left_0_2_2</name>
       </org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -189,7 +189,7 @@
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -210,7 +210,7 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
       <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -222,10 +222,10 @@
         <name>NGram_Left_0_3_3</name>
       </org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -248,7 +248,7 @@
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -269,7 +269,7 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
       <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -281,10 +281,10 @@
         <name>NGram_Right_0_1_1</name>
       </org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -307,7 +307,7 @@
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -328,7 +328,7 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
       <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -340,10 +340,10 @@
         <name>NGram_Right_0_2_2</name>
       </org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -366,7 +366,7 @@
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -387,7 +387,7 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
       <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -399,10 +399,10 @@
         <name>NGram_Right_0_3_3</name>
       </org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
         <org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction>
@@ -423,22 +423,22 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.VornameListFeatureExtractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor>
         <vornameListFile>vornameList.txt</vornameListFile>
-      </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.VornameListFeatureExtractor>
+      </de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
-        <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.UnsupervisedPosExtractor>
+        <de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
           <unPosFile>unsupervised_pos</unPosFile>
-        </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.UnsupervisedPosExtractor>
+        </de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
       </featureFunctions>
     </extractor>
     <contexts>
@@ -449,22 +449,22 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.UnsupervisedPosExtractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
         <unPosFile>unsupervised_pos</unPosFile>
-      </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.UnsupervisedPosExtractor>
+      </de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
-        <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.UnsupervisedPosExtractor>
+        <de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
           <unPosFile>unsupervised_pos</unPosFile>
-        </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.UnsupervisedPosExtractor>
+        </de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
       </featureFunctions>
     </extractor>
     <contexts>
@@ -475,26 +475,32 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.UnivPosFeatureExtractor/>
+      <de.tu.darmstadt.lt.ner.feature.extractor.UnivPosFeatureExtractor/>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SttsFeatureExtractor/>
+      <de.tu.darmstadt.lt.ner.feature.extractor.FreeBaseFeatureExtractor/>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SttsFeatureExtractor/>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
-        <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord1Extractor>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
           <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord1Extractor>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
       </featureFunctions>
     </extractor>
     <contexts>
@@ -505,66 +511,22 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord1Extractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
         <simWord>200k_2d_wordlists</simWord>
-      </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord1Extractor>
+      </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
-        <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord1Extractor>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
           <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord1Extractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Following_0_1</name>
-      </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
-    </contexts>
-  </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <org.cleartk.classifier.feature.extractor.CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
-      <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord2Extractor>
-          <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord2Extractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Preceding_0_1</name>
-      </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
-    </contexts>
-  </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
-    <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
-    <featureFunctions>
-      <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord2Extractor>
-        <simWord>200k_2d_wordlists</simWord>
-      </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord2Extractor>
-    </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
-  <org.cleartk.classifier.feature.extractor.CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
-      <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord2Extractor>
-          <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord2Extractor>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
       </featureFunctions>
     </extractor>
     <contexts>
@@ -577,12 +539,12 @@
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
-        <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord3Extractor>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
           <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord3Extractor>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
       </featureFunctions>
     </extractor>
     <contexts>
@@ -593,22 +555,66 @@
       </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
     </contexts>
   </org.cleartk.classifier.feature.extractor.CleartkExtractor>
-  <de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord3Extractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
         <simWord>200k_2d_wordlists</simWord>
-      </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord3Extractor>
+      </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
     </featureFunctions>
-  </de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
   <org.cleartk.classifier.feature.extractor.CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.lqa.webapp.MyFeatureFunctionExtractor">
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
       <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
       <featureFunctions>
-        <de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord3Extractor>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
           <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.lqa.webapp.feature.extractor.SimilarWord3Extractor>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Following_0_1</name>
+      </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Following>
+    </contexts>
+  </org.cleartk.classifier.feature.extractor.CleartkExtractor>
+  <org.cleartk.classifier.feature.extractor.CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
+      <featureFunctions>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+          <simWord>200k_2d_wordlists</simWord>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Preceding_0_1</name>
+      </org.cleartk.classifier.feature.extractor.CleartkExtractor_-Preceding>
+    </contexts>
+  </org.cleartk.classifier.feature.extractor.CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+        <simWord>200k_2d_wordlists</simWord>
+      </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <org.cleartk.classifier.feature.extractor.CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor"/>
+      <featureFunctions>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+          <simWord>200k_2d_wordlists</simWord>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
       </featureFunctions>
     </extractor>
     <contexts>

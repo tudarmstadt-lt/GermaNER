@@ -6,7 +6,7 @@
   <vendor/>
   <types>
    <typeDescription>
-      <name>de.tu.darmstadt.lt.lqa.webapp.types.SimilarWord2</name>
+      <name>de.tu.darmstadt.ner.types.SimilarWord2</name>
       <description/>
       <supertypeName>uima.tcas.Annotation</supertypeName>
       <features>

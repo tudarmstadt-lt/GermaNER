@@ -6,6 +6,7 @@ import static org.uimafit.pipeline.SimplePipeline.runPipeline;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
 import org.apache.uima.UIMAException;
 import org.apache.uima.UIMAFramework;
 import org.apache.uima.resource.ResourceInitializationException;
@@ -22,16 +23,18 @@ import de.tu.darmstadt.lt.ner.reader.NERReader;
 import de.tu.darmstadt.lt.ner.writer.EvaluatedNERWriter;
 import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
 
-public class TrainNERModel
-{
-	public static void writeModel(File NER_TagFile, String featureExtractionDirectory, String modelDirectory, String language) throws ResourceInitializationException, UIMAException, IOException
-	{
+public class TrainNERModel {
+	private static final Logger LOG = Logger.getLogger(TrainNERModel.class
+			.getName());
+
+	public static void writeModel(File NER_TagFile,
+			String featureExtractionDirectory, String modelDirectory,
+			String language) throws ResourceInitializationException,
+			UIMAException, IOException {
 		runPipeline(
 				FilesCollectionReader.getCollectionReaderWithSuffixes(
-						NER_TagFile.getAbsolutePath(),
-						NERReader.CONLL_VIEW,
-						NER_TagFile.getName()
-				),
+						NER_TagFile.getAbsolutePath(), NERReader.CONLL_VIEW,
+						NER_TagFile.getName()),
 				createPrimitiveDescription(NERReader.class),
 				createPrimitiveDescription(
 						NERAnnotator.class,
@@ -42,70 +45,76 @@ public class TrainNERModel
 						DirectoryDataWriterFactory.PARAM_OUTPUT_DIRECTORY,
 						modelDirectory,
 						DefaultSequenceDataWriterFactory.PARAM_DATA_WRITER_CLASS_NAME,
-						CRFSuiteStringOutcomeDataWriter.class
-				)
-		);
+						CRFSuiteStringOutcomeDataWriter.class));
 	}
 
-	public static void trainModel(String modelDirectory) throws Exception
-	{
+	public static void trainModel(String modelDirectory) throws Exception {
 		org.cleartk.classifier.jar.Train.main(modelDirectory);
 	}
 
-	public static void classifyTestFile(String modelDirectory, String featureExtractionDirectory, File testPosFile, String language, File outputFile) throws ResourceInitializationException, UIMAException, IOException
-	{
+	public static void classifyTestFile(String modelDirectory,
+			String featureExtractionDirectory, File testPosFile,
+			String language, File outputFile)
+			throws ResourceInitializationException, UIMAException, IOException {
 		runPipeline(
 				FilesCollectionReader.getCollectionReaderWithSuffixes(
-						testPosFile.getAbsolutePath(),
-						NERReader.CONLL_VIEW,
-						testPosFile.getName()
-				),
+						testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW,
+						testPosFile.getName()),
 				createPrimitiveDescription(NERReader.class),
-				createPrimitiveDescription(
-						SnowballStemmer.class,
-						SnowballStemmer.PARAM_LANGUAGE, language
-				),
+				createPrimitiveDescription(SnowballStemmer.class,
+						SnowballStemmer.PARAM_LANGUAGE, language),
 				createPrimitiveDescription(NERAnnotator.class,
 						NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
 						featureExtractionDirectory + "feature.xml",
 						GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
-						modelDirectory + "model.jar"
-				),
-				createPrimitiveDescription(
-						EvaluatedNERWriter.class,
-						EvaluatedNERWriter.OUTPUT_FILE, outputFile
-				)
-		);
+						modelDirectory + "model.jar"),
+				createPrimitiveDescription(EvaluatedNERWriter.class,
+						EvaluatedNERWriter.OUTPUT_FILE, outputFile));
 	}
 
-	public static void main(String[] args) throws Exception
-	{
+	public static void main(String[] args) throws Exception {
+		String usage = "USAGE: java -jar germanner.jar (f OR ft OR t) modelDir (trainFile OR testFile) "
+				+ "where f means training mode, t means testing mode, modelDir is model directory, trainFile is a training file,  and "
+				+ "testFile is a Test file";
 		long start = System.currentTimeMillis();
-		String modelDirectory = "src/main/resources/model/";
+
 		String featureExtractionDirectory = "./";
-		String language = "en";
-		
-		/*//make it for pos
-		File NER_TagFile = new File("training_file");
-		File testNERFile = new File("testing_file");
-		File outputFile1 = new File("ner_de_sample_train");
-		File outputFile2 = new File("ner_de_sample_test")*/
-		
-		
-		File NER_TagFile = new File("ner_de_sample_train");
-		File testNERFile = new File("ner_de_sample_test");
-		File outputFile = new File("src/main/resources/NER/res.txt");
-		new File(modelDirectory).mkdirs();
-	
-		//make for pos
-		writeModel(NER_TagFile, featureExtractionDirectory, modelDirectory, language);
-		trainModel(modelDirectory);
-		classifyTestFile(modelDirectory, featureExtractionDirectory, testNERFile, language, outputFile);
-		long now = System.currentTimeMillis();
-		UIMAFramework.getLogger().log(Level.INFO, "Time: " + (now - start) + "ms");
-		System.out.println("Time: " + (now - start) + "ms");
-		
-		
-		
+		String language = "de";
+		File outputFile = new File("./res.txt");
+		try {
+			if (!(args[0].equals("f") || args[0].equals("t") ||args[0].equals("ft"))
+					|| !new File(args[1]).exists()
+					|| !new File(args[2]).exists()) {
+				LOG.error(usage);
+				System.exit(1);
+			}
+			if (args[0].equals("ft") && !new File(args[3]).exists()) {
+				LOG.error(usage);
+				System.exit(1);
+			}
+			String modelDirectory = args[1];
+			new File(modelDirectory).mkdirs();
+			if (args[0].equals("f")) {
+				writeModel(new File(args[2]), featureExtractionDirectory,
+						modelDirectory, language);
+				trainModel(modelDirectory);
+			} else if (args[0].equals("ft")) {
+				writeModel(new File(args[2]), featureExtractionDirectory,
+						modelDirectory, language);
+				trainModel(modelDirectory);
+				classifyTestFile(modelDirectory, featureExtractionDirectory,
+						new File(args[3]), language, outputFile);
+			} else {
+				classifyTestFile(modelDirectory, featureExtractionDirectory,
+						new File(args[2]), language, outputFile);
+			}
+			long now = System.currentTimeMillis();
+			UIMAFramework.getLogger().log(Level.INFO,
+					"Time: " + (now - start) + "ms");
+			System.out.println("Time: " + (now - start) + "ms");
+		} catch (Exception e) {
+			LOG.error(usage);
+		}
+
 	}
 }
