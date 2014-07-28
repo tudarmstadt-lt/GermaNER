@@ -3,10 +3,14 @@ package de.tu.darmstadt.lt.ner.feature.extractor;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.cleartk.classifier.Feature;
 import org.cleartk.classifier.feature.function.FeatureFunction;
@@ -14,6 +18,8 @@ import org.cleartk.classifier.feature.function.FeatureFunction;
 public class VornameListFeatureExtractor implements FeatureFunction {
 
 	File vornameListFile=new File("vornameList.txt");
+	static Map<String, String> vnf = new HashMap<String, String>();
+	static int i=0;
 
 	public VornameListFeatureExtractor() {
 		 
@@ -22,9 +28,39 @@ public class VornameListFeatureExtractor implements FeatureFunction {
 	public static final String DEFAULT_NAME = "VornameNameList";
 
 	public List<Feature> apply(Feature feature) {
-		String featureName = Feature
-				.createName(DEFAULT_NAME, feature.getName());
+		
+		if(i==0)
+		{
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(
+					vornameListFile), "UTF8"));
+			String input;
+			while((input=br.readLine())!=null)
+			{
+				String []sep=input.split("\\t");
+				vnf.put(sep[0],"true");
+			}
+			br.close();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		
+		i++;
+		}
+		
+		
 		Object featureValue = feature.getValue();
+		
+		
 		
 		if (featureValue == null)
 			return Collections.emptyList();
@@ -34,27 +70,10 @@ public class VornameListFeatureExtractor implements FeatureFunction {
 			if (value == null || value.length() == 0)
 				return Collections.emptyList();
 			
-			String input;
-			try {
-				BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(
-						vornameListFile), "UTF8"));
-			
+			if(vnf.get(value)!=null)
+				return Collections.singletonList(new Feature("VN", "true"));
 
-				while ((input = br.readLine()) != null) {
-					String[] sep = input.split("\\t");
-					if (value.equals(sep[0])) {
-						//br.close();
-						return Collections.singletonList(new Feature("VN",
-								"true"));
-					}
-					//br.close();
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			return Collections.singletonList(new Feature("VN", "False"));
+			return Collections.singletonList(new Feature("VN", "false"));
 			 
 		} else
 			return Collections.emptyList();
