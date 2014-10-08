@@ -1,9 +1,7 @@
 package de.tu.darmstadt.lt.ner.preprocessing;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +10,9 @@ import org.cleartk.classifier.feature.extractor.CleartkExtractor.Following;
 import org.cleartk.classifier.feature.extractor.CleartkExtractor.Preceding;
 import org.cleartk.classifier.feature.extractor.simple.CoveredTextExtractor;
 import org.cleartk.classifier.feature.extractor.simple.SimpleFeatureExtractor;
-import org.cleartk.classifier.feature.extractor.simple.TypePathExtractor;
 import org.cleartk.classifier.feature.function.CapitalTypeFeatureFunction;
 import org.cleartk.classifier.feature.function.CharacterNGramFeatureFunction;
 import org.cleartk.classifier.feature.function.FeatureFunctionExtractor;
-import org.cleartk.classifier.feature.function.LowerCaseFeatureFunction;
-import org.cleartk.classifier.feature.function.NumericTypeFeatureFunction;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -44,13 +39,13 @@ public class Features2Xml {
 		// German Word feature
 		tokenFeatureExtractors.add(new FeatureFunctionExtractor(
 				new CoveredTextExtractor()));
-		
+
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
 				new CoveredTextExtractor(), new Preceding(2)));
 
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
 				new CoveredTextExtractor(), new Following(2)));
-				
+
 		//Position Feature
 		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
 				new CoveredTextExtractor(), new PositionFeatureExtractor()));
@@ -162,33 +157,33 @@ public class Features2Xml {
 				new CoveredTextExtractor(), new VornameListFeatureExtractor()));
 
 		//Unsupervised POS tag
-		
+
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
 				new MyFeatureFunctionExtractor(new CoveredTextExtractor(),
 						new UnsupervisedPosExtractor()), new Preceding(1)));
 
 		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
 				new CoveredTextExtractor(), new UnsupervisedPosExtractor()));
-		
+
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
 				new MyFeatureFunctionExtractor(new CoveredTextExtractor(),
 						new UnsupervisedPosExtractor()), new Following(1)));
-		
+
 		//SpanVNL Feature
-		
+
 		//Universal Part Of Speech Feature
 		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
 				new CoveredTextExtractor(), new UnivPosFeatureExtractor()));
-		
+
 		//FreeBase Feature
 		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
 				new CoveredTextExtractor(), new FreeBaseFeatureExtractor()));
-		
+
 		//SttsFeature
 		tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
 				new CoveredTextExtractor(), new SttsFeatureExtractor()));
 
-		
+
 		// SimilarWord1 Feature
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
 				new MyFeatureFunctionExtractor(new CoveredTextExtractor(),
@@ -224,7 +219,7 @@ public class Features2Xml {
 		tokenFeatureExtractors.add(new CleartkExtractor(Token.class,
 				new MyFeatureFunctionExtractor(new CoveredTextExtractor(),
 						new SimilarWord3Extractor()), new Following(1)));
-						
+
 		XStream xstream = XStreamFactory.createXStream();
 		String x = xstream.toXML(tokenFeatureExtractors);
 		x = removeLogger(x);
@@ -250,17 +245,19 @@ public class Features2Xml {
 			if (l.trim().contains(LB) && l.trim().contains(LE)) {
 				line.append(l.substring(0, l.indexOf(LB)));
 				line.append(l.substring(l.indexOf(LE) + LE.length()));
-			} else if (l.trim().contains(LS) && !l.trim().contains(LB))
-				continue;
-			else if (!loggerFound && l.trim().contains(LB)
+			} else if (l.trim().contains(LS) && !l.trim().contains(LB)) {
+                continue;
+            }
+            else if (!loggerFound && l.trim().contains(LB)
 					&& !l.trim().contains(LE)) {
 				loggerFound = true;
 				line.append(l.substring(0, l.indexOf(LB)));
 			} else if (loggerFound && l.trim().contains(LE)) {
 				loggerFound = false;
 				line.append(l.substring(l.indexOf(LE) + LE.length()));
-			} else if (!loggerFound)
-				line.append(l);
+			} else if (!loggerFound) {
+                line.append(l);
+            }
 
 			if (!loggerFound) {
 				if (!line.toString().trim().isEmpty()) {
@@ -275,10 +272,8 @@ public class Features2Xml {
 	}
 
 	public static void main(String[] args) throws IOException {
-		
-		String featureFileName = Features2Xml.class
-				.getResource("/feature/").getPath()
-				+"/feature.xml";
+
+		String featureFileName = "src/main/resources/feature/feature.xml";
 		generateFeatureExtractors(featureFileName);
 	}
 }
