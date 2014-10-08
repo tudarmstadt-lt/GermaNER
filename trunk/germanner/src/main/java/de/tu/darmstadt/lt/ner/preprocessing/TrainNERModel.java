@@ -6,6 +6,7 @@ import static org.uimafit.pipeline.SimplePipeline.runPipeline;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.uima.UIMAException;
 import org.apache.uima.UIMAFramework;
@@ -51,10 +52,11 @@ public class TrainNERModel {
 		org.cleartk.classifier.jar.Train.main(modelDirectory);
 	}
 
-	public static void classifyTestFile(String aClassifierJarPath,
+	public static String classifyTestFile(String aClassifierJarPath,
 			File testPosFile,
 			String language, File outputFile)
 			throws ResourceInitializationException, UIMAException, IOException {
+	
 		runPipeline(
 				FilesCollectionReader.getCollectionReaderWithSuffixes(
 						testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW,
@@ -69,6 +71,7 @@ public class TrainNERModel {
 						aClassifierJarPath + "model.jar"),
 				createPrimitiveDescription(EvaluatedNERWriter.class,
 						EvaluatedNERWriter.OUTPUT_FILE, outputFile));
+		return FileUtils.readFileToString(outputFile, "UTF-8");
 	}
 
 	public static void main(String[] args) throws Exception {
