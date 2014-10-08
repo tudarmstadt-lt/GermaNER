@@ -107,6 +107,11 @@ public class TrainNERModel {
 					new FileOutputStream(
 							new File(modelDirectory, "MANIFEST.MF")));
 
+			IOUtils.copyLarge(ClassLoader
+                    .getSystemResourceAsStream("feature/feature.xml"),
+                    new FileOutputStream(
+                            new File(modelDirectory, "feature.xml")));
+
 			if (args[0].equals("f")) {
 				c.run(args[2], args[2] + ".c");
 				writeModel(new File(args[2] + ".c"),
