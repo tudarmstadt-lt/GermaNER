@@ -4,10 +4,8 @@ import static org.uimafit.factory.AnalysisEngineFactory.createPrimitiveDescripti
 import static org.uimafit.pipeline.SimplePipeline.runPipeline;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.apache.uima.UIMAException;
 import org.apache.uima.UIMAFramework;
@@ -54,7 +52,7 @@ public class TrainNERModel {
 	}
 
 	public static void classifyTestFile(String aClassifierJarPath,
-			String featureExtractionDirectory, File testPosFile,
+			File testPosFile,
 			String language, File outputFile)
 			throws ResourceInitializationException, UIMAException, IOException {
 		runPipeline(
@@ -66,7 +64,7 @@ public class TrainNERModel {
 						SnowballStemmer.PARAM_LANGUAGE, language),
 				createPrimitiveDescription(NERAnnotator.class,
 						NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
-						featureExtractionDirectory + "feature.xml",
+						aClassifierJarPath + "feature.xml",
 						GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
 						aClassifierJarPath + "model.jar"),
 				createPrimitiveDescription(EvaluatedNERWriter.class,
@@ -99,19 +97,6 @@ public class TrainNERModel {
 			String modelDirectory = args[1] + "/";
 			new File(modelDirectory).mkdirs();
 
-			IOUtils.copyLarge(
-					ClassLoader.getSystemResourceAsStream("model/model.jar"),
-					new FileOutputStream(new File(modelDirectory, "model.jar")));
-			IOUtils.copyLarge(ClassLoader
-					.getSystemResourceAsStream("model/MANIFEST.MF"),
-					new FileOutputStream(
-							new File(modelDirectory, "MANIFEST.MF")));
-
-			IOUtils.copyLarge(ClassLoader
-                    .getSystemResourceAsStream("feature/feature.xml"),
-                    new FileOutputStream(
-                            new File(modelDirectory, "feature.xml")));
-
 			if (args[0].equals("f")) {
 				c.run(args[2], args[2] + ".c");
 				writeModel(new File(args[2] + ".c"),
@@ -123,11 +108,11 @@ public class TrainNERModel {
 				writeModel(new File(args[2] + ".c"),
 						modelDirectory, language);
 				trainModel(modelDirectory);
-				classifyTestFile(modelDirectory, modelDirectory,
+				classifyTestFile( modelDirectory,
 						new File(args[3] + ".c"), language, outputFile);
 			} else {
 				c.run(args[2], args[2] + ".c");
-				classifyTestFile(modelDirectory, modelDirectory,
+				classifyTestFile( modelDirectory,
 						new File(args[2] + ".c"), language, outputFile);
 			}
 			long now = System.currentTimeMillis();
