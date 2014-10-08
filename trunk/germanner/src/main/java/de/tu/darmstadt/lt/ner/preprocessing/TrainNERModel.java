@@ -4,10 +4,8 @@ import static org.uimafit.factory.AnalysisEngineFactory.createPrimitiveDescripti
 import static org.uimafit.pipeline.SimplePipeline.runPipeline;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -31,8 +29,7 @@ public class TrainNERModel {
 	private static final Logger LOG = Logger.getLogger(TrainNERModel.class
 			.getName());
 
-	public static void writeModel(File NER_TagFile,
-			String featureExtractionDirectory, String modelDirectory,
+	public static void writeModel(File NER_TagFile, String modelDirectory,
 			String language) throws ResourceInitializationException,
 			UIMAException, IOException {
 		runPipeline(
@@ -43,7 +40,7 @@ public class TrainNERModel {
 				createPrimitiveDescription(
 						NERAnnotator.class,
 						NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
-						featureExtractionDirectory + "feature.xml",
+						modelDirectory + "feature.xml",
 						CleartkSequenceAnnotator.PARAM_IS_TRAINING,
 						true,
 						DirectoryDataWriterFactory.PARAM_OUTPUT_DIRECTORY,
@@ -84,7 +81,7 @@ public class TrainNERModel {
 
 		ChangeColon c = new ChangeColon();
 
-		
+
 		String language = "de";
 		File outputFile = new File("./res.txt");
 		try {
@@ -113,13 +110,13 @@ public class TrainNERModel {
 			if (args[0].equals("f")) {
 				c.run(args[2], args[2] + ".c");
 				writeModel(new File(args[2] + ".c"),
-						modelDirectory, modelDirectory, language);
+						 modelDirectory, language);
 				trainModel(modelDirectory);
 			} else if (args[0].equals("ft")) {
 				c.run(args[2], args[2] + ".c");
 				c.run(args[3], args[3] + ".c");
 				writeModel(new File(args[2] + ".c"),
-						modelDirectory, modelDirectory, language);
+						modelDirectory, language);
 				trainModel(modelDirectory);
 				classifyTestFile(modelDirectory, modelDirectory,
 						new File(args[3] + ".c"), language, outputFile);
