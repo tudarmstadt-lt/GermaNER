@@ -77,10 +77,10 @@ public class NERReader
                 String word = tag[0];
                 pos = tag.length >= 15 ? tag[14] : "";
                 NamedEntity = tag.length >= 19 ? tag[19] : "";
-                PositionFeature.pos.add(tag.length >= 0 ? Integer.parseInt(tag[1]) : 0);
-                UnivPosFeature.pos.add(tag.length >= 11 ? tag[12] : "");
-                SttsFeature.pos.add(tag.length >= 13 ? tag[14] : "");
-                FreeBaseFeature.pos.add(tag.length >= 12 ? tag[13] : "");
+                PositionFeature.pos.add(tag.length > 0 ? Integer.parseInt(tag[1]) : 0);
+                UnivPosFeature.pos.add(tag.length > 11 ? tag[12] : "");
+                SttsFeature.pos.add(tag.length > 13 ? tag[14] : "");
+                FreeBaseFeature.pos.add(tag.length > 12 ? tag[13] : "");
                 docText.append(word);
                 if (!word.matches("^(\\p{Punct}).*")) {
                     token = new Token(docView, idx, idx + word.length());
