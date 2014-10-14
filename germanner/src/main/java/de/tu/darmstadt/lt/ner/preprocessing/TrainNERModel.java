@@ -56,7 +56,7 @@ public class TrainNERModel {
 			File testPosFile,
 			String language, File outputFile)
 			throws ResourceInitializationException, UIMAException, IOException {
-	
+
 		runPipeline(
 				FilesCollectionReader.getCollectionReaderWithSuffixes(
 						testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW,
@@ -84,7 +84,6 @@ public class TrainNERModel {
 
 
 		String language = "de";
-		File outputFile = new File("./res.txt");
 		try {
 			if (!(args[0].equals("f") || args[0].equals("t") || args[0]
 					.equals("ft"))
@@ -99,7 +98,7 @@ public class TrainNERModel {
 			}
 			String modelDirectory = args[1] + "/";
 			new File(modelDirectory).mkdirs();
-
+		     File outputFile = new File(modelDirectory, "res.txt");
 			if (args[0].equals("f")) {
 				c.run(args[2], args[2] + ".c");
 				writeModel(new File(args[2] + ".c"),
