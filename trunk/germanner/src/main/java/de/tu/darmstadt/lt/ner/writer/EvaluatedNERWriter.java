@@ -3,6 +3,10 @@ package de.tu.darmstadt.lt.ner.writer;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
@@ -15,42 +19,152 @@ import de.tu.darmstadt.lt.ner.types.GoldNamedEntity;
 import de.tudarmstadt.ukp.dkpro.core.api.ner.type.NamedEntity;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 
-public class EvaluatedNERWriter extends JCasConsumer_ImplBase {
-	public static final String OUTPUT_FILE = "OutputFile";
+public class EvaluatedNERWriter
+    extends JCasConsumer_ImplBase
+{
+    public static final String OUTPUT_FILE = "OutputFile";
+    @ConfigurationParameter(name = OUTPUT_FILE, mandatory = true)
+    private File OutputFile = null;
 
-	@ConfigurationParameter(name = OUTPUT_FILE, mandatory = true)
-	private File OutputFile = null;
-	public static final String LF = System.getProperty("line.separator");
+    public static final String NOD_OUTPUT_FILE = "nodOutputFile";
+    @ConfigurationParameter(name = NOD_OUTPUT_FILE, mandatory = false)
+    private File nodOutputFile = null;
 
-	@Override
-	public void process(JCas jcas) throws AnalysisEngineProcessException {
-		try {
-			FileWriter fw = new FileWriter(OutputFile);
+    public static final String IS_GOLD = "isGold";
+    @ConfigurationParameter(name = IS_GOLD, mandatory = false)
+    private boolean isGold = false;
 
-			for (Sentence sentence : JCasUtil.select(jcas, Sentence.class)) {
-				for (NamedEntity a : JCasUtil.selectCovered(jcas,
-						NamedEntity.class, sentence.getBegin(),
-						sentence.getEnd())) {
-					StringBuilder sb = new StringBuilder();
-					sb.append(a.getCoveredText().replace(" ", ""));
-					sb.append(" ");
-					sb.append(JCasUtil
-							.selectCovered(jcas, GoldNamedEntity.class, a)
-							.get(0).getNamedEntityType());
-					sb.append(" ");
-					sb.append(a.getValue());
-					sb.append(LF);
-					fw.write(sb.toString());
-				}
-				fw.write(LF);
+    public static final String SENTENCES_ID = "sentencesId";
+    @ConfigurationParameter(name = SENTENCES_ID, mandatory = false)
+    private List<String> sentencesId = null;
 
-			}
-			fw.close();
+    public static final String LF = System.getProperty("line.separator");
+    public static final String TAB = "\t";
+    private static final String ORG = "ORG";
+    private static final String PER = "PER";
+    private static final String B_ORG = "B-ORG";
+    private static final String B_PER = "B-PER";
+    private static final String I_ORG = "I-ORG";
+    private static final String I_PER = "I-PER";
+    private static final String TYPE_SEP = "$";
+    private static final String ENT_SEP = "|";
 
-			getContext().getLogger().log(Level.INFO,
-					"Output written to: " + OutputFile.getAbsolutePath());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void process(JCas jCas)
+        throws AnalysisEngineProcessException
+    {
+        try {
+            FileWriter outputWriter = new FileWriter(OutputFile);
+            Map<Sentence, Collection<NamedEntity>> sentencesNER = JCasUtil.indexCovered(jCas,
+                    Sentence.class, NamedEntity.class);
+            FileWriter nodOutputWriter = null;
+            if (nodOutputFile != null) {
+                nodOutputWriter = new FileWriter(nodOutputFile);
+            }
+            int sentenceIndex = 0;
+            for (Sentence sentence : sentencesNER.keySet()) {
+
+                List<String> personSb = new ArrayList<String>();
+                List<String> orgSb = new ArrayList<String>();
+                String prevNeType = "O";
+                String namedEntity = "";
+
+                for (NamedEntity neAnnotation : sentencesNER.get(sentence)) {
+
+                    String text = neAnnotation.getCoveredText().replace(" ", "");
+                    String neType = neAnnotation.getValue();
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(text);
+                    sb.append(" ");
+                    if (isGold) {
+                        sb.append(JCasUtil.selectCovered(jCas, GoldNamedEntity.class, neAnnotation)
+                                .get(0).getNamedEntityType());
+                    }
+                    sb.append(" ");
+                    sb.append(neAnnotation.getValue());
+                    sb.append(LF);
+                    outputWriter.write(sb.toString());
+
+                    // save the sentence-ne file for NoD
+                    if (nodOutputFile != null) {
+                        if (neType.equals("O")) {
+                            if (prevNeType == "O") {
+                                continue;
+                            }
+                            else if (prevNeType.equals(PER)) {
+                                personSb.add(namedEntity);
+                                prevNeType = "O";
+                                namedEntity = "";
+                            }
+                            else {
+                                orgSb.add(namedEntity);
+                                prevNeType = "O";
+                                namedEntity = "";
+                            }
+
+                        }
+                        // if ORG is followed by PER
+                        else if (prevNeType.equals(ORG)
+                                && (neType.equals(B_PER) || neType.equals(I_PER))) {
+                            orgSb.add(namedEntity);
+                            prevNeType = PER;
+                            namedEntity = text;
+                        }
+                        // if PER is followed by ORG
+                        else if (prevNeType.equals(PER)
+                                && (neType.equals(B_ORG) || neType.equals(I_ORG))) {
+                            personSb.add(namedEntity);
+                            prevNeType = ORG;
+                            namedEntity = text;
+                        }
+                        else if (neType.equals(B_PER) || neType.equals(I_PER)) {
+                            prevNeType = PER;
+                            namedEntity = namedEntity.trim() + " " + text;
+                        }
+                        else if (neType.equals(B_ORG) || neType.equals(I_ORG)) {
+                            prevNeType = ORG;
+                            namedEntity = namedEntity.trim() + " " + text;
+                        }
+                        else {
+                            prevNeType = "O";
+                        }
+
+                    }
+                }
+                outputWriter.write(LF);
+                if (nodOutputFile != null && sentencesId != null) {
+                    nodOutputWriter.write(sentencesId.get(sentenceIndex) + TAB
+                            + (personSb.size() == 0 ? "O" : listNames(personSb)) + TAB + TYPE_SEP + TAB
+                            + (orgSb.size() == 0 ? "O" : listNames(orgSb))+LF);
+                }
+
+            }
+            outputWriter.close();
+            nodOutputWriter.close();
+
+            getContext().getLogger().log(Level.INFO,
+                    "Output written to: " + OutputFile.getAbsolutePath());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String listNames(List<String> names)
+    {
+        if (names.size() == 1) {
+            return names.get(0);
+        }
+        String name = "";
+        for (String nameInList : names) {
+            if (name.equals("")) {
+                name = nameInList +ENT_SEP;
+            }
+            else {
+                name = name + nameInList;
+            }
+        }
+        return name;
+    }
 }

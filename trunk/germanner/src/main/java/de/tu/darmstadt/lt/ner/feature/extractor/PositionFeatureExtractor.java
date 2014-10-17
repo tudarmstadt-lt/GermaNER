@@ -8,34 +8,43 @@ import org.cleartk.classifier.feature.function.FeatureFunction;
 
 import de.tu.darmstadt.lt.ner.PositionFeature;
 
+public class PositionFeatureExtractor
+    implements FeatureFunction
+{
 
-public class PositionFeatureExtractor implements FeatureFunction {
+    public PositionFeatureExtractor()
+    {
 
-	
+    }
 
-	public PositionFeatureExtractor() {
-		 
-	}
+    public static final String DEFAULT_NAME = "PositionFeature";
 
-	public static final String DEFAULT_NAME = "PositionFeature";
+    @Override
+    public List<Feature> apply(Feature feature)
+    {
+        Object featureValue = feature.getValue();
+        try {
+            if (featureValue == null) {
+                return Collections.emptyList();
+            }
+            else if (featureValue instanceof String) {
 
-	public List<Feature> apply(Feature feature) {
-		Object featureValue = feature.getValue();
-		
-		if (featureValue == null)
-			return Collections.emptyList();
-		else if (featureValue instanceof String) {
-			
-			int k=PositionFeature.pos.remove();
-		 
-			String value = featureValue.toString();
-			if (value == null || value.length() == 0)
-				return Collections.emptyList();
+                int k = PositionFeature.pos.remove();
 
-			return Collections.singletonList(new Feature("Position",Integer.toString(k)));
-			 
-		} else
-			return Collections.emptyList();
-	}
+                String value = featureValue.toString();
+                if (value == null || value.length() == 0) {
+                    return Collections.emptyList();
+                }
+
+                return Collections.singletonList(new Feature("Position", Integer.toString(k)));
+            }
+            else {
+                return Collections.emptyList();
+            }
+        }
+        catch (Exception e) {
+            return Collections.emptyList();
+        }
+    }
 
 }
