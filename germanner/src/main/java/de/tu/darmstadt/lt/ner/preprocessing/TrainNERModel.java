@@ -4,9 +4,13 @@ import static org.uimafit.factory.AnalysisEngineFactory.createPrimitiveDescripti
 import static org.uimafit.pipeline.SimplePipeline.runPipeline;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
-import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.LineIterator;
 import org.apache.log4j.Logger;
 import org.apache.uima.UIMAException;
 import org.apache.uima.UIMAFramework;
@@ -19,111 +23,159 @@ import org.cleartk.classifier.jar.DirectoryDataWriterFactory;
 import org.cleartk.classifier.jar.GenericJarClassifierFactory;
 import org.cleartk.util.cr.FilesCollectionReader;
 
+import com.ibm.icu.text.BreakIterator;
+
 import de.tu.darmstadt.lt.ner.annotator.NERAnnotator;
 import de.tu.darmstadt.lt.ner.reader.NERReader;
 import de.tu.darmstadt.lt.ner.writer.EvaluatedNERWriter;
 import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
 
-public class TrainNERModel {
-	private static final Logger LOG = Logger.getLogger(TrainNERModel.class
-			.getName());
+public class TrainNERModel
+{
+    private static final Logger LOG = Logger.getLogger(TrainNERModel.class.getName());
 
-	public static void writeModel(File NER_TagFile, String modelDirectory,
-			String language) throws ResourceInitializationException,
-			UIMAException, IOException {
-		runPipeline(
-				FilesCollectionReader.getCollectionReaderWithSuffixes(
-						NER_TagFile.getAbsolutePath(), NERReader.CONLL_VIEW,
-						NER_TagFile.getName()),
-				createPrimitiveDescription(NERReader.class),
-				createPrimitiveDescription(
-						NERAnnotator.class,
-						NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
-						modelDirectory + "feature.xml",
-						CleartkSequenceAnnotator.PARAM_IS_TRAINING,
-						true,
-						DirectoryDataWriterFactory.PARAM_OUTPUT_DIRECTORY,
-						modelDirectory,
-						DefaultSequenceDataWriterFactory.PARAM_DATA_WRITER_CLASS_NAME,
-						CRFSuiteStringOutcomeDataWriter.class));
-	}
+    public static void writeModel(File NER_TagFile, File modelDirectory, String language)
+        throws ResourceInitializationException, UIMAException, IOException
+    {
+        runPipeline(
+                FilesCollectionReader.getCollectionReaderWithSuffixes(
+                        NER_TagFile.getAbsolutePath(), NERReader.CONLL_VIEW, NER_TagFile.getName()),
+                createPrimitiveDescription(NERReader.class),
+                createPrimitiveDescription(NERAnnotator.class,
+                        NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                        modelDirectory.getAbsolutePath() + "/feature.xml",
+                        CleartkSequenceAnnotator.PARAM_IS_TRAINING, true,
+                        DirectoryDataWriterFactory.PARAM_OUTPUT_DIRECTORY, modelDirectory,
+                        DefaultSequenceDataWriterFactory.PARAM_DATA_WRITER_CLASS_NAME,
+                        CRFSuiteStringOutcomeDataWriter.class));
+    }
 
-	public static void trainModel(String modelDirectory) throws Exception {
-		org.cleartk.classifier.jar.Train.main(modelDirectory);
-	}
+    public static void trainModel(File modelDirectory)
+        throws Exception
+    {
+        org.cleartk.classifier.jar.Train.main(modelDirectory.getAbsolutePath());
+    }
 
-	public static String classifyTestFile(String aClassifierJarPath,
-			File testPosFile,
-			String language, File outputFile)
-			throws ResourceInitializationException, UIMAException, IOException {
+    public static void classifyTestFile(File aClassifierJarPath, File testPosFile, File outputFile,
+            File aNodeResultFile, ArrayList<Integer> aSentencesIds, String language)
+        throws ResourceInitializationException, UIMAException, IOException
+    {
 
-		runPipeline(
-				FilesCollectionReader.getCollectionReaderWithSuffixes(
-						testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW,
-						testPosFile.getName()),
-				createPrimitiveDescription(NERReader.class),
-				createPrimitiveDescription(SnowballStemmer.class,
-						SnowballStemmer.PARAM_LANGUAGE, language),
-				createPrimitiveDescription(NERAnnotator.class,
-						NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
-						aClassifierJarPath + "feature.xml",
-						GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
-						aClassifierJarPath + "model.jar"),
-				createPrimitiveDescription(EvaluatedNERWriter.class,
-						EvaluatedNERWriter.OUTPUT_FILE, outputFile));
-		return FileUtils.readFileToString(outputFile, "UTF-8");
-	}
+        runPipeline(
+                FilesCollectionReader.getCollectionReaderWithSuffixes(
+                        testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW, testPosFile.getName()),
+                createPrimitiveDescription(NERReader.class),
+                createPrimitiveDescription(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE,
+                        language),
+                createPrimitiveDescription(NERAnnotator.class,
+                        NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                        aClassifierJarPath.getAbsolutePath() + "/feature.xml",
+                        GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
+                        aClassifierJarPath.getAbsolutePath() + "/model.jar"),
+                createPrimitiveDescription(EvaluatedNERWriter.class,
+                        EvaluatedNERWriter.OUTPUT_FILE, outputFile, EvaluatedNERWriter.IS_GOLD,
+                        false, EvaluatedNERWriter.NOD_OUTPUT_FILE, aNodeResultFile,
+                        EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
+    }
 
-	public static void main(String[] args) throws Exception {
-		String usage = "USAGE: java -jar germanner.jar (f OR ft OR t) modelDir (trainFile OR testFile) "
-				+ "where f means training mode, t means testing mode, modelDir is model directory, trainFile is a training file,  and "
-				+ "testFile is a Test file";
-		long start = System.currentTimeMillis();
+    /**
+     * This is a helper method, can be called from NoD. If you use a DKPro tokenizer during
+     * training, this mehtod use the same tokenizer available in DKPro,
+     *
+     * @param aFileNam
+     *            the name of the sentence document file in the form ID \t HASH \t SENTENCE
+     * @return
+     * @throws UIMAException
+     * @throws IllegalArgumentException
+     * @throws IOException
+     */
+    public static void sentenceToCRFFormat(String aSentenceFileName, String aCRFFileName)
+        throws UIMAException, IllegalArgumentException, IOException
+    {
+        FileOutputStream os = new FileOutputStream(aCRFFileName);
+        try {
+            LineIterator sentIt = new LineIterator(new FileReader(new File(aSentenceFileName)));
 
-		ChangeColon c = new ChangeColon();
+            while (sentIt.hasNext()) {
 
+                String line = sentIt.next().toString().trim();
+                if (line.equals("")) {
+                    continue;
+                }
+                // the first and second are id and hash values, not required
+                String sentenceText = line.split("\t")[2];
 
-		String language = "de";
-		try {
-			if (!(args[0].equals("f") || args[0].equals("t") || args[0]
-					.equals("ft"))
-					|| !new File(args[1]).exists()
-					|| !new File(args[2]).exists()) {
-				LOG.error(usage);
-				System.exit(1);
-			}
-			if (args[0].equals("ft") && !new File(args[3]).exists()) {
-				LOG.error(usage);
-				System.exit(1);
-			}
-			String modelDirectory = args[1] + "/";
-			new File(modelDirectory).mkdirs();
-		     File outputFile = new File(modelDirectory, "res.txt");
-			if (args[0].equals("f")) {
-				c.run(args[2], args[2] + ".c");
-				writeModel(new File(args[2] + ".c"),
-						 modelDirectory, language);
-				trainModel(modelDirectory);
-			} else if (args[0].equals("ft")) {
-				c.run(args[2], args[2] + ".c");
-				c.run(args[3], args[3] + ".c");
-				writeModel(new File(args[2] + ".c"),
-						modelDirectory, language);
-				trainModel(modelDirectory);
-				classifyTestFile( modelDirectory,
-						new File(args[3] + ".c"), language, outputFile);
-			} else {
-				c.run(args[2], args[2] + ".c");
-				classifyTestFile( modelDirectory,
-						new File(args[2] + ".c"), language, outputFile);
-			}
-			long now = System.currentTimeMillis();
-			UIMAFramework.getLogger().log(Level.INFO,
-					"Time: " + (now - start) + "ms");
-		} catch (Exception e) {
-			LOG.error(usage);
-			e.printStackTrace();
-		}
+                BreakIterator boundary = BreakIterator.getWordInstance();
+                boundary.setText(sentenceText);
 
-	}
+                int start = boundary.first();
+                for (int end = boundary.next(); end != BreakIterator.DONE; start = end, end = boundary
+                        .next()) {
+                    if (sentenceText.substring(start, end).trim().isEmpty()) {
+                        continue;
+                    }
+                    IOUtils.write(sentenceText.substring(start, end).trim() + "\n", os, "UTF-8");
+                }
+
+                IOUtils.write("\n", os, "UTF-8");
+            }
+
+        }
+        catch (Exception e) {
+            //
+        }
+    }
+
+    public static void main(String[] args)
+        throws Exception
+    {
+        String usage = "USAGE: java -jar germanner.jar (f OR ft OR t) modelDir (trainFile OR testFile) "
+                + "where f means training mode, t means testing mode, modelDir is model directory, trainFile is a training file,  and "
+                + "testFile is a Test file";
+        long start = System.currentTimeMillis();
+
+        ChangeColon c = new ChangeColon();
+
+        String language = "de";
+        try {
+            if (!(args[0].equals("f") || args[0].equals("t") || args[0].equals("ft"))
+                    || !new File(args[1]).exists() || !new File(args[2]).exists()) {
+                LOG.error(usage);
+                System.exit(1);
+            }
+            if (args[0].equals("ft") && !new File(args[3]).exists()) {
+                LOG.error(usage);
+                System.exit(1);
+            }
+            File modelDirectory = new File(args[1] + "/");
+            modelDirectory.mkdirs();
+
+            File outputFile = new File(modelDirectory, "res.txt");
+            if (args[0].equals("f")) {
+                c.run(args[2], args[2] + ".c");
+                writeModel(new File(args[2] + ".c"), modelDirectory, language);
+                trainModel(modelDirectory);
+            }
+            else if (args[0].equals("ft")) {
+                c.run(args[2], args[2] + ".c");
+                c.run(args[3], args[3] + ".c");
+                writeModel(new File(args[2] + ".c"), modelDirectory, language);
+                trainModel(modelDirectory);
+                classifyTestFile(modelDirectory, new File(args[3] + ".c"), outputFile, null, null,
+                        language);
+            }
+            else {
+                c.run(args[2], args[2] + ".c");
+                classifyTestFile(modelDirectory, new File(args[2] + ".c"), outputFile, null, null,
+                        language);
+            }
+            long now = System.currentTimeMillis();
+            UIMAFramework.getLogger().log(Level.INFO, "Time: " + (now - start) + "ms");
+        }
+        catch (Exception e) {
+            LOG.error(usage);
+            e.printStackTrace();
+        }
+
+    }
 }

@@ -8,32 +8,44 @@ import org.cleartk.classifier.feature.function.FeatureFunction;
 
 import de.tu.darmstadt.lt.ner.UnivPosFeature;
 
-public class UnivPosFeatureExtractor implements FeatureFunction {
+public class UnivPosFeatureExtractor
+    implements FeatureFunction
+{
 
+    public UnivPosFeatureExtractor()
+    {
 
-	public UnivPosFeatureExtractor() {
-		 
-	}
+    }
 
-	public static final String DEFAULT_NAME = "UnivPosFeature";
+    public static final String DEFAULT_NAME = "UnivPosFeature";
 
-	public List<Feature> apply(Feature feature) {
-		Object featureValue = feature.getValue();
+    @Override
+    public List<Feature> apply(Feature feature)
+    {
+        Object featureValue = feature.getValue();
+        try {
+            if (featureValue == null) {
+                return Collections.emptyList();
+            }
+            else if (featureValue instanceof String) {
 
-		if (featureValue == null)
-			return Collections.emptyList();
-		else if (featureValue instanceof String) {
-			
-			String k=UnivPosFeature.pos.remove();
-		 
-			String value = featureValue.toString();
-			if (value == null || value.length() == 0)
-				return Collections.emptyList();
+                String k = UnivPosFeature.pos.remove();
 
-			return Collections.singletonList(new Feature("UnivPos",k));
-			 
-		} else
-			return Collections.emptyList();
-	}
+                String value = featureValue.toString();
+                if (value == null || value.length() == 0) {
+                    return Collections.emptyList();
+                }
+
+                return Collections.singletonList(new Feature("UnivPos", k));
+
+            }
+            else {
+                return Collections.emptyList();
+            }
+        }
+        catch (Exception e) {
+            return Collections.emptyList();
+        }
+    }
 
 }
