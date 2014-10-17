@@ -138,7 +138,7 @@ public class EvaluatedNERWriter
                             + (personSb.size() == 0 ? "O" : listNames(personSb)) + TAB + TYPE_SEP + TAB
                             + (orgSb.size() == 0 ? "O" : listNames(orgSb))+LF);
                 }
-
+                sentenceIndex++;
             }
             outputWriter.close();
             nodOutputWriter.close();
