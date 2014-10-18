@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -57,12 +59,21 @@ public class EvaluatedNERWriter
             FileWriter outputWriter = new FileWriter(OutputFile);
             Map<Sentence, Collection<NamedEntity>> sentencesNER = JCasUtil.indexCovered(jCas,
                     Sentence.class, NamedEntity.class);
+            
             FileWriter nodOutputWriter = null;
             if (nodOutputFile != null) {
                 nodOutputWriter = new FileWriter(nodOutputFile);
             }
             int sentenceIndex = 0;
-            for (Sentence sentence : sentencesNER.keySet()) {
+            
+            List<Sentence> sentences = new ArrayList<Sentence>(sentencesNER.keySet());
+            // sort sentences by sentence 
+            Collections.sort(sentences, new Comparator<Sentence>() {                                
+                public int compare(Sentence arg0, Sentence arg1) {
+                    return arg0.getBegin() - arg1.getBegin();
+                }
+            });
+            for (Sentence sentence : sentences) {
 
                 List<String> personSb = new ArrayList<String>();
                 List<String> orgSb = new ArrayList<String>();
