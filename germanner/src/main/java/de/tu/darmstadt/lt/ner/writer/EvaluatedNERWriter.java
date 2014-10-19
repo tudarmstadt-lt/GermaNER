@@ -109,7 +109,7 @@ public class EvaluatedNERWriter
                                 namedEntity = "";
                             }
                             else {
-                                orgSb.add(namedEntity);
+                                orgSb.add(namedEntity.trim());
                                 prevNeType = "O";
                                 namedEntity = "";
                             }
@@ -118,7 +118,7 @@ public class EvaluatedNERWriter
                         // if ORG is followed by PER
                         else if (prevNeType.equals(ORG)
                                 && (neType.equals(B_PER) || neType.equals(I_PER))) {
-                            orgSb.add(namedEntity);
+                            orgSb.add(namedEntity.trim());
                             prevNeType = PER;
                             namedEntity = text;
                         }
