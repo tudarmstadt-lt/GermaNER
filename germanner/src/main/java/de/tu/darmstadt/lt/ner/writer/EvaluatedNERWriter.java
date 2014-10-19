@@ -49,7 +49,7 @@ public class EvaluatedNERWriter
     private static final String I_ORG = "I-ORG";
     private static final String I_PER = "I-PER";
     private static final String TYPE_SEP = "$";
-    private static final String ENT_SEP = "|";
+    private static final String ENT_SEP = ",";
 
     @Override
     public void process(JCas jCas)
