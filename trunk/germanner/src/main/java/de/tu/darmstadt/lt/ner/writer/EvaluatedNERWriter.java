@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.util.Level;
@@ -59,16 +60,17 @@ public class EvaluatedNERWriter
             FileWriter outputWriter = new FileWriter(OutputFile);
             Map<Sentence, Collection<NamedEntity>> sentencesNER = JCasUtil.indexCovered(jCas,
                     Sentence.class, NamedEntity.class);
-            
+
             FileWriter nodOutputWriter = null;
             if (nodOutputFile != null) {
                 nodOutputWriter = new FileWriter(nodOutputFile);
             }
             int sentenceIndex = 0;
-            
+
             List<Sentence> sentences = new ArrayList<Sentence>(sentencesNER.keySet());
-            // sort sentences by sentence 
-            Collections.sort(sentences, new Comparator<Sentence>() {                                
+            // sort sentences by sentence
+            Collections.sort(sentences, new Comparator<Sentence>() {
+                @Override
                 public int compare(Sentence arg0, Sentence arg1) {
                     return arg0.getBegin() - arg1.getBegin();
                 }
@@ -162,20 +164,9 @@ public class EvaluatedNERWriter
         }
     }
 
-    private String listNames(List<String> names)
+    private String listNames(List<String> aNameLists)
     {
-        if (names.size() == 1) {
-            return names.get(0);
-        }
-        String name = "";
-        for (String nameInList : names) {
-            if (name.equals("")) {
-                name = nameInList +ENT_SEP;
-            }
-            else {
-                name = name + nameInList;
-            }
-        }
-        return name;
+
+        return StringUtils.join(aNameLists, ',');
     }
 }
