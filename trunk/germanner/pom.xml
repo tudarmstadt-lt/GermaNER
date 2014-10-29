@@ -160,6 +160,27 @@
 				de.tudarmstadt.ukp.dkpro.core.tokit-asl
 			</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>
+				de.tudarmstadt.ukp.dkpro.core.opennlp-asl
+			</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>
+				de.tudarmstadt.ukp.dkpro.core.opennlp-model-sentence-de-maxent
+			</artifactId>
+			<version>20120616.0</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>
+				de.tudarmstadt.ukp.dkpro.core.opennlp-model-token-de-maxent
+			</artifactId>
+			<version>20120616.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>germanner</finalName>
