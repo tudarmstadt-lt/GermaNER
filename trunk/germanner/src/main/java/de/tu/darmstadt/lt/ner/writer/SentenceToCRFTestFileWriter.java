@@ -4,8 +4,8 @@ import static org.uimafit.factory.AnalysisEngineFactory.createPrimitive;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.uima.analysis_engine.AnalysisEngine;
@@ -43,7 +43,7 @@ public class SentenceToCRFTestFileWriter
         throws AnalysisEngineProcessException
     {
         try{
-        LineIterator sentIt = new LineIterator(new FileReader(new File(sentenceFileName)));
+        LineIterator sentIt = FileUtils.lineIterator(new File(sentenceFileName),"UTF-8");
 
 
         StringBuilder sb = new StringBuilder();
