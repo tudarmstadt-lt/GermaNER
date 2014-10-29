@@ -4,13 +4,9 @@ import static org.uimafit.factory.AnalysisEngineFactory.createPrimitiveDescripti
 import static org.uimafit.pipeline.SimplePipeline.runPipeline;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.LineIterator;
 import org.apache.log4j.Logger;
 import org.apache.uima.UIMAException;
 import org.apache.uima.UIMAFramework;
@@ -22,12 +18,13 @@ import org.cleartk.classifier.jar.DefaultSequenceDataWriterFactory;
 import org.cleartk.classifier.jar.DirectoryDataWriterFactory;
 import org.cleartk.classifier.jar.GenericJarClassifierFactory;
 import org.cleartk.util.cr.FilesCollectionReader;
-
-import com.ibm.icu.text.BreakIterator;
+import org.uimafit.factory.JCasFactory;
+import org.uimafit.pipeline.SimplePipeline;
 
 import de.tu.darmstadt.lt.ner.annotator.NERAnnotator;
 import de.tu.darmstadt.lt.ner.reader.NERReader;
 import de.tu.darmstadt.lt.ner.writer.EvaluatedNERWriter;
+import de.tu.darmstadt.lt.ner.writer.SentenceToCRFTestFileWriter;
 import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
 
 public class TrainNERModel
@@ -92,38 +89,9 @@ public class TrainNERModel
     public static void sentenceToCRFFormat(String aSentenceFileName, String aCRFFileName)
         throws UIMAException, IllegalArgumentException, IOException
     {
-        FileOutputStream os = new FileOutputStream(aCRFFileName);
-        try {
-            LineIterator sentIt = new LineIterator(new FileReader(new File(aSentenceFileName)));
-
-            while (sentIt.hasNext()) {
-
-                String line = sentIt.next().toString().trim();
-                if (line.equals("")) {
-                    continue;
-                }
-                // the first and second are id and hash values, not required
-                String sentenceText = line.split("\t")[2];
-
-                BreakIterator boundary = BreakIterator.getWordInstance();
-                boundary.setText(sentenceText);
-
-                int start = boundary.first();
-                for (int end = boundary.next(); end != BreakIterator.DONE; start = end, end = boundary
-                        .next()) {
-                    if (sentenceText.substring(start, end).trim().isEmpty()) {
-                        continue;
-                    }
-                    IOUtils.write(sentenceText.substring(start, end).trim() + "\n", os, "UTF-8");
-                }
-
-                IOUtils.write("\n", os, "UTF-8");
-            }
-
-        }
-        catch (Exception e) {
-            //
-        }
+        SimplePipeline.runPipeline(JCasFactory.createJCas(),createPrimitiveDescription(SentenceToCRFTestFileWriter.class,
+                SentenceToCRFTestFileWriter.SENTENCE_FILE_NAME, aSentenceFileName,
+                SentenceToCRFTestFileWriter.CRF_TEST_FILE_NAME, aCRFFileName));
     }
 
     public static void main(String[] args)

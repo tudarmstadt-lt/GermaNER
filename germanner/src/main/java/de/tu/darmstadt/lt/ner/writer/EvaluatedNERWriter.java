@@ -167,6 +167,6 @@ public class EvaluatedNERWriter
     private String listNames(List<String> aNameLists)
     {
 
-        return StringUtils.join(aNameLists, ',');
+        return StringUtils.join(aNameLists, ENT_SEP);
     }
 }

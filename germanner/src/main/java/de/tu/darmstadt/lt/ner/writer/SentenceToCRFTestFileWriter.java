@@ -17,8 +17,13 @@ import org.uimafit.util.JCasUtil;
 
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
-import de.tudarmstadt.ukp.dkpro.core.tokit.BreakIteratorSegmenter;
+import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 
+
+/**
+ * This is a helper Class, can be used from NoD. If you use a DKPro tokenizer during
+ * training, this method use the same tokenizer available in DKPro,
+ */
 public class SentenceToCRFTestFileWriter
     extends JCasConsumer_ImplBase
 {
@@ -53,13 +58,11 @@ public class SentenceToCRFTestFileWriter
            /* Sentence sentence = new Sentence(jcas, index + 1, sentenceText.length() + index);
             sentence.addToIndexes();*/
             sb.append(sentenceText+"\n");
-
         }
         jcas.setDocumentText(sb.toString().trim());
 
-        AnalysisEngine pipeline = createPrimitive(BreakIteratorSegmenter.class,
-                BreakIteratorSegmenter.PARAM_CREATE_TOKENS, true,
-                BreakIteratorSegmenter.PARAM_CREATE_SENTENCES, true);
+        AnalysisEngine pipeline = createPrimitive(OpenNlpSegmenter.class,
+                OpenNlpSegmenter.PARAM_LANGUAGE, "de");
         pipeline.process(jcas);
 
         // get the token from jcas and convert it to CRF test file format. one token per line, with
