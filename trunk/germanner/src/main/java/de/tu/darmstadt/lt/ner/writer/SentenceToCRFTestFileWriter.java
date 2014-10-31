@@ -25,10 +25,9 @@ import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 
-
 /**
- * This is a helper Class, can be used from NoD. If you use a DKPro tokenizer during
- * training, this method use the same tokenizer available in DKPro,
+ * This is a helper Class, can be used from NoD. If you use a DKPro tokenizer during training, this
+ * method use the same tokenizer available in DKPro,
  */
 public class SentenceToCRFTestFileWriter
     extends JCasConsumer_ImplBase
@@ -43,61 +42,65 @@ public class SentenceToCRFTestFileWriter
 
     public static final String LF = System.getProperty("line.separator");
 
-
     @Override
     public void process(JCas jcas)
         throws AnalysisEngineProcessException
     {
-        try{
-        LineIterator sentIt = FileUtils.lineIterator(new File(sentenceFileName),"UTF-8");
+        try {
+            LineIterator sentIt = FileUtils.lineIterator(new File(sentenceFileName), "UTF-8");
 
+            StringBuilder sb = new StringBuilder();
+            int index  = 0;
+            while (sentIt.hasNext()) {
 
-        StringBuilder sb = new StringBuilder();
-        while (sentIt.hasNext()) {
+                String line = sentIt.nextLine().toString().trim();
+                if (line.equals("")) {
+                    continue;
+                }
+                String sentenceText = line.split("\t")[2]; // the first and second are id and hash
+                                                           // values, not required
 
-            String line = sentIt.nextLine().toString().trim();
-            if (line.equals("")) {
-                continue;
+                Sentence sentence = new Sentence(jcas, index, sentenceText.length() + index);
+                sentence.addToIndexes();
+                index  = index + sentenceText.length();
+                sb.append(sentenceText + "\n");
             }
-            String sentenceText = line.split("\t")[2]; // the first and second are id and hash
-                                                       // values, not required
-           /* Sentence sentence = new Sentence(jcas, index + 1, sentenceText.length() + index);
-            sentence.addToIndexes();*/
-            sb.append(sentenceText+"\n");
-        }
-        jcas.setDocumentText(sb.toString().trim());
 
-        AnalysisEngine pipeline = createPrimitive(OpenNlpSegmenter.class,
-                OpenNlpSegmenter.PARAM_LANGUAGE, "de");
-        pipeline.process(jcas);
+            jcas.setDocumentText(sb.toString().trim());
 
-        // get the token from jcas and convert it to CRF test file format. one token per line, with
-        // out gold.
-        StringBuilder sbCRF = new StringBuilder();
+            AnalysisEngine pipeline = createPrimitive(OpenNlpSegmenter.class,
+                    OpenNlpSegmenter.PARAM_LANGUAGE, "de", OpenNlpSegmenter.PARAM_CREATE_SENTENCES,
+                    false);
+            pipeline.process(jcas);
 
-        Map<Sentence, Collection<Token>> sentencesTokens = JCasUtil.indexCovered(jcas,
-                Sentence.class, Token.class);
-        List<Sentence> sentences = new ArrayList<Sentence>(sentencesTokens.keySet());
-        // sort sentences by sentence
-        Collections.sort(sentences, new Comparator<Sentence>()
-        {
-            @Override
-            public int compare(Sentence arg0, Sentence arg1)
+            // get the token from jcas and convert it to CRF test file format. one token per line,
+            // with
+            // out gold.
+            StringBuilder sbCRF = new StringBuilder();
+
+            Map<Sentence, Collection<Token>> sentencesTokens = JCasUtil.indexCovered(jcas,
+                    Sentence.class, Token.class);
+            List<Sentence> sentences = new ArrayList<Sentence>(sentencesTokens.keySet());
+            // sort sentences by sentence
+            Collections.sort(sentences, new Comparator<Sentence>()
             {
-                return arg0.getBegin() - arg1.getBegin();
-            }
-        });
+                @Override
+                public int compare(Sentence arg0, Sentence arg1)
+                {
+                    return arg0.getBegin() - arg1.getBegin();
+                }
+            });
 
-        for (Sentence sentence : sentences) {
-            for (Token token : sentencesTokens.get(sentence)) {
-                sbCRF.append(token.getCoveredText() + LF);
+            for (Sentence sentence : sentences) {
+                for (Token token : sentencesTokens.get(sentence)) {
+                    sbCRF.append(token.getCoveredText() + LF);
+                }
+                sbCRF.append(LF);
             }
-            sbCRF.append(LF);
-        }
 
-        IOUtils.write(sbCRF.toString(), new FileOutputStream(crfFileName), "UTF-8");
+            IOUtils.write(sbCRF.toString(), new FileOutputStream(crfFileName), "UTF-8");
         }
-        catch(Exception e){
+        catch (Exception e) {
             //
         }
     }
