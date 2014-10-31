@@ -4,9 +4,11 @@ import static org.uimafit.factory.AnalysisEngineFactory.createPrimitiveDescripti
 import static org.uimafit.pipeline.SimplePipeline.runPipeline;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.apache.uima.UIMAException;
 import org.apache.uima.UIMAFramework;
@@ -89,9 +91,11 @@ public class TrainNERModel
     public static void sentenceToCRFFormat(String aSentenceFileName, String aCRFFileName)
         throws UIMAException, IllegalArgumentException, IOException
     {
-        SimplePipeline.runPipeline(JCasFactory.createJCas(),createPrimitiveDescription(SentenceToCRFTestFileWriter.class,
-                SentenceToCRFTestFileWriter.SENTENCE_FILE_NAME, aSentenceFileName,
-                SentenceToCRFTestFileWriter.CRF_TEST_FILE_NAME, aCRFFileName));
+        SimplePipeline.runPipeline(
+                JCasFactory.createJCas(),
+                createPrimitiveDescription(SentenceToCRFTestFileWriter.class,
+                        SentenceToCRFTestFileWriter.SENTENCE_FILE_NAME, aSentenceFileName,
+                        SentenceToCRFTestFileWriter.CRF_TEST_FILE_NAME, aCRFFileName));
     }
 
     public static void main(String[] args)
@@ -117,6 +121,17 @@ public class TrainNERModel
             }
             File modelDirectory = new File(args[1] + "/");
             modelDirectory.mkdirs();
+
+            // if the model directory is empty, use the one from the jar!
+            if (!args[0].equals("f") || !args[0].equals("ft")) {
+                IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/model.jar"),
+                        new FileOutputStream(new File(modelDirectory, "model.jar")));
+                IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/MANIFEST.MF"),
+                        new FileOutputStream(new File(modelDirectory, "MANIFEST.MF")));
+
+                IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("feature/feature.xml"),
+                        new FileOutputStream(new File(modelDirectory, "feature.xml")));
+            }
 
             File outputFile = new File(modelDirectory, "res.txt");
             if (args[0].equals("f")) {
