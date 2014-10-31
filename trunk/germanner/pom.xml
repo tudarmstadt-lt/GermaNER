@@ -257,6 +257,6 @@
 		<wicket.version>1.5.8</wicket.version>
 		<dkpro.version>1.4.0</dkpro.version>
 	</properties>
-	<groupId>ner</groupId>
+	<groupId>de.tudarmstadt.lt</groupId>
 	<name>ner</name>
 </project>
