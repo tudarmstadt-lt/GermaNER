@@ -69,9 +69,11 @@ public class EvaluatedNERWriter
 
             List<Sentence> sentences = new ArrayList<Sentence>(sentencesNER.keySet());
             // sort sentences by sentence
-            Collections.sort(sentences, new Comparator<Sentence>() {
+            Collections.sort(sentences, new Comparator<Sentence>()
+            {
                 @Override
-                public int compare(Sentence arg0, Sentence arg1) {
+                public int compare(Sentence arg0, Sentence arg1)
+                {
                     return arg0.getBegin() - arg1.getBegin();
                 }
             });
@@ -148,13 +150,15 @@ public class EvaluatedNERWriter
                 outputWriter.write(LF);
                 if (nodOutputFile != null && sentencesId != null) {
                     nodOutputWriter.write(sentencesId.get(sentenceIndex) + TAB
-                            + (personSb.size() == 0 ? "O" : listNames(personSb)) + TAB + TYPE_SEP + TAB
-                            + (orgSb.size() == 0 ? "O" : listNames(orgSb))+LF);
+                            + (personSb.size() == 0 ? "O" : listNames(personSb)) + TAB + TYPE_SEP
+                            + TAB + (orgSb.size() == 0 ? "O" : listNames(orgSb)) + LF);
                 }
                 sentenceIndex++;
             }
             outputWriter.close();
-            nodOutputWriter.close();
+            if (nodOutputWriter != null) {
+                nodOutputWriter.close();
+            }
 
             getContext().getLogger().log(Level.INFO,
                     "Output written to: " + OutputFile.getAbsolutePath());
