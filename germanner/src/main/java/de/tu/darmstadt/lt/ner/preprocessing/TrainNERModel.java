@@ -123,7 +123,8 @@ public class TrainNERModel
             modelDirectory.mkdirs();
 
             // if the model directory is empty, use the one from the jar!
-            if (!args[0].equals("f") || !args[0].equals("ft")) {
+            if ((!args[0].equals("f") || !args[0].equals("ft")
+                    && !new File(modelDirectory, "model.jar").exists())) {
                 IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/model.jar"),
                         new FileOutputStream(new File(modelDirectory, "model.jar")));
                 IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/MANIFEST.MF"),

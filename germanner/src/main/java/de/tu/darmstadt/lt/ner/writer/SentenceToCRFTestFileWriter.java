@@ -4,6 +4,12 @@ import static org.uimafit.factory.AnalysisEngineFactory.createPrimitive;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -49,7 +55,7 @@ public class SentenceToCRFTestFileWriter
         StringBuilder sb = new StringBuilder();
         while (sentIt.hasNext()) {
 
-            String line = sentIt.next().toString().trim();
+            String line = sentIt.nextLine().toString().trim();
             if (line.equals("")) {
                 continue;
             }
@@ -68,8 +74,22 @@ public class SentenceToCRFTestFileWriter
         // get the token from jcas and convert it to CRF test file format. one token per line, with
         // out gold.
         StringBuilder sbCRF = new StringBuilder();
-        for (Sentence sentence : JCasUtil.select(jcas, Sentence.class)) {
-            for (Token token : JCasUtil.selectCovered(Token.class, sentence)) {
+
+        Map<Sentence, Collection<Token>> sentencesTokens = JCasUtil.indexCovered(jcas,
+                Sentence.class, Token.class);
+        List<Sentence> sentences = new ArrayList<Sentence>(sentencesTokens.keySet());
+        // sort sentences by sentence
+        Collections.sort(sentences, new Comparator<Sentence>()
+        {
+            @Override
+            public int compare(Sentence arg0, Sentence arg1)
+            {
+                return arg0.getBegin() - arg1.getBegin();
+            }
+        });
+
+        for (Sentence sentence : sentences) {
+            for (Token token : sentencesTokens.get(sentence)) {
                 sbCRF.append(token.getCoveredText() + LF);
             }
             sbCRF.append(LF);
