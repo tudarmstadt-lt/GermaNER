@@ -171,6 +171,6 @@ public class EvaluatedNERWriter
     private String listNames(List<String> aNameLists)
     {
 
-        return StringUtils.join(aNameLists, ENT_SEP);
+        return StringUtils.join(aNameLists, ENT_SEP).replace("\'", "");
     }
 }
