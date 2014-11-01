@@ -62,7 +62,7 @@ public class SentenceToCRFTestFileWriter
 
                 Sentence sentence = new Sentence(jcas, index, sentenceText.length() + index);
                 sentence.addToIndexes();
-                index  = index + sentenceText.length();
+                index  = index + sentenceText.length() + 1;
                 sb.append(sentenceText + "\n");
             }
 
