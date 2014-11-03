@@ -57,8 +57,15 @@ public class SentenceToCRFTestFileWriter
                 if (line.equals("")) {
                     continue;
                 }
-                String sentenceText = line.split("\t")[2]; // the first and second are id and hash
-                                                           // values, not required
+                String sentenceText;
+                String[] sentences = line.split("\t");
+
+                if(sentences.length ==3) {
+                    sentenceText = sentences[2]; // the first and second are id and hash
+                }
+                else{
+                    sentenceText = sentences[0];
+                }
 
                 Sentence sentence = new Sentence(jcas, index, sentenceText.length() + index);
                 sentence.addToIndexes();

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.apache.uima.UIMAException;
 
-public class NoDSentenceToCRFWriter
+public class SentenceToCRFWriter
 {
 public static void main(String[] args) throws UIMAException, IllegalArgumentException, IOException
 {
