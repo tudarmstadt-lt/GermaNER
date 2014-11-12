@@ -1,7 +1,7 @@
 package de.tu.darmstadt.lt.ner.preprocessing;
 
-import static org.uimafit.factory.AnalysisEngineFactory.createPrimitiveDescription;
-import static org.uimafit.pipeline.SimplePipeline.runPipeline;
+import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
+import static org.apache.uima.fit.pipeline.SimplePipeline.runPipeline;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,16 +12,16 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.apache.uima.UIMAException;
 import org.apache.uima.UIMAFramework;
+import org.apache.uima.fit.factory.JCasFactory;
+import org.apache.uima.fit.pipeline.SimplePipeline;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Level;
-import org.cleartk.classifier.CleartkSequenceAnnotator;
-import org.cleartk.classifier.crfsuite.CRFSuiteStringOutcomeDataWriter;
-import org.cleartk.classifier.jar.DefaultSequenceDataWriterFactory;
-import org.cleartk.classifier.jar.DirectoryDataWriterFactory;
-import org.cleartk.classifier.jar.GenericJarClassifierFactory;
+import org.cleartk.ml.CleartkSequenceAnnotator;
+import org.cleartk.ml.crfsuite.CrfSuiteStringOutcomeDataWriter;
+import org.cleartk.ml.jar.DefaultSequenceDataWriterFactory;
+import org.cleartk.ml.jar.DirectoryDataWriterFactory;
+import org.cleartk.ml.jar.GenericJarClassifierFactory;
 import org.cleartk.util.cr.FilesCollectionReader;
-import org.uimafit.factory.JCasFactory;
-import org.uimafit.pipeline.SimplePipeline;
 
 import de.tu.darmstadt.lt.ner.annotator.NERAnnotator;
 import de.tu.darmstadt.lt.ner.reader.NERReader;
@@ -39,20 +39,20 @@ public class TrainNERModel
         runPipeline(
                 FilesCollectionReader.getCollectionReaderWithSuffixes(
                         NER_TagFile.getAbsolutePath(), NERReader.CONLL_VIEW, NER_TagFile.getName()),
-                createPrimitiveDescription(NERReader.class),
-                createPrimitiveDescription(NERAnnotator.class,
+                        createEngine(NERReader.class),
+                        createEngine(NERAnnotator.class,
                         NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                         modelDirectory.getAbsolutePath() + "/feature.xml",
                         CleartkSequenceAnnotator.PARAM_IS_TRAINING, true,
                         DirectoryDataWriterFactory.PARAM_OUTPUT_DIRECTORY, modelDirectory,
                         DefaultSequenceDataWriterFactory.PARAM_DATA_WRITER_CLASS_NAME,
-                        CRFSuiteStringOutcomeDataWriter.class));
+                        CrfSuiteStringOutcomeDataWriter.class));
     }
 
     public static void trainModel(File modelDirectory)
         throws Exception
     {
-        org.cleartk.classifier.jar.Train.main(modelDirectory.getAbsolutePath());
+        org.cleartk.ml.jar.Train.main(modelDirectory.getAbsolutePath());
     }
 
     public static void classifyTestFile(File aClassifierJarPath, File testPosFile, File outputFile,
@@ -63,15 +63,15 @@ public class TrainNERModel
         runPipeline(
                 FilesCollectionReader.getCollectionReaderWithSuffixes(
                         testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW, testPosFile.getName()),
-                createPrimitiveDescription(NERReader.class),
-                createPrimitiveDescription(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE,
+                        createEngine(NERReader.class),
+                        createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE,
                         language),
-                createPrimitiveDescription(NERAnnotator.class,
+                        createEngine(NERAnnotator.class,
                         NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                         aClassifierJarPath.getAbsolutePath() + "/feature.xml",
                         GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
                         aClassifierJarPath.getAbsolutePath() + "/model.jar"),
-                createPrimitiveDescription(EvaluatedNERWriter.class,
+                        createEngine(EvaluatedNERWriter.class,
                         EvaluatedNERWriter.OUTPUT_FILE, outputFile, EvaluatedNERWriter.IS_GOLD,
                         false, EvaluatedNERWriter.NOD_OUTPUT_FILE, aNodeResultFile,
                         EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
@@ -93,7 +93,7 @@ public class TrainNERModel
     {
         SimplePipeline.runPipeline(
                 JCasFactory.createJCas(),
-                createPrimitiveDescription(SentenceToCRFTestFileWriter.class,
+                createEngine(SentenceToCRFTestFileWriter.class,
                         SentenceToCRFTestFileWriter.SENTENCE_FILE_NAME, aSentenceFileName,
                         SentenceToCRFTestFileWriter.CRF_TEST_FILE_NAME, aCRFFileName));
     }

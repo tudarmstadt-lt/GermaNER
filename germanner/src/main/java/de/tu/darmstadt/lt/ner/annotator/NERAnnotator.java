@@ -8,13 +8,14 @@ import java.util.Map;
 
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
+import org.apache.uima.fit.descriptor.ConfigurationParameter;
+import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
-import org.cleartk.classifier.CleartkSequenceAnnotator;
-import org.cleartk.classifier.Instance;
-import org.cleartk.classifier.feature.extractor.simple.SimpleFeatureExtractor;
-import org.uimafit.descriptor.ConfigurationParameter;
-import org.uimafit.util.JCasUtil;
+import org.cleartk.ml.CleartkSequenceAnnotator;
+import org.cleartk.ml.Instance;
+import org.cleartk.ml.feature.extractor.FeatureExtractor1;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -36,7 +37,7 @@ public class NERAnnotator
     @ConfigurationParameter(name = PARAM_FEATURE_EXTRACTION_FILE, mandatory = false)
     private String featureExtractionFile = null;
 
-    private List<SimpleFeatureExtractor> featureExtractors;
+    private List<FeatureExtractor1<Annotation>> featureExtractors;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -48,7 +49,7 @@ public class NERAnnotator
         // load the settings from a file
         // initialize the XStream if a xml file is given:
         XStream xstream = XStreamFactory.createXStream();
-        featureExtractors = (List<SimpleFeatureExtractor>) xstream.fromXML(new File(
+        featureExtractors = (List<FeatureExtractor1<Annotation>>) xstream.fromXML(new File(
                 featureExtractionFile));
     }
 
@@ -65,7 +66,7 @@ public class NERAnnotator
             for (Token token : sentencesTokens.get(sentence)) {
                 k++;
                 Instance<String> instance = new Instance<String>();
-                for (SimpleFeatureExtractor extractor : this.featureExtractors) {
+                for (FeatureExtractor1<Annotation> extractor : this.featureExtractors) {
                     instance.addAll(extractor.extract(jCas, token));
                 }
 

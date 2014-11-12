@@ -3,8 +3,8 @@ package de.tu.darmstadt.lt.ner.feature.extractor;
 import java.util.Collections;
 import java.util.List;
 
-import org.cleartk.classifier.Feature;
-import org.cleartk.classifier.feature.function.FeatureFunction;
+import org.cleartk.ml.Feature;
+import org.cleartk.ml.feature.function.FeatureFunction;
 
 import de.tu.darmstadt.lt.ner.UnivPosFeature;
 
