@@ -1,62 +1,60 @@
 package de.tu.darmstadt.lt.ner.preprocessing;
 
 import java.util.ArrayList;
-import org.cleartk.classifier.feature.FeatureCollection;
-import org.cleartk.classifier.feature.WindowFeature;
-import org.cleartk.classifier.feature.WindowNGramFeature;
-import org.cleartk.classifier.feature.extractor.ContextExtractor;
-import org.cleartk.classifier.feature.extractor.ContextExtractor.Bag;
-import org.cleartk.classifier.feature.extractor.ContextExtractor.Covered;
-import org.cleartk.classifier.feature.extractor.ContextExtractor.FirstCovered;
-import org.cleartk.classifier.feature.extractor.ContextExtractor.Following;
-import org.cleartk.classifier.feature.extractor.ContextExtractor.LastCovered;
-import org.cleartk.classifier.feature.extractor.ContextExtractor.Ngram;
-import org.cleartk.classifier.feature.extractor.ContextExtractor.Preceding;
-import org.cleartk.classifier.feature.extractor.WindowExtractor;
-import org.cleartk.classifier.feature.extractor.WindowNGramExtractor;
-import org.cleartk.classifier.feature.extractor.simple.SpannedTextExtractor;
-import org.cleartk.classifier.feature.extractor.simple.TypePathExtractor;
-import org.cleartk.classifier.feature.proliferate.CapitalTypeProliferator;
-import org.cleartk.classifier.feature.proliferate.CharacterNGramProliferator;
-import org.cleartk.classifier.feature.proliferate.NumericTypeProliferator;
-import org.cleartk.classifier.feature.proliferate.ProliferatingExtractor;
+
+import org.cleartk.ml.feature.FeatureCollection;
+import org.cleartk.ml.feature.extractor.CleartkExtractor;
+import org.cleartk.ml.feature.extractor.CleartkExtractor.Bag;
+import org.cleartk.ml.feature.extractor.CleartkExtractor.Covered;
+import org.cleartk.ml.feature.extractor.CleartkExtractor.FirstCovered;
+import org.cleartk.ml.feature.extractor.CleartkExtractor.Following;
+import org.cleartk.ml.feature.extractor.CleartkExtractor.LastCovered;
+import org.cleartk.ml.feature.extractor.CleartkExtractor.Ngram;
+import org.cleartk.ml.feature.extractor.CleartkExtractor.Preceding;
+import org.cleartk.ml.feature.extractor.CoveredTextExtractor;
+import org.cleartk.ml.feature.extractor.FeatureExtractor1;
+import org.cleartk.ml.feature.extractor.TypePathExtractor;
+import org.cleartk.ml.feature.function.CapitalTypeFeatureFunction;
+import org.cleartk.ml.feature.function.CharacterNgramFeatureFunction;
+import org.cleartk.ml.feature.function.FeatureFunctionExtractor;
+import org.cleartk.ml.feature.function.LowerCaseFeatureFunction;
+import org.cleartk.ml.feature.function.NumericTypeFeatureFunction;
+
 import com.thoughtworks.xstream.XStream;
 
 public class XStreamFactory
 {
-	public static XStream createXStream()
-	{
-		// define alias so the xml file can be read easier
-		XStream xstream = new XStream();
-		
-		// org.cleartk.classifier.feature.*
-		xstream.alias("TypePathExtractor", TypePathExtractor.class);
-		xstream.alias("WindowFeature", WindowFeature.class);
-		xstream.alias("FeatureCollection", FeatureCollection.class);
-		xstream.alias("WindowNGramFeature", WindowNGramFeature.class);
-		
-		// org.cleartk.classifier.feature.extractor.*
-		xstream.alias("WindowExtractor", WindowExtractor.class);
-		xstream.alias("WindowNGramExtractor", WindowNGramExtractor.class);
-		xstream.alias("ContextExtractor", ContextExtractor.class);
-		
-		// within ContextExtractor
-		xstream.alias("Bag", Bag.class);
-		xstream.alias("Preceding", Preceding.class);
-		xstream.alias("Following", Following.class);
-		xstream.alias("Covered", Covered.class);
-		xstream.alias("FirstCovered", FirstCovered.class);
-		xstream.alias("LastCovered", LastCovered.class);
-		xstream.alias("Ngram", Ngram.class);
-		
-		// org.cleartk.classifier.feature.proliferate.
-		xstream.alias("ProliferatingExtractor", ProliferatingExtractor.class);
-		xstream.alias("CharacterNGramProliferator", CharacterNGramProliferator.class);
-		xstream.alias("NumericTypeProliferator", NumericTypeProliferator.class);
-		xstream.alias("CapitalTypeProliferator", CapitalTypeProliferator.class);
-		xstream.alias("SpannedTextExtractor", SpannedTextExtractor.class);
-		xstream.alias("list", ArrayList.class);
-		
-		return xstream;
-	}
+    public static XStream createXStream()
+    {
+        // define alias so the xml file can be read easier
+        XStream xstream = new XStream();
+        xstream.alias("list", ArrayList.class);
+
+        xstream.alias("TypePathExtractor", TypePathExtractor.class);
+        xstream.alias("FeatureCollection", FeatureCollection.class);
+
+
+        xstream.alias("Bag", Bag.class);
+        xstream.alias("Preceding", Preceding.class);
+        xstream.alias("Following", Following.class);
+        xstream.alias("Covered", Covered.class);
+        xstream.alias("FirstCovered", FirstCovered.class);
+        xstream.alias("LastCovered", LastCovered.class);
+        xstream.alias("Ngram", Ngram.class);
+
+        xstream.alias("CleartkExtractor", CleartkExtractor.class);
+        xstream.alias("Covered", Covered.class);
+        xstream.alias("Following", Following.class);
+        xstream.alias("Preceding", Preceding.class);
+        xstream.alias("CoveredTextExtractor", CoveredTextExtractor.class);
+        xstream.alias("FeatureExtractor1", FeatureExtractor1.class);
+        xstream.alias("TypePathExtractor", TypePathExtractor.class);
+        xstream.alias("CapitalTypeFeatureFunction", CapitalTypeFeatureFunction.class);
+        xstream.alias("CharacterNgramFeatureFunction", CharacterNgramFeatureFunction.class);
+        xstream.alias("FeatureFunctionExtractor", FeatureFunctionExtractor.class);
+        xstream.alias("LowerCaseFeatureFunction", LowerCaseFeatureFunction.class);
+        xstream.alias("NumericTypeFeatureFunction", NumericTypeFeatureFunction.class);
+
+        return xstream;
+    }
 }

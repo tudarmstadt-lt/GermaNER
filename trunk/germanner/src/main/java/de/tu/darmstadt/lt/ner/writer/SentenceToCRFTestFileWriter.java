@@ -1,6 +1,6 @@
 package de.tu.darmstadt.lt.ner.writer;
 
-import static org.uimafit.factory.AnalysisEngineFactory.createPrimitive;
+import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,10 +16,10 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
+import org.apache.uima.fit.component.JCasConsumer_ImplBase;
+import org.apache.uima.fit.descriptor.ConfigurationParameter;
+import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
-import org.uimafit.component.JCasConsumer_ImplBase;
-import org.uimafit.descriptor.ConfigurationParameter;
-import org.uimafit.util.JCasUtil;
 
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
@@ -75,7 +75,7 @@ public class SentenceToCRFTestFileWriter
 
             jcas.setDocumentText(sb.toString().trim());
 
-            AnalysisEngine pipeline = createPrimitive(OpenNlpSegmenter.class,
+            AnalysisEngine pipeline = createEngine(OpenNlpSegmenter.class,
                     OpenNlpSegmenter.PARAM_LANGUAGE, "de", OpenNlpSegmenter.PARAM_CREATE_SENTENCES,
                     false);
             pipeline.process(jcas);

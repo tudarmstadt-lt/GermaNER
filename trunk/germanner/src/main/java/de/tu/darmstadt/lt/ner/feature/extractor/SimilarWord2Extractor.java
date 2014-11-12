@@ -2,7 +2,6 @@ package de.tu.darmstadt.lt.ner.feature.extractor;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,8 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.cleartk.classifier.Feature;
-import org.cleartk.classifier.feature.function.FeatureFunction;
+import org.cleartk.ml.Feature;
+import org.cleartk.ml.feature.function.FeatureFunction;
+
 
 public class SimilarWord2Extractor implements FeatureFunction {
 
@@ -27,8 +27,9 @@ public class SimilarWord2Extractor implements FeatureFunction {
 
 	public static final String DEFAULT_NAME = "SimilarWord2";
 
-	public List<Feature> apply(Feature feature) {
-		
+	@Override
+    public List<Feature> apply(Feature feature) {
+
 		if(i==0)
 		{
 		BufferedReader br;
@@ -52,20 +53,22 @@ public class SimilarWord2Extractor implements FeatureFunction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		i++;
 		}
-		 
+
 		Object featureValue = feature.getValue();
 
-		if (featureValue == null)
-			return Collections.emptyList();
-		else if (featureValue instanceof String) {
-		 
+		if (featureValue == null) {
+            return Collections.emptyList();
+        }
+        else if (featureValue instanceof String) {
+
 			String value = featureValue.toString();
-			if (value == null || value.length() == 0)
-				return Collections.emptyList();
-			
+			if (value == null || value.length() == 0) {
+                return Collections.emptyList();
+            }
+
 			String output;
 			output=simWord2.get(value);
 			//System.out.println("Size:"+i);
@@ -75,9 +78,11 @@ public class SimilarWord2Extractor implements FeatureFunction {
 						output));
 			}
 			return Collections.singletonList(new Feature("SIMWO2", "NA"));
-			 
-		} else
-			return Collections.emptyList();
+
+		}
+        else {
+            return Collections.emptyList();
+        }
 	}
 
 }

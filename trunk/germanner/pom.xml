@@ -4,37 +4,15 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>dkpro-parent-pom</artifactId>
+		<artifactId>de.tudarmstadt.ukp.dkpro.core-asl</artifactId>
 		<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-		<version>3</version>
+		<version>1.6.0</version>
 	</parent>
 	<artifactId>de.tu-darmstadt.lt.ner</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-				<artifactId>de.tudarmstadt.ukp.dkpro.core-asl</artifactId>
-				<version>${dkpro.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-				<artifactId>de.tudarmstadt.ukp.dkpro.core-gpl</artifactId>
-				<version>${dkpro.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.wicket</groupId>
-				<artifactId>wicket-parent</artifactId>
-				<version>${wicket.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
 			<dependency>
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
@@ -68,15 +46,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- WICKET dependency -->
-
-
-		<!-- SOLR dependency -->
-
-
-
-		<!-- LOGGING dependency -->
-
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -88,6 +57,7 @@
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.stanfordnlp-gpl</artifactId>
+			<version>1.6.0</version>
 		</dependency>
 
 		<dependency>
@@ -115,22 +85,17 @@
 		<dependency>
 			<groupId>org.cleartk</groupId>
 			<artifactId>cleartk-ml-crfsuite</artifactId>
-			<version>0.2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.cleartk</groupId>
-			<artifactId>cleartk-ml-mallet</artifactId>
-			<version>1.2.0</version>
+			<version>2.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cleartk</groupId>
 			<artifactId>cleartk-ml</artifactId>
-			<version>1.2.0</version>
+			<version>2.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cleartk</groupId>
 			<artifactId>cleartk-syntax</artifactId>
-			<version>0.6.2</version>
+			<version>0.7.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
@@ -150,10 +115,13 @@
 				de.tudarmstadt.ukp.dkpro.core.io.text-asl
 			</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
 		</dependency>
+
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>
@@ -203,16 +171,14 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.1</version>
 				<configuration>
 					<archive>
 						<manifest>
@@ -252,11 +218,6 @@
 			<url>dav:https://zoidberg.ukp.informatik.tu-darmstadt.de/artifactory/public-ukp-releases-local</url>
 		</repository>
 	</distributionManagement>
-	<properties>
-		<uima.version>2.4.2</uima.version>
-		<wicket.version>1.5.8</wicket.version>
-		<dkpro.version>1.4.0</dkpro.version>
-	</properties>
 	<groupId>de.tudarmstadt.lt</groupId>
 	<name>ner</name>
 </project>
