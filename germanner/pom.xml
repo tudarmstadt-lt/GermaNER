@@ -15,7 +15,7 @@
 		<version>1.6.0</version>
 	</parent>
 	<artifactId>de.tu-darmstadt.lt.ner</artifactId>
-	<version>0.1.0</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
 	<dependencyManagement>
 		<dependencies>
@@ -234,9 +234,9 @@
 	<name>ner</name>
 
   <scm>
-    <connection>https://german-ner.googlecode.com/svn/tags/de.tu-darmstadt.lt.ner-0.1.0</connection>
-    <developerConnection>scm:svn:https://german-ner.googlecode.com/svn/tags/de.tu-darmstadt.lt.ner-0.1.0</developerConnection>
-    <url>https://german-ner.googlecode.com/svn/tags/de.tu-darmstadt.lt.ner-0.1.0</url>
+    <connection>https://german-ner.googlecode.com/svn/trunk</connection>
+    <developerConnection>scm:svn:https://german-ner.googlecode.com/svn/trunk</developerConnection>
+    <url>https://german-ner.googlecode.com/svn/trunk</url>
   </scm>
 
 </project>
