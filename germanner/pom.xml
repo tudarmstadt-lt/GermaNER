@@ -15,7 +15,7 @@
 		<version>1.6.0</version>
 	</parent>
 	<artifactId>de.tu-darmstadt.lt.ner</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
 	<dependencyManagement>
 		<dependencies>
@@ -239,10 +239,4 @@
     <url>https://dkpro-core-asl.googlecode.com/svn/de.tudarmstadt.ukp.dkpro.core-asl/tags/de.tu-darmstadt.lt.ner-0.1.0</url>
   </scm>
    -->
-
-  <scm>
-    <connection>scm:svn:https://dkpro-core-asl.googlecode.com/svn/de.tudarmstadt.ukp.dkpro.core-asl/tags/de.tu-darmstadt.lt.ner-0.1.0</connection>
-    <developerConnection>scm:svn:https://dkpro-core-asl.googlecode.com/svn/de.tudarmstadt.ukp.dkpro.core-asl/tags/de.tu-darmstadt.lt.ner-0.1.0</developerConnection>
-    <url>https://dkpro-core-asl.googlecode.com/svn/de.tudarmstadt.ukp.dkpro.core-asl/tags/de.tu-darmstadt.lt.ner-0.1.0</url>
-  </scm>
 </project>
