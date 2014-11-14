@@ -232,10 +232,11 @@
 	</distributionManagement>
 	<groupId>de.tudarmstadt.lt</groupId>
 	<name>ner</name>
-
+<!-- 
   <scm>
     <connection>scm:svn:https://dkpro-core-asl.googlecode.com/svn/de.tudarmstadt.ukp.dkpro.core-asl/tags/de.tu-darmstadt.lt.ner-0.1.0</connection>
     <developerConnection>scm:svn:https://dkpro-core-asl.googlecode.com/svn/de.tudarmstadt.ukp.dkpro.core-asl/tags/de.tu-darmstadt.lt.ner-0.1.0</developerConnection>
     <url>https://dkpro-core-asl.googlecode.com/svn/de.tudarmstadt.ukp.dkpro.core-asl/tags/de.tu-darmstadt.lt.ner-0.1.0</url>
   </scm>
+   -->
 </project>
