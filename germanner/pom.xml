@@ -6,7 +6,7 @@
 	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
 	OR CONDITIONS OF ANY KIND, either express or implied. See the License for
 	the specific language governing permissions and limitations under the License. -->
-	
+
 <project
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -123,7 +123,7 @@
 				de.tudarmstadt.ukp.dkpro.core.io.text-asl
 			</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -142,7 +142,7 @@
 				de.tudarmstadt.ukp.dkpro.core.opennlp-asl
 			</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>
@@ -222,9 +222,15 @@
 	</build>
 	<distributionManagement>
 		<repository>
-			<id>ukp-oss</id>
-			<url>dav:https://zoidberg.ukp.informatik.tu-darmstadt.de/artifactory/public-ukp-releases-local</url>
+			<id>internal</id>
+			<name>internal</name>
+			<url>http://localhost:8081/artifactory/internal</url>
 		</repository>
+		<snapshotRepository>
+			<id>snapshot</id>
+			<name>snapshot</name>
+			<url>http://localhost:8081/artifactory/snapshot</url>
+		</snapshotRepository>
 	</distributionManagement>
 	<groupId>de.tudarmstadt.lt</groupId>
 	<name>ner</name>
