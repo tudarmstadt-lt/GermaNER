@@ -1,0 +1,630 @@
+<list>
+  <FeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions/>
+    <baseFeatures>INCLUDE</baseFeatures>
+  </FeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="CoveredTextExtractor"/>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>2</end>
+        <name>Preceding_0_2</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="CoveredTextExtractor"/>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>2</end>
+        <name>Following_0_2</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor/>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CapitalTypeFeatureFunction/>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>2</end>
+        <name>Preceding_0_2</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <CapitalTypeFeatureFunction/>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CapitalTypeFeatureFunction/>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>2</end>
+        <name>Following_0_2</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>LEFT_TO_RIGHT</orientation>
+          <start>0</start>
+          <end>1</end>
+          <minimumValueLength>1</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Left_0_1_1</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Preceding_0_1</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <CharacterNgramFeatureFunction>
+        <orientation>LEFT_TO_RIGHT</orientation>
+        <start>0</start>
+        <end>1</end>
+        <minimumValueLength>1</minimumValueLength>
+        <lowerCase>false</lowerCase>
+        <name>NGram_Left_0_1_1</name>
+      </CharacterNgramFeatureFunction>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>LEFT_TO_RIGHT</orientation>
+          <start>0</start>
+          <end>1</end>
+          <minimumValueLength>1</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Left_0_1_1</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Following_0_1</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>LEFT_TO_RIGHT</orientation>
+          <start>0</start>
+          <end>2</end>
+          <minimumValueLength>2</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Left_0_2_2</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Preceding_0_1</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <CharacterNgramFeatureFunction>
+        <orientation>LEFT_TO_RIGHT</orientation>
+        <start>0</start>
+        <end>2</end>
+        <minimumValueLength>2</minimumValueLength>
+        <lowerCase>false</lowerCase>
+        <name>NGram_Left_0_2_2</name>
+      </CharacterNgramFeatureFunction>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>LEFT_TO_RIGHT</orientation>
+          <start>0</start>
+          <end>2</end>
+          <minimumValueLength>2</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Left_0_2_2</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Following_0_1</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>LEFT_TO_RIGHT</orientation>
+          <start>0</start>
+          <end>3</end>
+          <minimumValueLength>3</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Left_0_3_3</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Preceding_0_1</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <CharacterNgramFeatureFunction>
+        <orientation>LEFT_TO_RIGHT</orientation>
+        <start>0</start>
+        <end>3</end>
+        <minimumValueLength>3</minimumValueLength>
+        <lowerCase>false</lowerCase>
+        <name>NGram_Left_0_3_3</name>
+      </CharacterNgramFeatureFunction>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>LEFT_TO_RIGHT</orientation>
+          <start>0</start>
+          <end>3</end>
+          <minimumValueLength>3</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Left_0_3_3</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Following_0_1</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>RIGHT_TO_LEFT</orientation>
+          <start>0</start>
+          <end>1</end>
+          <minimumValueLength>1</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Right_0_1_1</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Preceding_0_1</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <CharacterNgramFeatureFunction>
+        <orientation>RIGHT_TO_LEFT</orientation>
+        <start>0</start>
+        <end>1</end>
+        <minimumValueLength>1</minimumValueLength>
+        <lowerCase>false</lowerCase>
+        <name>NGram_Right_0_1_1</name>
+      </CharacterNgramFeatureFunction>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>RIGHT_TO_LEFT</orientation>
+          <start>0</start>
+          <end>1</end>
+          <minimumValueLength>1</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Right_0_1_1</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Following_0_1</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>RIGHT_TO_LEFT</orientation>
+          <start>0</start>
+          <end>2</end>
+          <minimumValueLength>2</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Right_0_2_2</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Preceding_0_1</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <CharacterNgramFeatureFunction>
+        <orientation>RIGHT_TO_LEFT</orientation>
+        <start>0</start>
+        <end>2</end>
+        <minimumValueLength>2</minimumValueLength>
+        <lowerCase>false</lowerCase>
+        <name>NGram_Right_0_2_2</name>
+      </CharacterNgramFeatureFunction>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>RIGHT_TO_LEFT</orientation>
+          <start>0</start>
+          <end>2</end>
+          <minimumValueLength>2</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Right_0_2_2</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Following_0_1</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>RIGHT_TO_LEFT</orientation>
+          <start>0</start>
+          <end>3</end>
+          <minimumValueLength>3</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Right_0_3_3</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Preceding_0_1</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <CharacterNgramFeatureFunction>
+        <orientation>RIGHT_TO_LEFT</orientation>
+        <start>0</start>
+        <end>3</end>
+        <minimumValueLength>3</minimumValueLength>
+        <lowerCase>false</lowerCase>
+        <name>NGram_Right_0_3_3</name>
+      </CharacterNgramFeatureFunction>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <CharacterNgramFeatureFunction>
+          <orientation>RIGHT_TO_LEFT</orientation>
+          <start>0</start>
+          <end>3</end>
+          <minimumValueLength>3</minimumValueLength>
+          <lowerCase>false</lowerCase>
+          <name>NGram_Right_0_3_3</name>
+        </CharacterNgramFeatureFunction>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Following_0_1</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor>
+        <vornameListFile>vornameList.txt</vornameListFile>
+      </de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
+          <unPosFile>unsupervised_pos</unPosFile>
+        </de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Preceding_0_1</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
+        <unPosFile>unsupervised_pos</unPosFile>
+      </de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
+          <unPosFile>unsupervised_pos</unPosFile>
+        </de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Following_0_1</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.UnivPosFeatureExtractor/>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.FreeBaseFeatureExtractor/>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SttsFeatureExtractor/>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
+          <simWord>200k_2d_wordlists</simWord>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Preceding_0_1</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
+        <simWord>200k_2d_wordlists</simWord>
+      </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
+          <simWord>200k_2d_wordlists</simWord>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Following_0_1</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
+          <simWord>200k_2d_wordlists</simWord>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Preceding_0_1</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
+        <simWord>200k_2d_wordlists</simWord>
+      </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
+          <simWord>200k_2d_wordlists</simWord>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Following_0_1</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+          <simWord>200k_2d_wordlists</simWord>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Preceding>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Preceding_0_1</name>
+      </Preceding>
+    </contexts>
+  </CleartkExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+        <simWord>200k_2d_wordlists</simWord>
+      </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <CleartkExtractor>
+    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
+    <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
+      <extractor class="CoveredTextExtractor"/>
+      <featureFunctions>
+        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+          <simWord>200k_2d_wordlists</simWord>
+        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+      </featureFunctions>
+    </extractor>
+    <contexts>
+      <Following>
+        <begin>0</begin>
+        <end>1</end>
+        <name>Following_0_1</name>
+      </Following>
+    </contexts>
+  </CleartkExtractor>
+</list>
+
