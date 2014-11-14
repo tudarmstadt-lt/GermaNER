@@ -234,9 +234,9 @@
 	<name>ner</name>
 
   <scm>
-    <connection>https://german-ner.googlecode.com/svn/tags/germanner-0.1.0</connection>
-    <developerConnection>https://german-ner.googlecode.com/svn/tags/germanner-0.1.0</developerConnection>
-    <url>https://german-ner.googlecode.com/svn/tags/germanner-0.1.0</url>
+    <connection>https://german-ner.googlecode.com/svn/trunk</connection>
+    <developerConnection>scm:svn:https://german-ner.googlecode.com/svn/trunk</developerConnection>
+    <url>https://german-ner.googlecode.com/svn/trunk</url>
   </scm>
 
 </project>
