@@ -7,9 +7,7 @@
 	OR CONDITIONS OF ANY KIND, either express or implied. See the License for
 	the specific language governing permissions and limitations under the License. -->
 
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>de.tudarmstadt.ukp.dkpro.core-asl</artifactId>
@@ -17,7 +15,7 @@
 		<version>1.6.0</version>
 	</parent>
 	<artifactId>de.tu-darmstadt.lt.ner</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<url>http://maven.apache.org</url>
 	<dependencyManagement>
 		<dependencies>
@@ -234,4 +232,10 @@
 	</distributionManagement>
 	<groupId>de.tudarmstadt.lt</groupId>
 	<name>ner</name>
+
+  <scm>
+    <connection>scm:svn:https://dkpro-core-asl.googlecode.com/svn/de.tudarmstadt.ukp.dkpro.core-asl/tags/de.tu-darmstadt.lt.ner-0.1.0</connection>
+    <developerConnection>scm:svn:https://dkpro-core-asl.googlecode.com/svn/de.tudarmstadt.ukp.dkpro.core-asl/tags/de.tu-darmstadt.lt.ner-0.1.0</developerConnection>
+    <url>https://dkpro-core-asl.googlecode.com/svn/de.tudarmstadt.ukp.dkpro.core-asl/tags/de.tu-darmstadt.lt.ner-0.1.0</url>
+  </scm>
 </project>
