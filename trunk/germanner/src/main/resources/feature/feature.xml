@@ -626,5 +626,14 @@
       </Following>
     </contexts>
   </CleartkExtractor>
+  <TypePathExtractor>
+    <featureName>TypePath(PosPosValue)</featureName>
+    <focusClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</focusClass>
+    <path>pos/PosValue</path>
+    <allPaths>false</allPaths>
+    <allValues>false</allValues>
+    <uniqueValues>true</uniqueValues>
+    <pathChecked>false</pathChecked>
+  </TypePathExtractor>
 </list>
 
