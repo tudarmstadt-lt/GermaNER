@@ -29,7 +29,6 @@ import org.apache.uima.util.Logger;
 
 import de.tu.darmstadt.lt.ner.FreeBaseFeature;
 import de.tu.darmstadt.lt.ner.PositionFeature;
-import de.tu.darmstadt.lt.ner.SttsFeature;
 import de.tu.darmstadt.lt.ner.UnivPosFeature;
 import de.tu.darmstadt.lt.ner.types.GoldNamedEntity;
 import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
@@ -101,7 +100,6 @@ public class NERReader
 
                 PositionFeature.pos.add( 0);
                 UnivPosFeature.pos.add("");
-                SttsFeature.pos.add("");
                 FreeBaseFeature.pos.add("");
 
                 docText.append(word);
