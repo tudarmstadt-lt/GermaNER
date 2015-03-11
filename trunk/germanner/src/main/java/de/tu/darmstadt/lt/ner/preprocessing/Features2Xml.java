@@ -27,6 +27,7 @@ import org.cleartk.ml.feature.extractor.CleartkExtractor.Following;
 import org.cleartk.ml.feature.extractor.CleartkExtractor.Preceding;
 import org.cleartk.ml.feature.extractor.CoveredTextExtractor;
 import org.cleartk.ml.feature.extractor.FeatureExtractor1;
+import org.cleartk.ml.feature.extractor.TypePathExtractor;
 import org.cleartk.ml.feature.function.CapitalTypeFeatureFunction;
 import org.cleartk.ml.feature.function.CharacterNgramFeatureFunction;
 import org.cleartk.ml.feature.function.CharacterNgramFeatureFunction.Orientation;
@@ -226,6 +227,7 @@ public class Features2Xml
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                         new SimilarWord3Extractor()), new Following(1)));
+        tokenFeatureExtractors.add(new TypePathExtractor<Token>(Token.class, "pos/PosValue"));
 
         XStream xstream = XStreamFactory.createXStream();
         String x = xstream.toXML(tokenFeatureExtractors);
