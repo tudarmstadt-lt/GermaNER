@@ -44,6 +44,7 @@ import de.tu.darmstadt.lt.ner.annotator.NERAnnotator;
 import de.tu.darmstadt.lt.ner.reader.NERReader;
 import de.tu.darmstadt.lt.ner.writer.EvaluatedNERWriter;
 import de.tu.darmstadt.lt.ner.writer.SentenceToCRFTestFileWriter;
+import de.tudarmstadt.ukp.dkpro.core.matetools.MatePosTagger;
 import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
 
 public class TrainNERModel
@@ -56,12 +57,12 @@ public class TrainNERModel
         runPipeline(
                 FilesCollectionReader.getCollectionReaderWithSuffixes(
                         NER_TagFile.getAbsolutePath(), NERReader.CONLL_VIEW, NER_TagFile.getName()),
-                        createEngine(NERReader.class),
-                        createEngine(NERAnnotator.class,
-                        NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                createEngine(NERReader.class),
+                createEngine(MatePosTagger.class, MatePosTagger.PARAM_LANGUAGE, "de"),
+                createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                         modelDirectory.getAbsolutePath() + "/feature.xml",
                         CleartkSequenceAnnotator.PARAM_IS_TRAINING, true,
-                        DirectoryDataWriterFactory.PARAM_OUTPUT_DIRECTORY, modelDirectory,
+                        DirectoryDataWriterFactory.PARAM_OUTPUT_DIRECTORY, modelDirectory.getAbsolutePath(),
                         DefaultSequenceDataWriterFactory.PARAM_DATA_WRITER_CLASS_NAME,
                         CrfSuiteStringOutcomeDataWriter.class));
     }
@@ -80,18 +81,15 @@ public class TrainNERModel
         runPipeline(
                 FilesCollectionReader.getCollectionReaderWithSuffixes(
                         testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW, testPosFile.getName()),
-                        createEngine(NERReader.class),
-                        createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE,
-                        language),
-                        createEngine(NERAnnotator.class,
-                        NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                createEngine(NERReader.class),
+                createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
+                createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                         aClassifierJarPath.getAbsolutePath() + "/feature.xml",
                         GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
                         aClassifierJarPath.getAbsolutePath() + "/model.jar"),
-                        createEngine(EvaluatedNERWriter.class,
-                        EvaluatedNERWriter.OUTPUT_FILE, outputFile, EvaluatedNERWriter.IS_GOLD,
-                        false, EvaluatedNERWriter.NOD_OUTPUT_FILE, aNodeResultFile,
-                        EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
+                createEngine(EvaluatedNERWriter.class, EvaluatedNERWriter.OUTPUT_FILE, outputFile,
+                        EvaluatedNERWriter.IS_GOLD, false, EvaluatedNERWriter.NOD_OUTPUT_FILE,
+                        aNodeResultFile, EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
     }
 
     /**
@@ -140,8 +138,7 @@ public class TrainNERModel
             modelDirectory.mkdirs();
 
             // if the model directory is empty, use the one from the jar!
-            if ((!args[0].equals("f") || !args[0].equals("ft")
-                    && !new File(modelDirectory, "model.jar").exists())) {
+            if (args[0].equals("t") && !new File(modelDirectory, "model.jar").exists()) {
                 IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/model.jar"),
                         new FileOutputStream(new File(modelDirectory, "model.jar")));
                 IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/MANIFEST.MF"),
