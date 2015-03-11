@@ -41,7 +41,6 @@ import de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor;
-import de.tu.darmstadt.lt.ner.feature.extractor.SttsFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UnivPosFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor;
@@ -187,10 +186,6 @@ public class Features2Xml
         // FreeBase Feature
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new FreeBaseFeatureExtractor()));
-
-        // SttsFeature
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new SttsFeatureExtractor()));
 
         // SimilarWord1 Feature
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
