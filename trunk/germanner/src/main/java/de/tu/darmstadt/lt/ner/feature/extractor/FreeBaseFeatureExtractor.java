@@ -46,7 +46,7 @@ public class FreeBaseFeatureExtractor
             }
             else if (featureValue instanceof String) {
 
-                String k = FreeBaseFeature.pos.remove();
+                String k = FreeBaseFeature.freebaseFeature.remove();
 
                 String value = featureValue.toString();
                 if (value == null || value.length() == 0) {

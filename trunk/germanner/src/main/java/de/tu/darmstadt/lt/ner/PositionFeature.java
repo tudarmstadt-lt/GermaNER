@@ -21,6 +21,6 @@ import java.util.LinkedList;
 
 public class PositionFeature {
 	
-	public static LinkedList<Integer> pos=new LinkedList<Integer>();
+	public static LinkedList<Integer> posistion=new LinkedList<Integer>();
 
 }

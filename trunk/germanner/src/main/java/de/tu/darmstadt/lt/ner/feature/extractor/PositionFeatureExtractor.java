@@ -46,7 +46,7 @@ public class PositionFeatureExtractor
             }
             else if (featureValue instanceof String) {
 
-                int k = PositionFeature.pos.remove();
+                int k = PositionFeature.posistion.remove();
 
                 String value = featureValue.toString();
                 if (value == null || value.length() == 0) {
