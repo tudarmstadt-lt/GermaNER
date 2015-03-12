@@ -163,6 +163,13 @@
 			<version>1.7.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>
+				de.tudarmstadt.ukp.dkpro.core.matetools-model-tagger-de-tiger
+			</artifactId>
+			<version>20121024.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>germanner</finalName>
