@@ -41,7 +41,6 @@ import de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor;
-import de.tu.darmstadt.lt.ner.feature.extractor.UnivPosFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
@@ -66,9 +65,6 @@ public class Features2Xml
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
                 new CoveredTextExtractor<Token>(), new Following(2)));
 
-        // Position Feature
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new PositionFeatureExtractor()));
 
         // Capital Type Feature Function
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
@@ -178,11 +174,9 @@ public class Features2Xml
                         new UnsupervisedPosExtractor()), new Following(1)));
 
         // SpanVNL Feature
-
-        // Universal Part Of Speech Feature
+        // Position Feature
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new UnivPosFeatureExtractor()));
-
+                new CoveredTextExtractor<Token>(), new PositionFeatureExtractor()));
         // FreeBase Feature
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new FreeBaseFeatureExtractor()));

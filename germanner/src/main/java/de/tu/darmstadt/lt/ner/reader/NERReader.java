@@ -17,11 +17,18 @@
  ******************************************************************************/
 package de.tu.darmstadt.lt.ner.reader;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
+
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
 import org.apache.uima.fit.component.JCasAnnotator_ImplBase;
+import org.apache.uima.fit.descriptor.ConfigurationParameter;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Level;
@@ -29,17 +36,33 @@ import org.apache.uima.util.Logger;
 
 import de.tu.darmstadt.lt.ner.FreeBaseFeature;
 import de.tu.darmstadt.lt.ner.PositionFeature;
-import de.tu.darmstadt.lt.ner.UnivPosFeature;
 import de.tu.darmstadt.lt.ner.types.GoldNamedEntity;
-import de.tudarmstadt.ukp.dkpro.core.api.lexmorph.type.pos.POS;
+import de.tu.darmstadt.lt.ner.util.GenerateNgram;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 
 public class NERReader
     extends JCasAnnotator_ImplBase
 {
+    public static final String FREE_BASE_LIST = "freebaseList";
+
+    /**
+     * A file containing freebase lists of tokens
+     */
+    @ConfigurationParameter(name = FREE_BASE_LIST, mandatory = false)
+    private String freebaseList = null;
+
+    public static final String USE_POSITION = "usePosition";
+
+    /**
+     * A file containing freebase lists of tokens
+     */
+    @ConfigurationParameter(name = USE_POSITION, mandatory = false)
+    private boolean usePosition = false;
+
     public static final String CONLL_VIEW = "ConnlView";
     private Logger logger = null;
+    private Map<String, String> freebaseMap = new HashMap<String, String>();
 
     @Override
     public void initialize(UimaContext context)
@@ -71,41 +94,83 @@ public class NERReader
         Sentence sentence = null;
         int idx = 0;
         Token token = null;
-        POS posTag;
         GoldNamedEntity NamedEntityTag;
-        String pos;
         String NamedEntity;
         boolean initSentence = false;
         StringBuffer docText = new StringBuffer();
+        if (freebaseList != null) {
+            try {
+                long startTime = System.currentTimeMillis();
+                freebaseFileToMap(freebaseList);
+                long endTime = System.currentTimeMillis();
+                long totalTime = endTime - startTime;
+                System.out.println(totalTime / 1000);
+            }
+            catch (Exception e) {
+                // TODO
+            }
+        }
+        StringBuffer sentenceSb = new StringBuffer();
+
+        int positionIndex = 0;
         for (String line : tokens) {
+
             // new sentence if there's a new line
             if (line.equals("")) {
                 if (sentence != null && token != null) {
                     terminateSentence(sentence, token, docText);
                     docText.append("\n");
                     idx++;
+                    if (freebaseList != null) {
+
+                        // do 1-5 gram freebase checklists
+                        boolean found = false;
+                        for (String sentToken : sentenceSb.toString().split(" ")) {
+                            outer: for (int i = 5; i > 0; i--) {
+                                for (String nGramToken : GenerateNgram.generateNgramsUpto(
+                                        sentenceSb.toString(), i)) {
+                                    if (nGramToken.contains(sentToken)
+                                            && freebaseMap.get(nGramToken) != null) {
+                                        if (nGramToken.startsWith(sentToken)) {
+                                            FreeBaseFeature.freebaseFeature.add("B-"
+                                                    + freebaseMap.get(nGramToken));
+                                            found = true;
+                                            break outer;
+                                        }
+                                        else {
+                                            FreeBaseFeature.freebaseFeature.add("I-"
+                                                    + freebaseMap.get(nGramToken));
+                                            found = true;
+                                            break outer;
+                                        }
+                                    }
+                                }
+                            }
+                            if (!found) {
+                                FreeBaseFeature.freebaseFeature.add("none");
+                            }
+                        }
+                    }
+                    positionIndex = 0;
                 }
                 // init new sentence with the next recognized token
                 initSentence = true;
+                sentenceSb = new StringBuffer();
             }
             else {
                 String[] tag = line.split("\\t");
                 String word = tag[0];
-                pos = tag.length >= 15 ? tag[14] : "";
                 NamedEntity = tag.length >= 19 ? tag[19] : "";
-          /*      PositionFeature.pos.add(tag.length > 1 ? Integer.parseInt(tag[1]) : 0);
-                UnivPosFeature.pos.add(tag.length > 12 ? tag[12] : "");
-                SttsFeature.pos.add(tag.length > 14 ? tag[14] : "");
-                FreeBaseFeature.pos.add(tag.length > 13 ? tag[13] : "");*/
 
-                PositionFeature.pos.add( 0);
-                UnivPosFeature.pos.add("");
-                FreeBaseFeature.pos.add("");
+                if (usePosition) {
+                    PositionFeature.posistion.add(positionIndex);
+                    positionIndex++;
+                }
 
                 docText.append(word);
+                sentenceSb.append(word + " ");
                 if (!word.matches("^(\\p{Punct}).*")) {
                     token = new Token(docView, idx, idx + word.length());
-                    posTag = new POS(docView, idx, idx + word.length());
                     NamedEntityTag = new GoldNamedEntity(docView, idx, idx + word.length());
                     // sw=new SimilarWord1(docView, idx, idx + word.length());
                     docText.append(" ");
@@ -118,7 +183,6 @@ public class NERReader
                         idx--;
                     }
                     token = new Token(docView, idx, idx + word.length());
-                    posTag = new POS(docView, idx, idx + word.length());
                     NamedEntityTag = new GoldNamedEntity(docView, idx, idx + word.length());
                     // sw=new SimilarWord1(docView, idx, idx + word.length());
                 }
@@ -130,15 +194,12 @@ public class NERReader
                 }
                 // increment actual index of text
                 idx += word.length();
-                // set POS value and add POS to the token and to the index
-                posTag.setPosValue(pos);
                 NamedEntityTag.setNamedEntityType(NamedEntity);
 
                 // sw.setValue(tag[16]);
 
                 // sw.addToIndexes();
 
-                token.setPos(posTag);
                 NamedEntityTag.addToIndexes();
                 token.addToIndexes();
 
@@ -167,5 +228,28 @@ public class NERReader
         logger.log(Level.FINE,
                 "Sentence:[" + docText.substring(sentence.getBegin(), sentence.getEnd()) + "]\t"
                         + sentence.getBegin() + "\t" + sentence.getEnd());
+    }
+
+    private void freebaseFileToMap(String fileName)
+        throws Exception
+    {
+
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line;
+        int lines = 0;
+        while ((line = reader.readLine()) != null) {
+            try {
+                StringTokenizer st = new StringTokenizer(line, "\t");
+                freebaseMap.put(st.nextToken(), st.nextToken());
+                if (lines % 10000 == 0) {
+                    System.out.println(lines);
+                }
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            lines++;
+        }
+        reader.close();
     }
 }
