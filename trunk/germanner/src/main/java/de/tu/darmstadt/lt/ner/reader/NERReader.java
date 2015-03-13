@@ -100,11 +100,7 @@ public class NERReader
         StringBuffer docText = new StringBuffer();
         if (freebaseList != null) {
             try {
-                long startTime = System.currentTimeMillis();
                 freebaseFileToMap(freebaseList);
-                long endTime = System.currentTimeMillis();
-                long totalTime = endTime - startTime;
-                System.out.println(totalTime / 1000);
             }
             catch (Exception e) {
                 // TODO
@@ -160,7 +156,7 @@ public class NERReader
             else {
                 String[] tag = line.split("\\t");
                 String word = tag[0];
-                NamedEntity = tag.length >= 19 ? tag[19] : "";
+                NamedEntity = tag[tag.length-1];
 
                 if (usePosition) {
                     PositionFeature.posistion.add(positionIndex);
