@@ -142,6 +142,7 @@ public class TrainNERModel
     public static void main(String[] args)
         throws Exception
     {
+        long startTime = System.currentTimeMillis();
         String usage = "USAGE: java -jar germanner.jar (f OR ft OR t) modelDir (trainFile OR testFile) [options] "
                 + "where f means training mode, t means testing mode, modelDir is model directory, trainFile is a training file,  and "
                 + "testFile is a Test file. options included -p => use builtin MatePosTager (default false),"
@@ -201,23 +202,35 @@ public class TrainNERModel
 
             if (args[0].equals("f")) {
                 c.run(args[2], args[2] + ".c");
+                System.out.println("Start model generation");
                 writeModel(new File(args[2] + ".c"), modelDirectory, language, createPos,
                         freebaseList, usePosition);
+                System.out.println("Start model generation -- done");
+                System.out.println("Start training");
                 trainModel(modelDirectory);
+                System.out.println("Start training ---done");
             }
             else if (args[0].equals("ft")) {
                 c.run(args[2], args[2] + ".c");
                 c.run(args[3], args[3] + ".c");
+                System.out.println("Start model generation");
                 writeModel(new File(args[2] + ".c"), modelDirectory, language, createPos,
                         freebaseList, usePosition);
+                System.out.println("Start model generation -- done");
+                System.out.println("Start training");
                 trainModel(modelDirectory);
+                System.out.println("Start training ---done");
+                System.out.println("Start testing");
                 classifyTestFile(modelDirectory, new File(args[3] + ".c"), outputFile, null, null,
                         language);
+                System.out.println("Start testing ---done");
             }
             else {
                 c.run(args[2], args[2] + ".c");
+                System.out.println("Start testing");
                 classifyTestFile(modelDirectory, new File(args[2] + ".c"), outputFile, null, null,
                         language);
+                System.out.println("Start testing ---done");
             }
             long now = System.currentTimeMillis();
             UIMAFramework.getLogger().log(Level.INFO, "Time: " + (now - start) + "ms");
@@ -226,6 +239,9 @@ public class TrainNERModel
             LOG.error(usage);
             e.printStackTrace();
         }
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
+        System.out.println("NER tarin/test done in " + totalTime / 1000 + " seconds");
 
     }
 }

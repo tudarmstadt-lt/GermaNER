@@ -115,7 +115,7 @@ public class NERAnnotator
             }
 
             if (k % 200 == 0) {
-                System.out.println(k);
+                System.out.println(k+" sentences are pridicted");
             }
         }
     }
