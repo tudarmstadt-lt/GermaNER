@@ -57,7 +57,6 @@ public class NERAnnotator
     @ConfigurationParameter(name = PARAM_FEATURE_EXTRACTION_FILE, mandatory = false)
     private String featureExtractionFile = null;
 
-
     public static final String FEATURE_FILE = "FeatureFile";
 
     /**
@@ -119,26 +118,29 @@ public class NERAnnotator
                 index++;
             }
         }
-        File featureFile = null;
-        if (classifierJarDir != null) {
-            featureFile = new File(classifierJarDir,"crfsuite");
-        }
-        List<String> namedEntities = this.classify(sentencesInstances, featureFile);
-        try {
-            FileUtils.copyFile(featureFile, new File(featureFile.getAbsolutePath()+".test"));
-        }
-        catch (IOException e) {
-        }
-        int i = 0;
-        for (Sentence sentence : sentencesTokens.keySet()) {
-            for (Token token : sentencesTokens.get(sentence)) {
-                NamedEntity namedEntity = new NamedEntity(jCas, token.getBegin(), token.getEnd());
-                namedEntity.setValue(namedEntities.get(i));
-                namedEntity.addToIndexes();
+        if (!this.isTraining()) {
+            File featureFile = null;
+            if (classifierJarDir != null) {
+                featureFile = new File(classifierJarDir, "crfsuite");
+            }
+            List<String> namedEntities = this.classify(sentencesInstances, featureFile);
+            try {
+                FileUtils.copyFile(featureFile, new File(featureFile.getAbsolutePath() + ".test"));
+            }
+            catch (IOException e) {
+            }
+            int i = 0;
+            for (Sentence sentence : sentencesTokens.keySet()) {
+                for (Token token : sentencesTokens.get(sentence)) {
+                    NamedEntity namedEntity = new NamedEntity(jCas, token.getBegin(),
+                            token.getEnd());
+                    namedEntity.setValue(namedEntities.get(i));
+                    namedEntity.addToIndexes();
 
+                    i++;
+                }
                 i++;
             }
-            i++;
         }
     }
 }
