@@ -18,11 +18,14 @@
 package de.tu.darmstadt.lt.ner.annotator;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.fit.descriptor.ConfigurationParameter;
@@ -54,6 +57,16 @@ public class NERAnnotator
     @ConfigurationParameter(name = PARAM_FEATURE_EXTRACTION_FILE, mandatory = false)
     private String featureExtractionFile = null;
 
+
+    public static final String FEATURE_FILE = "FeatureFile";
+
+    /**
+     * if a feature extraction/context extractor filename is given the xml file is parsed and the
+     * features are used, otherwise it will not be used
+     */
+    @ConfigurationParameter(name = FEATURE_FILE, mandatory = false)
+    private String classifierJarDir = null;
+
     private List<FeatureExtractor1<Annotation>> featureExtractors;
 
     @SuppressWarnings("unchecked")
@@ -77,11 +90,11 @@ public class NERAnnotator
         Map<Sentence, Collection<Token>> sentencesTokens = JCasUtil.indexCovered(jCas,
                 Sentence.class, Token.class);
 
-        int k = 1;
+        Map<Integer, List<Instance<String>>> sentencesInstances = new LinkedHashMap<Integer, List<Instance<String>>>();
+        int index = 0;
         for (Sentence sentence : sentencesTokens.keySet()) {
             List<Instance<String>> instances = new ArrayList<Instance<String>>();
             for (Token token : sentencesTokens.get(sentence)) {
-                k++;
                 Instance<String> instance = new Instance<String>();
                 for (FeatureExtractor1<Annotation> extractor : this.featureExtractors) {
                     instance.addAll(extractor.extract(jCas, token));
@@ -102,21 +115,30 @@ public class NERAnnotator
                 this.dataWriter.write(instances);
             }
             else {
-                List<String> namedEntities = this.classify(instances);
-                int i = 0;
-                for (Token token : sentencesTokens.get(sentence)) {
-                    NamedEntity namedEntity = new NamedEntity(jCas, token.getBegin(),
-                            token.getEnd());
-                    namedEntity.setValue(namedEntities.get(i));
-                    namedEntity.addToIndexes();
-
-                    i++;
-                }
+                sentencesInstances.put(index, instances);
+                index++;
             }
+        }
+        File featureFile = null;
+        if (classifierJarDir != null) {
+            featureFile = new File(classifierJarDir,"crfsuite");
+        }
+        List<String> namedEntities = this.classify(sentencesInstances, featureFile);
+        try {
+            FileUtils.copyFile(featureFile, new File(featureFile.getAbsolutePath()+".test"));
+        }
+        catch (IOException e) {
+        }
+        int i = 0;
+        for (Sentence sentence : sentencesTokens.keySet()) {
+            for (Token token : sentencesTokens.get(sentence)) {
+                NamedEntity namedEntity = new NamedEntity(jCas, token.getBegin(), token.getEnd());
+                namedEntity.setValue(namedEntities.get(i));
+                namedEntity.addToIndexes();
 
-            if (k % 200 == 0) {
-                System.out.println(k+" sentences are pridicted");
+                i++;
             }
+            i++;
         }
     }
 }

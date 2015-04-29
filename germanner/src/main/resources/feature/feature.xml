@@ -4,7 +4,6 @@
     <featureFunctions/>
     <baseFeatures>INCLUDE</baseFeatures>
   </FeatureFunctionExtractor>
-  <!-- The preceeding tokens which are two tokens away from the current token -->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="CoveredTextExtractor"/>
@@ -16,7 +15,6 @@
       </Preceding>
     </contexts>
   </CleartkExtractor>
-  <!-- The following tokens which are two tokens away from the current token -->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="CoveredTextExtractor"/>
@@ -28,7 +26,6 @@
       </Following>
     </contexts>
   </CleartkExtractor>
-   <!-- The preceeding two tokens cap type -->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
@@ -45,14 +42,12 @@
       </Preceding>
     </contexts>
   </CleartkExtractor>
-   <!-- Cap type of the current token -->
   <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
       <CapitalTypeFeatureFunction/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
-   <!-- The following two tokens cap type -->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
@@ -69,7 +64,6 @@
       </Following>
     </contexts>
   </CleartkExtractor>
-   <!-- The preceeding Char Ngrams (one char here) -->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
@@ -93,7 +87,6 @@
       </Preceding>
     </contexts>
   </CleartkExtractor>
-  
   <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
@@ -107,7 +100,6 @@
       </CharacterNgramFeatureFunction>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
-  <!-- The following Char Ngrams (one char here) -->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
@@ -131,7 +123,6 @@
       </Following>
     </contexts>
   </CleartkExtractor>
- <!-- The preceeding Char Ngrams (two char here) -->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
@@ -155,7 +146,6 @@
       </Preceding>
     </contexts>
   </CleartkExtractor>
-  
   <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
@@ -169,7 +159,6 @@
       </CharacterNgramFeatureFunction>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
-  <!-- The following Char Ngrams (two char here) -->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
@@ -193,7 +182,6 @@
       </Following>
     </contexts>
   </CleartkExtractor>
-  <!-- The preceeding Char Ngrams (three char here) -->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
@@ -230,7 +218,6 @@
       </CharacterNgramFeatureFunction>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
-  <!-- The following Char Ngrams (three char here) -->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
@@ -254,8 +241,6 @@
       </Following>
     </contexts>
   </CleartkExtractor>
-  
-  <!-- The preceeding Char Ngrams (one char here) ==> from the right-->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">
@@ -292,8 +277,6 @@
       </CharacterNgramFeatureFunction>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
-  
-  <!-- The following Char Ngrams (one char here) ==>from the right-->
   <CleartkExtractor>
     <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
     <extractor class="de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor">

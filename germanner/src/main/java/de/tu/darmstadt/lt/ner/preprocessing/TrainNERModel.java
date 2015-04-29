@@ -100,22 +100,49 @@ public class TrainNERModel
     }
 
     public static void classifyTestFile(File aClassifierJarPath, File testPosFile, File outputFile,
-            File aNodeResultFile, ArrayList<Integer> aSentencesIds, String language)
+            File aNodeResultFile, ArrayList<Integer> aSentencesIds, String language,
+            boolean createPos, String freebaseListFile, boolean usePosition)
         throws ResourceInitializationException, UIMAException, IOException
     {
-
-        runPipeline(
-                FilesCollectionReader.getCollectionReaderWithSuffixes(
-                        testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW, testPosFile.getName()),
-                createEngine(NERReader.class),
-                createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
-                createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
-                        aClassifierJarPath.getAbsolutePath() + "/feature.xml",
-                        GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
-                        aClassifierJarPath.getAbsolutePath() + "/model.jar"),
-                createEngine(EvaluatedNERWriter.class, EvaluatedNERWriter.OUTPUT_FILE, outputFile,
-                        EvaluatedNERWriter.IS_GOLD, false, EvaluatedNERWriter.NOD_OUTPUT_FILE,
-                        aNodeResultFile, EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
+        AnalysisEngine matePosTagger = createEngine(MatePosTagger.class,
+                MatePosTagger.PARAM_LANGUAGE, language);
+        if (createPos) {
+            runPipeline(
+                    FilesCollectionReader.getCollectionReaderWithSuffixes(
+                            testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW,
+                            testPosFile.getName()),
+                    createEngine(NERReader.class, NERReader.FREE_BASE_LIST, freebaseListFile,
+                            NERReader.USE_POSITION, usePosition),
+                    matePosTagger,
+                    createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
+                    createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                            aClassifierJarPath.getAbsolutePath() + "/feature.xml",
+                            NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
+                            GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
+                            aClassifierJarPath.getAbsolutePath() + "/model.jar"),
+                    createEngine(EvaluatedNERWriter.class, EvaluatedNERWriter.OUTPUT_FILE,
+                            outputFile, EvaluatedNERWriter.IS_GOLD, false,
+                            EvaluatedNERWriter.NOD_OUTPUT_FILE, aNodeResultFile,
+                            EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
+        }
+        else {
+            runPipeline(
+                    FilesCollectionReader.getCollectionReaderWithSuffixes(
+                            testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW,
+                            testPosFile.getName()),
+                    createEngine(NERReader.class, NERReader.FREE_BASE_LIST, freebaseListFile,
+                            NERReader.USE_POSITION, usePosition),
+                    createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
+                    createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                            aClassifierJarPath.getAbsolutePath() + "/feature.xml",
+                            NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
+                            GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
+                            aClassifierJarPath.getAbsolutePath() + "/model.jar"),
+                    createEngine(EvaluatedNERWriter.class, EvaluatedNERWriter.OUTPUT_FILE,
+                            outputFile, EvaluatedNERWriter.IS_GOLD, false,
+                            EvaluatedNERWriter.NOD_OUTPUT_FILE, aNodeResultFile,
+                            EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
+        }
     }
 
     /**
@@ -222,14 +249,14 @@ public class TrainNERModel
                 System.out.println("Start training ---done");
                 System.out.println("Start testing");
                 classifyTestFile(modelDirectory, new File(args[3] + ".c"), outputFile, null, null,
-                        language);
+                        language, createPos, freebaseList, usePosition);
                 System.out.println("Start testing ---done");
             }
             else {
                 c.run(args[2], args[2] + ".c");
                 System.out.println("Start testing");
                 classifyTestFile(modelDirectory, new File(args[2] + ".c"), outputFile, null, null,
-                        language);
+                        language, createPos, freebaseList, usePosition);
                 System.out.println("Start testing ---done");
             }
             long now = System.currentTimeMillis();
