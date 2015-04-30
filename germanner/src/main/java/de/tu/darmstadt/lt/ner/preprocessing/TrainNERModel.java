@@ -54,8 +54,27 @@ public class TrainNERModel
 {
     private static final Logger LOG = Logger.getLogger(TrainNERModel.class.getName());
 
+    /**
+     *
+     * @param NER_TagFile
+     * @param modelDirectory
+     *            = the directory where the training model will be saved/or found
+     * @param language
+     *            = the language of the document, de for German and en for English
+     * @param createPos
+     *            = if bulletin MatePOS tagger is to be used
+     * @param freebaseListFile
+     *            = use freebase lists as a feature
+     * @param usePosition
+     *            = use the position of the token as a feature
+     * @param useSuffixClass
+     *            = if a file to match common suffixes to a given class is given
+     * @throws ResourceInitializationException
+     * @throws UIMAException
+     * @throws IOException
+     */
     public static void writeModel(File NER_TagFile, File modelDirectory, String language,
-            boolean createPos, String freebaseListFile, boolean usePosition)
+            boolean createPos, String freebaseListFile, boolean usePosition, String suffixCLass)
         throws ResourceInitializationException, UIMAException, IOException
     {
         AnalysisEngine matePosTagger = createEngine(MatePosTagger.class,
@@ -66,7 +85,8 @@ public class TrainNERModel
                             NER_TagFile.getAbsolutePath(), NERReader.CONLL_VIEW,
                             NER_TagFile.getName()),
                     createEngine(NERReader.class, NERReader.FREE_BASE_LIST, freebaseListFile,
-                            NERReader.USE_POSITION, usePosition),
+                            NERReader.USE_POSITION, usePosition, NERReader.USE_SUFFIX_CLASS,
+                            suffixCLass),
                     matePosTagger,
                     createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                             modelDirectory.getAbsolutePath() + "/feature.xml",
@@ -82,7 +102,8 @@ public class TrainNERModel
                             NER_TagFile.getAbsolutePath(), NERReader.CONLL_VIEW,
                             NER_TagFile.getName()),
                     createEngine(NERReader.class, NERReader.FREE_BASE_LIST, freebaseListFile,
-                            NERReader.USE_POSITION, usePosition),
+                            NERReader.USE_POSITION, usePosition, NERReader.USE_SUFFIX_CLASS,
+                            suffixCLass),
                     createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                             modelDirectory.getAbsolutePath() + "/feature.xml",
                             CleartkSequenceAnnotator.PARAM_IS_TRAINING, true,
@@ -101,7 +122,7 @@ public class TrainNERModel
 
     public static void classifyTestFile(File aClassifierJarPath, File testPosFile, File outputFile,
             File aNodeResultFile, ArrayList<Integer> aSentencesIds, String language,
-            boolean createPos, String freebaseListFile, boolean usePosition)
+            boolean createPos, String freebaseListFile, boolean usePosition, String suffixCLass)
         throws ResourceInitializationException, UIMAException, IOException
     {
         AnalysisEngine matePosTagger = createEngine(MatePosTagger.class,
@@ -112,7 +133,8 @@ public class TrainNERModel
                             testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW,
                             testPosFile.getName()),
                     createEngine(NERReader.class, NERReader.FREE_BASE_LIST, freebaseListFile,
-                            NERReader.USE_POSITION, usePosition),
+                            NERReader.USE_POSITION, usePosition, NERReader.USE_SUFFIX_CLASS,
+                            suffixCLass),
                     matePosTagger,
                     createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
                     createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
@@ -131,7 +153,8 @@ public class TrainNERModel
                             testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW,
                             testPosFile.getName()),
                     createEngine(NERReader.class, NERReader.FREE_BASE_LIST, freebaseListFile,
-                            NERReader.USE_POSITION, usePosition),
+                            NERReader.USE_POSITION, usePosition, NERReader.USE_SUFFIX_CLASS,
+                            suffixCLass),
                     createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
                     createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                             aClassifierJarPath.getAbsolutePath() + "/feature.xml",
@@ -173,7 +196,8 @@ public class TrainNERModel
         String usage = "USAGE: java -jar germanner.jar (f OR ft OR t) modelDir (trainFile OR testFile) [options] "
                 + "where f means training mode, t means testing mode, modelDir is model directory, trainFile is a training file,  and "
                 + "testFile is a Test file. options included -p => use builtin MatePosTager (default false),"
-                + " -s=> use poitions as a feature(default false) -d filename => use the file specified as freeBase list feature";
+                + " -s=> use poitions as a feature(default false) -d filename => use the file specified as freeBase list feature"
+                + "-x list of suffix file, comma separated with the suffix and the class the suffix fails, example ..stadt TAB location";
         long start = System.currentTimeMillis();
 
         ChangeColon c = new ChangeColon();
@@ -226,12 +250,17 @@ public class TrainNERModel
             if (argList.contains("-s")) {
                 usePosition = true;
             }
+            String suffixClassFile = null;
+            if (argList.contains("-s")) {
+                suffixClassFile = argList.get(argList.indexOf("-x") + 1);
+                ;
+            }
 
             if (args[0].equals("f")) {
                 c.run(args[2], args[2] + ".c");
                 System.out.println("Start model generation");
                 writeModel(new File(args[2] + ".c"), modelDirectory, language, createPos,
-                        freebaseList, usePosition);
+                        freebaseList, usePosition, suffixClassFile);
                 System.out.println("Start model generation -- done");
                 System.out.println("Start training");
                 trainModel(modelDirectory);
@@ -242,21 +271,21 @@ public class TrainNERModel
                 c.run(args[3], args[3] + ".c");
                 System.out.println("Start model generation");
                 writeModel(new File(args[2] + ".c"), modelDirectory, language, createPos,
-                        freebaseList, usePosition);
+                        freebaseList, usePosition, suffixClassFile);
                 System.out.println("Start model generation -- done");
                 System.out.println("Start training");
                 trainModel(modelDirectory);
                 System.out.println("Start training ---done");
                 System.out.println("Start testing");
                 classifyTestFile(modelDirectory, new File(args[3] + ".c"), outputFile, null, null,
-                        language, createPos, freebaseList, usePosition);
+                        language, createPos, freebaseList, usePosition, suffixClassFile);
                 System.out.println("Start testing ---done");
             }
             else {
                 c.run(args[2], args[2] + ".c");
                 System.out.println("Start testing");
                 classifyTestFile(modelDirectory, new File(args[2] + ".c"), outputFile, null, null,
-                        language, createPos, freebaseList, usePosition);
+                        language, createPos, freebaseList, usePosition, suffixClassFile);
                 System.out.println("Start testing ---done");
             }
             long now = System.currentTimeMillis();

@@ -36,6 +36,7 @@ import org.apache.uima.util.Logger;
 
 import de.tu.darmstadt.lt.ner.FreeBaseFeature;
 import de.tu.darmstadt.lt.ner.PositionFeature;
+import de.tu.darmstadt.lt.ner.SuffixClassFeature;
 import de.tu.darmstadt.lt.ner.types.GoldNamedEntity;
 import de.tu.darmstadt.lt.ner.util.GenerateNgram;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
@@ -60,9 +61,18 @@ public class NERReader
     @ConfigurationParameter(name = USE_POSITION, mandatory = false)
     private boolean usePosition = false;
 
+    public static final String USE_SUFFIX_CLASS = "useSuffixClass";
+
+    /**
+     * A file containing freebase lists of tokens
+     */
+    @ConfigurationParameter(name = USE_SUFFIX_CLASS, mandatory = false)
+    private String useSuffixClass = null;
+
     public static final String CONLL_VIEW = "ConnlView";
     private Logger logger = null;
     private Map<String, String> freebaseMap = new HashMap<String, String>();
+    private Map<String, String> suffixClassMap = new HashMap<String, String>();
 
     @Override
     public void initialize(UimaContext context)
@@ -106,6 +116,16 @@ public class NERReader
                 // TODO
             }
         }
+
+        if (useSuffixClass != null) {
+            try {
+                suffixClassToMap(useSuffixClass);
+            }
+            catch (Exception e) {
+                // TODO
+            }
+        }
+
         StringBuffer sentenceSb = new StringBuffer();
 
         int positionIndex = 0;
@@ -156,11 +176,24 @@ public class NERReader
             else {
                 String[] tag = line.split("\\t");
                 String word = tag[0];
-                NamedEntity = tag[tag.length-1];
+                NamedEntity = tag[tag.length - 1];
 
                 if (usePosition) {
                     PositionFeature.posistion.add(positionIndex);
                     positionIndex++;
+                }
+                if (useSuffixClass != null) {
+                    boolean found = false;
+                    for (String suffix : suffixClassMap.keySet()) {
+                        if (word.endsWith(suffix)) {
+                            SuffixClassFeature.suffixCLass.add(suffixClassMap.get(suffix));
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        SuffixClassFeature.suffixCLass.add(suffixClassMap.get("NA"));
+                    }
                 }
 
                 docText.append(word);
@@ -242,9 +275,29 @@ public class NERReader
                 }
             }
             catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("Check if the freebase list file is correct " + e.getMessage());
             }
             lines++;
+        }
+        reader.close();
+    }
+
+    private void suffixClassToMap(String fileName)
+        throws Exception
+    {
+
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            try {
+                StringTokenizer st = new StringTokenizer(line, "\t");
+                suffixClassMap.put(st.nextToken(), st.nextToken());
+            }
+            catch (Exception e) {
+                System.out
+                        .println("Suffix class file is not correct. Make sure it is separated by TAB from the class, such as"
+                                + " stadt TAB location " + e.getMessage());
+            }
         }
         reader.close();
     }
