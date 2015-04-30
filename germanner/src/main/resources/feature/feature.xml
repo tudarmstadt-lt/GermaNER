@@ -623,5 +623,11 @@
     <uniqueValues>true</uniqueValues>
     <pathChecked>false</pathChecked>
   </TypePathExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SuffixClassFeatureExtractor/>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
 </list>
 
