@@ -251,7 +251,7 @@ public class TrainNERModel
                 usePosition = true;
             }
             String suffixClassFile = null;
-            if (argList.contains("-s")) {
+            if (argList.contains("-x")) {
                 suffixClassFile = argList.get(argList.indexOf("-x") + 1);
                 ;
             }

@@ -41,6 +41,7 @@ import de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.SuffixClassFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
@@ -217,6 +218,9 @@ public class Features2Xml
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                         new SimilarWord3Extractor()), new Following(1)));
         tokenFeatureExtractors.add(new TypePathExtractor<Token>(Token.class, "pos/PosValue"));
+
+        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+                new CoveredTextExtractor<Token>(), new SuffixClassFeatureExtractor()));
 
         XStream xstream = XStreamFactory.createXStream();
         String x = xstream.toXML(tokenFeatureExtractors);

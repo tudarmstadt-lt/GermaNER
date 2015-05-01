@@ -192,7 +192,7 @@ public class NERReader
                         }
                     }
                     if (!found) {
-                        SuffixClassFeature.suffixCLass.add(suffixClassMap.get("NA"));
+                        SuffixClassFeature.suffixCLass.add("NA");
                     }
                 }
 

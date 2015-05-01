@@ -25,11 +25,11 @@ import org.cleartk.ml.feature.function.FeatureFunction;
 
 import de.tu.darmstadt.lt.ner.SuffixClassFeature;
 
-public class SufxixClassFeatureExtractor
+public class SuffixClassFeatureExtractor
     implements FeatureFunction
 {
 
-    public SufxixClassFeatureExtractor()
+    public SuffixClassFeatureExtractor()
     {
 
     }
