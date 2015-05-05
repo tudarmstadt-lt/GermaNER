@@ -25,6 +25,6 @@ public class SentenceToCRFWriter
 {
 public static void main(String[] args) throws UIMAException, IllegalArgumentException, IOException
 {
-    TrainNERModel.sentenceToCRFFormat(args[0], args[1]);
+    TrainNERModel.sentenceToCRFFormat(args[0], args[1],"de");
 }
 }

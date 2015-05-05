@@ -156,6 +156,21 @@
 			</artifactId>
 			<version>20120616.0</version>
 		</dependency>
+		
+				<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>
+				de.tudarmstadt.ukp.dkpro.core.opennlp-model-sentence-en-maxent
+			</artifactId>
+			<version>20120616.0</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>
+				de.tudarmstadt.ukp.dkpro.core.opennlp-model-token-en-maxent
+			</artifactId>
+			<version>20120616.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
@@ -169,6 +184,13 @@
 				de.tudarmstadt.ukp.dkpro.core.matetools-model-tagger-de-tiger
 			</artifactId>
 			<version>20121024.1</version>
+		</dependency>
+			<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>
+				de.tudarmstadt.ukp.dkpro.core.matetools-model-tagger-en-conll2009
+			</artifactId>
+			<version>20130117.1</version>
 		</dependency>
 	</dependencies>
 	<build>
