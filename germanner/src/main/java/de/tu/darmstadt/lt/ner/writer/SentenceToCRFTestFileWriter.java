@@ -57,6 +57,10 @@ public class SentenceToCRFTestFileWriter
     @ConfigurationParameter(name = CRF_TEST_FILE_NAME, mandatory = true)
     private String crfFileName = null;
 
+    public static final String CRF_TEST_FILE_LANG = "crfTestFileLanguage";
+    @ConfigurationParameter(name = CRF_TEST_FILE_LANG, mandatory = false)
+    private String crfTestFileLanguage = "de";
+
     public static final String LF = System.getProperty("line.separator");
 
     @Override
@@ -93,7 +97,7 @@ public class SentenceToCRFTestFileWriter
             jcas.setDocumentText(sb.toString().trim());
 
             AnalysisEngine pipeline = createEngine(OpenNlpSegmenter.class,
-                    OpenNlpSegmenter.PARAM_LANGUAGE, "de", OpenNlpSegmenter.PARAM_CREATE_SENTENCES,
+                    OpenNlpSegmenter.PARAM_LANGUAGE, crfTestFileLanguage, OpenNlpSegmenter.PARAM_CREATE_SENTENCES,
                     false);
             pipeline.process(jcas);
 

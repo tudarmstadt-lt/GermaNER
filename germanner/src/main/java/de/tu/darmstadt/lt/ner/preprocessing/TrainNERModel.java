@@ -179,14 +179,15 @@ public class TrainNERModel
      * @throws IllegalArgumentException
      * @throws IOException
      */
-    public static void sentenceToCRFFormat(String aSentenceFileName, String aCRFFileName)
+    public static void sentenceToCRFFormat(String aSentenceFileName, String aCRFFileName, String aLanguage)
         throws UIMAException, IllegalArgumentException, IOException
     {
         SimplePipeline.runPipeline(
                 JCasFactory.createJCas(),
                 createEngine(SentenceToCRFTestFileWriter.class,
                         SentenceToCRFTestFileWriter.SENTENCE_FILE_NAME, aSentenceFileName,
-                        SentenceToCRFTestFileWriter.CRF_TEST_FILE_NAME, aCRFFileName));
+                        SentenceToCRFTestFileWriter.CRF_TEST_FILE_NAME, aCRFFileName,
+                        SentenceToCRFTestFileWriter.CRF_TEST_FILE_LANG, aLanguage));
     }
 
     public static void main(String[] args)
