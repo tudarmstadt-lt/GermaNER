@@ -38,6 +38,7 @@ import com.thoughtworks.xstream.XStream;
 import de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.FreeBaseFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.PretreeFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor;
@@ -65,7 +66,6 @@ public class Features2Xml
 
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
                 new CoveredTextExtractor<Token>(), new Following(2)));
-
 
         // Capital Type Feature Function
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
@@ -221,6 +221,9 @@ public class Features2Xml
 
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new SuffixClassFeatureExtractor()));
+
+        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+                new CoveredTextExtractor<Token>(), new PretreeFeatureExtractor()));
 
         XStream xstream = XStreamFactory.createXStream();
         String x = xstream.toXML(tokenFeatureExtractors);

@@ -36,6 +36,7 @@ import org.apache.uima.util.Logger;
 
 import de.tu.darmstadt.lt.ner.FreeBaseFeature;
 import de.tu.darmstadt.lt.ner.PositionFeature;
+import de.tu.darmstadt.lt.ner.PretreeFeature;
 import de.tu.darmstadt.lt.ner.SuffixClassFeature;
 import de.tu.darmstadt.lt.ner.types.GoldNamedEntity;
 import de.tu.darmstadt.lt.ner.util.GenerateNgram;
@@ -60,6 +61,14 @@ public class NERReader
      */
     @ConfigurationParameter(name = USE_POSITION, mandatory = false)
     private boolean usePosition = false;
+
+    public static final String USE_PRETREE = "usePretree";
+
+    /**
+     * A file containing freebase lists of tokens
+     */
+    @ConfigurationParameter(name = USE_PRETREE, mandatory = false)
+    private String usePretree = null;
 
     public static final String USE_SUFFIX_CLASS = "useSuffixClass";
 
@@ -120,6 +129,15 @@ public class NERReader
         if (useSuffixClass != null) {
             try {
                 suffixClassToMap(useSuffixClass);
+            }
+            catch (Exception e) {
+                // TODO
+            }
+        }
+
+        if (usePretree != null) {
+            try {
+                trainPretree(usePretree);
             }
             catch (Exception e) {
                 // TODO
@@ -300,5 +318,38 @@ public class NERReader
             }
         }
         reader.close();
+    }
+
+    private void trainPretree(String fileName)
+        throws Exception
+    {
+
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line;
+        int lines = 0;
+        while ((line = reader.readLine()) != null) {
+            try {
+                String[] wordClass = line.split("\\t");
+                String[] theWord = wordClass[2].split("\\s");
+                for (int i = 0; i < theWord.length; i++) {
+                    if (theWord.length != 1) {
+                        theWord[i] = theWord[i].substring(0, theWord[i].length() - 1);
+                    }
+                    PretreeFeature.pretree.train(theWord[i], wordClass[0]);
+                    if (lines % 10000 == 0) {
+                        System.out.println(lines + " Pretree features trained");
+                    }
+                    lines++;
+                }
+            }
+            catch (Exception e) {
+                System.out.println("Check if the unspos list file is correct " + e.getMessage());
+            }
+            lines++;
+        }
+
+        reader.close();
+
+        PretreeFeature.pretree.setThresh(0.1);
     }
 }
