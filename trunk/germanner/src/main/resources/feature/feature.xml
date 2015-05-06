@@ -629,5 +629,11 @@
       <de.tu.darmstadt.lt.ner.feature.extractor.SuffixClassFeatureExtractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.PretreeFeatureExtractor/>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor>
 </list>
 

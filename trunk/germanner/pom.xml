@@ -156,8 +156,8 @@
 			</artifactId>
 			<version>20120616.0</version>
 		</dependency>
-		
-				<dependency>
+
+		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>
 				de.tudarmstadt.ukp.dkpro.core.opennlp-model-sentence-en-maxent
@@ -185,12 +185,24 @@
 			</artifactId>
 			<version>20121024.1</version>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>
 				de.tudarmstadt.ukp.dkpro.core.matetools-model-tagger-en-conll2009
 			</artifactId>
 			<version>20130117.1</version>
+		</dependency>
+
+		<!-- USE PRETREE for unsupos feature suggestion -->
+		<dependency>
+			<groupId>de.uni_leipzig.asv.toolbox</groupId>
+			<artifactId>de.uni_leipzig.asv.toolbox.pretree</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>de.uni_leipzig.asv.toolbox</groupId>
+			<artifactId>de.uni_leipzig.asv.toolbox.utils</artifactId>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 	<build>
