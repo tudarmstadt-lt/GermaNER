@@ -33,6 +33,7 @@ import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
+import org.cleartk.ml.CleartkProcessingException;
 import org.cleartk.ml.CleartkSequenceAnnotator;
 import org.cleartk.ml.Instance;
 import org.cleartk.ml.feature.extractor.FeatureExtractor1;
@@ -90,7 +91,9 @@ public class NERAnnotator
                 Sentence.class, Token.class);
 
         Map<Integer, List<Instance<String>>> sentencesInstances = new LinkedHashMap<Integer, List<Instance<String>>>();
+        List<Sentence> sentenceList = new ArrayList<>();
         int index = 0;
+        int it = 1;
         for (Sentence sentence : sentencesTokens.keySet()) {
             List<Instance<String>> instances = new ArrayList<Instance<String>>();
             for (Token token : sentencesTokens.get(sentence)) {
@@ -113,34 +116,62 @@ public class NERAnnotator
             if (this.isTraining()) {
                 this.dataWriter.write(instances);
             }
+            // do tagging every 10,000 sentences, in favour of memory consumption
+            else if (index > 0 && index % 10000 == 0) {
+                File featureFile = null;
+                if (classifierJarDir != null) {
+                    featureFile = new File(classifierJarDir, "crfsuite");
+                }
+                classify(jCas, sentencesTokens, sentencesInstances, sentenceList, index, it,
+                        featureFile);
+
+                System.out.println(it * index + " sentences are classified");
+                it++;
+                // re-initialize for next iteration
+                sentenceList.clear();
+                sentencesInstances.clear();
+                index = 0;
+
+            }
             else {
                 sentencesInstances.put(index, instances);
+                sentenceList.add(sentence);
                 index++;
             }
         }
-        if (!this.isTraining()) {
+        // the last portion of the sentences
+        if (!this.isTraining() && index > 0) {
             File featureFile = null;
             if (classifierJarDir != null) {
                 featureFile = new File(classifierJarDir, "crfsuite");
             }
-            List<String> namedEntities = this.classify(sentencesInstances, featureFile);
-            try {
-                FileUtils.copyFile(featureFile, new File(featureFile.getAbsolutePath() + ".test"));
-            }
-            catch (IOException e) {
-            }
-            int i = 0;
-            for (Sentence sentence : sentencesTokens.keySet()) {
-                for (Token token : sentencesTokens.get(sentence)) {
-                    NamedEntity namedEntity = new NamedEntity(jCas, token.getBegin(),
-                            token.getEnd());
-                    namedEntity.setValue(namedEntities.get(i));
-                    namedEntity.addToIndexes();
+            classify(jCas, sentencesTokens, sentencesInstances, sentenceList, index, it,
+                    featureFile);
+        }
+    }
 
-                    i++;
-                }
+    private void classify(JCas jCas, Map<Sentence, Collection<Token>> sentencesTokens,
+            Map<Integer, List<Instance<String>>> sentencesInstances, List<Sentence> sentenceList,
+            int index, int it, File featureFile)
+        throws CleartkProcessingException
+    {
+        List<String> namedEntities = this.classify(sentencesInstances, featureFile);
+        try {
+            FileUtils.copyFile(featureFile, new File(featureFile.getAbsolutePath() + ".test" + it
+                    * index));
+        }
+        catch (IOException e) {
+        }
+        int i = 0;
+        for (Sentence s : sentenceList) {
+            for (Token token : sentencesTokens.get(s)) {
+                NamedEntity namedEntity = new NamedEntity(jCas, token.getBegin(), token.getEnd());
+                namedEntity.setValue(namedEntities.get(i));
+                namedEntity.addToIndexes();
+
                 i++;
             }
+            i++;
         }
     }
 }
