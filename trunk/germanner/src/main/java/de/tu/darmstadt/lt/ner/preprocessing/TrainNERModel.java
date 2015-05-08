@@ -67,7 +67,7 @@ public class TrainNERModel
      *            = use freebase lists as a feature
      * @param usePosition
      *            = use the position of the token as a feature
-     * @param useSuffixClass
+     * @param suffixCLass
      *            = if a file to match common suffixes to a given class is given
      * @throws ResourceInitializationException
      * @throws UIMAException
@@ -76,7 +76,7 @@ public class TrainNERModel
     public static void writeModel(File NER_TagFile, File modelDirectory, String language,
             boolean createPos, String freebaseListFile, boolean usePosition, String suffixCLass,
             String pretreeFile)
-        throws ResourceInitializationException, UIMAException, IOException
+        throws UIMAException, IOException
     {
         AnalysisEngine matePosTagger = createEngine(MatePosTagger.class,
                 MatePosTagger.PARAM_LANGUAGE, language);
@@ -125,7 +125,7 @@ public class TrainNERModel
             File aNodeResultFile, ArrayList<Integer> aSentencesIds, String language,
             boolean createPos, String freebaseListFile, boolean usePosition, String suffixCLass,
             String pretreeFile)
-        throws ResourceInitializationException, UIMAException, IOException
+        throws UIMAException, IOException
     {
         AnalysisEngine matePosTagger = createEngine(MatePosTagger.class,
                 MatePosTagger.PARAM_LANGUAGE, language);
@@ -174,24 +174,23 @@ public class TrainNERModel
      * This is a helper method, can be called from NoD. If you use a DKPro tokenizer during
      * training, this mehtod use the same tokenizer available in DKPro,
      *
-     * @param aFileNam
-     *            the name of the sentence document file in the form ID \t HASH \t SENTENCE
+     * @param sentences  pure sentences
      * @return
      * @throws UIMAException
      * @throws IllegalArgumentException
      * @throws IOException
      */
-    public static void sentenceToCRFFormat(String aSentenceFileName, String aCRFFileName,
-            String aLanguage)
-        throws UIMAException, IllegalArgumentException, IOException
+    public static void sentenceToCRFFormat(List<String> sentences, String aCRFFileName, String aLanguage)
+            throws UIMAException, IllegalArgumentException, IOException
     {
         SimplePipeline.runPipeline(
                 JCasFactory.createJCas(),
                 createEngine(SentenceToCRFTestFileWriter.class,
-                        SentenceToCRFTestFileWriter.SENTENCE_FILE_NAME, aSentenceFileName,
+                        SentenceToCRFTestFileWriter.SENTENCE_ITERATOR, sentences,
                         SentenceToCRFTestFileWriter.CRF_TEST_FILE_NAME, aCRFFileName,
                         SentenceToCRFTestFileWriter.CRF_TEST_FILE_LANG, aLanguage));
     }
+
 
     public static void main(String[] args)
         throws Exception
