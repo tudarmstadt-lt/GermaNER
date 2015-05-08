@@ -117,6 +117,18 @@ public class Features2Xml
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                         new CharacterNgramFeatureFunction(fromLeft, 0, 3)), new Following(1)));
+// prefix(4)
+        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
+                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                        new CharacterNgramFeatureFunction(fromLeft, 0, 4)), new Preceding(1)));
+
+        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+                new CoveredTextExtractor<Token>(),
+                new CharacterNgramFeatureFunction(fromLeft, 0, 4)));
+
+        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
+                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                        new CharacterNgramFeatureFunction(fromLeft, 0, 4)), new Following(1)));
 
         // Suffix(1) Feature
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
@@ -156,6 +168,19 @@ public class Features2Xml
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                         new CharacterNgramFeatureFunction(fromRight, 0, 3)), new Following(1)));
+
+        //Suffix (4) feature
+        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
+                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                        new CharacterNgramFeatureFunction(fromRight, 0, 4)), new Preceding(1)));
+
+        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+                new CoveredTextExtractor<Token>(), new CharacterNgramFeatureFunction(fromRight, 0,
+                4)));
+
+        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
+                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                        new CharacterNgramFeatureFunction(fromRight, 0, 4)), new Following(1)));
 
         // Vorname List Feature
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
