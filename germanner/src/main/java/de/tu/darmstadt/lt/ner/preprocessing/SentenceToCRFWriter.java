@@ -17,14 +17,30 @@
  ******************************************************************************/
 package de.tu.darmstadt.lt.ner.preprocessing;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.LineIterator;
 import org.apache.uima.UIMAException;
 
 public class SentenceToCRFWriter
 {
 public static void main(String[] args) throws UIMAException, IllegalArgumentException, IOException
 {
-    TrainNERModel.sentenceToCRFFormat(args[0], args[1],"de");
+    LineIterator sentIt = FileUtils.lineIterator(new File(args[0]), "UTF-8");
+List<String> sentences = new ArrayList<String>();
+    StringBuilder sb = new StringBuilder();
+    int index  = 0;
+    while (sentIt.hasNext()) {
+        String line = sentIt.nextLine().toString().trim();
+        if (line.equals("")) {
+            continue;
+        }
+        sentences.add(line);
+    }
+    TrainNERModel.sentenceToCRFFormat(sentences, args[1],"de");
 }
 }

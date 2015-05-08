@@ -17,20 +17,10 @@
  ******************************************************************************/
 package de.tu.darmstadt.lt.ner.writer;
 
-import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.io.FileUtils;
+import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
+import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
+import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.LineIterator;
 import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.fit.component.JCasConsumer_ImplBase;
@@ -38,20 +28,21 @@ import org.apache.uima.fit.descriptor.ConfigurationParameter;
 import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 
-import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
-import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
-import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
+import java.io.FileOutputStream;
+import java.util.*;
+
+import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
 
 /**
  * This is a helper Class, can be used from NoD. If you use a DKPro tokenizer during training, this
  * method use the same tokenizer available in DKPro,
  */
 public class SentenceToCRFTestFileWriter
-    extends JCasConsumer_ImplBase
+        extends JCasConsumer_ImplBase
 {
-    public static final String SENTENCE_FILE_NAME = "sentenceFileName";
-    @ConfigurationParameter(name = SENTENCE_FILE_NAME, mandatory = true)
-    private String sentenceFileName = null;
+    public static final String SENTENCE_ITERATOR = "iterator";
+    @ConfigurationParameter(name = SENTENCE_ITERATOR, mandatory = true)
+    private List<String> sentences = null;
 
     public static final String CRF_TEST_FILE_NAME = "crfFileName";
     @ConfigurationParameter(name = CRF_TEST_FILE_NAME, mandatory = true)
@@ -63,35 +54,19 @@ public class SentenceToCRFTestFileWriter
 
     public static final String LF = System.getProperty("line.separator");
 
-    @Override
-    public void process(JCas jcas)
-        throws AnalysisEngineProcessException
-    {
-        try {
-            LineIterator sentIt = FileUtils.lineIterator(new File(sentenceFileName), "UTF-8");
 
+
+    @Override
+    public void process(JCas jcas) throws AnalysisEngineProcessException {
+        try {
             StringBuilder sb = new StringBuilder();
             int index  = 0;
-            while (sentIt.hasNext()) {
 
-                String line = sentIt.nextLine().toString().trim();
-                if (line.equals("")) {
-                    continue;
-                }
-                String sentenceText;
-                String[] sentences = line.split("\t");
-
-                if(sentences.length ==3) {
-                    sentenceText = sentences[2]; // the first and second are id and hash
-                }
-                else{
-                    sentenceText = sentences[0];
-                }
-
-                Sentence sentence = new Sentence(jcas, index, sentenceText.length() + index);
+            for (String l: sentences) {
+                Sentence sentence = new Sentence(jcas, index, l.length() + index);
                 sentence.addToIndexes();
-                index  = index + sentenceText.length() + 1;
-                sb.append(sentenceText + "\n");
+                index  = index + l.length() + 1;
+                sb.append(l + "\n");
             }
 
             jcas.setDocumentText(sb.toString().trim());
@@ -129,7 +104,7 @@ public class SentenceToCRFTestFileWriter
             IOUtils.write(sbCRF.toString(), new FileOutputStream(crfFileName), "UTF-8");
         }
         catch (Exception e) {
-            //
+            System.out.println(e);
         }
     }
 }
