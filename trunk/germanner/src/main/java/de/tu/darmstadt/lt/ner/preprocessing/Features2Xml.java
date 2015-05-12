@@ -36,12 +36,14 @@ import org.cleartk.ml.feature.function.FeatureFunctionExtractor;
 import com.thoughtworks.xstream.XStream;
 
 import de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.CamelCaseFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.FreeBaseFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.PretreeFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord4Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SuffixClassFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor;
@@ -117,7 +119,7 @@ public class Features2Xml
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                         new CharacterNgramFeatureFunction(fromLeft, 0, 3)), new Following(1)));
-// prefix(4)
+        // prefix(4)
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                         new CharacterNgramFeatureFunction(fromLeft, 0, 4)), new Preceding(1)));
@@ -169,14 +171,14 @@ public class Features2Xml
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                         new CharacterNgramFeatureFunction(fromRight, 0, 3)), new Following(1)));
 
-        //Suffix (4) feature
+        // Suffix (4) feature
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                         new CharacterNgramFeatureFunction(fromRight, 0, 4)), new Preceding(1)));
 
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new CharacterNgramFeatureFunction(fromRight, 0,
-                4)));
+                        4)));
 
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
@@ -242,13 +244,32 @@ public class Features2Xml
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                         new SimilarWord3Extractor()), new Following(1)));
+
+        // SimilarWord4 Feature
+        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
+                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                        new SimilarWord4Extractor()), new Preceding(1)));
+
+        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+                new CoveredTextExtractor<Token>(), new SimilarWord4Extractor()));
+
+        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
+                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                        new SimilarWord4Extractor()), new Following(1)));
+        // pos feature
         tokenFeatureExtractors.add(new TypePathExtractor<Token>(Token.class, "pos/PosValue"));
 
+        // get the suffix class feature for a token
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new SuffixClassFeatureExtractor()));
 
+        // get the Preetree feature for unsupos
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new PretreeFeatureExtractor()));
+
+        // camelcase an all upercase word
+        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+                new CoveredTextExtractor<Token>(), new CamelCaseFeatureExtractor()));
 
         XStream xstream = XStreamFactory.createXStream();
         String x = xstream.toXML(tokenFeatureExtractors);
