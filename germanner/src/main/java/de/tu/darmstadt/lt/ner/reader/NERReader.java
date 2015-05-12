@@ -156,34 +156,7 @@ public class NERReader
                     docText.append("\n");
                     idx++;
                     if (freebaseList != null) {
-
-                        // do 1-5 gram freebase checklists
-                        boolean found = false;
-                        for (String sentToken : sentenceSb.toString().split(" ")) {
-                            outer: for (int i = 5; i > 0; i--) {
-                                for (String nGramToken : GenerateNgram.generateNgramsUpto(
-                                        sentenceSb.toString(), i)) {
-                                    if (nGramToken.contains(sentToken)
-                                            && freebaseMap.get(nGramToken) != null) {
-                                        if (nGramToken.startsWith(sentToken)) {
-                                            FreeBaseFeature.freebaseFeature.add("B-"
-                                                    + freebaseMap.get(nGramToken));
-                                            found = true;
-                                            break outer;
-                                        }
-                                        else {
-                                            FreeBaseFeature.freebaseFeature.add("I-"
-                                                    + freebaseMap.get(nGramToken));
-                                            found = true;
-                                            break outer;
-                                        }
-                                    }
-                                }
-                            }
-                            if (!found) {
-                                FreeBaseFeature.freebaseFeature.add("none");
-                            }
-                        }
+                        getngramBasedFreebaseList(sentenceSb);
                     }
                     positionIndex = 0;
                 }
@@ -261,11 +234,53 @@ public class NERReader
                                 + "\t" + NamedEntityTag.getEnd());
             }
         }
+        if (!sentenceSb.toString().isEmpty()) {
+            if (freebaseList != null) {
+                getngramBasedFreebaseList(sentenceSb);
+            }
+        }
+        System.out.println(FreeBaseFeature.freebaseFeature.size() + " Freebase entries found");
         if (sentence != null && token != null) {
             terminateSentence(sentence, token, docText);
         }
 
         docView.setSofaDataString(docText.toString(), "text/plain");
+    }
+
+    private void getngramBasedFreebaseList(StringBuffer sentenceSb)
+    {
+        // do 1-5 gram freebase checklists
+        outer: for (String sentToken : sentenceSb.toString().trim().split(" ")) {
+            sentToken = sentToken.toLowerCase();// normalize for better lookup
+            for (int i = 5; i > 0; i--) {
+                try {
+                    for (String nGramToken : GenerateNgram.generateNgramsUpto(
+                            sentenceSb.toString(), i)) {
+                        nGramToken = nGramToken.toLowerCase();
+                        if (nGramToken.split(" ").length == 0 && !nGramToken.equals(sentToken)) {
+                            continue;
+                        }
+                        if (nGramToken.contains(sentToken) && freebaseMap.get(nGramToken) != null) {
+                            if (nGramToken.startsWith(sentToken)) {
+                                FreeBaseFeature.freebaseFeature.add("B-"
+                                        + freebaseMap.get(nGramToken));
+                                continue outer;
+                            }
+                            else {
+                                FreeBaseFeature.freebaseFeature.add("I-"
+                                        + freebaseMap.get(nGramToken));
+                                continue outer;
+                            }
+                        }
+                    }
+                }
+                catch (Exception e) {
+                    FreeBaseFeature.freebaseFeature.add("none");
+                    continue outer;
+                }
+            }
+            FreeBaseFeature.freebaseFeature.add("none");
+        }
     }
 
     private void terminateSentence(Sentence sentence, Token token, StringBuffer docText)
@@ -287,7 +302,7 @@ public class NERReader
         while ((line = reader.readLine()) != null) {
             try {
                 StringTokenizer st = new StringTokenizer(line, "\t");
-                freebaseMap.put(st.nextToken(), st.nextToken());
+                freebaseMap.put(st.nextToken().toLowerCase(), st.nextToken().toLowerCase());
                 if (lines % 10000 == 0) {
                     System.out.println(lines);
                 }

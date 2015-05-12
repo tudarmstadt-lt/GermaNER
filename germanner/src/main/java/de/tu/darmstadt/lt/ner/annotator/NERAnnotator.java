@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +38,7 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.cleartk.ml.CleartkProcessingException;
 import org.cleartk.ml.CleartkSequenceAnnotator;
 import org.cleartk.ml.Instance;
+import org.cleartk.ml.feature.extractor.CleartkExtractor;
 import org.cleartk.ml.feature.extractor.FeatureExtractor1;
 
 import com.thoughtworks.xstream.XStream;
@@ -89,17 +92,33 @@ public class NERAnnotator
     {
         Map<Sentence, Collection<Token>> sentencesTokens = JCasUtil.indexCovered(jCas,
                 Sentence.class, Token.class);
+        List<Sentence> sentences = new ArrayList<Sentence>(sentencesTokens.keySet());
+        // sort sentences by sentence
+        Collections.sort(sentences, new Comparator<Sentence>()
+        {
+            @Override
+            public int compare(Sentence arg0, Sentence arg1)
+            {
+                return arg0.getBegin() - arg1.getBegin();
+            }
+        });
 
         Map<Integer, List<Instance<String>>> sentencesInstances = new LinkedHashMap<Integer, List<Instance<String>>>();
         List<Sentence> sentenceList = new ArrayList<>();
         int index = 0;
         int it = 1;
-        for (Sentence sentence : sentencesTokens.keySet()) {
+        for (Sentence sentence : sentences) {
             List<Instance<String>> instances = new ArrayList<Instance<String>>();
             for (Token token : sentencesTokens.get(sentence)) {
                 Instance<String> instance = new Instance<String>();
                 for (FeatureExtractor1<Annotation> extractor : this.featureExtractors) {
-                    instance.addAll(extractor.extract(jCas, token));
+                    if (extractor instanceof CleartkExtractor) {
+                        instance.addAll((((CleartkExtractor) extractor).extractWithin(jCas, token,
+                                sentence)));
+                    }
+                    else {
+                        instance.addAll(extractor.extract(jCas, token));
+                    }
                 }
 
                 if (this.isTraining()) {
