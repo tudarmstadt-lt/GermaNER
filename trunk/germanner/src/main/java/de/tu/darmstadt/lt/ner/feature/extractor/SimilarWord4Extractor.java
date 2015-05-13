@@ -31,75 +31,71 @@ import java.util.Map;
 import org.cleartk.ml.Feature;
 import org.cleartk.ml.feature.function.FeatureFunction;
 
+public class SimilarWord4Extractor
+    implements FeatureFunction
+{
 
-public class SimilarWord4Extractor implements FeatureFunction {
+    File simWord = new File("200k_2d_wordlists");
+    static Map<String, String> simWord4 = new HashMap<String, String>();
+    static int i = 0;
 
-	File simWord=new File("200k_2d_wordlists");
-	static Map<String, String> simWord4 = new HashMap<String, String>();
-	static int i=0;
+    public SimilarWord4Extractor()
+        throws IOException
+    {
+        // read
+    }
 
-	public SimilarWord4Extractor() throws IOException {
-		 //read
-	}
+    public static final String DEFAULT_NAME = "SimilarWord4";
 
-	public static final String DEFAULT_NAME = "SimilarWord4";
+    @Override
+    public List<Feature> apply(Feature feature)
+    {
 
-	@Override
-    public List<Feature> apply(Feature feature) {
-
-		if(i==0)
-		{
-		BufferedReader br;
-		try {
-			br = new BufferedReader(new InputStreamReader(
-					ClassLoader.getSystemResourceAsStream("data/"+simWord.getName()), "UTF8"));
-			String input;
-			while((input=br.readLine())!=null)
-			{
-				String []sep=input.split("\\t");
-				simWord4.put(sep[0],sep[4]);
-			}
-			br.close();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		i++;
-		}
-
-		Object featureValue = feature.getValue();
-
-		if (featureValue == null) {
-            return Collections.emptyList();
-        }
-        else if (featureValue instanceof String) {
-
-			String value = featureValue.toString();
-			if (value == null || value.length() == 0) {
-                return Collections.emptyList();
+        if (i == 0) {
+            BufferedReader br;
+            try {
+                br = new BufferedReader(new InputStreamReader(
+                        ClassLoader.getSystemResourceAsStream("data/" + simWord.getName()), "UTF8"));
+                String input;
+                while ((input = br.readLine()) != null) {
+                    String[] sep = input.split("\\t");
+                    simWord4.put(sep[0], sep[4]);
+                }
+                br.close();
+            }
+            catch (UnsupportedEncodingException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
 
-			String output;
-			output=simWord4.get(value);
-			//System.out.println("Size:"+i);
-			if(output!=null)
-			{
-				return Collections.singletonList(new Feature("SIMWO4",
-						output));
-			}
-			return Collections.singletonList(new Feature("SIMWO4", "NA"));
-
-		}
-        else {
-            return Collections.emptyList();
+            i++;
         }
-	}
+
+        Object featureValue = feature.getValue();
+
+        if (featureValue == null) {
+            return Collections.singletonList(new Feature("SIMWO4", "NA"));
+        }
+
+        String value = featureValue.toString();
+        if (value == null || value.length() == 0) {
+            return Collections.singletonList(new Feature("SIMWO4", "NA"));
+        }
+        String output;
+        output = simWord4.get(value);
+        // System.out.println("Size:"+i);
+        if (output != null) {
+            return Collections.singletonList(new Feature("SIMWO4", output));
+        }
+        return Collections.singletonList(new Feature("SIMWO4", "NA"));
+    }
 
 }

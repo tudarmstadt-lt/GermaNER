@@ -251,12 +251,10 @@ public class NERReader
     {
         // do 1-5 gram freebase checklists
         outer: for (String sentToken : sentenceSb.toString().trim().split(" ")) {
-            sentToken = sentToken.toLowerCase();// normalize for better lookup
             for (int i = 5; i > 0; i--) {
                 try {
                     for (String nGramToken : GenerateNgram.generateNgramsUpto(
                             sentenceSb.toString(), i)) {
-                        nGramToken = nGramToken.toLowerCase();
                         if (nGramToken.split(" ").length == 0 && !nGramToken.equals(sentToken)) {
                             continue;
                         }
@@ -302,7 +300,7 @@ public class NERReader
         while ((line = reader.readLine()) != null) {
             try {
                 StringTokenizer st = new StringTokenizer(line, "\t");
-                freebaseMap.put(st.nextToken().toLowerCase(), st.nextToken().toLowerCase());
+                freebaseMap.put(st.nextToken(), st.nextToken());
                 if (lines % 10000 == 0) {
                     System.out.println(lines);
                 }
@@ -314,6 +312,42 @@ public class NERReader
         }
         reader.close();
     }
+
+    private void dbPersonNameFileToMap(String fileName)
+            throws Exception
+        {
+
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                try {
+                    String[] st = line.split("\t");
+                    freebaseMap.put(st[0], "Person");
+                    }
+                catch (Exception e) {
+                    System.out.println("Check if the freebase person name list file is correct " + e.getMessage());
+                }
+            }
+            reader.close();
+        }
+
+    private void dbLocationNameFileToMap(String fileName)
+            throws Exception
+        {
+
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                try {
+                    String[] st = line.split("\t");
+                    freebaseMap.put(st[0], "Location");
+                    }
+                catch (Exception e) {
+                    System.out.println("Check if the freebase person name list file is correct " + e.getMessage());
+                }
+            }
+            reader.close();
+        }
 
     private void suffixClassToMap(String fileName)
         throws Exception

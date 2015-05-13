@@ -42,26 +42,19 @@ public class UnivPosFeatureExtractor
         Object featureValue = feature.getValue();
         try {
             if (featureValue == null) {
+                return Collections.singletonList(new Feature("UnivPos", "UnivPos_null"));
+            }
+            String k = UnivPosFeature.pos.remove();
+
+            String value = featureValue.toString();
+            if (value == null || value.length() == 0) {
                 return Collections.emptyList();
             }
-            else if (featureValue instanceof String) {
 
-                String k = UnivPosFeature.pos.remove();
-
-                String value = featureValue.toString();
-                if (value == null || value.length() == 0) {
-                    return Collections.emptyList();
-                }
-
-                return Collections.singletonList(new Feature("UnivPos", k));
-
-            }
-            else {
-                return Collections.emptyList();
-            }
+            return Collections.singletonList(new Feature("UnivPos", k));
         }
         catch (Exception e) {
-            return Collections.emptyList();
+            return Collections.singletonList(new Feature("UnivPos", "UnivPos_null"));
         }
     }
 

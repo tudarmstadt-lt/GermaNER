@@ -44,25 +44,21 @@ public class CamelCaseFeatureExtractor
         Object featureValue = feature.getValue();
 
         if (featureValue == null) {
-            return Collections.emptyList();
+            return Collections.singletonList(new Feature("CapsFeature", "CapsFeature_null"));
         }
-        else if (featureValue instanceof String) {
 
-            String value = featureValue.toString();
-            if (value == null || value.length() == 0) {
-                return Collections.emptyList();
-            }
+        String value = featureValue.toString();
+        if (value == null || value.length() == 0) {
+            return Collections.singletonList(new Feature("CapsFeature", "CapsFeature_null"));
+        }
 
-            if (StringUtils.isAllUpperCase(value)) {
-                return Collections.singletonList(new Feature("CapsFeature", StringUtils
-                        .capitalize(value.toLowerCase())));
-            }
-            else {
-                return Collections.singletonList(new Feature("CapsFeature", value));
-            }
+        if (StringUtils.isAllUpperCase(value)) {
+            return Collections.singletonList(new Feature("CapsFeature", StringUtils
+                    .capitalize(value.toLowerCase())));
         }
         else {
-            return Collections.emptyList();
+            return Collections.singletonList(new Feature("CapsFeature", value));
         }
+
     }
 }
