@@ -26,7 +26,7 @@ Aart	VN
 Abad	VN
 Abbas	VN
 Abba	VN
-Abbé	VN
+AbbÃ©	VN
 Abbie	VN
 Abbott	VN
 Abby	VN
@@ -92,7 +92,7 @@ Abraham	VN	Masc
 Abullah	VN
 Abul	VN
 Abu	VN
-Abù	VN
+AbÃ¹	VN
 Aby	VN
 Aca	VN
 Acaz	VN
@@ -106,7 +106,7 @@ Achmed	VN	Masc
 Achol	VN
 Aci	VN
 Aco	VN
-Aczél	VN
+AczÃ©l	VN
 Adalbert	VN
 Adam-Claus	VN	Masc
 Adamn	VN
@@ -195,7 +195,7 @@ Aga	VN
 Agenor	VN	Masc
 Agha	VN
 Aghelleh	VN
-Ägidius	VN	Masc	Masc
+Ãgidius	VN	Masc	Masc
 Agim	VN
 Agisilaos	VN
 Aglae	VN	Fem
@@ -204,7 +204,7 @@ Aglaja	VN	Fem
 Aglika	VN
 Agnar	VN
 Agnes	VN	Fem
-Agnès	VN	Fem
+AgnÃ¨s	VN	Fem
 Agneta	VN	Fem
 Agnetha	VN	Fem
 Agnieszka	VN
@@ -218,7 +218,7 @@ Agronoms	VN
 Agron	VN
 Agusch	VN
 Agustin	VN
-Agustín	VN
+AgustÃ­n	VN
 Agusto	VN
 Ahad	VN
 Aharon	VN
@@ -247,9 +247,9 @@ Aimal	VN
 Aiman	VN
 Aimaq	VN
 Aimee	VN
-Aimée	VN
+AimÃ©e	VN
 Aime	VN
-Aimé	VN
+AimÃ©	VN
 Aina	VN	Fem
 Ainesidemos	VN
 Ainhoa	VN
@@ -274,7 +274,7 @@ Akbar	VN
 Akboken	VN
 Akelei	VN
 Ake	VN
-Åke	VN
+Ãke	VN
 Akihide	VN
 Akihiko	VN
 Akihiro	VN
@@ -291,7 +291,7 @@ Aki	VN
 Akki	VN
 Akmal	VN
 Akos	VN
-Ákos	VN
+Ãkos	VN
 Akram	VN
 Akseli	VN
 Aksel	VN
@@ -302,7 +302,7 @@ Akzo	VN
 Aladar	VN
 Aladin	VN
 Alagna	VN
-Alain-René	VN
+Alain-RenÃ©	VN
 Alain	VN
 Al-Ali	VN
 Alam	VN
@@ -515,7 +515,7 @@ Altstar	VN
 Alun	VN
 Alvardo	VN
 Alvaro	VN
-Álvaro	VN
+Ãlvaro	VN
 Alvar	VN
 Alvato	VN
 Alva	VN
@@ -552,13 +552,13 @@ Ambroise	VN
 Ambrosi	VN
 Ambros	VN
 Amdi	VN
-Amédée	VN
+AmÃ©dÃ©e	VN
 Amedeo	VN
 Ameer	VN
 Amelia	VN	Fem
 Amelie-Maria	VN	Fem
 Amelie	VN	Fem
-Amélie	VN	Fem
+AmÃ©lie	VN	Fem
 Amelio	VN	Masc
 Amely	VN	Fem
 Americo	VN
@@ -572,7 +572,7 @@ Amiel	VN
 Amien	VN
 Amie	VN
 Amigo	VN
-Ämilius	VN	Masc	Masc
+Ãmilius	VN	Masc	Masc
 Amina	VN	Fem
 Amintore	VN	Masc
 Amin	VN
@@ -605,7 +605,7 @@ Anabelle	VN	Fem
 Anahita	VN	Fem
 Ana-Ilanos	VN
 Anais	VN
-Anaïs	VN
+AnaÃ¯s	VN
 Anakin	VN
 Analystin	VN
 Anamaria	VN	Fem
@@ -643,9 +643,9 @@ Andor	VN	Masc	Masc
 Andraes	VN
 Andrasch	VN
 Andras	VN
-András	VN
+AndrÃ¡s	VN
 Andra	VN
-Andrä	VN
+AndrÃ¤	VN
 Andrea-Alexandra	VN	Fem
 Andrea-Beate	VN	Fem
 Andrea-Kathrin	VN	Fem
@@ -660,23 +660,23 @@ Andreas-Paul	VN	Masc
 Andreas	VN	Masc
 Andrea-Ursula	VN	Fem
 Andrea	VN	Fem
-André-Charles	VN	Masc
+AndrÃ©-Charles	VN	Masc
 Andree	VN	Masc
-Andreé	VN	Masc
-Andrée	VN	Masc
-André-Guillaume	VN	Masc
+AndreÃ©	VN	Masc
+AndrÃ©e	VN	Masc
+AndrÃ©-Guillaume	VN	Masc
 Andreij	VN	Masc
 Andrei	VN	Masc
 Andre-Jean	VN	Masc
 Andrejs	VN	Masc
 Andrej	VN	Masc
-André-Marie	VN	Fem
+AndrÃ©-Marie	VN	Fem
 Andress	VN
 Andres	VN	Masc
-Andrés	VN	Masc
+AndrÃ©s	VN	Masc
 Andre	VN	Masc
-André	VN	Masc
-Andrè	VN	Masc
+AndrÃ©	VN	Masc
+AndrÃ¨	VN	Masc
 Andrew	VN
 Andreyasa	VN
 Andrey	VN	Masc
@@ -734,7 +734,7 @@ Anheuser	VN
 Anhgela	VN	Fem
 Anh-Thu	VN
 Anibal	VN
-Aníbal	VN
+AnÃ­bal	VN
 Anica	VN
 Anicius	VN	Masc	Masc
 Aniela	VN	Fem
@@ -789,7 +789,7 @@ Ann-Christelle	VN	Fem
 Ann-Christine	VN	Fem
 Ann-Christin	VN	Fem
 Anne-Barbara	VN	Fem
-Annebärbel	VN	Fem
+AnnebÃ¤rbel	VN	Fem
 Anne-Catherine	VN	Fem
 Anne-Cathrin	VN	Fem
 Anne-Christin	VN	Fem
@@ -803,7 +803,7 @@ Annegrethe	VN	Fem
 Annegret	VN	Fem
 Anne-Gret	VN	Fem
 Annegrit	VN	Fem
-Anne-José	VN	Fem
+Anne-JosÃ©	VN	Fem
 Anne-Karine	VN	Fem
 Anne-Karin	VN	Fem
 Anne-Kathrin	VN	Fem
@@ -841,7 +841,7 @@ Annette	VN	Fem
 Annett	VN	Fem
 Annet	VN	Fem
 Anne	VN	Fem
-Änne	VN	Fem
+Ãnne	VN	Fem
 Annibale	VN
 Annick	VN
 Annie	VN	Fem
@@ -903,7 +903,7 @@ Antjepia	VN	Fem
 Antje	VN
 Antnio	VN	Masc
 Antoaneta	VN	Fem
-Antoine-François	VN
+Antoine-FranÃ§ois	VN
 Antoine-Jean	VN
 Antoinette	VN	Fem
 Antoine	VN
@@ -915,11 +915,11 @@ Antonieta	VN	Fem
 Antonie	VN
 Antonino	VN	Masc
 Antonin	VN
-Antonín	VN
+AntonÃ­n	VN
 Antonio-Pedro	VN
 Antonios	VN
 Antonio	VN	Masc
-António	VN	Masc
+AntÃ³nio	VN	Masc
 Antonis	VN
 Antonius	VN	Masc	Masc
 Antoni	VN
@@ -1000,7 +1000,7 @@ Argentine	VN
 Argiro	VN
 Argus	VN	Masc
 Ariane	VN
-Aribert-Jürgen	VN
+Aribert-JÃ¼rgen	VN
 Aribert	VN
 Arieh	VN
 Arieli	VN
@@ -1078,7 +1078,7 @@ Arno-Udo	VN
 Arnoud	VN
 Arno	VN
 Arntraud	VN
-Arnt-René	VN
+Arnt-RenÃ©	VN
 Arnt	VN
 Arnulfo	VN
 Arnulf	VN
@@ -1276,8 +1276,8 @@ Awtantil	VN
 Axa	VN
 Axel-Alexander	VN
 Axel-Eike	VN
-Axel-Günter	VN	Masc
-Axel-Jürg	VN
+Axel-GÃ¼nter	VN	Masc
+Axel-JÃ¼rg	VN
 Axel-Peter	VN	Masc
 Axel	VN
 Axiothea	VN
@@ -1382,13 +1382,13 @@ Barbara-Luise	VN
 Barbara	VN	Fem
 Barbarito	VN	Masc
 Barbarossa	VN
-Bärbel-Annemarie	VN
-Bärbel-Maria	VN	Fem
+BÃ¤rbel-Annemarie	VN
+BÃ¤rbel-Maria	VN	Fem
 Barbel	VN
-Bärbel	VN
-Bärbe	VN
+BÃ¤rbel	VN
+BÃ¤rbe	VN
 Barbi	VN
-Bärbl	VN
+BÃ¤rbl	VN
 Barbora	VN
 Barbra	VN
 Barbro	VN
@@ -1413,12 +1413,12 @@ Bartel	VN
 Barthel-Josef	VN
 Barthel	VN
 Barthold	VN	Masc
-Bartholomäus	VN	Masc
+BartholomÃ¤us	VN	Masc
 Bartlett	VN
 Bartl	VN
 Bartolomeo	VN
 Bartolomeu	VN
-Bartolomé	VN
+BartolomÃ©	VN
 Bartolo	VN
 Bartosz	VN
 Bart	VN
@@ -1442,10 +1442,10 @@ Bassam	VN
 Bastian	VN	Masc
 Basti	VN
 Bate	VN
-Báthory	VN
+BÃ¡thory	VN
 Batscha	VN
 Batthyany	VN
-Batthyány	VN
+BatthyÃ¡ny	VN
 Batting	VN
 Battling	VN
 Batu	VN
@@ -1468,7 +1468,7 @@ Beate-Christine	VN
 Beate	VN
 Beati	VN
 Beatrice	VN
-Béatrice	VN
+BÃ©atrice	VN
 Beatritz	VN
 Beatrix	VN
 Beatriz	VN
@@ -1494,13 +1494,13 @@ Behrend	VN
 Behrouz	VN
 Beiqi	VN
 Bejamin	VN	Masc
-Bekämen	VN
+BekÃ¤men	VN
 Beke	VN
 Bekir	VN
 Beki	VN
 Bela	VN	Fem
-Béla	VN
-Bèla	VN
+BÃ©la	VN
+BÃ¨la	VN
 Belcredi	VN
 Bele	VN
 Belgacem	VN
@@ -1517,10 +1517,10 @@ Bendt	VN	Masc
 Bend	VN
 Benedetto	VN	Masc
 Benedicte	VN	Masc
-Bénèdicte	VN	Masc
+BÃ©nÃ¨dicte	VN	Masc
 Benedictus	VN	Masc	Masc
 Benedict	VN	Masc
-Bénédict	VN	Masc
+BÃ©nÃ©dict	VN	Masc
 Benedikta	VN	Fem
 Benedikt-J.	VN	Masc
 Benediktus	VN	Masc	Masc
@@ -1550,7 +1550,7 @@ Benno	VN
 Benny	VN
 Benoist	VN
 Benoit	VN
-Benoît	VN
+BenoÃ®t	VN
 Beno	VN
 Benozzo	VN
 Benson	VN	Masc
@@ -1607,13 +1607,13 @@ Bernd-Christian	VN	Masc
 Bernd-Dieter	VN	Masc
 Bernd-Erich	VN
 Bernd-Georg	VN	Masc
-Bernd-Günter	VN	Masc
+Bernd-GÃ¼nter	VN	Masc
 Bernd-Hanns	VN
 Bernd-Harald	VN	Masc
 Bern-Dietrich	VN
 Bernd-Joachim	VN
 Bernd-Josef	VN
-Bernd-Jürgen	VN
+Bernd-JÃ¼rgen	VN
 Bernd-Lothar	VN
 Bernd-Lutz	VN
 Bernd-Michael	VN	Masc
@@ -1622,8 +1622,8 @@ Bernd-Peter	VN	Masc
 Bernd-Rainer	VN
 Bernd-Richard	VN	Masc	Masc
 Bernd-Rolf	VN	Masc
-Bernd-Rüdeger	VN
-Bernd-Rüdiger	VN
+Bernd-RÃ¼deger	VN
+Bernd-RÃ¼diger	VN
 Bernd-Stephan	VN
 Berndt-Dieter	VN	Masc
 Bernd-Thomas	VN
@@ -1780,12 +1780,12 @@ Bismillah	VN
 Bismullah	VN
 Bjarne	VN
 Bjarte	VN
-Björk	VN
-Björnar	VN
-Björn-Hergen	VN
+BjÃ¶rk	VN
+BjÃ¶rnar	VN
+BjÃ¶rn-Hergen	VN
 Bjornstjerne	VN
 Bjorn	VN	Masc
-Björn	VN	Masc
+BjÃ¶rn	VN	Masc
 Blader	VN
 Blade	VN
 Blaga	VN
@@ -1860,7 +1860,7 @@ Borislaw	VN
 Boris	VN
 Borjana	VN	Fem
 Boroslav	VN
-Börries	VN
+BÃ¶rries	VN
 Borris	VN
 Borsi	VN
 Borut	VN
@@ -1874,7 +1874,7 @@ Bo	VN
 Boyan	VN
 Boyd	VN
 Boye	VN
-Boy-Jürgen	VN
+Boy-JÃ¼rgen	VN
 Boy	VN
 Bozena	VN
 Bozens	VN
@@ -1973,7 +1973,7 @@ Bruni	VN
 Brun-Otto	VN
 Bruno	VN
 Bruselles	VN
-Brüser	VN
+BrÃ¼ser	VN
 Brute	VN
 Bruxelles	VN
 Bruyn	VN
@@ -1993,12 +1993,12 @@ Buff	VN
 Buford	VN	Masc
 Bughard	VN	Masc	Masc
 Buhan	VN
-Bühan	VN
+BÃ¼han	VN
 Bujar	VN
 Bukhard	VN	Masc	Masc
 Bukka	VN
 Bulent	VN
-Bülent	VN
+BÃ¼lent	VN
 Bulgari	VN
 Buona	VN
 Burchard	VN	Masc	Masc
@@ -2037,8 +2037,8 @@ Buzz	VN
 Byrom	VN
 Byron	VN
 Byung	VN
-Cäcilia	VN	Fem
-Cäcilie	VN
+CÃ¤cilia	VN	Fem
+CÃ¤cilie	VN
 Cadel	VN
 Caden	VN
 Caelestis	VN
@@ -2077,7 +2077,7 @@ Candace	VN
 Candeles	VN
 Candice	VN
 Candido	VN
-Cândido	VN
+CÃ¢ndido	VN
 Candid	VN
 Candysse	VN
 Caner	VN
@@ -2131,8 +2131,8 @@ Carl-Henrik	VN
 Carl-Herman	VN
 Carlinhos	VN
 Carlisle	VN
-Carljürgen	VN
-Carl-Jürgen	VN
+CarljÃ¼rgen	VN
+Carl-JÃ¼rgen	VN
 Carl-Ludwig	VN
 Carl-L.	VN
 Carl-Maria	VN	Fem
@@ -2194,13 +2194,13 @@ Carsten-Michael	VN	Masc
 Carsten-Otto	VN
 Carsten-Patrick	VN
 Carsten	VN
-Cärsten	VN
+CÃ¤rsten	VN
 Carton	VN
 Carver	VN
 Caryl	VN
 Carylye	VN
 Cary	VN
-Cäsar	VN
+CÃ¤sar	VN
 Casa	VN
 Casey	VN
 Cashs	VN
@@ -2225,7 +2225,7 @@ Catharina	VN	Fem
 Catharine	VN
 Catherina	VN	Fem
 Catherine	VN
-Cathérine	VN
+CathÃ©rine	VN
 Cathi	VN
 Cathleen	VN
 Cathrina	VN	Fem
@@ -2240,10 +2240,10 @@ Catrin	VN
 Cats	VN
 Cayetano	VN
 Cay	VN
-Céa	VN
+CÃ©a	VN
 Cecelia	VN	Fem
 Cecile	VN
-Cécile	VN
+CÃ©cile	VN
 Cecilia	VN	Fem
 Cecilie	VN
 Cecil	VN
@@ -2274,7 +2274,7 @@ Centa	VN
 Cesare	VN
 Cesario	VN	Masc
 Cesar	VN
-César	VN
+CÃ©sar	VN
 Cetin	VN
 Cevdet	VN
 Cevik	VN
@@ -2314,9 +2314,9 @@ Charlene	VN
 Charles-Albert	VN
 Charles-Augustin	VN
 Charles-Edouard	VN	Masc
-Charles-Édouard	VN	Masc
+Charles-Ãdouard	VN	Masc
 Charles-Henri	VN
-Charles-Irénée	VN
+Charles-IrÃ©nÃ©e	VN
 Charles-Louis	VN
 Charles-Maurice	VN
 Charles	VN
@@ -2410,7 +2410,7 @@ Choon	VN
 Choo	VN
 Chouakri	VN
 Chou	VN
-Chrétien	VN
+ChrÃ©tien	VN
 Chrischa	VN
 Chrisel	VN
 Chris-Oliver	VN
@@ -2436,7 +2436,7 @@ Christhard	VN	Masc	Masc
 Christholde	VN
 Christiaan	VN
 Christian-Anders	VN
-Christian-André	VN
+Christian-AndrÃ©	VN
 Christian-August	VN	Masc
 Christiana	VN	Fem
 Christian-Dieter	VN	Masc
@@ -2546,7 +2546,7 @@ Claire	VN	Fem
 Clarance	VN	Fem
 Clara-Sophie	VN	Fem
 Clara	VN	Fem
-Clärchen	VN
+ClÃ¤rchen	VN
 Clarence	VN	Fem
 Clare	VN
 Clarisa	VN	Fem
@@ -2582,14 +2582,14 @@ Claus-Ehlert	VN
 Claus-Erich	VN
 Claus-Friedrich	VN
 Claus-Georg	VN	Masc
-Claus-Günther	VN	Masc
+Claus-GÃ¼nther	VN	Masc
 Claus-Heinrich	VN
 Claus-Henning	VN
 Claus-Ingo	VN
 Claus-Joachim	VN
 Claus-Jurgen	VN
-Clausjürgen	VN
-Claus-Jürgen	VN
+ClausjÃ¼rgen	VN
+Claus-JÃ¼rgen	VN
 Claus-Martin	VN
 Claus-Matthias	VN
 Claus-Michael	VN	Masc
@@ -2644,7 +2644,7 @@ Codoleezza	VN
 Cody	VN
 Colby	VN
 Coleen	VN
-Cölestin	VN
+CÃ¶lestin	VN
 Colette	VN	Fem
 Cole	VN
 Coline	VN
@@ -2682,7 +2682,7 @@ Constanza	VN
 Constanze	VN
 Consuelo	VN
 Contessa	VN	Fem
-Contès	VN
+ContÃ¨s	VN
 Contrary	VN
 Cookie	VN
 Cooky	VN
@@ -2738,7 +2738,7 @@ Cosima	VN
 Cosimo	VN
 Cosmas	VN
 Cosma	VN
-Cosmè	VN
+CosmÃ¨	VN
 Costanzo	VN
 Costa-Ricky	VN
 Costas	VN
@@ -2786,7 +2786,7 @@ Cuba	VN
 Cudi	VN
 Culver	VN
 Cumhur	VN
-Cüneyd	VN
+CÃ¼neyd	VN
 Cuno	VN
 Curd	VN	Masc
 Curro	VN
@@ -3003,7 +3003,7 @@ Demitri	VN
 Demi	VN
 Demokritos	VN
 Demond	VN
-Dénes	VN
+DÃ©nes	VN
 Deng	VN
 Denise	VN
 Denis	VN
@@ -3030,22 +3030,22 @@ Derya	VN
 Deryck	VN
 Desert	VN
 Desiderius	VN	Masc	Masc
-Desirée	VN
-Désireé	VN
-Désirée	VN
-Désiré	VN
+DesirÃ©e	VN
+DÃ©sireÃ©	VN
+DÃ©sirÃ©e	VN
+DÃ©sirÃ©	VN
 Desmond	VN
 Desmund	VN
 Desportos	VN
 Dessislava	VN
 Destinys	VN
-Deszö	VN
+DeszÃ¶	VN
 Detelf	VN
 Detfred	VN	Masc
 Deth	VN	Fem
 Detleff	VN
 Detlef-Heino	VN	Masc
-Detlef-Jürgen	VN
+Detlef-JÃ¼rgen	VN
 Detlef-Udo	VN
 Detlef	VN
 Detlev-Joachim	VN
@@ -3066,7 +3066,7 @@ Dewan	VN
 Dewi	VN
 Dexter	VN	Masc
 Deyan	VN
-Dezsö	VN
+DezsÃ¶	VN
 Dhani	VN
 Dharamvir	VN
 Dharminder	VN
@@ -3116,7 +3116,7 @@ Dieter-Heinz	VN
 Dieterich	VN
 Dieter-Jens	VN
 Dieter-Johannes	VN
-Dieter-Jürgen	VN
+Dieter-JÃ¼rgen	VN
 Dieter-Lebrecht	VN
 Dieter-Lorenz	VN
 Dieter-Michael	VN	Masc
@@ -3193,7 +3193,7 @@ Dionys	VN
 Diosdado	VN
 Diotima	VN
 Dirk-Detlef	VN
-Dirk-Günter	VN	Masc
+Dirk-GÃ¼nter	VN	Masc
 Dirk-Harmen	VN
 Dirk-Hermann	VN
 Dirk-Jens	VN
@@ -3287,7 +3287,7 @@ Donatus	VN	Masc
 Donavan	VN
 Dona	VN
 Donella	VN	Fem
-Dönhoff	VN
+DÃ¶nhoff	VN
 Donja	VN
 Donlad	VN
 Donna	VN
@@ -3313,7 +3313,7 @@ Dorina	VN	Fem
 Doris-Christa	VN
 Doris-Geerd	VN	Masc	Masc
 Doris-Katharina	VN	Fem
-Doris-Schröder	VN
+Doris-SchrÃ¶der	VN
 Doris	VN
 Dorith	VN
 Dori-Titus	VN	Masc
@@ -3328,14 +3328,14 @@ Doron	VN
 Doros	VN
 Dorothea	VN
 Dorothee	VN
-Dorothée	VN
-Dorothèe	VN
+DorothÃ©e	VN
+DorothÃ¨e	VN
 Dorothe	VN
 Dorothy	VN
 Doro	VN
 Dorrit	VN
-Dörte	VN
-Dörthe	VN
+DÃ¶rte	VN
+DÃ¶rthe	VN
 Dortje	VN
 Doru	VN
 Dosso	VN
@@ -3358,7 +3358,7 @@ Doyle	VN
 Drafi	VN
 Draft	VN
 Dragan	VN	Masc
-Dräger	VN
+DrÃ¤ger	VN
 Dragica	VN
 Dragisa	VN	Fem
 Dragoljub	VN
@@ -3412,9 +3412,9 @@ Dunia	VN	Fem
 Dunja	VN	Fem
 Duos	VN
 Durano	VN
-Dürdane	VN
+DÃ¼rdane	VN
 Duri	VN
-Dürkopp	VN
+DÃ¼rkopp	VN
 Durk	VN
 Dursan	VN
 Durs	VN
@@ -3513,7 +3513,7 @@ Edita	VN	Fem
 Editha	VN	Fem
 Edith-Maria	VN	Fem
 Edith	VN
-Édith	VN
+Ãdith	VN
 Editta	VN	Fem
 Edit	VN
 Edi	VN
@@ -3529,7 +3529,7 @@ Edmung	VN
 Edna	VN
 Edoardo	VN
 Edouard	VN	Masc
-Édouard	VN	Masc
+Ãdouard	VN	Masc
 Edo	VN
 Edson	VN	Masc
 Eduardo	VN
@@ -3599,7 +3599,7 @@ Eilert	VN
 Eilhard	VN	Masc	Masc
 Eilika	VN
 Einald	VN	Masc
-Einar-Örn	VN	Masc
+Einar-Ãrn	VN	Masc
 Einars	VN
 Einar	VN
 Einhard-Dietmar	VN
@@ -3686,7 +3686,7 @@ Eliecer	VN
 Eliel	VN
 Eliese	VN
 Elie	VN
-Élie	VN
+Ãlie	VN
 Eliezer	VN
 Elihu	VN
 Elijah	VN
@@ -3790,7 +3790,7 @@ Emese	VN
 Emhamet	VN
 Emiel	VN
 Emile	VN
-Émile	VN
+Ãmile	VN
 Emiliano	VN
 Emilia	VN	Fem
 Emilie	VN
@@ -3837,7 +3837,7 @@ Engeline	VN
 Engeneer	VN
 Engert	VN
 Engin	VN
-Engüdar	VN
+EngÃ¼dar	VN
 Enid	VN
 Enie	VN
 Enio	VN	Masc
@@ -3858,7 +3858,7 @@ En	VN
 Enzo	VN
 Eoin	VN
 Ephraim	VN
-Ephräm	VN
+EphrÃ¤m	VN
 Eran	VN
 Erardo	VN
 Erasmus	VN	Masc
@@ -3878,7 +3878,7 @@ Eren	VN
 Erez	VN
 Erfried	VN	Masc
 Ergin	VN
-Ergün	VN
+ErgÃ¼n	VN
 Erhan	VN
 Erhardt	VN	Masc	Masc
 Erhard	VN	Masc	Masc
@@ -3952,8 +3952,8 @@ Ernstfried	VN	Masc
 Ernst-Georg	VN	Masc
 Ernst-Gerhard	VN	Masc	Masc
 Ernst-Gottfried	VN	Masc
-Ernst-Günter	VN	Masc
-Ernst-Günther	VN	Masc
+Ernst-GÃ¼nter	VN	Masc
+Ernst-GÃ¼nther	VN	Masc
 Ernst-Heinrich	VN
 Ernst-Heinz	VN
 Ernst-Helmuth	VN
@@ -3961,10 +3961,10 @@ Ernst-Helmut	VN
 Ernst-Herbert	VN
 Ernst-Holger	VN
 Ernst-Joachim	VN
-Ernst-Jörg	VN
+Ernst-JÃ¶rg	VN
 Ernst-Josef	VN
 Ernst-Jurgen	VN
-Ernst-Jürgen	VN
+Ernst-JÃ¼rgen	VN
 Ernst-Ludwig	VN
 Ernst-Manfred	VN	Masc
 Ernst-Martin	VN
@@ -4046,7 +4046,7 @@ Ethan	VN
 Ethel	VN
 Ethem	VN
 Etienne	VN
-Étienne	VN
+Ãtienne	VN
 Eti	VN
 Etlef	VN
 Etsuhiko	VN
@@ -4061,11 +4061,11 @@ Eudemos	VN
 Eudoros	VN
 Eugen-Andreas	VN	Masc
 Eugene	VN
-Eugène	VN
+EugÃ¨ne	VN
 Eugen-Georg	VN	Masc
 Eugenia	VN	Fem
 Eugenie	VN
-Eugénie	VN
+EugÃ©nie	VN
 Eugenio	VN	Masc
 Eugeniusz	VN
 Eugen-Maria	VN	Fem
@@ -4099,7 +4099,7 @@ Evangelista	VN
 Evangelos	VN
 Evan	VN
 Eva	VN
-Éva	VN
+Ãva	VN
 Evelies	VN
 Evelina	VN	Fem
 Eveline-Maria	VN	Fem
@@ -4148,8 +4148,8 @@ Eyjolf	VN	Masc
 Eyk	VN
 Eytan	VN
 Eythymios	VN
-Eyyüp	VN
-Ezéchiel	VN
+EyyÃ¼p	VN
+EzÃ©chiel	VN
 Ezekiel	VN
 Ezel	VN
 Ezer	VN
@@ -4204,7 +4204,7 @@ Fank	VN
 Fannie	VN
 Fanny	VN
 Fanzi	VN
-Fanz-Jürgen	VN
+Fanz-JÃ¼rgen	VN
 Farag	VN
 Farah	VN
 Farai	VN
@@ -4276,7 +4276,7 @@ Felicano	VN
 Felice	VN
 Feliciano	VN
 Felicia	VN	Fem
-Félicien	VN
+FÃ©licien	VN
 Felicitas	VN
 Felicita	VN	Fem
 Felicity	VN
@@ -4284,9 +4284,9 @@ Felicjan	VN
 Feliks	VN
 Felipe	VN
 Felix-Gunter	VN	Masc
-Felix-Rüdiger	VN
+Felix-RÃ¼diger	VN
 Felix	VN
-Félix	VN
+FÃ©lix	VN
 Felizitas	VN
 Felker	VN
 Fenando	VN
@@ -4319,12 +4319,12 @@ Ferid	VN
 Ferit	VN
 Fermin	VN
 Fernado	VN
-Fernández	VN
+FernÃ¡ndez	VN
 Fernando-Engelke	VN
 Fernando	VN
 Fernand	VN
 Fernao	VN
-Fernão	VN
+FernÃ£o	VN
 Fernend	VN
 Feroind	VN
 Feroze	VN
@@ -4457,12 +4457,12 @@ Franciszka	VN
 Franck-Thomas	VN
 Franck	VN
 Francoise	VN
-Françoise	VN
-François-Joseph	VN
-François-Marie	VN	Fem
-François-Regis	VN
+FranÃ§oise	VN
+FranÃ§ois-Joseph	VN
+FranÃ§ois-Marie	VN	Fem
+FranÃ§ois-Regis	VN
 Francois	VN
-François	VN
+FranÃ§ois	VN
 Francous	VN	Masc
 Franco	VN
 Franc	VN
@@ -4488,7 +4488,7 @@ Frank-Heinrich	VN
 Frank-Hinrich	VN
 Frankie	VN
 Frank-Joachim	VN
-Frank-Jürgen	VN
+Frank-JÃ¼rgen	VN
 Frank-Kerim	VN
 Franklin	VN
 Frank-Lothar	VN
@@ -4533,7 +4533,7 @@ Franz-Ernst	VN
 Franz-Ferdinand	VN
 Franz-Georg	VN	Masc
 Franz-Gerd	VN	Masc	Masc
-Franz-Günther	VN	Masc
+Franz-GÃ¼nther	VN	Masc
 Franz-Heinrich	VN
 Franz-Heinz	VN
 Franz-Hermann	VN
@@ -4545,12 +4545,12 @@ Franziskus	VN	Masc
 Franzi	VN
 Franz-Joachim	VN
 Franz-Johann	VN
-Franzjörg	VN
-Franz-Jörg	VN
+FranzjÃ¶rg	VN
+Franz-JÃ¶rg	VN
 Franzjosef	VN
 Franz-Josef	VN
 Franz-Joseph	VN
-Franz-Jürgen	VN
+Franz-JÃ¼rgen	VN
 Franz-Karl	VN
 Franz-Klemens	VN
 Franz-Leo	VN
@@ -4588,12 +4588,12 @@ Fray	VN
 Freda	VN	Fem
 Freddie	VN
 Freddy	VN
-Frédéric-Auguste	VN
+FrÃ©dÃ©ric-Auguste	VN
 Frederick	VN
 FredErick	VN
 Frederico	VN
 Frederic	VN
-Frédéric	VN
+FrÃ©dÃ©ric	VN
 Frederike	VN
 Frederik	VN
 Frede	VN
@@ -4753,7 +4753,7 @@ Gabin	VN
 Gabisile	VN
 Gabi	VN
 Gabor	VN	Masc
-Gábor	VN	Masc
+GÃ¡bor	VN	Masc
 Gabriela	VN	Fem
 Gabriele	VN
 Gabriella	VN	Fem
@@ -4798,7 +4798,7 @@ Garabed	VN
 Garbiele	VN
 Garbriela	VN	Fem
 Garcia	VN	Fem
-Gärdi	VN
+GÃ¤rdi	VN
 Gardy	VN
 Garen	VN
 Gareth	VN	Fem
@@ -4891,7 +4891,7 @@ Georges-Louis	VN
 Georges	VN
 George	VN
 Georg-Friedrich	VN
-Georg-Günther	VN	Masc
+Georg-GÃ¼nther	VN	Masc
 Georg-Hermann	VN
 Georg-Hinrich	VN
 Georg-Hubertus	VN	Masc
@@ -4921,14 +4921,14 @@ Geraint	VN
 Geraldine	VN
 Geraldo	VN
 Gerald	VN	Masc
-Gérald	VN	Masc
+GÃ©rald	VN	Masc
 Gerals	VN
 Gerardis	VN
 Gerardo	VN
 Gerard	VN	Masc
-Gérard	VN	Masc
+GÃ©rard	VN	Masc
 Gerassimos	VN
-Géraud	VN
+GÃ©raud	VN
 Gerbert	VN
 Gerburg	VN
 Gerco	VN
@@ -4948,12 +4948,12 @@ Gerd-Helge	VN
 Gerd-Hermann	VN
 Gerdi	VN
 Gerd-Josef	VN
-Gerd-Jürgen	VN
+Gerd-JÃ¼rgen	VN
 Gerd-Liv	VN
 Gerd-Michael	VN	Masc
 Gerd-Peter	VN	Masc
 Gerd-Rainer	VN
-Gerd-Rüdiger	VN
+Gerd-RÃ¼diger	VN
 Gerdt	VN	Masc
 Gerd-Ulrich	VN
 Gerd	VN	Masc	Masc
@@ -4996,7 +4996,7 @@ Germann	VN
 Germanos	VN
 Germanus	VN	Masc	Masc
 German	VN
-Germán	VN
+GermÃ¡n	VN
 Germar	VN
 Germinal	VN
 G.Ermin	VN
@@ -5068,7 +5068,7 @@ Gewers	VN
 Geylan	VN
 Gezahegne	VN
 Geza	VN
-Géza	VN
+GÃ©za	VN
 Ghanisham	VN
 Ghasi	VN
 Ghassan	VN
@@ -5149,7 +5149,7 @@ Ginn	VN
 Ginny	VN
 Gino	VN	Masc
 Gintaras	VN
-Gintè	VN
+GintÃ¨	VN
 Gioacchino	VN	Masc
 Gioachino	VN	Masc
 Gioconda	VN
@@ -5161,7 +5161,7 @@ Giorgi	VN
 Giorgos	VN
 Giorgo	VN
 Gioseffo	VN
-Giosuè	VN
+GiosuÃ¨	VN
 Giotto	VN
 Giovane	VN
 Giovani	VN
@@ -5178,7 +5178,7 @@ Gisbert	VN
 Gisela	VN	Fem
 Giselbert	VN
 Gisele	VN
-Gisèle	VN
+GisÃ¨le	VN
 Giselhart	VN	Masc
 Giselheid	VN
 Giselher	VN
@@ -5221,7 +5221,7 @@ Glienicker	VN
 Global	VN
 Glody	VN
 Gloria	VN	Fem
-Glückes	VN
+GlÃ¼ckes	VN
 Glyn	VN
 Gnaeus	VN	Masc
 Gnassingbe	VN
@@ -5247,7 +5247,7 @@ Goffredo	VN
 Gohar	VN
 Gohary	VN
 Gohe	VN
-Gökmen	VN
+GÃ¶kmen	VN
 Golauds	VN	Masc
 Goldie	VN
 Golo	VN
@@ -5264,7 +5264,7 @@ Gonzalez	VN
 Gonzalo	VN
 Goofy	VN
 Goran	VN
-Göran	VN
+GÃ¶ran	VN
 Gorch	VN
 Gordana	VN	Fem
 Gordan	VN
@@ -5280,7 +5280,7 @@ Goro	VN
 Gosener	VN
 Gospara	VN	Fem
 Gosta	VN
-Gösta	VN
+GÃ¶sta	VN
 Goswin	VN
 Gotelinde	VN
 Gotfried	VN	Masc
@@ -5301,13 +5301,13 @@ Gotthold	VN	Masc
 Gottlieb	VN
 Gottlob	VN
 Gottried	VN	Masc
-Göttrik	VN
-Götz-Achim	VN
-Götz-Andreas	VN	Masc
-Götz-Peter	VN	Masc
-Götz-Sebastian	VN	Masc
+GÃ¶ttrik	VN
+GÃ¶tz-Achim	VN
+GÃ¶tz-Andreas	VN	Masc
+GÃ¶tz-Peter	VN	Masc
+GÃ¶tz-Sebastian	VN	Masc
 Gotz	VN
-Götz	VN
+GÃ¶tz	VN
 Goudarz	VN
 Goulburn	VN	Masc
 Govaert	VN
@@ -5435,17 +5435,17 @@ Guita	VN	Fem
 Gui	VN
 Gulab	VN
 Gula	VN
-Gülbeden	VN
+GÃ¼lbeden	VN
 Gulbuddin	VN
-Gülcan	VN
-Güldal	VN
-Güler	VN
+GÃ¼lcan	VN
+GÃ¼ldal	VN
+GÃ¼ler	VN
 Gulio	VN	Masc
 Guliswardi	VN
-Güller	VN
+GÃ¼ller	VN
 Gulliver	VN
 Gulnari	VN
-Günal	VN
+GÃ¼nal	VN
 Gunars	VN
 Gunar	VN
 Gunayavedalage	VN
@@ -5455,7 +5455,7 @@ Gundis	VN
 Gundi	VN
 Gundl	VN
 Gundolf	VN	Masc
-Gündor	VN	Masc	Masc
+GÃ¼ndor	VN	Masc	Masc
 Gundo	VN
 Gundula	VN
 Gundulf	VN
@@ -5471,13 +5471,13 @@ Gunn-Rita	VN	Fem
 Gunny	VN
 Gunsten	VN
 Gunsun	VN
-Günter-Karl	VN
+GÃ¼nter-Karl	VN
 Gunter	VN	Masc
-Günter	VN	Masc
-Günter-Wilhelm	VN
+GÃ¼nter	VN	Masc
+GÃ¼nter-Wilhelm	VN
 Gunthard	VN	Masc	Masc
 Gunther	VN	Masc
-Günther	VN	Masc
+GÃ¼nther	VN	Masc
 Gunthild	VN	Masc
 Guntis	VN
 Guntolf	VN	Masc
@@ -5487,7 +5487,7 @@ Guo	VN
 Gurdeep-Singh	VN
 Gurmeet	VN
 Gurra	VN
-Gürses	VN
+GÃ¼rses	VN
 Guruntze	VN
 Gustaaf	VN
 Gustaf	VN
@@ -5498,7 +5498,7 @@ Gustavo	VN
 Gustav-Peter	VN	Masc
 Gustavus	VN	Masc
 Gustav	VN
-Gustáv	VN
+GustÃ¡v	VN
 Gustel	VN
 Gusterov	VN
 Gusti	VN
@@ -5510,10 +5510,10 @@ Gutierres	VN
 Gutschera	VN
 Gutta	VN
 Guus	VN	Masc
-Güven	VN
+GÃ¼ven	VN
 Guylaine	VN
 Guy	VN
-Güzi	VN
+GÃ¼zi	VN
 G.Wallace	VN
 Gwathmey	VN
 Gwendolyn	VN
@@ -5522,7 +5522,7 @@ Gwyneth	VN	Fem
 Gwynn	VN
 Gyopar	VN
 Gyorgy	VN
-György	VN
+GyÃ¶rgy	VN
 Gypie	VN
 Gyp	VN
 Gytta	VN
@@ -5557,7 +5557,7 @@ Haen	VN
 Hafez	VN
 Haffas	VN
 Hafiz	VN
-Hägar	VN
+HÃ¤gar	VN
 Hagen	VN
 Hager	VN
 Haggai	VN
@@ -5584,7 +5584,7 @@ Hajo	VN
 Hajtos	VN
 Hakam	VN
 Hakan	VN
-Häkan	VN
+HÃ¤kan	VN
 Hakims	VN
 Hakky	VN
 Hakon	VN
@@ -5601,13 +5601,13 @@ Halk	VN
 Halladsch	VN
 Halldis	VN
 Halldor	VN	Masc	Masc
-Halldór	VN
+HalldÃ³r	VN
 Hallgeir	VN
 Hall	VN
 Hallym	VN
 Halo	VN
 Halts	VN
-Hält	VN
+HÃ¤lt	VN
 Haluk	VN
 Halvard	VN	Masc
 Halvar	VN
@@ -5617,7 +5617,7 @@ Halvor	VN	Masc
 Hamadoun	VN
 Hamad	VN
 Hamed	VN
-Hämer	VN
+HÃ¤mer	VN
 Hamid-Resa	VN
 Hamid-Reza	VN
 Hamidu	VN
@@ -5651,7 +5651,7 @@ Hanin	VN
 Hani	VN
 Hanja	VN
 Han-Joachim	VN
-Hanjörg	VN
+HanjÃ¶rg	VN
 Hanjo	VN
 Hanka	VN	Fem
 Hank	VN
@@ -5697,11 +5697,11 @@ Hanns-Heinz	VN	Masc
 Hannsi	VN
 Hanns-Joachim	VN	Masc
 Hanns-Jochen	VN	Masc
-Hannsjörg	VN	Masc
-Hanns-Jörg	VN	Masc
+HannsjÃ¶rg	VN	Masc
+Hanns-JÃ¶rg	VN	Masc
 Hanns-Josef	VN	Masc
 Hanns-Joseph	VN	Masc
-Hanns-Jürgen	VN	Masc
+Hanns-JÃ¼rgen	VN	Masc
 Hanns-Karl	VN	Masc
 Hanns-Ludolf	VN	Masc
 Hanns-Ludwig	VN	Masc
@@ -5790,10 +5790,10 @@ Hans-Gert	VN	Masc
 Hans-Gnter	VN	Masc
 Hans-Goeran	VN	Masc
 Hans-Gunter	VN	Masc
-Hansgünter	VN	Masc
-Hans-Günter	VN	Masc
-Hansgünther	VN	Masc
-Hans-Günther	VN	Masc
+HansgÃ¼nter	VN	Masc
+Hans-GÃ¼nter	VN	Masc
+HansgÃ¼nther	VN	Masc
+Hans-GÃ¼nther	VN	Masc
 Hans-Gustav	VN	Masc
 Hans-Harald	VN	Masc
 Hans-Harm	VN	Masc
@@ -5842,20 +5842,20 @@ Hansjoerg	VN	Masc
 Hans-Joerg	VN	Masc
 Hans-Johann	VN	Masc
 Hans-Jordt	VN	Masc
-Hans-Jörgen	VN	Masc
+Hans-JÃ¶rgen	VN	Masc
 Hansjorg	VN	Masc
 Hans-Jorg	VN	Masc
-Hansjörg	VN	Masc
-Hans-Jörg	VN	Masc
-Hans-Jörn	VN	Masc
+HansjÃ¶rg	VN	Masc
+Hans-JÃ¶rg	VN	Masc
+Hans-JÃ¶rn	VN	Masc
 Hans-Josef	VN	Masc
 Hans-Joseph	VN	Masc
 Hans-Juergen	VN	Masc
 Hans-Jurgen	VN	Masc
-Hansjürgen	VN	Masc
-Hans-Jürgen	VN	Masc
-Hansjürg	VN	Masc
-Hans-Jürg	VN	Masc
+HansjÃ¼rgen	VN	Masc
+Hans-JÃ¼rgen	VN	Masc
+HansjÃ¼rg	VN	Masc
+Hans-JÃ¼rg	VN	Masc
 Hanskarl	VN	Masc
 Hans-Karl	VN	Masc
 Hans-Karsten	VN	Masc
@@ -5898,7 +5898,7 @@ Hans-Richard	VN	Masc	Masc
 Hans-Robert	VN	Masc
 Hans-Rolf	VN	Masc
 Hans-Ronald	VN	Masc
-Hans-Rüdiger	VN	Masc
+Hans-RÃ¼diger	VN	Masc
 Hans-Rudolf	VN	Masc
 Hansruedi	VN	Masc
 Hans-Siegfried	VN	Masc
@@ -5923,7 +5923,7 @@ Hanswerner	VN	Masc
 Hans-Werner	VN	Masc
 Hanswernfried	VN	Masc
 Hans-Wilfried	VN	Masc
-Hans-Wilhelm-Müller	VN
+Hans-Wilhelm-MÃ¼ller	VN
 Hanswilhelm	VN	Masc
 Hans-Wilhelm	VN	Masc
 Hans-Willi	VN	Masc
@@ -5947,7 +5947,7 @@ Harald-Fritjof	VN	Masc
 Harald-Gerome	VN	Masc
 Harald-Heinrich	VN	Masc
 Harald-Henry	VN	Masc
-Harald-Jürgen	VN	Masc
+Harald-JÃ¼rgen	VN	Masc
 Harald-Peter	VN	Masc
 Haralds	VN	Masc
 Haraldt	VN	Masc
@@ -6164,8 +6164,8 @@ Heinz-Gerd	VN	Masc	Masc
 Heinz-Gerhard	VN	Masc	Masc
 Heinz-Gert	VN
 Heinz-Gunter	VN	Masc
-Heinz-Günter	VN	Masc
-Heinz-Günther	VN	Masc
+Heinz-GÃ¼nter	VN	Masc
+Heinz-GÃ¼nther	VN	Masc
 Heinz-Gustav	VN
 Heinz-Hans	VN
 Heinz-Harald	VN	Masc
@@ -6182,10 +6182,10 @@ Heinz-Joachim	VN
 Heinz-Jochen	VN
 Heinz-jorg	VN	Masc
 Heinz-Jorg	VN	Masc
-Heinz-Jörg	VN
+Heinz-JÃ¶rg	VN
 Heinz-Josef	VN
 Heinz-Joseph	VN
-Heinz-Jürgen	VN
+Heinz-JÃ¼rgen	VN
 Heinz-Karl	VN
 Heinz-Klaus	VN	Masc
 Heinz-Leopold	VN	Masc
@@ -6232,7 +6232,7 @@ Helfrid	VN
 Helfried	VN	Masc
 Helgard	VN	Masc
 Helga	VN
-Helge-Björn	VN	Masc
+Helge-BjÃ¶rn	VN	Masc
 Helge-Heinz	VN
 Helge-Rudolf	VN	Masc
 Helge	VN
@@ -6280,7 +6280,7 @@ Helumt	VN
 Hel	VN
 Helwig	VN
 Helwin	VN
-Hemjö	VN
+HemjÃ¶	VN
 Hemma	VN
 Hemut	VN
 Henderson	VN	Masc
@@ -6301,7 +6301,7 @@ Henner	VN
 Hennig	VN
 Henning-Hubert	VN
 Henning	VN
-Henn-Jüri	VN
+Henn-JÃ¼ri	VN
 Hennning	VN
 Henno	VN
 Hennry	VN
@@ -6313,7 +6313,7 @@ Henricus	VN	Masc
 Henric	VN
 Henrietta	VN	Fem
 Henriette	VN	Fem
-Henri-Frédéric	VN
+Henri-FrÃ©dÃ©ric	VN
 Henri-Georges	VN
 Henrike	VN
 Henrik	VN
@@ -6336,7 +6336,7 @@ Herbert-Michael	VN	Masc
 Herbert-Peter	VN	Masc
 Herbert-Rainer	VN
 Herbert	VN
-Herbjørg	VN
+HerbjÃ¸rg	VN
 Herb	VN
 Hercules	VN
 Her-Daw	VN
@@ -6379,7 +6379,7 @@ Hernando	VN
 Hernann	VN
 Hernant	VN
 Hernan	VN
-Hernán	VN
+HernÃ¡n	VN
 Herny	VN
 Herold	VN	Masc
 Hero	VN
@@ -6399,7 +6399,7 @@ Hertha	VN	Fem
 Hertwig	VN
 Herty	VN
 Herve	VN
-Hervé	VN
+HervÃ©	VN
 Herv	VN
 Herwalt	VN
 Herward	VN	Masc
@@ -6567,7 +6567,7 @@ Hollings	VN
 Hollis	VN
 Holly	VN
 Holmes	VN
-Holm-Jürgen	VN
+Holm-JÃ¼rgen	VN
 Holm	VN
 Holtorfer	VN
 Homayra	VN
@@ -6577,7 +6577,7 @@ Hon.Andrew	VN
 Hong-Ja	VN
 Honke	VN
 Honne	VN
-Honoré	VN
+HonorÃ©	VN
 Hon	VN
 Honza	VN
 Hoons	VN
@@ -6604,8 +6604,8 @@ Horst-Franz	VN
 Horst-Fritz	VN
 Horst-Gevert	VN
 Horst-Gottfried	VN	Masc
-Horst-Günter	VN	Masc
-Horst-Günther	VN	Masc
+Horst-GÃ¼nter	VN	Masc
+Horst-GÃ¼nther	VN	Masc
 Horst-Heino	VN	Masc
 Horst-Heinz	VN
 Horst-Hermann	VN
@@ -6695,22 +6695,22 @@ Hunein	VN
 Hung-Chin	VN
 Hunter	VN	Masc
 Hurbert	VN
-Hürdem	VN
+HÃ¼rdem	VN
 Hurley-Sohns	VN
 Hurricane	VN
 Husamettin	VN
-Hüsamettin	VN
+HÃ¼samettin	VN
 Husam	VN
 Huschang	VN
 Huschke	VN
 Huschmand	VN
-Hüseyin	VN
+HÃ¼seyin	VN
 Huseynaga	VN
-Hüsne	VN
+HÃ¼sne	VN
 Hussain	VN
 Hussam	VN
 Hussein	VN
-Hüssein	VN
+HÃ¼ssein	VN
 Hutham	VN
 Huub	VN
 Hwai-Chao	VN
@@ -6775,7 +6775,7 @@ Ilcham	VN
 Ildebrando	VN
 Ildefonco	VN
 Ildiko	VN
-Ildikó	VN
+IldikÃ³	VN
 Ildi	VN
 Ileana	VN	Fem
 Ilene	VN
@@ -6852,7 +6852,7 @@ Indridi	VN
 Ines-Marina	VN	Fem
 Ines-Susanne	VN	Fem
 Ines	VN
-Inés	VN
+InÃ©s	VN
 Inez	VN
 Ingaborg	VN	Masc
 Inga-Maria	VN	Fem
@@ -6879,7 +6879,7 @@ Ingke	VN
 Ingmar	VN
 Ingobert	VN
 Ingo-Endrick	VN
-Ingo-Jörg	VN
+Ingo-JÃ¶rg	VN
 Ingo-Karsten	VN
 Ingolf	VN	Masc
 Ingo-Martin	VN
@@ -6934,13 +6934,13 @@ Irakli	VN
 Ira-Marie	VN	Fem
 Ira	VN
 Ireen	VN
-Irenäus	VN	Masc
+IrenÃ¤us	VN	Masc
 Irena	VN
 Irene-Margarita	VN	Fem
 Irene-Maria	VN	Fem
 Irene	VN
-Irène	VN
-Irén	VN
+IrÃ¨ne	VN
+IrÃ©n	VN
 Irgeen	VN
 Iride	VN
 Irina	VN	Fem
@@ -7028,7 +7028,7 @@ Issman	VN
 Istemihan	VN
 Istoc	VN
 Istvan	VN
-István	VN
+IstvÃ¡n	VN
 Ist	VN
 Italo	VN
 Itaru	VN
@@ -7040,12 +7040,12 @@ Itzhak	VN
 Itzik	VN
 Itztak	VN
 Iulianus	VN	Masc	Masc
-Ivan-André	VN
+Ivan-AndrÃ©	VN
 Ivana	VN	Fem
 Ivanka	VN	Fem
 Ivano	VN
 Ivan	VN
-Iván	VN
+IvÃ¡n	VN
 Ivar	VN
 Iva	VN
 Iven	VN
@@ -7110,7 +7110,7 @@ Jaco	VN
 Jacov	VN
 Jacqueline	VN
 Jacquelyn	VN
-Jacques-Étienne	VN
+Jacques-Ãtienne	VN
 Jacques-Henri	VN
 Jacques-Louis	VN
 Jacques-Pierre	VN
@@ -7232,7 +7232,7 @@ Jan-Oliver	VN
 Jan-Olof	VN
 Janosch	VN
 Janos	VN
-János	VN
+JÃ¡nos	VN
 Janot	VN
 Jan-Patrick	VN
 Jan-Paul	VN
@@ -7250,10 +7250,10 @@ Janus	VN	Masc	Masc
 Janusz	VN
 Jan-Uwe	VN
 Jan	VN
-Ján	VN
+JÃ¡n	VN
 Jan-Werner	VN
 Jan-Willi	VN
-Janýr	VN
+JanÃ½r	VN
 Jao	VN
 Jaqcues	VN
 Jaqueline	VN
@@ -7269,7 +7269,7 @@ Jarmila	VN
 Jarno	VN
 Jarobin	VN
 Jaromir	VN
-Jaromír	VN
+JaromÃ­r	VN
 Jaron	VN
 Jaroslaf	VN
 Jaroslava	VN
@@ -7331,7 +7331,7 @@ Jeanette	VN	Fem	Fem
 Jeane	VN	Fem
 Jean-Frabcius	VN	Masc	Masc
 Jean-Francois	VN	Masc
-Jean-François	VN	Masc
+Jean-FranÃ§ois	VN	Masc
 Jean-Georges	VN	Masc
 Jean-Gerard	VN	Masc	Masc
 Jean-Hugues	VN	Masc
@@ -7364,7 +7364,7 @@ Jean-Philipp	VN
 Jean-Piere	VN
 Jean-Pierre	VN
 Jean-Rene	VN
-Jean-René	VN
+Jean-RenÃ©	VN
 Jean-Sebastien	VN
 Jean-Vincent	VN
 Jean-	VN
@@ -7410,7 +7410,7 @@ Jenni	VN
 Jenny	VN
 Jen-Oliver	VN
 Jeno	VN
-Jenö	VN
+JenÃ¶	VN
 Jenry	VN
 Jens-Andreas	VN	Masc
 Jens-Detlef	VN
@@ -7430,7 +7430,7 @@ Jens-Oliver	VN
 Jens-Ove	VN
 Jenspeter	VN	Masc
 Jens-Peter	VN	Masc
-Jens-Sören	VN
+Jens-SÃ¶ren	VN
 Jens-Tibor	VN	Masc
 Jens-Uwe	VN
 Jens	VN
@@ -7458,7 +7458,7 @@ Jeroen	VN
 Jerold	VN	Masc
 Jerol	VN
 Jerome	VN	Masc
-Jérôme	VN	Masc
+JÃ©rÃ´me	VN	Masc
 Jeromy	VN
 Jeronimo	VN	Masc
 Jerrell	VN
@@ -7522,7 +7522,7 @@ Jin	VN
 Jinyi	VN
 Jirina	VN	Fem
 Jiri	VN
-Jirí	VN
+JirÃ­	VN
 Jirka	VN
 Jiro	VN
 Jischka	VN
@@ -7550,7 +7550,7 @@ Joakim	VN
 Jo-Alexander	VN
 Joanathan	VN
 Joana	VN	Fem
-Joanä	VN
+JoanÃ¤	VN
 Joanna	VN	Fem
 Joannes	VN
 Joanne	VN	Fem
@@ -7562,7 +7562,7 @@ Joanquin	VN
 Joan	VN
 Joao-Hans	VN
 Joao	VN
-João	VN
+JoÃ£o	VN
 Joaquim	VN
 Joaquin	VN
 Joaqun	VN
@@ -7596,7 +7596,7 @@ Jody	VN
 Joellen	VN
 Joelle	VN	Fem
 Joel	VN
-Joël	VN
+JoÃ«l	VN
 Joep	VN
 Joergen	VN
 Joerg-Heiner	VN
@@ -7699,71 +7699,71 @@ Jonna	VN
 Jonni	VN
 Jonny	VN
 Jons	VN
-Jöns	VN
+JÃ¶ns	VN
 Jonthan	VN
 Jon	VN
-Jón	VN
+JÃ³n	VN
 Joochen	VN
 Joonas	VN
 Joon	VN
 Joop	VN
 Joost	VN
 Joo	VN
-Jöpi	VN
+JÃ¶pi	VN
 Joram	VN
 Jorana	VN	Fem
 Jordan	VN
-Jörg-Andreas	VN	Masc
-Jörg-Bernd	VN
-Jörg-Christian	VN	Masc
-Jörg-Detlef	VN
-Jörg-Dieter	VN	Masc
-Jörg-Dietrich	VN
+JÃ¶rg-Andreas	VN	Masc
+JÃ¶rg-Bernd	VN
+JÃ¶rg-Christian	VN	Masc
+JÃ¶rg-Detlef	VN
+JÃ¶rg-Dieter	VN	Masc
+JÃ¶rg-Dietrich	VN
 Jorgen	VN
-Jörgen	VN
-Jørgen	VN
+JÃ¶rgen	VN
+JÃ¸rgen	VN
 Jorge	VN
-Jörg-Friedrich	VN
-Jörg-Gundolf	VN	Masc
-Jörg-Günter	VN	Masc
-Jörg-Helmut	VN
-Jörg-Henning	VN
-Jörg-Henry	VN
-Jörg-Holger	VN
-Jörg-Martin	VN
-Jörg-Matthias	VN
-Jörg-Menno	VN
-Jörg-Michael	VN	Masc
+JÃ¶rg-Friedrich	VN
+JÃ¶rg-Gundolf	VN	Masc
+JÃ¶rg-GÃ¼nter	VN	Masc
+JÃ¶rg-Helmut	VN
+JÃ¶rg-Henning	VN
+JÃ¶rg-Henry	VN
+JÃ¶rg-Holger	VN
+JÃ¶rg-Martin	VN
+JÃ¶rg-Matthias	VN
+JÃ¶rg-Menno	VN
+JÃ¶rg-Michael	VN	Masc
 Jorgos	VN
-Jörg-Otto	VN
+JÃ¶rg-Otto	VN
 Jorgo	VN
-Jörgpeter	VN	Masc
-Jörg-Peter	VN	Masc
-Jörg-Reiner	VN
-Jörg-Rüdiger	VN
-Jörg-Rudolf	VN	Masc
-Jörg-Stephan	VN
-Jörg-Thomas	VN
-Jörg-Tilbert	VN
-Jörg-Ulf	VN
-Jörg-Ulrich	VN
-Jörg-Uwe	VN
-Jörg-Viggo	VN
+JÃ¶rgpeter	VN	Masc
+JÃ¶rg-Peter	VN	Masc
+JÃ¶rg-Reiner	VN
+JÃ¶rg-RÃ¼diger	VN
+JÃ¶rg-Rudolf	VN	Masc
+JÃ¶rg-Stephan	VN
+JÃ¶rg-Thomas	VN
+JÃ¶rg-Tilbert	VN
+JÃ¶rg-Ulf	VN
+JÃ¶rg-Ulrich	VN
+JÃ¶rg-Uwe	VN
+JÃ¶rg-Viggo	VN
 Jorg	VN	Masc
-Jörg	VN
+JÃ¶rg	VN
 Joris-Karl	VN
 Joris	VN
-Jörk	VN
+JÃ¶rk	VN
 Jorma	VN
-Jörms	VN
-Jörn-Heinrich	VN
-Jörn-Helge	VN
-Jörn-Hinrich	VN
+JÃ¶rms	VN
+JÃ¶rn-Heinrich	VN
+JÃ¶rn-Helge	VN
+JÃ¶rn-Hinrich	VN
 Jorns	VN
-Jörn-Torsten	VN
-Jörn-Ulf	VN
+JÃ¶rn-Torsten	VN
+JÃ¶rn-Ulf	VN
 Jorn	VN	Masc
-Jörn	VN	Masc
+JÃ¶rn	VN	Masc
 Joscelino	VN	Masc
 Joscha	VN
 Joschka	VN
@@ -7796,10 +7796,10 @@ Jose-Luis	VN
 Jose-Manuel	VN
 Jose-Maria	VN	Fem
 Josepha	VN
-Joseph-Désiré	VN	Masc
+Joseph-DÃ©sirÃ©	VN	Masc
 Joseph-Emile	VN	Masc
 Josephine	VN	Fem
-Joséphine	VN	Fem
+JosÃ©phine	VN	Fem
 Josephin	VN
 Joseph-Louis	VN
 Joseph-Marie	VN	Fem
@@ -7808,8 +7808,8 @@ Joseph	VN	Masc
 Josep	VN
 Josette	VN	Fem
 Jose	VN
-José	VN	Masc
-Josè	VN	Masc
+JosÃ©	VN	Masc
+JosÃ¨	VN	Masc
 Joshua	VN	Masc
 Josh	VN	Masc
 Josiah	VN
@@ -7835,7 +7835,7 @@ Jost-Hinnerk	VN
 Jost	VN
 Jos	VN
 Joszef	VN
-Jószef	VN
+JÃ³szef	VN
 Jouko	VN
 Joung-Ad	VN
 Jouni	VN
@@ -7848,12 +7848,12 @@ Joyau	VN
 Joyce	VN	Masc
 Joy	VN
 Jozef	VN	Masc
-Jozéf	VN	Masc
-Józef	VN
+JozÃ©f	VN	Masc
+JÃ³zef	VN
 Joze	VN
 Jozo	VN
 Jozsef	VN
-József	VN
+JÃ³zsef	VN
 Jozua	VN
 Juan-Carlos	VN	Masc
 Juanfran	VN
@@ -7872,7 +7872,7 @@ Judi	VN
 Judy	VN
 Juen	VN
 Juergen	VN
-Jügen	VN
+JÃ¼gen	VN
 Jugraj	VN
 Juhani	VN
 Juhan	VN
@@ -7889,7 +7889,7 @@ Juliane	VN	Fem
 Julianna	VN	Fem
 Julianne	VN	Fem
 Julian	VN	Masc
-Julián	VN
+JuliÃ¡n	VN
 Julia	VN	Fem
 Julien	VN	Masc
 Julietta	VN	Fem
@@ -7929,24 +7929,24 @@ Jupp	VN
 Juraj	VN
 Jura	VN
 Jurek	VN
-Jüren	VN
+JÃ¼ren	VN
 Jure	VN
-Jürgen-Artur	VN
-Jürgen-Eugen	VN
-Jürgen-Gerhard	VN	Masc	Masc
-Jürgen-Günter	VN	Masc
-Jürgen-Hartmut	VN
-Jürgen-Johannes	VN
-Jürgen-Klaus	VN	Masc
-Jürgen-Lothar	VN
-Jürgen-Michael	VN	Masc
-Jürgen-Olaf	VN
-Jürgen-Peter	VN	Masc
+JÃ¼rgen-Artur	VN
+JÃ¼rgen-Eugen	VN
+JÃ¼rgen-Gerhard	VN	Masc	Masc
+JÃ¼rgen-GÃ¼nter	VN	Masc
+JÃ¼rgen-Hartmut	VN
+JÃ¼rgen-Johannes	VN
+JÃ¼rgen-Klaus	VN	Masc
+JÃ¼rgen-Lothar	VN
+JÃ¼rgen-Michael	VN	Masc
+JÃ¼rgen-Olaf	VN
+JÃ¼rgen-Peter	VN	Masc
 Jurgen	VN
-Jürgen	VN
-Jürgjakob	VN
+JÃ¼rgen	VN
+JÃ¼rgjakob	VN
 Jurg	VN
-Jürg	VN
+JÃ¼rg	VN
 Jurij	VN
 Jurik	VN
 Juris	VN
@@ -7958,7 +7958,7 @@ Juso	VN
 Jusri	VN
 Jussif	VN
 Jussuf	VN
-Juste-Aurèle	VN
+Juste-AurÃ¨le	VN
 Justice	VN
 Justine-Maria	VN	Fem
 Justine	VN
@@ -8016,7 +8016,7 @@ Kai-Roger	VN
 Kaisa	VN
 Kai-schek	VN
 Kaisers	VN
-Kai-Sören	VN
+Kai-SÃ¶ren	VN
 Kais	VN
 Kai-Torsten	VN
 Kai-Ulrich	VN
@@ -8135,9 +8135,9 @@ Karlgeorg	VN	Masc
 Karl-Georg	VN	Masc
 Karl-Gerd	VN	Masc	Masc
 Karl-Gerhard	VN	Masc	Masc
-Karl-Götz	VN
-Karl-Günter	VN	Masc
-Karl-Günther	VN	Masc
+Karl-GÃ¶tz	VN
+Karl-GÃ¼nter	VN	Masc
+Karl-GÃ¼nther	VN	Masc
 Karlhans	VN
 Karl-Hans	VN
 Karl-Hartmut	VN
@@ -8158,7 +8158,7 @@ Karl-Johannes	VN
 Karljosef	VN
 Karl-Josef	VN
 Karl-Joseph	VN
-Karl-Jürgen	VN
+Karl-JÃ¼rgen	VN
 Karl-Klaus	VN	Masc
 Karl-Leonhard	VN	Masc	Masc
 Karl-Ludmar	VN
@@ -8170,7 +8170,7 @@ Karl-Maria	VN	Fem
 Karl-Mario	VN	Masc
 Karl-Markus	VN	Masc
 Karl-Martin	VN
-Karl-Matthäus	VN	Masc
+Karl-MatthÃ¤us	VN	Masc
 Karl-Mattheus	VN	Masc
 Karl-Max	VN
 Karl-Michael	VN	Masc
@@ -8186,7 +8186,7 @@ Karl-Reinhard	VN	Masc	Masc
 Karl-Richard	VN	Masc	Masc
 Karl-Robert	VN
 Karl-Roland	VN	Masc
-Karl-Rüdiger	VN
+Karl-RÃ¼diger	VN
 Karl-Rudolf	VN	Masc
 Karlruher	VN
 Karl-Siegbert	VN
@@ -8216,9 +8216,9 @@ Karolina	VN	Fem
 Karoline	VN
 Karolin	VN
 Karol	VN
-Károlyi	VN
+KÃ¡rolyi	VN
 Karoly	VN
-Károly	VN
+KÃ¡roly	VN
 Karower	VN
 Karrie	VN
 Karsais	VN
@@ -8244,18 +8244,18 @@ Katalin	VN
 Katalou-Lola	VN
 Katarina	VN	Fem
 Katarzyna	VN	Fem
-Kätchen	VN
+KÃ¤tchen	VN
 Katchi	VN
 Katerina	VN	Fem
 Kate	VN
-Käte	VN
+KÃ¤te	VN
 Katharina-Maria	VN	Fem
 Katharina	VN	Fem
 Katharine	VN
 Katherina	VN	Fem
 Katherine	VN
 Katherin	VN
-Käthe	VN
+KÃ¤the	VN
 Kathie	VN
 Kathina	VN	Fem
 Kathinka	VN
@@ -8516,7 +8516,7 @@ Klaas	VN
 Kladower	VN
 Klara-Sophie	VN
 Klara	VN	Fem
-Klára	VN
+KlÃ¡ra	VN
 Klarenz	VN
 Klarnz	VN
 Klass	VN
@@ -8540,8 +8540,8 @@ Klaus-Ewald	VN	Masc
 Klaus-Georg	VN	Masc
 Klaus-Gerd	VN	Masc	Masc
 Klaus-Gerhard	VN	Masc	Masc
-Klaus-Günter	VN	Masc
-Klaus-Günther	VN	Masc
+Klaus-GÃ¼nter	VN	Masc
+Klaus-GÃ¼nther	VN	Masc
 Klaus-Hartmut	VN
 Klaus-Heiner	VN
 Klaus-Heinrich	VN
@@ -8557,8 +8557,8 @@ Klaus-Jakob	VN
 Klaus-Jan	VN
 Klaus-Joachim	VN
 Klaus-Jochen	VN
-Klausjürgen	VN
-Klaus-Jürgen	VN
+KlausjÃ¼rgen	VN
+Klaus-JÃ¼rgen	VN
 Klaus-Karl	VN
 Klaus-Klemens	VN
 Klaus-Ludwig	VN
@@ -8576,7 +8576,7 @@ Klaus-Phillip	VN
 Klaus-Rainer	VN
 Klaus-Robert	VN
 Klaus-Rudiger	VN
-Klaus-Rüdiger	VN
+Klaus-RÃ¼diger	VN
 Klaus-Rudolf	VN	Masc
 Klaus-Theodor	VN	Masc	Masc
 Klaus-Theo	VN
@@ -8613,7 +8613,7 @@ Knut-Olaf	VN
 Knut	VN
 Koba	VN
 Kobi	VN
-Köbi	VN
+KÃ¶bi	VN
 Koby	VN
 Kocheril	VN
 Koen	VN
@@ -8745,8 +8745,8 @@ Kuok	VN
 Kurd	VN	Masc
 Kurmanbek	VN
 Kurosh	VN
-Kürsad	VN
-Kürsat	VN
+KÃ¼rsad	VN
+KÃ¼rsat	VN
 Kurshid	VN
 Kurt-Alphons	VN
 Kurt-Bernd	VN
@@ -8764,7 +8764,7 @@ Kurth	VN
 Kurt-Ingo	VN
 Kurt-Jorg	VN	Masc
 Kurt-Jurgen	VN
-Kurt-Jürgen	VN
+Kurt-JÃ¼rgen	VN
 Kurt-Ludwig	VN
 Kurt-Michael	VN	Masc
 Kurt-Schumacher	VN
@@ -8878,15 +8878,15 @@ Lasthenia	VN	Fem
 Lastrup	VN
 Laszco	VN
 Laszlo	VN
-Laszló	VN
-Lászlo	VN
-László	VN
+LaszlÃ³	VN
+LÃ¡szlo	VN
+LÃ¡szlÃ³	VN
 Latif	VN
 Lattimore	VN
 Laura	VN
 Laurel	VN
 Laurence	VN
-LaurentDésiré	VN
+LaurentDÃ©sirÃ©	VN
 Laurentino	VN	Masc
 Laurentius	VN	Masc	Masc
 Laurentiu	VN
@@ -8930,7 +8930,7 @@ Lech	VN
 Ledesma	VN
 Lee	VN
 Lefteris	VN
-Léger-Marie	VN	Fem
+LÃ©ger-Marie	VN	Fem
 Legg	VN
 Lehel	VN
 Lehman	VN
@@ -8970,15 +8970,15 @@ Leo-Clemens	VN
 Leodefrid	VN
 Leodegar	VN
 Leo-Gammal	VN
-Leo-Günther	VN	Masc
+Leo-GÃ¼nther	VN	Masc
 Leo-Johannes	VN
 Leonardo	VN
 Leonardus	VN	Masc
 Leonard	VN	Masc
-Léonce	VN
+LÃ©once	VN
 Leonello	VN
 Leonel	VN
-Léon-Gontran	VN
+LÃ©on-Gontran	VN
 Leonhardt	VN	Masc	Masc
 Leonhard	VN	Masc	Masc
 Leonhart	VN	Masc
@@ -8990,16 +8990,16 @@ Leonora	VN
 Leonore	VN
 Leontyne	VN
 Leon	VN
-Léon	VN
+LÃ©on	VN
 Leonys	VN
 Leopold-Bernhard	VN	Masc	Masc
 Leopoldine	VN
 Leopoldo	VN
 Leopold	VN	Masc
-Léopold	VN	Masc
+LÃ©opold	VN	Masc
 Leos	VN
 Leo	VN
-Léo	VN
+LÃ©o	VN
 Leo-Wolfgang	VN	Masc
 Lepold	VN	Masc
 Leposava	VN
@@ -9186,7 +9186,7 @@ Long	VN
 Longyang	VN
 Lonie	VN
 Loni	VN
-Lönne	VN
+LÃ¶nne	VN
 Lonnie	VN
 Lonni	VN
 Lonny	VN
@@ -9194,14 +9194,14 @@ Lony	VN
 Lope	VN
 Loralice	VN
 Lorand	VN
-Lóránd	VN
+LÃ³rÃ¡nd	VN
 Lorant	VN
 Lora	VN
 Lorence	VN
 Lorens	VN
 Loren	VN
-Lorenz-Günter	VN	Masc
-Lorenz-Günther	VN	Masc
+Lorenz-GÃ¼nter	VN	Masc
+Lorenz-GÃ¼nther	VN	Masc
 Lorenzino	VN	Masc
 Lorenzo	VN
 Lorenz	VN
@@ -9221,13 +9221,13 @@ Lory	VN
 Losada	VN
 Lotar	VN
 Lote	VN
-Lothar-Günther	VN	Masc
-Lothar-Jürgen	VN
+Lothar-GÃ¼nther	VN	Masc
+Lothar-JÃ¼rgen	VN
 Lotharmaria	VN	Fem
 Lothar-Max	VN
 Lothar-Peter	VN	Masc
 Lothar	VN
-Lothàr	VN
+LothÃ r	VN
 Lother	VN	Masc
 Lotta	VN
 Lotte	VN
@@ -9258,12 +9258,12 @@ Loys	VN
 Loy	VN
 Luandino	VN	Masc
 Lua	VN
-Lübbo	VN
+LÃ¼bbo	VN
 Lubert	VN
 Lubomir	VN
 Lubomor	VN	Masc
 Lubor	VN	Masc
-Lübo	VN
+LÃ¼bo	VN
 Lucas	VN
 Luca	VN
 Luce	VN
@@ -9284,7 +9284,7 @@ Lucinda	VN
 Lucinka	VN
 Lucino	VN	Masc
 Lucio	VN	Masc
-Lúcio	VN	Masc
+LÃºcio	VN	Masc
 Lucius	VN	Masc	Masc
 Luci	VN
 Lucjan	VN
@@ -9293,7 +9293,7 @@ Lucrezia	VN	Fem
 Luc	VN
 Lucy	VN
 Ludek	VN
-Lüder	VN
+LÃ¼der	VN
 Ludger-Anselm	VN
 Ludgera	VN
 Ludger	VN
@@ -9307,7 +9307,7 @@ Ludovit	VN
 Ludo	VN
 Ludowika	VN
 Ludvik	VN
-Ludvík	VN
+LudvÃ­k	VN
 Ludwig-Georg	VN	Masc
 Ludwig-Holger	VN
 Ludwig-Theodor	VN	Masc	Masc
@@ -9347,7 +9347,7 @@ Lutermann	VN
 Lutgart	VN
 Lutger	VN
 Luthers	VN
-Lütje	VN
+LÃ¼tje	VN
 Lutwin	VN
 Lutz-Arno	VN
 Lutz-Benno	VN
@@ -9502,7 +9502,7 @@ Makoto	VN
 Makrina	VN	Fem
 Malachi	VN
 Malachy	VN
-Malaßa	VN
+MalaÃa	VN
 Malay	VN
 Malcolm	VN
 Malcom	VN
@@ -9537,7 +9537,7 @@ Mandrake	VN
 Mandy	VN
 Maneesorn	VN	Masc
 Manes	VN
-Manès	VN
+ManÃ¨s	VN
 Mane	VN
 Manfed	VN
 Manfred-F.	VN
@@ -9561,8 +9561,8 @@ Manix	VN
 Manja	VN
 Manjit	VN
 Manli	VN
-Männermord	VN	Masc
-Männer-Sieger	VN
+MÃ¤nnermord	VN	Masc
+MÃ¤nner-Sieger	VN
 Mannhard	VN	Masc	Masc
 Manni	VN
 Manno	VN
@@ -9592,7 +9592,7 @@ Mara	VN	Fem
 Marbod	VN
 Marc-Alexander	VN
 Marc-Andreas	VN	Masc
-Marc-André	VN
+Marc-AndrÃ©	VN
 Marc-Antoine	VN
 Marcantonio	VN	Masc
 Marc-Aurel	VN
@@ -9713,7 +9713,7 @@ Maria-Olga	VN
 Maria-Pia	VN	Fem
 Maria-Theresia	VN	Fem
 Maria	VN	Fem
-María	VN
+MarÃ­a	VN
 Mariavon	VN
 Marica	VN
 Marie-Anne	VN
@@ -9734,12 +9734,12 @@ Marie-Helene	VN
 Marie-Henriette	VN	Fem
 Marie-Jeanne	VN	Fem
 Marie-Josee	VN
-Marie-Josée	VN
+Marie-JosÃ©e	VN
 Marie-Joseph	VN
 Marieke	VN
 Marie-Kristin	VN
 Mariele	VN
-Mariéle	VN
+MariÃ©le	VN
 Mariella	VN	Fem
 Marie-Louisa	VN	Fem
 Marie-Louise	VN
@@ -9983,7 +9983,7 @@ Matsys	VN
 Matta	VN
 Matteo	VN
 Matthais	VN
-Matthäus	VN	Masc
+MatthÃ¤us	VN	Masc
 Matthe	VN
 Matthew	VN
 Matthias-Alexander	VN
@@ -10000,7 +10000,7 @@ Matt	VN
 Matty	VN
 Mat	VN
 Matwej	VN
-Mátyás	VN
+MÃ¡tyÃ¡s	VN
 Matz	VN
 Maud	VN
 Maugaula	VN
@@ -10210,7 +10210,7 @@ Michael-Christfried	VN	Masc
 Michaele	VN
 Michael-Frank	VN
 Michael-Franz	VN
-Michael-Günther	VN	Masc
+Michael-GÃ¼nther	VN	Masc
 Michael-Martin	VN
 Michael-Matthias	VN
 Michael-Rolf	VN	Masc
@@ -10228,13 +10228,13 @@ Michehl	VN
 Michelangelo	VN
 Michela	VN	Fem
 Michele	VN
-Michèle	VN
+MichÃ¨le	VN
 Micheline	VN
 Michelle	VN	Fem
 Michel-Marc	VN
 Michelozzo	VN
 Michel	VN
-Michél	VN
+MichÃ©l	VN
 Micherl	VN
 Michiel	VN
 Michihisa	VN
@@ -10263,7 +10263,7 @@ Mihailo	VN
 Mihail	VN
 Mihai	VN
 Mihaly	VN
-Mihály	VN
+MihÃ¡ly	VN
 Mihan	VN
 Mijailo	VN
 Mi-Ja	VN
@@ -10286,8 +10286,8 @@ Mikko	VN
 Miklas	VN
 Miklos-Bela	VN	Fem
 Miklos	VN
-Miklós	VN
-Miklòs	VN
+MiklÃ³s	VN
+MiklÃ²s	VN
 Mikos	VN
 Mikulas	VN
 Mik	VN
@@ -10563,20 +10563,20 @@ Muhaned	VN
 Muharremm	VN
 Muharrem	VN
 Muhiddin	VN
-Mühlen	VN
+MÃ¼hlen	VN
 Muhsen	VN
 Muiris	VN
 Mujahid	VN
-Müjgan	VN	Masc
+MÃ¼jgan	VN	Masc
 Mujibur	VN
 Mukbil	VN
 Mukesh	VN
 Muk	VN
 Mulino	VN	Masc
 Mullah	VN
-Müll-Multis	VN
+MÃ¼ll-Multis	VN
 Multnomah	VN
-Mümtaz	VN
+MÃ¼mtaz	VN
 Muneaki	VN
 Muneo	VN
 Munetoshi	VN
@@ -10682,7 +10682,7 @@ Naoual	VN
 Naoyuki	VN
 Naozumi	VN
 Napoleon	VN
-Napoléon	VN
+NapolÃ©on	VN
 Nappa	VN
 Narayanman	VN
 Narayan	VN
@@ -10832,7 +10832,7 @@ Nica	VN
 Niccola	VN
 Niccole	VN
 Niccolo	VN
-Niccolò	VN
+NiccolÃ²	VN
 Nicholas	VN
 Nichola	VN
 Nici	VN
@@ -10849,7 +10849,7 @@ Nicolae	VN
 Nicolai	VN
 Nicolaj	VN
 Nicolas	VN
-Nicolás	VN
+NicolÃ¡s	VN
 Nicolaus	VN	Masc
 Nicola	VN
 Nicolay	VN
@@ -10859,7 +10859,7 @@ Nicoletto	VN	Masc
 Nicole	VN
 Nicoline	VN
 Nicolle	VN
-Nicolò	VN
+NicolÃ²	VN
 Nico	VN
 Nic	VN
 Nido	VN
@@ -10905,7 +10905,7 @@ Nikpour	VN
 Nik	VN
 Niky	VN
 Nile	VN
-Nilgün	VN
+NilgÃ¼n	VN
 Nilla	VN
 Niloufar	VN
 Nilo	VN
@@ -10914,7 +10914,7 @@ Nilson	VN	Masc
 Nils	VN
 Nils-Zdenek	VN
 Nilton	VN
-Nilüfer	VN
+NilÃ¼fer	VN
 Nilz	VN
 Nimeiri	VN
 Nimrod	VN
@@ -10968,7 +10968,7 @@ Nobuyuki	VN
 Nob	VN
 Noelia	VN	Fem
 Noel	VN
-Noël	VN
+NoÃ«l	VN
 Noemi	VN
 Noer	VN
 Noki	VN
@@ -11079,7 +11079,7 @@ Oded	VN
 Odilo	VN
 Odin	VN
 Odlanier	VN
-Ödön	VN
+ÃdÃ¶n	VN
 Odo	VN
 Od	VN
 Odwin	VN
@@ -11103,7 +11103,7 @@ Oktay	VN
 Olaf-Christian	VN	Masc
 Olaf-Daniel	VN
 Olafur	VN
-Ólafur	VN
+Ãlafur	VN
 Olaf	VN
 Olarn	VN	Masc
 Olaus	VN	Masc
@@ -11142,7 +11142,7 @@ Olli-Pekka	VN
 Ollivera	VN
 Olli	VN
 Olly	VN
-Ölmann	VN
+Ãlmann	VN
 Olof	VN
 Oltmann	VN
 Olusegun	VN
@@ -11152,14 +11152,14 @@ Omar	VN
 Oma	VN
 Omeds	VN	Masc
 Omer	VN
-Ömer	VN
+Ãmer	VN
 Omid	VN
 Omi	VN
 Ommar	VN
 Ommo	VN
 Omri	VN
 Ondrej	VN
-Öner	VN
+Ãner	VN
 Ongava	VN
 Onio	VN	Masc
 Only	VN
@@ -11208,7 +11208,7 @@ Osborne	VN
 Oscar-Erich	VN
 Oscar	VN
 Oskaras	VN
-Oskar-Rüger	VN
+Oskar-RÃ¼ger	VN
 Oskar	VN
 Osker	VN
 Osleidys	VN
@@ -11246,7 +11246,7 @@ Otis	VN
 Otl	VN
 Otmar	VN
 Oto	VN
-Ötsch	VN
+Ãtsch	VN
 Ottar	VN
 Ottavio	VN	Masc
 Ottfried	VN	Masc
@@ -11290,9 +11290,9 @@ Ove	VN
 Owen	VN
 Own	VN
 Oylar	VN
-Öystein	VN
+Ãystein	VN
 Ozan	VN
-Özer	VN
+Ãzer	VN
 Ozren	VN
 Ozzy	VN
 Paavo	VN
@@ -11315,14 +11315,14 @@ Pafnuti	VN
 Paket	VN
 Pakir	VN
 Pak	VN
-Palágyi	VN
-Pálffy	VN
+PalÃ¡gyi	VN
+PÃ¡lffy	VN
 Pallavicini	VN
-Páll	VN
+PÃ¡ll	VN
 Palmiro	VN
 Paluka	VN
 Pal	VN
-Pál	VN
+PÃ¡l	VN
 Pamela	VN	Fem
 Pamphila	VN
 Pamphilus	VN	Masc
@@ -11359,7 +11359,7 @@ Partyclown	VN
 Parvez	VN
 Parvin	VN
 Parviz	VN
-Pär	VN
+PÃ¤r	VN
 Parwin	VN
 Pasang	VN
 Pascale	VN
@@ -11406,7 +11406,7 @@ Paul-Frank	VN
 Paul-Friedrich	VN
 Paul-Georg	VN	Masc
 Paul-Gerhard	VN	Masc	Masc
-Paul-Günter	VN	Masc
+Paul-GÃ¼nter	VN	Masc
 Paulhans	VN
 Paul-Heinz	VN
 Paul-Henri	VN
@@ -11415,7 +11415,7 @@ Paulina	VN	Fem
 Pauline	VN
 Paulin	VN
 Paul-Josef	VN
-Paul-Jürgen	VN
+Paul-JÃ¼rgen	VN
 Paul-Kerst	VN
 Paul-Louis	VN
 Paul-Michael	VN	Masc
@@ -11480,7 +11480,7 @@ Percival	VN
 Percy	VN
 Perdita	VN	Fem
 Pere	VN
-Père	VN
+PÃ¨re	VN
 Perez-Dietsche	VN
 Perica	VN
 Perihan	VN
@@ -11531,10 +11531,10 @@ Peter-Jan	VN
 Peter-Jens	VN
 Peter-Joachim	VN
 Peter-Jochen	VN
-Peter-Jörg	VN
+Peter-JÃ¶rg	VN
 Peter-Josef	VN
 Peter-Jurgen	VN
-Peter-Jürgen	VN
+Peter-JÃ¼rgen	VN
 Peter-Jurge	VN
 Peter-Klaus	VN	Masc
 Peter-Luwig	VN
@@ -11556,7 +11556,7 @@ Peter-Tobias	VN
 Peter-Torsten	VN
 Peter-Uwe	VN
 Peter	VN	Masc
-Péter	VN	Masc
+PÃ©ter	VN	Masc
 Peter-Wolfgang	VN	Masc
 Pete	VN
 Petia	VN	Fem
@@ -11646,10 +11646,10 @@ Pierpaolo	VN
 Pierpont	VN
 Pierre-Alain	VN
 Pierre-Auguste	VN
-Pierre-Cécile	VN
+Pierre-CÃ©cile	VN
 Pierre-Denis	VN
 Pierre-Dominique	VN
-Pierre-François	VN
+Pierre-FranÃ§ois	VN
 Pierre-Gilles	VN
 Pierre-Jean	VN
 Pierre-Joseph	VN
@@ -11881,36 +11881,36 @@ Rajzel	VN
 Rakesh	VN
 Rakhshan	VN
 Ralf-Andreas	VN	Masc
-Ralf-André	VN	Masc
+Ralf-AndrÃ©	VN	Masc
 Ralf-Bernd	VN	Masc
 Ralf-Christian	VN	Masc
 Ralf-Dieter	VN	Masc
 Ralf-Dietrich	VN	Masc
 Ralff	VN	Masc
 Ralf-Georg	VN	Masc
-Ralf-Günter	VN	Masc
+Ralf-GÃ¼nter	VN	Masc
 Ralf-Harald	VN	Masc
 Ralf-Hartmut	VN	Masc
-Ralf-Jürgen	VN	Masc
+Ralf-JÃ¼rgen	VN	Masc
 Ralf-Martin	VN	Masc
 Ralf-Michael	VN	Masc
 Ralf-Norbert	VN	Masc
 Ralf-Otto	VN	Masc
 Ralf-Peter	VN	Masc
 Ralf-Rainer	VN	Masc
-Ralf-Rüdiger	VN	Masc
+Ralf-RÃ¼diger	VN	Masc
 Ralf-Thomas	VN	Masc
 Ralf-Toni	VN	Masc	Masc
 Ralf-Uwe	VN	Masc
 Ralf	VN	Masc
-Ralph-André	VN	Masc
+Ralph-AndrÃ©	VN	Masc
 Ralph-Detlev	VN	Masc
 Ralph-Dieter	VN	Masc
 Ralph-Georg	VN	Masc
 Ralph-Hagen	VN	Masc
 Ralph-Hardo	VN	Masc
 Ralph-Ingo	VN	Masc
-Ralph-Jörn	VN	Masc
+Ralph-JÃ¶rn	VN	Masc
 Ralph-Michael	VN	Masc
 Ralph-Peter	VN	Masc
 Ralph	VN	Masc
@@ -11927,7 +11927,7 @@ Rami	VN
 Ramona	VN
 Ramond	VN
 Ramon	VN
-Ramón	VN
+RamÃ³n	VN
 Ramsan	VN
 Ramses	VN
 Ramuald	VN	Masc
@@ -11992,7 +11992,7 @@ Ratomir	VN
 Rattray	VN
 Rauf	VN
 Raul	VN	Masc
-Raúl	VN	Masc
+RaÃºl	VN	Masc
 Ravender	VN
 Raven	VN
 Ravil	VN
@@ -12015,7 +12015,7 @@ Razvan	VN
 Rchard	VN	Masc	Masc
 Ready	VN
 Reagan	VN	Masc
-Réal	VN
+RÃ©al	VN
 Reante	VN
 Reatha	VN	Fem
 Rea	VN
@@ -12109,7 +12109,7 @@ Rembert	VN
 Rembrandt	VN	Masc
 Remigius	VN	Masc	Masc
 Remi	VN
-Rémi	VN
+RÃ©mi	VN
 Remon	VN
 Remo	VN
 Remus	VN	Masc
@@ -12125,13 +12125,13 @@ Renat	VN
 Renaud	VN
 Rena	VN
 Renee	VN
-Reneè	VN
-Renée	VN
-Réné-Gérard	VN	Masc
+ReneÃ¨	VN
+RenÃ©e	VN
+RÃ©nÃ©-GÃ©rard	VN	Masc
 Rene	VN
-René	VN
-Renè	VN
-Réné	VN
+RenÃ©	VN
+RenÃ¨	VN
+RÃ©nÃ©	VN
 Renford	VN	Masc
 Renita	VN	Fem
 Reni	VN
@@ -12148,14 +12148,14 @@ Resa	VN
 Rese	VN
 Resit	VN
 Resi	VN
-Rességuier	VN
+RessÃ©guier	VN
 Reto	VN
 Retsu	VN
 Rets	VN
 Reuben	VN
 Reuven	VN
 Reuwen	VN
-Ré	VN
+RÃ©	VN
 Rexhep	VN
 Rex	VN
 Reyes	VN
@@ -12275,7 +12275,7 @@ Robbie	VN
 Robbi	VN
 Robb	VN
 Robby	VN
-Robére	VN
+RobÃ©re	VN
 Robert-Anton	VN	Masc
 Roberta	VN
 Robert-Friedrich	VN
@@ -12351,22 +12351,22 @@ Rolf-Dietrich	VN	Masc
 Rolf-Eugen	VN	Masc
 Rolf-Ferdinand	VN	Masc
 Rolf-Friedel	VN	Masc
-Rolf-Göran	VN	Masc
-Rolf-Günter	VN	Masc
-Rolf-Günther	VN	Masc
+Rolf-GÃ¶ran	VN	Masc
+Rolf-GÃ¼nter	VN	Masc
+Rolf-GÃ¼nther	VN	Masc
 Rolf-Harald	VN	Masc
 Rolf-Heinrich	VN	Masc
 Rolf-Heinz	VN	Masc
 Rolf-Joachim	VN	Masc
 Rolf-Jochen	VN	Masc
-Rolfjürgen	VN	Masc
-Rolf-Jürgen	VN	Masc
+RolfjÃ¼rgen	VN	Masc
+Rolf-JÃ¼rgen	VN	Masc
 Rolf-Martin	VN	Masc
 Rolf-Michael	VN	Masc
 Rolf-Peter	VN	Masc
 Rolf-Rainer	VN	Masc
 Rolf-Roland	VN	Masc
-Rolf-Rüdiger	VN	Masc
+Rolf-RÃ¼diger	VN	Masc
 Rolf-Siegfried	VN	Masc
 Rolf-Thomas	VN	Masc
 Rolf-Ulrich	VN	Masc
@@ -12395,7 +12395,7 @@ Rommy	VN
 Romney	VN
 Romuald	VN	Masc
 Romulo	VN
-Rómulo	VN
+RÃ³mulo	VN
 Romulus	VN	Masc
 Romy	VN
 Ronaldo	VN	Masc
@@ -12489,20 +12489,20 @@ Royer	VN
 Royston	VN
 Roy	VN
 Rozanne	VN	Fem
-Róza	VN
+RÃ³za	VN
 Rozika	VN
 Rozsa	VN
 Ruach	VN
 Ruark	VN
 Rubens	VN
 Ruben	VN
-Rubén	VN
+RubÃ©n	VN
 Rubert	VN	Masc
 Rudeineh	VN
 Rudenz	VN
-Rüdger	VN
+RÃ¼dger	VN
 Rudiger	VN	Masc
-Rüdiger	VN	Masc
+RÃ¼diger	VN	Masc
 Rudi-Lutz	VN
 Rudi-Sepp	VN
 Rudi	VN
@@ -12522,7 +12522,7 @@ Rudolfo	VN	Masc
 Rudolf	VN	Masc
 Rudolph	VN
 Rudra	VN
-Rüdt	VN	Masc
+RÃ¼dt	VN	Masc
 Rudulf	VN	Masc
 Rudyard	VN	Masc
 Rudy	VN
@@ -12533,7 +12533,7 @@ Ruel	VN
 Rufdolf	VN	Masc
 Ruffin	VN
 Rufus	VN	Masc
-Rüger	VN
+RÃ¼ger	VN
 Ruggero	VN
 Ruggiero-Savino	VN	Masc
 Ruggiero	VN
@@ -12547,7 +12547,7 @@ Rul	VN
 Ruma	VN
 Rumble	VN
 Rumold	VN	Masc
-Rüm	VN
+RÃ¼m	VN
 Runar	VN
 Rune	VN
 Rupert	VN	Masc
@@ -12562,12 +12562,12 @@ Russi	VN
 Russ	VN
 Russya	VN
 Rustam	VN	Masc
-Rüstem	VN	Masc
+RÃ¼stem	VN	Masc
 Rusten	VN	Masc
 Rustom	VN	Masc
 Rusty	VN
 Rutger	VN	Masc
-Rütger	VN	Masc
+RÃ¼tger	VN	Masc
 Ruth-Anna	VN
 Ruthard	VN	Masc	Masc
 Ruth-Edeltraud	VN
@@ -12579,7 +12579,7 @@ Ruth-Margret	VN
 Ruth-Maria	VN	Fem
 Ruth-Veronika	VN
 Ruth	VN
-Rüttger	VN
+RÃ¼ttger	VN
 Rut	VN
 Ruud	VN
 Ruuuudi	VN
@@ -12712,7 +12712,7 @@ Sandford	VN	Masc
 Sandhya	VN
 Sandi	VN
 Sandor	VN	Masc	Masc
-Sándor	VN	Masc	Masc
+SÃ¡ndor	VN	Masc	Masc
 Sando	VN
 Sandra-Nadine	VN
 Sandra-Patricia	VN	Fem
@@ -12777,7 +12777,7 @@ Saturo	VN
 Satu	VN
 Satyajit	VN
 Satyendra	VN
-Sätze	VN
+SÃ¤tze	VN
 Saul	VN
 Sauro	VN
 Sava	VN
@@ -12842,7 +12842,7 @@ Seaton	VN
 Sebastiano	VN	Masc
 Sebastian	VN	Masc
 Sebastien	VN	Masc
-Sébastien	VN	Masc
+SÃ©bastien	VN	Masc
 Sebastin	VN	Masc
 Sebastjan	VN	Masc
 Sebatsian	VN	Masc
@@ -12944,7 +12944,7 @@ Seven	VN
 Severianos	VN
 Severino	VN	Masc
 Severin	VN
-Séverin	VN
+SÃ©verin	VN
 Severo	VN
 Seve	VN
 Sevgi	VN
@@ -13110,7 +13110,7 @@ Shurga	VN
 Shyam	VN
 Siad	VN
 Sian	VN	Masc
-Siân	VN
+SiÃ¢n	VN
 Siba	VN
 Sibby	VN
 Sibilla	VN
@@ -13173,7 +13173,7 @@ Sigismunde	VN
 Sigismund	VN	Masc
 Sigi	VN
 Siglinde	VN
-Sigmar-Jürgen	VN	Masc
+Sigmar-JÃ¼rgen	VN	Masc
 Sigmar-Peter	VN	Masc
 Sigmar	VN	Masc
 Sigmund	VN	Masc
@@ -13225,7 +13225,7 @@ Simonides	VN
 Simonpaolo	VN	Masc
 Simon-Paul	VN	Masc
 Simon	VN	Masc
-Simón	VN	Masc
+SimÃ³n	VN	Masc
 Simo	VN
 Simpert	VN
 Sim	VN
@@ -13269,7 +13269,7 @@ Smoky	VN
 Smuts	VN
 Sneschana	VN	Fem	Fem
 Snorri	VN
-Sobánski	VN
+SobÃ¡nski	VN
 Sobhi	VN
 Soedeno	VN
 Soenke	VN
@@ -13286,8 +13286,8 @@ Sogoyou	VN
 Sohaila	VN
 Sohei	VN
 Soheyla	VN
-Söhnen	VN
-Söhnke	VN
+SÃ¶hnen	VN
+SÃ¶hnke	VN
 Sohrab	VN
 Sohre	VN
 Soichiro	VN
@@ -13306,11 +13306,11 @@ Sommer	VN
 Sona	VN
 Soner	VN
 Sonia	VN	Fem
-Sônia	VN	Fem
+SÃ´nia	VN	Fem
 Sonica	VN
 Sonja	VN	Fem
 Sonke	VN
-Sönke	VN
+SÃ¶nke	VN
 Sonnhild	VN	Masc
 Sonning	VN
 Sonny	VN
@@ -13330,8 +13330,8 @@ Soraya-Antoinette	VN	Fem
 Soraya	VN
 Sorayouth	VN
 Soren	VN
-Sören	VN
-Søren	VN
+SÃ¶ren	VN
+SÃ¸ren	VN
 Sorina-Gratiela	VN	Fem
 Sorjana	VN	Fem
 Sorka	VN
@@ -13422,7 +13422,7 @@ Stepan	VN	Masc
 Stephan-Andreas	VN	Masc
 Stephaner	VN
 Stephane	VN	Fem
-Stéphane	VN	Fem
+StÃ©phane	VN	Fem
 Stephania	VN	Fem
 Stephanie	VN
 Stephan-Immanuel	VN
@@ -13460,7 +13460,7 @@ Stuart	VN	Masc
 Sture	VN
 Sturiales	VN
 Stu	VN
-Stüwe	VN
+StÃ¼we	VN
 Sualk	VN
 Subas	VN
 Subhash	VN
@@ -13483,7 +13483,7 @@ Suher	VN
 Suh	VN
 Sukehiro	VN
 Suk-Hee	VN
-Sükrü	VN
+SÃ¼krÃ¼	VN
 Suk-Young	VN
 Sulaiman	VN
 Sulamith	VN
@@ -13491,7 +13491,7 @@ Sulchan	VN
 Suleiman	VN	Masc
 Sulejman	VN	Masc
 Suleyman	VN	Masc
-Süleyman	VN	Masc
+SÃ¼leyman	VN	Masc
 Sully	VN
 Sulpitz	VN
 Sultan	VN
@@ -13519,8 +13519,8 @@ Surakiart	VN
 Suren	VN
 Suresh	VN
 Surinder	VN
-Sürki	VN
-Sürkü	VN
+SÃ¼rki	VN
+SÃ¼rkÃ¼	VN
 Surmani	VN
 Surry	VN
 Surya	VN
@@ -13720,7 +13720,7 @@ Talytha	VN	Fem
 Tamara	VN	Fem
 Tamar	VN
 Tamas	VN
-Tamás	VN
+TamÃ¡s	VN
 Tamer	VN
 Tamio	VN	Masc
 Tammo	VN
@@ -13868,11 +13868,11 @@ Tewe	VN
 Tex	VN
 Teymour	VN
 Thabo	VN
-Thaddäus	VN	Masc
+ThaddÃ¤us	VN	Masc
 Thaddeus	VN	Masc
 Thadeus	VN	Masc
 Thad	VN
-Thâkur	VN
+ThÃ¢kur	VN
 Thales	VN
 Thalia	VN	Fem
 Thamir	VN
@@ -13886,7 +13886,7 @@ Theaitetos	VN
 Theano	VN
 Thea	VN
 Thees	VN
-Theiß	VN
+TheiÃ	VN
 Thekla	VN
 Thelma	VN
 Themelis	VN
@@ -13895,13 +13895,13 @@ Theo-Ben	VN
 Theoderich	VN
 Theodora	VN
 Theodore	VN
-Théodore	VN
+ThÃ©odore	VN
 Theodoros	VN	Masc
 Theodor	VN	Masc	Masc
 Theo-Josef	VN	Masc
 Theon	VN
 Theophile	VN
-Théophile	VN
+ThÃ©ophile	VN
 Theo-Philipp	VN
 Theophilou	VN
 Theophilus	VN	Masc
@@ -13938,7 +13938,7 @@ Thomas-Andrew	VN	Masc
 Thomas-Ansgar	VN	Masc
 Thomasin	VN
 Thomas-Jan	VN	Masc
-Thomas-Jörg	VN	Masc
+Thomas-JÃ¶rg	VN	Masc
 Thomas-Marco	VN	Masc
 Thomas-Michael	VN	Masc
 Thomas-Peter	VN	Masc
@@ -13955,8 +13955,8 @@ Thom	VN
 Thony	VN
 Thoralf	VN	Masc
 Thorben	VN
-Thorbjörn	VN	Masc
-Thorbjørn	VN	Masc
+ThorbjÃ¶rn	VN	Masc
+ThorbjÃ¸rn	VN	Masc
 Thord	VN	Masc
 Thoreaus	VN	Masc
 Thore	VN
@@ -14077,7 +14077,7 @@ Toman	VN
 Tomaso	VN
 Tomasso	VN
 Tomas	VN	Masc
-Tomás	VN	Masc
+TomÃ¡s	VN	Masc
 Tomasz	VN	Masc
 Tomaz	VN	Masc
 Tomek	VN	Masc
@@ -14104,7 +14104,7 @@ Tonia	VN	Fem
 Tonie	VN
 Tonio	VN	Masc	Masc
 Tonique	VN
-Tönis	VN
+TÃ¶nis	VN
 Toni	VN
 Tonja	VN	Fem
 Tono	VN
@@ -14115,7 +14115,7 @@ Toralf	VN	Masc
 Toran	VN
 Torben-Juul	VN
 Torben	VN
-Torbjörn	VN	Masc
+TorbjÃ¶rn	VN	Masc
 Tord	VN	Masc
 Torgarant	VN
 Torgeir	VN
@@ -14132,7 +14132,7 @@ Torre	VN
 Torri	VN
 Torry	VN
 Torsten-Andreas	VN	Masc
-Torsten-Jörn	VN	Masc
+Torsten-JÃ¶rn	VN	Masc
 Torsten	VN	Masc
 Toru	VN
 Torvald	VN	Masc
@@ -14249,7 +14249,7 @@ Tucapel	VN
 Tucher	VN
 Tudor	VN	Masc	Masc
 Tugay	VN
-Tülay	VN
+TÃ¼lay	VN
 Tullia	VN	Fem
 Tullio	VN	Masc
 Tully	VN
@@ -14259,7 +14259,7 @@ Tuomas	VN
 Tupac	VN
 Turan	VN
 Turid	VN
-Türkiz	VN
+TÃ¼rkiz	VN
 Turl	VN
 Tusp	VN
 Tuula	VN
@@ -14307,13 +14307,13 @@ Ukjja	VN
 Ula	VN
 Uldis	VN
 Ule	VN
-Ulf-Brün	VN	Masc
+Ulf-BrÃ¼n	VN	Masc
 Ulf-Dieter	VN	Masc
 Ulfert	VN	Masc
 Ulf-Harro	VN	Masc
 Ulf-Ingo	VN	Masc
 Ulf-Jensen	VN	Masc
-Ulf-Jürgen	VN	Masc
+Ulf-JÃ¼rgen	VN	Masc
 Ulf-Michael	VN	Masc
 Ulf-Peter	VN	Masc
 Ulf-Rano	VN	Masc
@@ -14324,7 +14324,7 @@ Ulger	VN
 Ulises	VN
 Uli	VN
 Uljana	VN	Fem
-Ülkü	VN
+ÃlkÃ¼	VN
 Ullabritt	VN
 Ulla-Britt	VN
 Ullah	VN
@@ -14339,7 +14339,7 @@ Ullrich	VN	Masc
 Ullstein	VN
 Ullus	VN	Masc
 Ull	VN
-Ülo	VN
+Ãlo	VN
 Ulrica	VN
 Ulrich-Andreas	VN	Masc
 Ulrich-Arthur	VN	Masc
@@ -14364,7 +14364,7 @@ Umbereto	VN
 Umberta	VN
 Umberto	VN	Masc
 Umed	VN
-Ümit	VN
+Ãmit	VN
 Umur	VN
 Unai	VN
 Undine	VN
@@ -14435,8 +14435,8 @@ Uzia	VN	Fem
 Vaanii	VN
 Vaani	VN
 Vaclav	VN
-Václav	VN
-Vàclav	VN
+VÃ¡clav	VN
+VÃ clav	VN
 Vaden	VN
 Vadim	VN
 Vagif	VN
@@ -14446,7 +14446,7 @@ Vahdat	VN
 Vahid	VN
 Vaida	VN
 Vaike	VN
-Väinö	VN
+VÃ¤inÃ¶	VN
 Vaira	VN
 Vajramala	VN
 Valdas	VN
@@ -14461,12 +14461,12 @@ Valeriano	VN
 Valerian	VN	Masc
 Valeria	VN	Fem
 Valerie	VN
-Valérie	VN
+ValÃ©rie	VN
 Valerij	VN	Masc
 Valerius	VN	Masc	Masc
 Valeri	VN
 Valery	VN
-Valéry	VN
+ValÃ©ry	VN
 Valeska	VN
 Valgeir	VN
 Valhalla	VN
@@ -14582,7 +14582,7 @@ Vikash	VN
 Vikram	VN
 Viktoria	VN	Fem
 Viktor	VN	Masc
-Vilém	VN
+VilÃ©m	VN
 Vilfredo	VN
 Vilhelm	VN
 Viliam	VN	Masc
@@ -14634,7 +14634,7 @@ Vitaly	VN	Masc
 Vitantonio	VN	Masc
 Vitautas	VN
 Vitezslav	VN
-Vítezslav	VN
+VÃ­tezslav	VN
 Vitomir	VN
 Vitor	VN	Masc
 Vito	VN	Masc
@@ -14707,7 +14707,7 @@ Wahed	VN
 Waheed	VN
 Wahidwira	VN
 Wahweap	VN
-Wäino	VN	Masc
+WÃ¤ino	VN	Masc
 Wajir	VN
 Walburga	VN
 Walburg	VN
@@ -14809,7 +14809,7 @@ Wenzel	VN
 Wenzeslaw	VN
 Wera	VN
 Werner-Hans	VN	Masc
-Werner-Jörg	VN	Masc
+Werner-JÃ¶rg	VN	Masc
 Werner-Karl-Otto	VN	Masc
 Werner-Karl	VN	Masc
 Werner-Siegwart	VN	Masc
@@ -14879,7 +14879,7 @@ Wilfrieds	VN	Masc
 Wilfried	VN	Masc
 Wilhard	VN	Masc	Masc
 Wilhelm-Dirk	VN
-Wilhelm-Günther	VN	Masc
+Wilhelm-GÃ¼nther	VN	Masc
 Wilhelmina	VN	Fem
 Wilhelmine	VN	Fem
 Wilhelm-Josefowitsch	VN
@@ -15029,13 +15029,13 @@ Wolfgang-Joachim	VN	Masc
 Wolfgang-Konrad	VN	Masc
 Wolfgang-Manfred	VN	Masc
 Wolfgang	VN	Masc
-Wölfgang	VN	Masc
+WÃ¶lfgang	VN	Masc
 Wolfganng	VN	Masc
 Wolfgan	VN	Masc
 Wolf-Georg	VN	Masc
 Wolf-Gerhard	VN	Masc	Masc
 Wolf-Gunter	VN	Masc
-Wolf-Günter	VN	Masc
+Wolf-GÃ¼nter	VN	Masc
 Wolf-Hannes	VN	Masc
 Wolfhard-Rainer	VN	Masc
 Wolfhardt	VN	Masc	Masc
@@ -15049,7 +15049,7 @@ Wolf-Immo	VN	Masc
 Wolfi	VN	Masc
 Wolf-Joachim	VN	Masc
 Wolf-Jurgen	VN	Masc
-Wolf-Jürgen	VN	Masc
+Wolf-JÃ¼rgen	VN	Masc
 Wolf-Michael	VN	Masc
 Wolf-Peter	VN	Masc
 Wolf-Philipp	VN	Masc
@@ -15059,7 +15059,7 @@ Wolfram-Dietrich	VN	Masc
 Wolfram	VN	Masc
 Wolf-Reiner	VN	Masc
 Wolf-Rudiger	VN	Masc
-Wolf-Rüdiger	VN	Masc
+Wolf-RÃ¼diger	VN	Masc
 Wolfrudolf	VN	Masc
 Wolfrum	VN	Masc
 Wolf-Ruthart	VN	Masc
@@ -15104,7 +15104,7 @@ Wulfila	VN
 Wulf-Konrad	VN	Masc
 Wulf-Otto	VN	Masc
 Wulf-Peter	VN	Masc
-Wulf-Rüdiger	VN	Masc
+Wulf-RÃ¼diger	VN	Masc
 Wulf-Uwe	VN	Masc
 Wulf	VN	Masc
 Wunner-Willi	VN	Masc
@@ -15236,7 +15236,7 @@ Yitzak	VN
 Yitzhak	VN
 Ylva	VN
 Y.Marc	VN
-Yngve-Björn	VN	Masc
+Yngve-BjÃ¶rn	VN	Masc
 Ynon	VN
 Yoav	VN
 Yochai	VN
@@ -15268,7 +15268,7 @@ York-Detlef	VN	Masc
 York-Moritz	VN	Masc
 York	VN	Masc
 Yormie	VN
-Yörn	VN	Masc
+YÃ¶rn	VN	Masc
 Yorrick	VN
 Yosemite	VN
 Yoshiaki	VN
@@ -15318,12 +15318,12 @@ Youssouph	VN
 You	VN
 Yoweri	VN
 Yozo	VN
-Yriö	VN
+YriÃ¶	VN
 Ysabel	VN
 Yuan	VN
 Yubo	VN
 Yucel	VN
-Yücel	VN
+YÃ¼cel	VN
 Yu-Chien	VN
 Yuen	VN
 Yue	VN
@@ -15336,7 +15336,7 @@ Yukiharu	VN
 Yukihiro	VN
 Yukinori	VN
 Yukio	VN	Masc
-Yüksel	VN
+YÃ¼ksel	VN
 Yulli	VN
 Yul	VN
 Yumiko	VN
@@ -15405,7 +15405,7 @@ Zarah	VN
 Zara	VN
 Zarcillo	VN
 Zarko	VN
-Zäzilia	VN	Fem
+ZÃ¤zilia	VN	Fem
 Zbignew	VN
 Zbigniew	VN
 Zbig	VN
@@ -15431,7 +15431,7 @@ Zembei	VN
 Zeng	VN
 Zenonas	VN
 Zenon	VN
-Zenón	VN
+ZenÃ³n	VN
 Zeno	VN
 Zenta	VN
 Zephyr	VN
@@ -15476,7 +15476,7 @@ Zohra	VN
 Zola	VN
 Zolile	VN
 Zoltan	VN
-Zoltán	VN
+ZoltÃ¡n	VN
 Zolt	VN	Masc
 Zoot	VN
 Zoppo	VN
@@ -15489,16 +15489,16 @@ Zoro	VN
 Zoubir	VN
 Zouheir	VN
 Zsa	VN
-Zsófia	VN	Fem
+ZsÃ³fia	VN	Fem
 Zsolt	VN	Masc
 Zsuzsanna	VN	Fem
 Zsuzsa	VN
-Zübeyde	VN
+ZÃ¼beyde	VN
 Zubin	VN
 Zuhal	VN
 Zulfikar	VN
 Zulfiqar	VN
-Züli	VN
+ZÃ¼li	VN
 Zumal	VN
 Zvezdan	VN
 Zvi	VN

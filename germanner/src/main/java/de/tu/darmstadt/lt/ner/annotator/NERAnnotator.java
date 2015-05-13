@@ -43,6 +43,8 @@ import org.cleartk.ml.feature.extractor.FeatureExtractor1;
 
 import com.thoughtworks.xstream.XStream;
 
+import de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterCategoryPatternFunction;
+import de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterCategoryPatternFunction.PatternType;
 import de.tu.darmstadt.lt.ner.preprocessing.XStreamFactory;
 import de.tu.darmstadt.lt.ner.types.GoldNamedEntity;
 import de.tudarmstadt.ukp.dkpro.core.api.ner.type.NamedEntity;
@@ -82,8 +84,17 @@ public class NERAnnotator
         // load the settings from a file
         // initialize the XStream if a xml file is given:
         XStream xstream = XStreamFactory.createXStream();
+
         featureExtractors = (List<FeatureExtractor1<Annotation>>) xstream.fromXML(new File(
                 featureExtractionFile));
+
+     // Character Category
+        featureExtractors.add(LTCharacterCategoryPatternFunction
+                .createExtractor(PatternType.ONE_PER_CHAR));
+        featureExtractors.add(LTCharacterCategoryPatternFunction
+                .createExtractor(PatternType.REPEATS_MERGED));
+
+
     }
 
     @Override

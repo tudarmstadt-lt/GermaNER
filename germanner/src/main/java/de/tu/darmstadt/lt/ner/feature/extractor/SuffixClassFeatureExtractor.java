@@ -42,25 +42,20 @@ public class SuffixClassFeatureExtractor
         Object featureValue = feature.getValue();
         try {
             if (featureValue == null) {
+                return Collections.singletonList(new Feature("SuffixClass", "SuffixClass_null"));
+            }
+
+            String k = SuffixClassFeature.suffixCLass.remove();
+
+            String value = featureValue.toString();
+            if (value == null || value.length() == 0) {
                 return Collections.emptyList();
             }
-            else if (featureValue instanceof String) {
 
-                String k = SuffixClassFeature.suffixCLass.remove();
-
-                String value = featureValue.toString();
-                if (value == null || value.length() == 0) {
-                    return Collections.emptyList();
-                }
-
-                return Collections.singletonList(new Feature("SuffixClass", k));
-            }
-            else {
-                return Collections.emptyList();
-            }
+            return Collections.singletonList(new Feature("SuffixClass", k));
         }
         catch (Exception e) {
-            return Collections.emptyList();
+            return Collections.singletonList(new Feature("SuffixClass", "SuffixClass_null"));
         }
     }
 

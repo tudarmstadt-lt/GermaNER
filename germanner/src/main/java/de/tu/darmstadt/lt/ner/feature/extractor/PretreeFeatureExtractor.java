@@ -42,19 +42,14 @@ public class PretreeFeatureExtractor
         Object featureValue = feature.getValue();
         try {
             if (featureValue == null) {
-                return Collections.emptyList();
+                return Collections.singletonList(new Feature("Pretree", "Pretree_null"));
             }
-            else if (featureValue instanceof String) {
 
-                return Collections.singletonList(new Feature("Pretree", PretreeFeature.pretree
-                        .classify(featureValue.toString())));
-            }
-            else {
-                return Collections.emptyList();
-            }
+            return Collections.singletonList(new Feature("Pretree", PretreeFeature.pretree
+                    .classify(featureValue.toString())));
         }
         catch (Exception e) {
-            return Collections.emptyList();
+            return Collections.singletonList(new Feature("Pretree", "Pretree_null"));
         }
     }
 

@@ -42,25 +42,19 @@ public class PositionFeatureExtractor
         Object featureValue = feature.getValue();
         try {
             if (featureValue == null) {
+                return Collections.singletonList(new Feature("Position", -1));
+            }
+            int k = PositionFeature.posistion.remove();
+
+            String value = featureValue.toString();
+            if (value == null || value.length() == 0) {
                 return Collections.emptyList();
             }
-            else if (featureValue instanceof String) {
 
-                int k = PositionFeature.posistion.remove();
-
-                String value = featureValue.toString();
-                if (value == null || value.length() == 0) {
-                    return Collections.emptyList();
-                }
-
-                return Collections.singletonList(new Feature("Position", Integer.toString(k)));
-            }
-            else {
-                return Collections.emptyList();
-            }
+            return Collections.singletonList(new Feature("Position", Integer.toString(k)));
         }
         catch (Exception e) {
-            return Collections.emptyList();
+            return Collections.singletonList(new Feature("Position", -1));
         }
     }
 

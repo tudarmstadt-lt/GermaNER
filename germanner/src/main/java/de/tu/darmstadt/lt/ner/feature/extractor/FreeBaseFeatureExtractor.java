@@ -42,26 +42,21 @@ public class FreeBaseFeatureExtractor
         try {
             Object featureValue = feature.getValue();
             if (featureValue == null) {
+                return Collections.singletonList(new Feature("FreeBase", "FreeBase_null"));
+            }
+
+            String k = FreeBaseFeature.freebaseFeature.remove();
+
+            String value = featureValue.toString();
+            if (value == null || value.length() == 0) {
                 return Collections.emptyList();
             }
-            else if (featureValue instanceof String) {
 
-                String k = FreeBaseFeature.freebaseFeature.remove();
+            return Collections.singletonList(new Feature("FreeBase", k));
 
-                String value = featureValue.toString();
-                if (value == null || value.length() == 0) {
-                    return Collections.emptyList();
-                }
-
-                return Collections.singletonList(new Feature("FreeBase", k));
-
-            }
-            else {
-                return Collections.emptyList();
-            }
         }
         catch (Exception e) {
-            return Collections.emptyList();
+            return Collections.singletonList(new Feature("FreeBase", "FreeBase_null"));
         }
     }
 
