@@ -93,6 +93,8 @@ public class NERAnnotator
                 .createExtractor(PatternType.ONE_PER_CHAR));
         featureExtractors.add(LTCharacterCategoryPatternFunction
                 .createExtractor(PatternType.REPEATS_MERGED));
+        featureExtractors.add(LTCharacterCategoryPatternFunction
+                .createExtractor(PatternType.REPEATS_AS_KLEENE_PLUS));
 
 
     }

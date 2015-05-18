@@ -23,7 +23,6 @@ import static org.apache.uima.fit.pipeline.SimplePipeline.runPipeline;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -122,7 +121,7 @@ public class TrainNERModel
     }
 
     public static void classifyTestFile(File aClassifierJarPath, File testPosFile, File outputFile,
-            File aNodeResultFile, ArrayList<Integer> aSentencesIds, String language,
+            File aNodeResultFile, List<Integer> aSentencesIds, String language,
             boolean createPos, String freebaseListFile, boolean usePosition, String suffixCLass,
             String pretreeFile)
         throws UIMAException, IOException
