@@ -189,23 +189,21 @@ public class NERReader
 
                 docText.append(word);
                 sentenceSb.append(word + " ");
-                if (!word.matches("^(\\p{Punct}).*")) {
-                    token = new Token(docView, idx, idx + word.length());
-                    NamedEntityTag = new GoldNamedEntity(docView, idx, idx + word.length());
-                    // sw=new SimilarWord1(docView, idx, idx + word.length());
-                    docText.append(" ");
-                    idx++;
-                }
-                else {
-                    if ((docText.length() - word.length()) > 0
-                            && (docText.charAt(idx - word.length()) == ' ')) {
-                        docText.deleteCharAt(idx - word.length());
-                        idx--;
-                    }
-                    token = new Token(docView, idx, idx + word.length());
-                    NamedEntityTag = new GoldNamedEntity(docView, idx, idx + word.length());
-                    // sw=new SimilarWord1(docView, idx, idx + word.length());
-                }
+
+                // if (!word.matches("^(\\p{Punct}).*")) {
+                token = new Token(docView, idx, idx + word.length());
+                NamedEntityTag = new GoldNamedEntity(docView, idx, idx + word.length());
+                // sw=new SimilarWord1(docView, idx, idx + word.length());
+                docText.append(" ");
+                idx++;
+                // }
+                /*
+                 * else { if ((docText.length() - word.length()) > 0 && (docText.charAt(idx -
+                 * word.length()) == ' ')) { docText.deleteCharAt(idx - word.length()); idx--; }
+                 * token = new Token(docView, idx, idx + word.length()); NamedEntityTag = new
+                 * GoldNamedEntity(docView, idx, idx + word.length()); // sw=new
+                 * SimilarWord1(docView, idx, idx + word.length()); }
+                 */
                 // start new sentence
                 if (initSentence) {
                     sentence = new Sentence(docView);
@@ -314,40 +312,42 @@ public class NERReader
     }
 
     private void dbPersonNameFileToMap(String fileName)
-            throws Exception
-        {
+        throws Exception
+    {
 
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                try {
-                    String[] st = line.split("\t");
-                    freebaseMap.put(st[0], "Person");
-                    }
-                catch (Exception e) {
-                    System.out.println("Check if the freebase person name list file is correct " + e.getMessage());
-                }
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            try {
+                String[] st = line.split("\t");
+                freebaseMap.put(st[0], "Person");
             }
-            reader.close();
+            catch (Exception e) {
+                System.out.println("Check if the freebase person name list file is correct "
+                        + e.getMessage());
+            }
         }
+        reader.close();
+    }
 
     private void dbLocationNameFileToMap(String fileName)
-            throws Exception
-        {
+        throws Exception
+    {
 
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                try {
-                    String[] st = line.split("\t");
-                    freebaseMap.put(st[0], "Location");
-                    }
-                catch (Exception e) {
-                    System.out.println("Check if the freebase person name list file is correct " + e.getMessage());
-                }
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            try {
+                String[] st = line.split("\t");
+                freebaseMap.put(st[0], "Location");
             }
-            reader.close();
+            catch (Exception e) {
+                System.out.println("Check if the freebase person name list file is correct "
+                        + e.getMessage());
+            }
         }
+        reader.close();
+    }
 
     private void suffixClassToMap(String fileName)
         throws Exception

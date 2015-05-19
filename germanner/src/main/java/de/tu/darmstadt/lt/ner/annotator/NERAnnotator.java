@@ -88,14 +88,13 @@ public class NERAnnotator
         featureExtractors = (List<FeatureExtractor1<Annotation>>) xstream.fromXML(new File(
                 featureExtractionFile));
 
-     // Character Category
+        // Character Category
         featureExtractors.add(LTCharacterCategoryPatternFunction
                 .createExtractor(PatternType.ONE_PER_CHAR));
         featureExtractors.add(LTCharacterCategoryPatternFunction
                 .createExtractor(PatternType.REPEATS_MERGED));
         featureExtractors.add(LTCharacterCategoryPatternFunction
                 .createExtractor(PatternType.REPEATS_AS_KLEENE_PLUS));
-
 
     }
 
@@ -154,6 +153,9 @@ public class NERAnnotator
                 if (classifierJarDir != null) {
                     featureFile = new File(classifierJarDir, "crfsuite");
                 }
+                sentencesInstances.put(index, instances);
+                sentenceList.add(sentence);
+
                 classify(jCas, sentencesTokens, sentencesInstances, sentenceList, index, it,
                         featureFile);
 
