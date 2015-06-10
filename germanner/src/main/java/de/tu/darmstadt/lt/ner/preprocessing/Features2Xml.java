@@ -58,6 +58,7 @@ import de.tu.darmstadt.lt.ner.feature.extractor.TopicClass3FeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UperCasedTopicClass1FeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.WordShapeFeatureExtractor;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 
 public class Features2Xml
@@ -341,7 +342,7 @@ public class Features2Xml
 
         // word shape features
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new SuffixClassFeatureExtractor()));
+                new CoveredTextExtractor<Token>(), new WordShapeFeatureExtractor()));
 
         XStream xstream = XStreamFactory.createXStream();
         String x = xstream.toXML(tokenFeatureExtractors);
