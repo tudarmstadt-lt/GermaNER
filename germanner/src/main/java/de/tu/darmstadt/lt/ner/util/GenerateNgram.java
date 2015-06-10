@@ -7,7 +7,9 @@ public class GenerateNgram
 {
     public static void main(String[] args)
     {
-        System.out.println(generateNgramsUpto("I like to go to the city by now", 3));
+        for (int i=1;i<5;i++) {
+            System.out.println(generateNgramsUpto("I like to go to the city by now", i));
+        }
     }
 
     public static List<String> generateNgramsUpto(String text, int n)
