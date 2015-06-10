@@ -17,9 +17,16 @@
  ******************************************************************************/
 package de.tu.darmstadt.lt.ner.writer;
 
-import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
-import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
-import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
+import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
+
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -28,10 +35,9 @@ import org.apache.uima.fit.descriptor.ConfigurationParameter;
 import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
 
-import java.io.FileOutputStream;
-import java.util.*;
-
-import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
+import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
+import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
+import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 
 /**
  * This is a helper Class, can be used from NoD. If you use a DKPro tokenizer during training, this
@@ -72,7 +78,7 @@ public class SentenceToCRFTestFileWriter
             jcas.setDocumentText(sb.toString().trim());
 
             AnalysisEngine pipeline = createEngine(OpenNlpSegmenter.class,
-                    OpenNlpSegmenter.PARAM_LANGUAGE, crfTestFileLanguage, OpenNlpSegmenter.PARAM_CREATE_SENTENCES,
+                    OpenNlpSegmenter.PARAM_LANGUAGE, crfTestFileLanguage, OpenNlpSegmenter.PARAM_WRITE_SENTENCE,
                     false);
             pipeline.process(jcas);
 
