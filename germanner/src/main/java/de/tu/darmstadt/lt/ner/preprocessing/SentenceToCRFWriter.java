@@ -35,7 +35,7 @@ List<String> sentences = new ArrayList<String>();
     StringBuilder sb = new StringBuilder();
     int index  = 0;
     while (sentIt.hasNext()) {
-        String line = sentIt.nextLine().toString().trim();
+        String line = sentIt.nextLine().toString().trim().split("\t")[1];
         if (line.equals("")) {
             continue;
         }
