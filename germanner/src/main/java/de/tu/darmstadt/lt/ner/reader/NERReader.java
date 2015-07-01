@@ -49,47 +49,6 @@ public class NERReader
     extends JCasAnnotator_ImplBase
 {
 
-    /*
-     * public static final String CONFS = "conf";
-     *
-     * @ConfigurationParameter(name = CONFS, mandatory = false) private List<String> confs = null;
-     */
-
-    /*
-     *
-     * public static final String FREE_BASE_LIST = "freebaseList";
-     *//**
-     * A file containing freebase lists of tokens
-     */
-    /*
-     * @ConfigurationParameter(name = FREE_BASE_LIST, mandatory = false) private String freebaseList
-     * = null;
-     *
-     * public static final String USE_POSITION = "usePosition";
-     *//**
-     * A file containing freebase lists of tokens
-     */
-    /*
-     * @ConfigurationParameter(name = USE_POSITION, mandatory = false) private boolean usePosition =
-     * false;
-     *
-     * public static final String USE_PRETREE = "usePretree";
-     *//**
-     * A file containing freebase lists of tokens
-     */
-    /*
-     * @ConfigurationParameter(name = USE_PRETREE, mandatory = false) private String usePretree =
-     * null;
-     *
-     * public static final String USE_SUFFIX_CLASS = "useSuffixClass";
-     *//**
-     * A file containing freebase lists of tokens
-     */
-    /*
-     * @ConfigurationParameter(name = USE_SUFFIX_CLASS, mandatory = false) private String
-     * useSuffixClass = null;
-     */
-
     public static final String CONLL_VIEW = "ConnlView";
     private Logger logger = null;
     private Map<String, String> freebaseMap = new HashMap<String, String>();
