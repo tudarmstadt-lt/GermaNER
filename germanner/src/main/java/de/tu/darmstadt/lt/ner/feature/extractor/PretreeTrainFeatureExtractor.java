@@ -23,18 +23,18 @@ import java.util.List;
 import org.cleartk.ml.Feature;
 import org.cleartk.ml.feature.function.FeatureFunction;
 
-import de.tu.darmstadt.lt.ner.PretreeFeature;
+import de.tu.darmstadt.lt.ner.feature.variables.PretreeTrainFeature;
 
-public class PretreeFeatureExtractor
+public class PretreeTrainFeatureExtractor
     implements FeatureFunction
 {
 
-    public PretreeFeatureExtractor()
+    public PretreeTrainFeatureExtractor()
     {
 
     }
 
-    public static final String DEFAULT_NAME = "PretreeFeature";
+    public static final String DEFAULT_NAME = "PretreeTrainFeature";
 
     @Override
     public List<Feature> apply(Feature feature)
@@ -42,14 +42,14 @@ public class PretreeFeatureExtractor
         Object featureValue = feature.getValue();
         try {
             if (featureValue == null) {
-                return Collections.singletonList(new Feature("Pretree", "Pretree_null"));
+                return Collections.singletonList(new Feature("PretreeTrain", "Pretree_null"));
             }
 
-            return Collections.singletonList(new Feature("Pretree", PretreeFeature.pretree
+            return Collections.singletonList(new Feature("PretreeTrain", PretreeTrainFeature.pretree
                     .classify(featureValue.toString())));
         }
         catch (Exception e) {
-            return Collections.singletonList(new Feature("Pretree", "Pretree_null"));
+            return Collections.singletonList(new Feature("PretreeTrain", "Pretree_null"));
         }
     }
 

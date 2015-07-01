@@ -34,8 +34,8 @@ import org.cleartk.ml.feature.function.FeatureFunctionExtractor;
 
 import com.thoughtworks.xstream.XStream;
 
-import de.tu.darmstadt.lt.ner.MyFeatureFunctionExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.CamelCaseFeatureExtractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.ClarkPosInductionFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.DBLocationListFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.DBNachnamenListFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.DBPersonListFeatureExtractor;
@@ -46,7 +46,8 @@ import de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterCategoryPatternFuncti
 import de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterNgramFeatureFunction;
 import de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterNgramFeatureFunction.Orientation;
 import de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor;
-import de.tu.darmstadt.lt.ner.feature.extractor.PretreeFeatureExtractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.PretreeTrainFeatureExtractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.PretreeUnsuposFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor;
@@ -59,6 +60,7 @@ import de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UperCasedTopicClass1FeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.WordShapeFeatureExtractor;
+import de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 
 public class Features2Xml
@@ -294,7 +296,7 @@ public class Features2Xml
 
         // get the Preetree feature for unsupos
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new PretreeFeatureExtractor()));
+                new CoveredTextExtractor<Token>(), new PretreeUnsuposFeatureExtractor()));
 
         // camelcase an all upercase word
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
@@ -343,6 +345,14 @@ public class Features2Xml
         // word shape features
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new WordShapeFeatureExtractor()));
+
+        // Preetree on a training data
+        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+                new CoveredTextExtractor<Token>(), new PretreeTrainFeatureExtractor()));
+
+        // CLARK's POS induction feature
+        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
+                new CoveredTextExtractor<Token>(), new ClarkPosInductionFeatureExtractor()));
 
         XStream xstream = XStreamFactory.createXStream();
         String x = xstream.toXML(tokenFeatureExtractors);

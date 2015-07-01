@@ -15,12 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package de.tu.darmstadt.lt.ner;
+package de.tu.darmstadt.lt.ner.feature.variables;
 
 import java.util.LinkedList;
 
-public class PositionFeature {
-	
-	public static LinkedList<Integer> posistion=new LinkedList<Integer>();
+public class SuffixClassFeature {
+
+	public static LinkedList<String> suffixCLass=new LinkedList<String>();
 
 }

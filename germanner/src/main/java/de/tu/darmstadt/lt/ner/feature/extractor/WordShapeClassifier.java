@@ -921,7 +921,7 @@ public class WordShapeClassifier
      */
     public static void main(String[] args)
     {
-        args = new String[]{"-wordShape","chris2useLC"," Howcan-Iunpackth4egzippedtarfile-2"};
+        args = new String[]{"-wordShape","chris3useLC"," Howcan-Iunpackth4egzippedtarfile-2"};
         int i = 0;
         int classifierToUse = WORDSHAPECHRIS1;
         if (args.length == 0) {

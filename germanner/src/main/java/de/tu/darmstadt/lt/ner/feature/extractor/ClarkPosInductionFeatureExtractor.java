@@ -23,40 +23,33 @@ import java.util.List;
 import org.cleartk.ml.Feature;
 import org.cleartk.ml.feature.function.FeatureFunction;
 
-import de.tu.darmstadt.lt.ner.feature.variables.FreeBaseFeature;
+import de.tu.darmstadt.lt.ner.feature.variables.ClarkPosInduction;
 
-public class FreeBaseFeatureExtractor
+public class ClarkPosInductionFeatureExtractor
     implements FeatureFunction
 {
 
-    public FreeBaseFeatureExtractor()
+    public ClarkPosInductionFeatureExtractor()
     {
 
     }
 
-    public static final String DEFAULT_NAME = "FreebaseFeature";
+    public static final String DEFAULT_NAME = "ClarkPosInduction";
 
     @Override
     public List<Feature> apply(Feature feature)
     {
+        Object featureValue = feature.getValue();
         try {
-            Object featureValue = feature.getValue();
             if (featureValue == null) {
-                return Collections.singletonList(new Feature("FreeBase", "FreeBase_null"));
+                return Collections.singletonList(new Feature("ClarkPOS", "ClarkPOS_null"));
             }
 
-            String k = FreeBaseFeature.freebaseFeature.remove();
-
-            String value = featureValue.toString();
-            if (value == null || value.length() == 0) {
-                return Collections.emptyList();
-            }
-
-            return Collections.singletonList(new Feature("FreeBase", k));
-
+            return Collections.singletonList(new Feature("ClarkPOS", ClarkPosInduction.posInduction
+                    .get(featureValue.toString())));
         }
         catch (Exception e) {
-            return Collections.singletonList(new Feature("FreeBase", "FreeBase_null"));
+            return Collections.singletonList(new Feature("ClarkPOS", "ClarkPOS_null"));
         }
     }
 

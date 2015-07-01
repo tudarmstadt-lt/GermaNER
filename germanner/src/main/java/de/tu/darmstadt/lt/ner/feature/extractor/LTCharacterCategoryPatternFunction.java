@@ -196,6 +196,38 @@ public class LTCharacterCategoryPatternFunction<T extends Annotation>
         return Collections.singletonList(new Feature(featureName, "CharCatRepeatCategory_nuul"));
     }
 
+    public String getCharCategory(String text, PatternType patternType)
+    {
+        StringBuilder builder = new StringBuilder();
+        String lastType = null;
+        boolean multipleRepeats = false;
+        for (int i = 0; i < text.length(); i += 1) {
+            char c = text.charAt(i);
+            String type = this.classifyChar(c);
+            switch (patternType) {
+            case ONE_PER_CHAR:
+                builder.append(type);
+                break;
+            case REPEATS_MERGED:
+                if (!type.equals(lastType)) {
+                    builder.append(type);
+                }
+                break;
+            case REPEATS_AS_KLEENE_PLUS:
+                if (!type.equals(lastType)) {
+                    builder.append(type);
+                    multipleRepeats = false;
+                }
+                else if (!multipleRepeats) {
+                    builder.append('+');
+                    multipleRepeats = true;
+                }
+            }
+            lastType = type;
+        }
+        return builder.toString();
+    }
+
     protected String classifyChar(char c)
     {
         int typeInt = Character.getType(c);

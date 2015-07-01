@@ -15,11 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package de.tu.darmstadt.lt.ner;
+package de.tu.darmstadt.lt.ner.feature.variables;
 
 import de.uni_leipzig.asv.utils.Pretree;
 
-public class PretreeFeature
+public class PretreeTrainFeature
 {
     public static Pretree pretree = new Pretree();
 

@@ -83,20 +83,20 @@ public class SimilarWord1Extractor
         Object featureValue = feature.getValue();
 
         if (featureValue == null) {
-            return Collections.singletonList(new Feature("SIMWO1", "NA"));
+            return Collections.singletonList(new Feature("SIMWO", "NA"));
         }
         String value = featureValue.toString();
         if (value == null || value.length() == 0) {
-            return Collections.singletonList(new Feature("SIMWO1", "NA"));
+            return Collections.singletonList(new Feature("SIMWO", "NA"));
         }
 
         String output;
         output = simWord1.get(value);
         // System.out.println("Size:"+i);
         if (output != null) {
-            return Collections.singletonList(new Feature("SIMWO1", output));
+            return Collections.singletonList(new Feature("SIMWO", output));
         }
-        return Collections.singletonList(new Feature("SIMWO1", "NA"));
+        return Collections.singletonList(new Feature("SIMWO", "NA"));
 
     }
 

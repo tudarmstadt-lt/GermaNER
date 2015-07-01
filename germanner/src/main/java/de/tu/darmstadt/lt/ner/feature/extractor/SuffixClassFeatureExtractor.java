@@ -23,7 +23,7 @@ import java.util.List;
 import org.cleartk.ml.Feature;
 import org.cleartk.ml.feature.function.FeatureFunction;
 
-import de.tu.darmstadt.lt.ner.SuffixClassFeature;
+import de.tu.darmstadt.lt.ner.feature.variables.SuffixClassFeature;
 
 public class SuffixClassFeatureExtractor
     implements FeatureFunction

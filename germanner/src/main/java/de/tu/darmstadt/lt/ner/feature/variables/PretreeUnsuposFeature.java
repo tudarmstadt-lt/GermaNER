@@ -15,12 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package de.tu.darmstadt.lt.ner;
+package de.tu.darmstadt.lt.ner.feature.variables;
 
-import java.util.LinkedList;
+import de.uni_leipzig.asv.utils.Pretree;
 
-public class FreeBaseFeature {
-
-	public static LinkedList<String> freebaseFeature=new LinkedList<String>();
+public class PretreeUnsuposFeature
+{
+    public static Pretree pretree = new Pretree();
 
 }

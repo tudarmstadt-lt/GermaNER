@@ -28,16 +28,18 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
 import org.apache.uima.fit.component.JCasAnnotator_ImplBase;
-import org.apache.uima.fit.descriptor.ConfigurationParameter;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Level;
 import org.apache.uima.util.Logger;
 
-import de.tu.darmstadt.lt.ner.FreeBaseFeature;
-import de.tu.darmstadt.lt.ner.PositionFeature;
-import de.tu.darmstadt.lt.ner.PretreeFeature;
-import de.tu.darmstadt.lt.ner.SuffixClassFeature;
+import de.tu.darmstadt.lt.ner.feature.variables.ClarkPosInduction;
+import de.tu.darmstadt.lt.ner.feature.variables.FreeBaseFeature;
+import de.tu.darmstadt.lt.ner.feature.variables.PositionFeature;
+import de.tu.darmstadt.lt.ner.feature.variables.PretreeTrainFeature;
+import de.tu.darmstadt.lt.ner.feature.variables.PretreeUnsuposFeature;
+import de.tu.darmstadt.lt.ner.feature.variables.SuffixClassFeature;
+import de.tu.darmstadt.lt.ner.preprocessing.Configuration;
 import de.tu.darmstadt.lt.ner.types.GoldNamedEntity;
 import de.tu.darmstadt.lt.ner.util.GenerateNgram;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
@@ -46,37 +48,47 @@ import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 public class NERReader
     extends JCasAnnotator_ImplBase
 {
-    public static final String FREE_BASE_LIST = "freebaseList";
 
-    /**
+    /*
+     * public static final String CONFS = "conf";
+     *
+     * @ConfigurationParameter(name = CONFS, mandatory = false) private List<String> confs = null;
+     */
+
+    /*
+     *
+     * public static final String FREE_BASE_LIST = "freebaseList";
+     *//**
      * A file containing freebase lists of tokens
      */
-    @ConfigurationParameter(name = FREE_BASE_LIST, mandatory = false)
-    private String freebaseList = null;
-
-    public static final String USE_POSITION = "usePosition";
-
-    /**
+    /*
+     * @ConfigurationParameter(name = FREE_BASE_LIST, mandatory = false) private String freebaseList
+     * = null;
+     *
+     * public static final String USE_POSITION = "usePosition";
+     *//**
      * A file containing freebase lists of tokens
      */
-    @ConfigurationParameter(name = USE_POSITION, mandatory = false)
-    private boolean usePosition = false;
-
-    public static final String USE_PRETREE = "usePretree";
-
-    /**
+    /*
+     * @ConfigurationParameter(name = USE_POSITION, mandatory = false) private boolean usePosition =
+     * false;
+     *
+     * public static final String USE_PRETREE = "usePretree";
+     *//**
      * A file containing freebase lists of tokens
      */
-    @ConfigurationParameter(name = USE_PRETREE, mandatory = false)
-    private String usePretree = null;
-
-    public static final String USE_SUFFIX_CLASS = "useSuffixClass";
-
-    /**
+    /*
+     * @ConfigurationParameter(name = USE_PRETREE, mandatory = false) private String usePretree =
+     * null;
+     *
+     * public static final String USE_SUFFIX_CLASS = "useSuffixClass";
+     *//**
      * A file containing freebase lists of tokens
      */
-    @ConfigurationParameter(name = USE_SUFFIX_CLASS, mandatory = false)
-    private String useSuffixClass = null;
+    /*
+     * @ConfigurationParameter(name = USE_SUFFIX_CLASS, mandatory = false) private String
+     * useSuffixClass = null;
+     */
 
     public static final String CONLL_VIEW = "ConnlView";
     private Logger logger = null;
@@ -117,33 +129,51 @@ public class NERReader
         String NamedEntity;
         boolean initSentence = false;
         StringBuffer docText = new StringBuffer();
-        if (freebaseList != null) {
+
+        if (Configuration.freebaseList != null) {
             try {
-                freebaseFileToMap(freebaseList);
+                freebaseFileToMap(Configuration.freebaseList);
             }
             catch (Exception e) {
                 // TODO
             }
         }
 
-        if (useSuffixClass != null) {
+        if (Configuration.useSuffixClass != null) {
             try {
-                suffixClassToMap(useSuffixClass);
+                suffixClassToMap(Configuration.useSuffixClass);
             }
             catch (Exception e) {
                 // TODO
             }
         }
 
-        if (usePretree != null) {
+        if (Configuration.useUnsuposPretree != null) {
             try {
-                trainPretree(usePretree);
+                trainUnsuposPretree(Configuration.useUnsuposPretree);
             }
             catch (Exception e) {
                 // TODO
             }
         }
 
+        if (Configuration.useTrainPretree != null) {
+            try {
+                trainClassLabelPretree(Configuration.useTrainPretree);
+            }
+            catch (Exception e) {
+                // TODO
+            }
+        }
+
+        if (Configuration.useClarkPosInduction != null) {
+            try {
+                useClarkPosInduction(Configuration.useClarkPosInduction);
+            }
+            catch (Exception e) {
+                // TODO
+            }
+        }
         StringBuffer sentenceSb = new StringBuffer();
 
         int positionIndex = 0;
@@ -155,7 +185,7 @@ public class NERReader
                     terminateSentence(sentence, token, docText);
                     docText.append("\n");
                     idx++;
-                    if (freebaseList != null) {
+                    if (Configuration.freebaseList != null) {
                         getngramBasedFreebaseList(sentenceSb);
                     }
                     positionIndex = 0;
@@ -169,11 +199,11 @@ public class NERReader
                 String word = tag[0];
                 NamedEntity = tag[tag.length - 1];
 
-                if (usePosition) {
+                if (Configuration.usePosition) {
                     PositionFeature.posistion.add(positionIndex);
                     positionIndex++;
                 }
-                if (useSuffixClass != null) {
+                if (Configuration.useSuffixClass != null) {
                     boolean found = false;
                     for (String suffix : suffixClassMap.keySet()) {
                         if (word.endsWith(suffix)) {
@@ -196,14 +226,7 @@ public class NERReader
                 // sw=new SimilarWord1(docView, idx, idx + word.length());
                 docText.append(" ");
                 idx++;
-                // }
-                /*
-                 * else { if ((docText.length() - word.length()) > 0 && (docText.charAt(idx -
-                 * word.length()) == ' ')) { docText.deleteCharAt(idx - word.length()); idx--; }
-                 * token = new Token(docView, idx, idx + word.length()); NamedEntityTag = new
-                 * GoldNamedEntity(docView, idx, idx + word.length()); // sw=new
-                 * SimilarWord1(docView, idx, idx + word.length()); }
-                 */
+
                 // start new sentence
                 if (initSentence) {
                     sentence = new Sentence(docView);
@@ -233,7 +256,7 @@ public class NERReader
             }
         }
         if (!sentenceSb.toString().isEmpty()) {
-            if (freebaseList != null) {
+            if (Configuration.freebaseList != null) {
                 getngramBasedFreebaseList(sentenceSb);
             }
         }
@@ -369,7 +392,7 @@ public class NERReader
         reader.close();
     }
 
-    private void trainPretree(String fileName)
+    public static void trainUnsuposPretree(String fileName)
         throws Exception
     {
 
@@ -384,7 +407,7 @@ public class NERReader
                     if (theWord.length != 1) {
                         theWord[i] = theWord[i].substring(0, theWord[i].length() - 1);
                     }
-                    PretreeFeature.pretree.train(theWord[i], wordClass[0]);
+                    PretreeUnsuposFeature.pretree.train(theWord[i], wordClass[0]);
                     if (lines % 10000 == 0) {
                         System.out.println(lines + " Pretree features trained");
                     }
@@ -399,6 +422,66 @@ public class NERReader
 
         reader.close();
 
-        PretreeFeature.pretree.setThresh(0.1);
+        PretreeUnsuposFeature.pretree.setThresh(0.1);
+    }
+
+    /**
+     * Trains a pretree based on the class label or the equivalent
+     *
+     * @param fileName
+     *            : the training file name for a class label This file should be tab separated as
+     *            word TAB class label
+     * @throws Exception
+     */
+    public static void trainClassLabelPretree(String fileName)
+        throws Exception
+    {
+
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            try {
+                if (line.isEmpty()) {
+                    continue;
+                }
+                String[] sample = line.split("\\t");
+                String word = sample[0];
+                // the class is mostly at the end of the column
+                String wordClass = sample[sample.length - 1];
+                PretreeTrainFeature.pretree.train(word, wordClass);
+            }
+            catch (Exception e) {
+                System.out
+                        .println("Check if the training file used for preetree is in correct format "
+                                + e.getMessage());
+            }
+        }
+
+        reader.close();
+
+        PretreeTrainFeature.pretree.setThresh(0.1);
+    }
+
+    public static void useClarkPosInduction(String fileName)
+        throws Exception
+    {
+
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            try {
+                String[] sample = line.split("\\t");
+                String word = sample[0];
+                // the class is mostly at the end of the column
+                String wordClass = sample[sample.length - 1];
+                ClarkPosInduction.posInduction.put(word, wordClass);
+            }
+            catch (Exception e) {
+                System.out.println("Check if the clark POS induction list file is correct "
+                        + e.getMessage());
+            }
+        }
+
+        reader.close();
     }
 }
