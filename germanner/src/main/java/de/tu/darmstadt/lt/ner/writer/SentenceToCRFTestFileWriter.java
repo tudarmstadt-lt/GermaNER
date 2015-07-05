@@ -17,8 +17,6 @@
  ******************************************************************************/
 package de.tu.darmstadt.lt.ner.writer;
 
-import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
-
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.fit.component.JCasConsumer_ImplBase;
 import org.apache.uima.fit.descriptor.ConfigurationParameter;
@@ -37,7 +34,7 @@ import org.apache.uima.jcas.JCas;
 
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
-import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
+/*import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;*/
 
 /**
  * This is a helper Class, can be used from NoD. If you use a DKPro tokenizer during training, this
@@ -77,10 +74,13 @@ public class SentenceToCRFTestFileWriter
 
             jcas.setDocumentText(sb.toString().trim());
 
-            AnalysisEngine pipeline = createEngine(OpenNlpSegmenter.class,
+            //TODO replace this segmenter with open source segmenter, if applications like NoD is
+            // to use this. OR
+            // use the pre-gscl release
+        /*    AnalysisEngine pipeline = createEngine(OpenNlpSegmenter.class,
                     OpenNlpSegmenter.PARAM_LANGUAGE, crfTestFileLanguage, OpenNlpSegmenter.PARAM_WRITE_SENTENCE,
                     false);
-            pipeline.process(jcas);
+            pipeline.process(jcas);*/
 
             // get the token from jcas and convert it to CRF test file format. one token per line,
             // with

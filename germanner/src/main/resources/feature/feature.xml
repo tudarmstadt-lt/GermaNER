@@ -805,47 +805,6 @@
       </Following>
     </contexts>
   </CleartkExtractor>
-  <TypePathExtractor>
-    <featureName>TypePath(PosPosValue)</featureName>
-    <focusClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</focusClass>
-    <path>pos/PosValue</path>
-    <allPaths>false</allPaths>
-    <allValues>false</allValues>
-    <uniqueValues>true</uniqueValues>
-    <pathChecked>false</pathChecked>
-  </TypePathExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="TypePathExtractor">
-      <featureName>TypePath(PosPosValue)</featureName>
-      <focusClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</focusClass>
-      <path>pos/PosValue</path>
-      <allPaths>false</allPaths>
-      <allValues>false</allValues>
-      <uniqueValues>true</uniqueValues>
-      <pathChecked>false</pathChecked>
-    </extractor>
-    <contexts>
-      <Ngram>
-        <contexts>
-          <Preceding>
-            <begin>0</begin>
-            <end>1</end>
-            <name>Preceding_0_1</name>
-          </Preceding>
-          <org.cleartk.ml.feature.extractor.CleartkExtractor_-Focus>
-            <name>Focus</name>
-          </org.cleartk.ml.feature.extractor.CleartkExtractor_-Focus>
-          <Following>
-            <begin>0</begin>
-            <end>1</end>
-            <name>Following_0_1</name>
-          </Following>
-        </contexts>
-        <name>Ngram_Preceding_0_1_Focus_Following_0_1</name>
-      </Ngram>
-    </contexts>
-  </CleartkExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>

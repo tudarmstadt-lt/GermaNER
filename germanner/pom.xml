@@ -135,65 +135,12 @@
 				de.tudarmstadt.ukp.dkpro.core.tokit-asl
 			</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-			<artifactId>
-				de.tudarmstadt.ukp.dkpro.core.opennlp-asl
-			</artifactId>
-		</dependency>
 
-		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-			<artifactId>
-				de.tudarmstadt.ukp.dkpro.core.opennlp-model-sentence-de-maxent
-			</artifactId>
-			<version>20120616.0</version>
-		</dependency>
-		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-			<artifactId>
-				de.tudarmstadt.ukp.dkpro.core.opennlp-model-token-de-maxent
-			</artifactId>
-			<version>20120616.0</version>
-		</dependency>
 
-		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-			<artifactId>
-				de.tudarmstadt.ukp.dkpro.core.opennlp-model-sentence-en-maxent
-			</artifactId>
-			<version>20120616.0</version>
-		</dependency>
-		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-			<artifactId>
-				de.tudarmstadt.ukp.dkpro.core.opennlp-model-token-en-maxent
-			</artifactId>
-			<version>20120616.0</version>
-		</dependency>
 
-		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-			<artifactId>de.tudarmstadt.ukp.dkpro.core.matetools-gpl</artifactId>
-			<version>1.7.0</version>
-		</dependency>
 
-		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-			<artifactId>
-				de.tudarmstadt.ukp.dkpro.core.matetools-model-tagger-de-tiger
-			</artifactId>
-			<version>20121024.1</version>
-		</dependency>
-		<dependency>
-			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-			<artifactId>
-				de.tudarmstadt.ukp.dkpro.core.matetools-model-tagger-en-conll2009
-			</artifactId>
-			<version>20130117.1</version>
-		</dependency>
 
-		<!-- USE PRETREE for unsupos feature suggestion -->
+		<!-- USE PRETREE for unsupos feature suggestion 
 		<dependency>
 			<groupId>de.uni_leipzig.asv.toolbox</groupId>
 			<artifactId>de.uni_leipzig.asv.toolbox.pretree</artifactId>
@@ -203,7 +150,7 @@
 			<groupId>de.uni_leipzig.asv.toolbox</groupId>
 			<artifactId>de.uni_leipzig.asv.toolbox.utils</artifactId>
 			<version>1.0</version>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 	<build>
 		<finalName>germanner</finalName>

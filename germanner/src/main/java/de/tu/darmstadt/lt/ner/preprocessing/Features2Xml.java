@@ -29,7 +29,6 @@ import org.cleartk.ml.feature.extractor.CleartkExtractor.Ngram;
 import org.cleartk.ml.feature.extractor.CleartkExtractor.Preceding;
 import org.cleartk.ml.feature.extractor.CoveredTextExtractor;
 import org.cleartk.ml.feature.extractor.FeatureExtractor1;
-import org.cleartk.ml.feature.extractor.TypePathExtractor;
 import org.cleartk.ml.feature.function.FeatureFunctionExtractor;
 
 import com.thoughtworks.xstream.XStream;
@@ -283,12 +282,6 @@ public class Features2Xml
         tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                         new SimilarWord4Extractor()), new Following(1)));
-        // pos feature
-        tokenFeatureExtractors.add(new TypePathExtractor<Token>(Token.class, "pos/PosValue"));
-
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new TypePathExtractor<Token>(Token.class, "pos/PosValue"), new Ngram(new Preceding(
-                        1), new Focus(), new Following(1))));
 
         // get the suffix class feature for a token
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
