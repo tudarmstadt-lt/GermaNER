@@ -83,20 +83,20 @@ public class TopicClass1FeatureExtractor
         Object featureValue = feature.getValue();
 
         if (featureValue == null) {
-            return Collections.singletonList(new Feature("TopicClass1", "NA"));
+            return Collections.singletonList(new Feature("TopicClass", "NA"));
         }
         String value = featureValue.toString();
         if (value == null || value.length() == 0) {
-            return Collections.singletonList(new Feature("TopicClass1", "NA"));
+            return Collections.singletonList(new Feature("TopicClass", "NA"));
         }
 
         String output;
         output = topicClass1.get(value);
         // System.out.println("Size:"+i);
         if (output != null) {
-            return Collections.singletonList(new Feature("TopicClass1", output));
+            return Collections.singletonList(new Feature("TopicClass", output));
         }
-        return Collections.singletonList(new Feature("TopicClass1", "NA"));
+        return Collections.singletonList(new Feature("TopicClass", "NA"));
 
     }
 
