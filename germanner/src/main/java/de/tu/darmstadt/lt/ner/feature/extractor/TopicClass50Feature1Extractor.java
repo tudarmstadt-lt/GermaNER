@@ -31,21 +31,21 @@ import java.util.Map;
 import org.cleartk.ml.Feature;
 import org.cleartk.ml.feature.function.FeatureFunction;
 
-public class TopicClass2FeatureExtractor
+public class TopicClass50Feature1Extractor
     implements FeatureFunction
 {
 
     File topicClassFile = new File("topicCluster.txt");
-    static Map<String, String> topicClass2 = new HashMap<String, String>();
+    static Map<String, String> topicClass1 = new HashMap<String, String>();
     static int i = 0;
 
-    public TopicClass2FeatureExtractor()
+    public TopicClass50Feature1Extractor()
         throws IOException
     {
         // read
     }
 
-    public static final String DEFAULT_NAME = "TopicClass2";
+    public static final String DEFAULT_NAME = "TopicClass50";
 
     @Override
     public List<Feature> apply(Feature feature)
@@ -59,7 +59,7 @@ public class TopicClass2FeatureExtractor
                 String input;
                 while ((input = br.readLine()) != null) {
                     String[] sep = input.split("\\t");
-                    topicClass2.put(sep[0], sep[2]);
+                    topicClass1.put(sep[0], sep[1]);
                 }
                 br.close();
             }
@@ -83,20 +83,20 @@ public class TopicClass2FeatureExtractor
         Object featureValue = feature.getValue();
 
         if (featureValue == null) {
-            return Collections.singletonList(new Feature("TopicClass", "NA"));
+            return Collections.singletonList(new Feature("TopicClass50", "NA"));
         }
         String value = featureValue.toString();
         if (value == null || value.length() == 0) {
-            return Collections.singletonList(new Feature("TopicClass", "NA"));
+            return Collections.singletonList(new Feature("TopicClass50", "NA"));
         }
 
         String output;
-        output = topicClass2.get(value);
+        output = topicClass1.get(value);
         // System.out.println("Size:"+i);
         if (output != null) {
-            return Collections.singletonList(new Feature("TopicClass", output));
+            return Collections.singletonList(new Feature("TopicClass50", output));
         }
-        return Collections.singletonList(new Feature("TopicClass", "NA"));
+        return Collections.singletonList(new Feature("TopicClass50", "NA"));
 
     }
 
