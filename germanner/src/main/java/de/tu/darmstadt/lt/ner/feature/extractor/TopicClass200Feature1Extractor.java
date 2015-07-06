@@ -35,7 +35,7 @@ public class TopicClass200Feature1Extractor
     implements FeatureFunction
 {
 
-    File topicClassFile = new File("topicCluster.txt");
+    File topicClassFile = new File("topicCluster200.txt");
     static Map<String, String> topicClass1 = new HashMap<String, String>();
     static int i = 0;
 
