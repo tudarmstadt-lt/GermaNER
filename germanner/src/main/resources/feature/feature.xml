@@ -542,24 +542,6 @@
       <de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
-          <unPosFile>unsupervised_pos</unPosFile>
-        </de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Preceding>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Preceding_0_1</name>
-      </Preceding>
-    </contexts>
-  </CleartkExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
@@ -568,55 +550,6 @@
       </de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
-          <unPosFile>unsupervised_pos</unPosFile>
-        </de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Following>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Following_0_1</name>
-      </Following>
-    </contexts>
-  </CleartkExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
-          <unPosFile>unsupervised_pos</unPosFile>
-        </de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Ngram>
-        <contexts>
-          <Preceding>
-            <begin>0</begin>
-            <end>1</end>
-            <name>Preceding_0_1</name>
-          </Preceding>
-          <org.cleartk.ml.feature.extractor.CleartkExtractor_-Focus>
-            <name>Focus</name>
-          </org.cleartk.ml.feature.extractor.CleartkExtractor_-Focus>
-          <Following>
-            <begin>0</begin>
-            <end>1</end>
-            <name>Following_0_1</name>
-          </Following>
-        </contexts>
-        <name>Ngram_Preceding_0_1_Focus_Following_0_1</name>
-      </Ngram>
-    </contexts>
-  </CleartkExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
@@ -629,24 +562,6 @@
       <de.tu.darmstadt.lt.ner.feature.extractor.FreeBaseFeatureExtractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
-          <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Preceding>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Preceding_0_1</name>
-      </Preceding>
-    </contexts>
-  </CleartkExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
@@ -655,42 +570,6 @@
       </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
-          <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Following>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Following_0_1</name>
-      </Following>
-    </contexts>
-  </CleartkExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
-          <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Preceding>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Preceding_0_1</name>
-      </Preceding>
-    </contexts>
-  </CleartkExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
@@ -699,42 +578,6 @@
       </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
-          <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Following>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Following_0_1</name>
-      </Following>
-    </contexts>
-  </CleartkExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
-          <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Preceding>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Preceding_0_1</name>
-      </Preceding>
-    </contexts>
-  </CleartkExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
@@ -743,42 +586,6 @@
       </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
-          <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Following>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Following_0_1</name>
-      </Following>
-    </contexts>
-  </CleartkExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord4Extractor>
-          <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord4Extractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Preceding>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Preceding_0_1</name>
-      </Preceding>
-    </contexts>
-  </CleartkExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
@@ -787,24 +594,6 @@
       </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord4Extractor>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord4Extractor>
-          <simWord>200k_2d_wordlists</simWord>
-        </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord4Extractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Following>
-        <begin>0</begin>
-        <end>1</end>
-        <name>Following_0_1</name>
-      </Following>
-    </contexts>
-  </CleartkExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
@@ -849,51 +638,28 @@
       </de.tu.darmstadt.lt.ner.feature.extractor.TopicClass1FeatureExtractor>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass1FeatureExtractor>
-          <topicClassFile>topicCluster.txt</topicClassFile>
-        </de.tu.darmstadt.lt.ner.feature.extractor.TopicClass1FeatureExtractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Ngram>
-        <contexts>
-          <Preceding>
-            <begin>0</begin>
-            <end>1</end>
-            <name>Preceding_0_1</name>
-          </Preceding>
-          <org.cleartk.ml.feature.extractor.CleartkExtractor_-Focus>
-            <name>Focus</name>
-          </org.cleartk.ml.feature.extractor.CleartkExtractor_-Focus>
-          <Following>
-            <begin>0</begin>
-            <end>1</end>
-            <name>Following_0_1</name>
-          </Following>
-        </contexts>
-        <name>Ngram_Preceding_0_1_Focus_Following_0_1</name>
-      </Ngram>
-    </contexts>
-  </CleartkExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass2FeatureExtractor>
-        <topicClassFile>topicCluster.txt</topicClassFile>
-      </de.tu.darmstadt.lt.ner.feature.extractor.TopicClass2FeatureExtractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass50Feature1Extractor>
+        <topicClassFile>topicCluster50.txt</topicClassFile>
+      </de.tu.darmstadt.lt.ner.feature.extractor.TopicClass50Feature1Extractor>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass3FeatureExtractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass200Feature1Extractor>
+        <topicClassFile>topicCluster200.txt</topicClassFile>
+      </de.tu.darmstadt.lt.ner.feature.extractor.TopicClass200Feature1Extractor>
+    </featureFunctions>
+  </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
+  <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
+    <extractor class="CoveredTextExtractor"/>
+    <featureFunctions>
+      <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass500Feature1Extractor>
         <topicClassFile>topicCluster.txt</topicClassFile>
-      </de.tu.darmstadt.lt.ner.feature.extractor.TopicClass3FeatureExtractor>
+      </de.tu.darmstadt.lt.ner.feature.extractor.TopicClass500Feature1Extractor>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
@@ -904,37 +670,6 @@
       </de.tu.darmstadt.lt.ner.feature.extractor.UperCasedTopicClass1FeatureExtractor>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <CleartkExtractor>
-    <annotationClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</annotationClass>
-    <extractor class="de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor">
-      <extractor class="CoveredTextExtractor"/>
-      <featureFunctions>
-        <de.tu.darmstadt.lt.ner.feature.extractor.UperCasedTopicClass1FeatureExtractor>
-          <uperCaseTopicClassFile>uperCasetopicClaster.txt</uperCaseTopicClassFile>
-        </de.tu.darmstadt.lt.ner.feature.extractor.UperCasedTopicClass1FeatureExtractor>
-      </featureFunctions>
-    </extractor>
-    <contexts>
-      <Ngram>
-        <contexts>
-          <Preceding>
-            <begin>0</begin>
-            <end>1</end>
-            <name>Preceding_0_1</name>
-          </Preceding>
-          <org.cleartk.ml.feature.extractor.CleartkExtractor_-Focus>
-            <name>Focus</name>
-          </org.cleartk.ml.feature.extractor.CleartkExtractor_-Focus>
-          <Following>
-            <begin>0</begin>
-            <end>1</end>
-            <name>Following_0_1</name>
-          </Following>
-        </contexts>
-        <name>Ngram_Preceding_0_1_Focus_Following_0_1</name>
-      </Ngram>
-    </contexts>
-  </CleartkExtractor>
   <de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterCategoryPatternFunction_-1>
     <val_-ccpf>
       <patternType>ONE_PER_CHAR</patternType>
