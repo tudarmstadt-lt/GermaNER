@@ -53,7 +53,8 @@ public class UperCasedTopicClass1FeatureExtractor
         if (i == 0) {
             BufferedReader br;
             try {
-                br = (BufferedReader) NERReader.getReader("uperCasetopicClaster.txt");
+                NERReader reader = new NERReader();
+                br = (BufferedReader) reader.getReader("uperCasetopicClaster.txt");
                 String input;
                 while ((input = br.readLine()) != null) {
                     String[] sep = input.split("\\t");

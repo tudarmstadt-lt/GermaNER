@@ -33,7 +33,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.apache.uima.UIMAException;
 import org.apache.uima.UIMAFramework;
-import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.fit.factory.JCasFactory;
 import org.apache.uima.fit.pipeline.SimplePipeline;
 import org.apache.uima.resource.ResourceInitializationException;
@@ -49,7 +48,6 @@ import de.tu.darmstadt.lt.ner.annotator.NERAnnotator;
 import de.tu.darmstadt.lt.ner.reader.NERReader;
 import de.tu.darmstadt.lt.ner.writer.EvaluatedNERWriter;
 import de.tu.darmstadt.lt.ner.writer.SentenceToCRFTestFileWriter;
-import de.tudarmstadt.ukp.dkpro.core.matetools.MatePosTagger;
 import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
 
 public class TrainNERModel
@@ -78,37 +76,17 @@ public class TrainNERModel
     public static void writeModel(File NER_TagFile, File modelDirectory, String language)
         throws UIMAException, IOException
     {
-        AnalysisEngine matePosTagger = createEngine(MatePosTagger.class,
-                MatePosTagger.PARAM_LANGUAGE, language);
-        if (Configuration.useMatePosTagger) {
-            runPipeline(
-                    FilesCollectionReader.getCollectionReaderWithSuffixes(
-                            NER_TagFile.getAbsolutePath(), NERReader.CONLL_VIEW,
-                            NER_TagFile.getName()),
-                    createEngine(NERReader.class),
-                    matePosTagger,
-                    createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
-                            modelDirectory.getAbsolutePath() + "/feature.xml",
-                            CleartkSequenceAnnotator.PARAM_IS_TRAINING, true,
-                            DirectoryDataWriterFactory.PARAM_OUTPUT_DIRECTORY,
-                            modelDirectory.getAbsolutePath(),
-                            DefaultSequenceDataWriterFactory.PARAM_DATA_WRITER_CLASS_NAME,
-                            CrfSuiteStringOutcomeDataWriter.class));
-        }
-        else {
-            runPipeline(
-                    FilesCollectionReader.getCollectionReaderWithSuffixes(
-                            NER_TagFile.getAbsolutePath(), NERReader.CONLL_VIEW,
-                            NER_TagFile.getName()),
-                    createEngine(NERReader.class),
-                    createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
-                            modelDirectory.getAbsolutePath() + "/feature.xml",
-                            CleartkSequenceAnnotator.PARAM_IS_TRAINING, true,
-                            DirectoryDataWriterFactory.PARAM_OUTPUT_DIRECTORY,
-                            modelDirectory.getAbsolutePath(),
-                            DefaultSequenceDataWriterFactory.PARAM_DATA_WRITER_CLASS_NAME,
-                            CrfSuiteStringOutcomeDataWriter.class));
-        }
+        runPipeline(
+                FilesCollectionReader.getCollectionReaderWithSuffixes(
+                        NER_TagFile.getAbsolutePath(), NERReader.CONLL_VIEW, NER_TagFile.getName()),
+                createEngine(NERReader.class),
+                createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                        modelDirectory.getAbsolutePath() + "/feature.xml",
+                        CleartkSequenceAnnotator.PARAM_IS_TRAINING, true,
+                        DirectoryDataWriterFactory.PARAM_OUTPUT_DIRECTORY,
+                        modelDirectory.getAbsolutePath(),
+                        DefaultSequenceDataWriterFactory.PARAM_DATA_WRITER_CLASS_NAME,
+                        CrfSuiteStringOutcomeDataWriter.class));
 
     }
 
@@ -122,44 +100,19 @@ public class TrainNERModel
             File aNodeResultFile, List<Integer> aSentencesIds, String language)
         throws UIMAException, IOException
     {
-        AnalysisEngine matePosTagger = createEngine(MatePosTagger.class,
-                MatePosTagger.PARAM_LANGUAGE, language);
-        if (Configuration.useMatePosTagger) {
-            runPipeline(
-                    FilesCollectionReader.getCollectionReaderWithSuffixes(
-                            testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW,
-                            testPosFile.getName()),
-                    createEngine(NERReader.class),
-                    matePosTagger,
-                    createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
-                    createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
-                            aClassifierJarPath.getAbsolutePath() + "/feature.xml",
-                            NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
-                            GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
-                            aClassifierJarPath.getAbsolutePath() + "/model.jar"),
-                    createEngine(EvaluatedNERWriter.class, EvaluatedNERWriter.OUTPUT_FILE,
-                            outputFile, EvaluatedNERWriter.IS_GOLD, false,
-                            EvaluatedNERWriter.NOD_OUTPUT_FILE, aNodeResultFile,
-                            EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
-
-        }
-        else {
-            runPipeline(
-                    FilesCollectionReader.getCollectionReaderWithSuffixes(
-                            testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW,
-                            testPosFile.getName()),
-                    createEngine(NERReader.class),
-                    createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
-                    createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
-                            aClassifierJarPath.getAbsolutePath() + "/feature.xml",
-                            NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
-                            GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
-                            aClassifierJarPath.getAbsolutePath() + "/model.jar"),
-                    createEngine(EvaluatedNERWriter.class, EvaluatedNERWriter.OUTPUT_FILE,
-                            outputFile, EvaluatedNERWriter.IS_GOLD, false,
-                            EvaluatedNERWriter.NOD_OUTPUT_FILE, aNodeResultFile,
-                            EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
-        }
+        runPipeline(
+                FilesCollectionReader.getCollectionReaderWithSuffixes(
+                        testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW, testPosFile.getName()),
+                createEngine(NERReader.class),
+                createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
+                createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                        aClassifierJarPath.getAbsolutePath() + "/feature.xml",
+                        NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
+                        GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
+                        aClassifierJarPath.getAbsolutePath() + "/model.jar"),
+                createEngine(EvaluatedNERWriter.class, EvaluatedNERWriter.OUTPUT_FILE, outputFile,
+                        EvaluatedNERWriter.IS_GOLD, false, EvaluatedNERWriter.NOD_OUTPUT_FILE,
+                        aNodeResultFile, EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
     }
 
     /**
@@ -235,7 +188,6 @@ public class TrainNERModel
             Configuration.mode = prop.getProperty("mode");
             Configuration.useClarkPosInduction = prop.getProperty("useClarkPosInduction").equals(
                     "1") ? true : false;
-            Configuration.useMatePosTagger = prop.getProperty("useMate").equals("1") ? true : false;
             Configuration.usePosition = prop.getProperty("usePosition").equals("1") ? true : false;
             Configuration.useFreeBase = prop.getProperty("useFreebase").equals("1") ? true : false;
             Configuration.modelDir = prop.getProperty("modelDir");

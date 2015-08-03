@@ -52,7 +52,8 @@ public class DBLocationListFeatureExtractor
         if (i == 0) {
             BufferedReader br;
             try {
-              br = (BufferedReader) NERReader.getReader("location_wiki.list");
+                NERReader reader = new NERReader();
+              br = (BufferedReader) reader.getReader("location_wiki.list");
                 String input;
                 while ((input = br.readLine()) != null) {
                     String[] sep = input.split("\\t");

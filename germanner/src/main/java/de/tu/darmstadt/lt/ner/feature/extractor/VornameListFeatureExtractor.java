@@ -52,7 +52,8 @@ public class VornameListFeatureExtractor
         if (i == 0) {
             BufferedReader br;
             try {
-                br = (BufferedReader) NERReader.getReader("vornameList.txt");
+                NERReader reader = new NERReader();
+                br = (BufferedReader) reader.getReader("vornameList.txt");
                 String input;
                 while ((input = br.readLine()) != null) {
                     String[] sep = input.split("\\t");

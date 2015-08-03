@@ -22,12 +22,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 import org.apache.uima.UimaContext;
@@ -256,7 +254,7 @@ public class NERReader
         }
     }
 
-    public static void useClarkPosInduction()
+    public void useClarkPosInduction()
         throws Exception
     {
         BufferedReader reader = (BufferedReader) getReader("clark10m256");
@@ -278,24 +276,21 @@ public class NERReader
         reader.close();
     }
 
-    @SuppressWarnings("resource")
-    public static Reader getReader(String aName)
+    public Reader getReader(String aName)
         throws IOException
     {
-        URL url = ClassLoader.getSystemResource("data/data.zip");
-        ZipFile zip = new ZipFile(url.getFile().replaceAll("%20", " "));
 
-        InputStream is = ClassLoader.getSystemResourceAsStream("data/data.zip");
+        InputStream is = ClassLoader.getSystemResourceAsStream("data.zip");
         ZipInputStream zis = new ZipInputStream(is);
 
         ZipEntry entry = zis.getNextEntry();
         while (entry != null) {
             if (entry.toString().equals(aName)) {
-                return new BufferedReader(new InputStreamReader(zip.getInputStream(entry), "UTF8"));
+                return new BufferedReader(new InputStreamReader(zis));
+
             }
             entry = zis.getNextEntry();
         }
-        zip.close();
         return null;
     }
 }

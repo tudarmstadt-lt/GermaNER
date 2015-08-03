@@ -53,7 +53,8 @@ public class TopicClass50Feature1Extractor
         if (i == 0) {
             BufferedReader br;
             try {
-                br = (BufferedReader) NERReader.getReader("topicCluster50.txt");
+                NERReader reader = new NERReader();
+                br = (BufferedReader) reader.getReader("topicCluster50.txt");
                 String input;
                 while ((input = br.readLine()) != null) {
                     String[] sep = input.split("\\t");

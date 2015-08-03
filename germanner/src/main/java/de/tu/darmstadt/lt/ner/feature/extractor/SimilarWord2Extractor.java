@@ -53,7 +53,8 @@ public class SimilarWord2Extractor
         if (i == 0) {
             BufferedReader br;
             try {
-                br = (BufferedReader) NERReader.getReader("200k_2d_wordlists");
+                NERReader reader = new NERReader();
+                br = (BufferedReader) reader.getReader("200k_2d_wordlists");
                 String input;
                 while ((input = br.readLine()) != null) {
                     String[] sep = input.split("\\t");

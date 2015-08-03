@@ -52,7 +52,8 @@ public class DBNachnamenListFeatureExtractor
         if (i == 0) {
             BufferedReader br;
             try {
-                br = (BufferedReader) NERReader.getReader("inDBnachnamen.txt");
+                NERReader reader = new NERReader();
+                br = (BufferedReader) reader.getReader("inDBnachnamen.txt");
                 String input;
                 while ((input = br.readLine()) != null) {
                     String[] sep = input.split("\\t");
