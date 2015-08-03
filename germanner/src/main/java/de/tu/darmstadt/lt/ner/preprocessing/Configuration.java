@@ -4,8 +4,6 @@ public class Configuration
 {
     public static String freebaseList;
     public static boolean usePosition;
-    public static String useUnsuposPretree;
-    public static String useSuffixClass;
     public static String useClarkPosInduction;
     public static boolean useMatePosTagger;
 }

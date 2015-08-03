@@ -265,8 +265,6 @@ public class TrainNERModel
 
             Configuration.freebaseList = freebaseList;
             Configuration.usePosition = usePosition;
-            Configuration.useUnsuposPretree = preTreeUnsupos;
-            Configuration.useSuffixClass = suffixClassFile;
             Configuration.useClarkPosInduction = clarkPosInduction;
 
             if (args[0].equals("f")) {

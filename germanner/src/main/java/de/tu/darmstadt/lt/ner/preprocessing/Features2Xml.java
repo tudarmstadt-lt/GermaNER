@@ -44,17 +44,14 @@ import de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterCategoryPatternFuncti
 import de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterNgramFeatureFunction;
 import de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterNgramFeatureFunction.Orientation;
 import de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor;
-import de.tu.darmstadt.lt.ner.feature.extractor.PretreeUnsuposFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord4Extractor;
-import de.tu.darmstadt.lt.ner.feature.extractor.SuffixClassFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.TopicClass1FeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.TopicClass200Feature1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.TopicClass500Feature1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.TopicClass50Feature1Extractor;
-import de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UperCasedTopicClass1FeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor;
@@ -198,11 +195,6 @@ public class Features2Xml
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new VornameListFeatureExtractor()));
 
-        // Unsupervised POS tag
-
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new UnsupervisedPosExtractor()));
-
         // Position Feature
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new PositionFeatureExtractor()));
@@ -224,15 +216,6 @@ public class Features2Xml
 
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new SimilarWord4Extractor()));
-
-        // get the suffix class feature for a token
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new SuffixClassFeatureExtractor()));
-
-        // get the Preetree feature for unsupos
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new PretreeUnsuposFeatureExtractor()));
-
         tokenFeatureExtractors.add(new TypePathExtractor<Token>(Token.class, "pos/PosValue"));
 
         // camelcase an all upercase word
