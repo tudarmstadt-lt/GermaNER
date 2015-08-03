@@ -18,10 +18,17 @@
 package de.tu.darmstadt.lt.ner.reader;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -86,18 +93,18 @@ public class NERReader
         boolean initSentence = false;
         StringBuffer docText = new StringBuffer();
 
-        if (Configuration.freebaseList != null) {
+        if (Configuration.freebaseList) {
             try {
-                freebaseFileToMap(Configuration.freebaseList);
+                useFreaBase();
             }
             catch (Exception e) {
                 // TODO
             }
         }
-        
-        if (Configuration.useClarkPosInduction != null) {
+
+        if (Configuration.useClarkPosInduction) {
             try {
-                useClarkPosInduction(Configuration.useClarkPosInduction);
+                useClarkPosInduction();
             }
             catch (Exception e) {
                 // TODO
@@ -114,7 +121,7 @@ public class NERReader
                     terminateSentence(sentence, token, docText);
                     docText.append("\n");
                     idx++;
-                    if (Configuration.freebaseList != null) {
+                    if (Configuration.freebaseList) {
                         getngramBasedFreebaseList(sentenceSb);
                     }
                     positionIndex = 0;
@@ -172,7 +179,7 @@ public class NERReader
             }
         }
         if (!sentenceSb.toString().isEmpty()) {
-            if (Configuration.freebaseList != null) {
+            if (Configuration.freebaseList) {
                 getngramBasedFreebaseList(sentenceSb);
             }
         }
@@ -227,11 +234,11 @@ public class NERReader
                         + sentence.getBegin() + "\t" + sentence.getEnd());
     }
 
-    private void freebaseFileToMap(String fileName)
+    private void useFreaBase()
         throws Exception
     {
 
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        BufferedReader reader = (BufferedReader) getReader("freebase_2502.txt3");
         String line;
         int lines = 0;
         while ((line = reader.readLine()) != null) {
@@ -247,14 +254,12 @@ public class NERReader
             }
             lines++;
         }
-        reader.close();
     }
 
-    public static void useClarkPosInduction(String fileName)
+    public static void useClarkPosInduction()
         throws Exception
     {
-
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        BufferedReader reader = (BufferedReader) getReader("clark10m256");
         String line;
         while ((line = reader.readLine()) != null) {
             try {
@@ -271,5 +276,26 @@ public class NERReader
         }
 
         reader.close();
+    }
+
+    @SuppressWarnings("resource")
+    public static Reader getReader(String aName)
+        throws IOException
+    {
+        URL url = ClassLoader.getSystemResource("data/data.zip");
+        ZipFile zip = new ZipFile(url.getFile().replaceAll("%20", " "));
+
+        InputStream is = ClassLoader.getSystemResourceAsStream("data/data.zip");
+        ZipInputStream zis = new ZipInputStream(is);
+
+        ZipEntry entry = zis.getNextEntry();
+        while (entry != null) {
+            if (entry.toString().equals(aName)) {
+                return new BufferedReader(new InputStreamReader(zip.getInputStream(entry)));
+            }
+            entry = zis.getNextEntry();
+        }
+        zip.close();
+        return null;
     }
 }

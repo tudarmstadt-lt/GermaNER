@@ -230,13 +230,9 @@ public class TrainNERModel
                 Configuration.useMatePosTagger = true;
             }
             // get the freebase file list
-            String freebaseList = null;
-            if (argList.contains("-d") && argList.get(argList.indexOf("-d") + 1) != null) {
-                if (!new File(argList.get(argList.indexOf("-d") + 1)).exists()) {
-                    LOG.error(usage);
-                    System.exit(1);
-                }
-                freebaseList = argList.get(argList.indexOf("-d") + 1);
+            boolean freebaseList = false;
+            if (argList.contains("-d")) {
+                freebaseList = true;
             }
 
             // use positions as a feature
@@ -245,9 +241,9 @@ public class TrainNERModel
                 usePosition = true;
             }
 
-            String clarkPosInduction = null;
+            boolean clarkPosInduction = false;
             if (argList.contains("-cpi")) {
-                clarkPosInduction = argList.get(argList.indexOf("-cpi") + 1);
+                clarkPosInduction = true;
             }
 
             Configuration.freebaseList = freebaseList;
