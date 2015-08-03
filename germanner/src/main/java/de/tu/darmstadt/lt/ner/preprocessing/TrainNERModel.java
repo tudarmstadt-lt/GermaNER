@@ -244,19 +244,6 @@ public class TrainNERModel
             if (argList.contains("-s")) {
                 usePosition = true;
             }
-            String suffixClassFile = null;
-            if (argList.contains("-x")) {
-                suffixClassFile = argList.get(argList.indexOf("-x") + 1);
-            }
-
-            String preTreeUnsupos = null;
-            if (argList.contains("-pr")) {
-                preTreeUnsupos = argList.get(argList.indexOf("-pr") + 1);
-            }
-            String pretreeTrain = null;
-            if (argList.contains("-pt")) {
-                pretreeTrain = argList.get(argList.indexOf("-pt") + 1);
-            }
 
             String clarkPosInduction = null;
             if (argList.contains("-cpi")) {
