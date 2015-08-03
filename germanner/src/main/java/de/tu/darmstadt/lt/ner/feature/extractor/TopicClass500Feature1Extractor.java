@@ -21,7 +21,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -30,6 +29,8 @@ import java.util.Map;
 
 import org.cleartk.ml.Feature;
 import org.cleartk.ml.feature.function.FeatureFunction;
+
+import de.tu.darmstadt.lt.ner.reader.NERReader;
 
 public class TopicClass500Feature1Extractor
     implements FeatureFunction
@@ -54,8 +55,7 @@ public class TopicClass500Feature1Extractor
         if (i == 0) {
             BufferedReader br;
             try {
-                br = new BufferedReader(new InputStreamReader(
-                        ClassLoader.getSystemResourceAsStream("data/" + topicClassFile.getName()), "UTF8"));
+                br = (BufferedReader) NERReader.getReader("topicCluster500.txt");
                 String input;
                 while ((input = br.readLine()) != null) {
                     String[] sep = input.split("\\t");

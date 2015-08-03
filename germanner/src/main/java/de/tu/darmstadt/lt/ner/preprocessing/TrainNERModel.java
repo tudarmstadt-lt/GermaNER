@@ -21,10 +21,13 @@ import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
 import static org.apache.uima.fit.pipeline.SimplePipeline.runPipeline;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -182,102 +185,126 @@ public class TrainNERModel
                         SentenceToCRFTestFileWriter.CRF_TEST_FILE_LANG, aLanguage));
     }
 
-    public static void main(String[] args)
+    public static void main(String[] arg)
         throws Exception
     {
         long startTime = System.currentTimeMillis();
-        String usage = "USAGE: java -jar germanner.jar (f OR ft OR t) modelDir (trainFile OR testFile) [options] "
-                + "where f means training mode, t means testing mode, modelDir is model directory, trainFile is a training file,  and "
-                + "testFile is a Test file. \n options include \n"
-                + " -s=> use poitions as a feature(default false), \n  -d filename => use the file specified as freeBase list feature"
-                + "-x list of suffix file ==> comma separated with the suffix and the class the suffix falls, example ..stadt TAB location,\n"
-                + "-pr filename => use an unsupervised tag lists file to train with Pretree, \n"
-                + " -pt  filename => use Pretree trained on a tarining data or simialr file, TAB Separated \n"
-                + "-cpi filename,  Use the Alex Clark's POS induction result as a feature, TAB Separated";
+        String usage = "USAGE: java -jar germanner.jar [-cf config.properties] \n"
+                + " [-trainf trainingFileName] -testf testFileName";
         long start = System.currentTimeMillis();
 
         ChangeColon c = new ChangeColon();
 
+        Properties prop = new Properties();
+        InputStream input = null;
+        List<String> argList = Arrays.asList(arg);
+        try {
+
+            if (argList.contains("-cf") && argList.get(argList.indexOf("-cf") + 1) != null) {
+                if (!new File(argList.get(argList.indexOf("-cf") + 1)).exists()) {
+                    LOG.error("Default configuration is read from the system\n");
+                    input = ClassLoader.getSystemResourceAsStream("config.properties");
+                }
+                else {
+                    input = new FileInputStream(argList.get(argList.indexOf("-cf") + 1));
+                }
+
+            }
+            else {
+                input = ClassLoader.getSystemResourceAsStream("config.properties");
+            }
+
+            if (argList.contains("-testf") && argList.get(argList.indexOf("-testf") + 1) != null) {
+                if (!new File(argList.get(argList.indexOf("-testf") + 1)).exists()) {
+                    LOG.error("There is no test file to tag");
+                    System.exit(1);
+                }
+                Configuration.testFileName = argList.get(argList.indexOf("-testf") + 1);
+            }
+
+            if (argList.contains("-trainf") && argList.get(argList.indexOf("-trainf") + 1) != null) {
+                if (!new File(argList.get(argList.indexOf("-trainf") + 1)).exists()) {
+                    LOG.error("The system is running in tagging mode. No training data provided");
+                }
+                else {
+                    Configuration.trainFileName = argList.get(argList.indexOf("-trainf") + 1);
+                }
+            }
+            // load a properties file
+            prop.load(input);
+            Configuration.mode = prop.getProperty("mode");
+            Configuration.useClarkPosInduction = prop.getProperty("useClarkPosInduction").equals(
+                    "1") ? true : false;
+            Configuration.useMatePosTagger = prop.getProperty("useMate").equals("1") ? true : false;
+            Configuration.usePosition = prop.getProperty("usePosition").equals("1") ? true : false;
+            Configuration.useFreeBase = prop.getProperty("useFreebase").equals("1") ? true : false;
+            Configuration.modelDir = prop.getProperty("modelDir");
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
         String language = "de";
         try {
-            if (!(args[0].equals("f") || args[0].equals("t") || args[0].equals("ft"))
-                    || !new File(args[1]).exists() || !new File(args[2]).exists()) {
+            if (Configuration.testFileName == null) {
                 LOG.error(usage);
                 System.exit(1);
             }
-            if (args[0].equals("ft") && !new File(args[3]).exists()) {
-                LOG.error(usage);
-                System.exit(1);
-            }
-            File modelDirectory = new File(args[1] + "/");
+            File modelDirectory = (Configuration.modelDir == null || Configuration.modelDir
+                    .isEmpty()) ? new File("output") : new File(Configuration.modelDir);
             modelDirectory.mkdirs();
 
-            // if the model directory is empty, use the one from the jar!
-            if (args[0].equals("t") && !new File(modelDirectory, "model.jar").exists()) {
+            if (!new File(modelDirectory, "model.jar").exists()) {
                 IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/model.jar"),
                         new FileOutputStream(new File(modelDirectory, "model.jar")));
+            }
+            if (!new File(modelDirectory, "MANIFEST.MF").exists()) {
                 IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/MANIFEST.MF"),
                         new FileOutputStream(new File(modelDirectory, "MANIFEST.MF")));
-
+            }
+            if (!new File(modelDirectory, "feature.xml").exists()) {
                 IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("feature/feature.xml"),
                         new FileOutputStream(new File(modelDirectory, "feature.xml")));
             }
 
-            File outputFile = new File(modelDirectory, "res.txt");
-            // read different configs
-            List<String> argList = Arrays.asList(args);
-            if (argList.contains("-p")) {
-                Configuration.useMatePosTagger = true;
-            }
-            // get the freebase file list
-            boolean freebaseList = false;
-            if (argList.contains("-d")) {
-                freebaseList = true;
-            }
+            File outputFile = new File(modelDirectory, "result.tmp");
 
-            // use positions as a feature
-            boolean usePosition = false;
-            if (argList.contains("-s")) {
-                usePosition = true;
-            }
-
-            boolean clarkPosInduction = false;
-            if (argList.contains("-cpi")) {
-                clarkPosInduction = true;
-            }
-
-            Configuration.freebaseList = freebaseList;
-            Configuration.usePosition = usePosition;
-            Configuration.useClarkPosInduction = clarkPosInduction;
-
-            if (args[0].equals("f")) {
-                c.run(args[2], args[2] + ".c");
+            if (Configuration.mode.equals("f") && Configuration.trainFileName != null) {
+                c.normalize(Configuration.trainFileName, Configuration.trainFileName
+                        + ".normalized");
                 System.out.println("Start model generation");
-                writeModel(new File(args[2] + ".c"), modelDirectory, language);
+                writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory,
+                        language);
                 System.out.println("Start model generation -- done");
                 System.out.println("Start training");
                 trainModel(modelDirectory);
                 System.out.println("Start training ---done");
             }
-            else if (args[0].equals("ft")) {
-                c.run(args[2], args[2] + ".c");
-                c.run(args[3], args[3] + ".c");
+            else if (Configuration.mode.equals("ft")) {
+                c.normalize(Configuration.trainFileName, Configuration.trainFileName
+                        + ".normalized");
+                c.normalize(Configuration.testFileName, Configuration.testFileName + ".normalized");
                 System.out.println("Start model generation");
-                writeModel(new File(args[2] + ".c"), modelDirectory, language);
+                writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory,
+                        language);
                 System.out.println("Start model generation -- done");
                 System.out.println("Start training");
                 trainModel(modelDirectory);
                 System.out.println("Start training ---done");
                 System.out.println("Start testing");
-                classifyTestFile(modelDirectory, new File(args[3] + ".c"), outputFile, null, null,
-                        language);
+                classifyTestFile(modelDirectory, new File(Configuration.testFileName
+                        + ".normalized"), outputFile, null, null, language);
                 System.out.println("Start testing ---done");
+
+                // re-normalized the colon changed text
+                c.deNormalize(outputFile.getAbsolutePath(),
+                        new File(modelDirectory, "result.txt").getAbsolutePath());
             }
             else {
-                c.run(args[2], args[2] + ".c");
+                c.normalize(Configuration.testFileName, Configuration.testFileName + ".normalized");
                 System.out.println("Start testing");
-                classifyTestFile(modelDirectory, new File(args[2] + ".c"), outputFile, null, null,
-                        language);
+                classifyTestFile(modelDirectory, new File(Configuration.testFileName
+                        + ".normalized"), outputFile, null, null, language);
                 System.out.println("Start testing ---done");
             }
             long now = System.currentTimeMillis();

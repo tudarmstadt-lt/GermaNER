@@ -20,7 +20,6 @@ package de.tu.darmstadt.lt.ner.feature.extractor;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -29,6 +28,8 @@ import java.util.Map;
 
 import org.cleartk.ml.Feature;
 import org.cleartk.ml.feature.function.FeatureFunction;
+
+import de.tu.darmstadt.lt.ner.reader.NERReader;
 
 public class VornameListFeatureExtractor
     implements FeatureFunction
@@ -51,8 +52,7 @@ public class VornameListFeatureExtractor
         if (i == 0) {
             BufferedReader br;
             try {
-                br = new BufferedReader(new InputStreamReader(
-                        ClassLoader.getSystemResourceAsStream("data/vornameList.txt"), "UTF8"));
+                br = (BufferedReader) NERReader.getReader("vornameList.txt");
                 String input;
                 while ((input = br.readLine()) != null) {
                     String[] sep = input.split("\\t");

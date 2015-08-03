@@ -3,7 +3,11 @@ package de.tu.darmstadt.lt.ner.preprocessing;
 public class Configuration
 {
     public static boolean usePosition;
-    public static boolean freebaseList;
+    public static boolean useFreeBase;
     public static boolean useClarkPosInduction;
     public static boolean useMatePosTagger;
+    public static String mode;
+    public static String modelDir;    
+    public static String testFileName;
+    public static String trainFileName;
 }

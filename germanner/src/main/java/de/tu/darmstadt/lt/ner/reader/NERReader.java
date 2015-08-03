@@ -93,7 +93,7 @@ public class NERReader
         boolean initSentence = false;
         StringBuffer docText = new StringBuffer();
 
-        if (Configuration.freebaseList) {
+        if (Configuration.useFreeBase) {
             try {
                 useFreaBase();
             }
@@ -121,7 +121,7 @@ public class NERReader
                     terminateSentence(sentence, token, docText);
                     docText.append("\n");
                     idx++;
-                    if (Configuration.freebaseList) {
+                    if (Configuration.useFreeBase) {
                         getngramBasedFreebaseList(sentenceSb);
                     }
                     positionIndex = 0;
@@ -179,7 +179,7 @@ public class NERReader
             }
         }
         if (!sentenceSb.toString().isEmpty()) {
-            if (Configuration.freebaseList) {
+            if (Configuration.useFreeBase) {
                 getngramBasedFreebaseList(sentenceSb);
             }
         }
@@ -291,7 +291,7 @@ public class NERReader
         ZipEntry entry = zis.getNextEntry();
         while (entry != null) {
             if (entry.toString().equals(aName)) {
-                return new BufferedReader(new InputStreamReader(zip.getInputStream(entry)));
+                return new BufferedReader(new InputStreamReader(zip.getInputStream(entry), "UTF8"));
             }
             entry = zis.getNextEntry();
         }

@@ -18,10 +18,8 @@
 package de.tu.darmstadt.lt.ner.feature.extractor;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -31,11 +29,12 @@ import java.util.Map;
 import org.cleartk.ml.Feature;
 import org.cleartk.ml.feature.function.FeatureFunction;
 
+import de.tu.darmstadt.lt.ner.reader.NERReader;
+
 public class SimilarWord1Extractor
     implements FeatureFunction
 {
 
-    File simWord = new File("200k_2d_wordlists");
     static Map<String, String> simWord1 = new HashMap<String, String>();
     static int i = 0;
 
@@ -54,8 +53,7 @@ public class SimilarWord1Extractor
         if (i == 0) {
             BufferedReader br;
             try {
-                br = new BufferedReader(new InputStreamReader(
-                        ClassLoader.getSystemResourceAsStream("data/" + simWord.getName()), "UTF8"));
+                br = (BufferedReader) NERReader.getReader("200k_2d_wordlists");
                 String input;
                 while ((input = br.readLine()) != null) {
                     String[] sep = input.split("\\t");

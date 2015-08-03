@@ -545,14 +545,6 @@
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
-        <unPosFile>unsupervised_pos</unPosFile>
-      </de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor>
-    </featureFunctions>
-  </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-    <extractor class="CoveredTextExtractor"/>
-    <featureFunctions>
       <de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
@@ -565,47 +557,36 @@
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
-        <simWord>200k_2d_wordlists</simWord>
-      </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
-        <simWord>200k_2d_wordlists</simWord>
-      </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
-        <simWord>200k_2d_wordlists</simWord>
-      </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord4Extractor>
-        <simWord>200k_2d_wordlists</simWord>
-      </de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord4Extractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord4Extractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-    <extractor class="CoveredTextExtractor"/>
-    <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.SuffixClassFeatureExtractor/>
-    </featureFunctions>
-  </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-    <extractor class="CoveredTextExtractor"/>
-    <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.PretreeUnsuposFeatureExtractor/>
-    </featureFunctions>
-  </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
+  <TypePathExtractor>
+    <featureName>TypePath(PosPosValue)</featureName>
+    <focusClass>de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token</focusClass>
+    <path>pos/PosValue</path>
+    <allPaths>false</allPaths>
+    <allValues>false</allValues>
+    <uniqueValues>true</uniqueValues>
+    <pathChecked>false</pathChecked>
+  </TypePathExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
@@ -633,41 +614,33 @@
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass1FeatureExtractor>
-        <topicClassFile>topicCluster.txt</topicClassFile>
-      </de.tu.darmstadt.lt.ner.feature.extractor.TopicClass1FeatureExtractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass1FeatureExtractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass50Feature1Extractor>
-        <topicClassFile>topicCluster50.txt</topicClassFile>
-      </de.tu.darmstadt.lt.ner.feature.extractor.TopicClass50Feature1Extractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass50Feature1Extractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass200Feature1Extractor>
-        <topicClassFile>topicCluster200.txt</topicClassFile>
-      </de.tu.darmstadt.lt.ner.feature.extractor.TopicClass200Feature1Extractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass200Feature1Extractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
       <de.tu.darmstadt.lt.ner.feature.extractor.TopicClass500Feature1Extractor>
-        <topicClassFile>topicCluster.txt</topicClassFile>
+        <topicClassFile>topicCluster500.txt</topicClassFile>
       </de.tu.darmstadt.lt.ner.feature.extractor.TopicClass500Feature1Extractor>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.UperCasedTopicClass1FeatureExtractor>
-        <uperCaseTopicClassFile>uperCasetopicClaster.txt</uperCaseTopicClassFile>
-      </de.tu.darmstadt.lt.ner.feature.extractor.UperCasedTopicClass1FeatureExtractor>
+      <de.tu.darmstadt.lt.ner.feature.extractor.UperCasedTopicClass1FeatureExtractor/>
     </featureFunctions>
   </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
   <de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterCategoryPatternFunction_-1>
@@ -682,18 +655,6 @@
       <name>CharPatternRepeatsMerged</name>
     </val_-ccpf>
   </de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterCategoryPatternFunction_-1>
-  <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-    <extractor class="CoveredTextExtractor"/>
-    <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.WordShapeFeatureExtractor/>
-    </featureFunctions>
-  </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-  <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
-    <extractor class="CoveredTextExtractor"/>
-    <featureFunctions>
-      <de.tu.darmstadt.lt.ner.feature.extractor.PretreeTrainFeatureExtractor/>
-    </featureFunctions>
-  </de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
   <de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor>
     <extractor class="CoveredTextExtractor"/>
     <featureFunctions>
