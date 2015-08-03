@@ -27,6 +27,7 @@ import org.cleartk.ml.feature.extractor.CleartkExtractor.Following;
 import org.cleartk.ml.feature.extractor.CleartkExtractor.Preceding;
 import org.cleartk.ml.feature.extractor.CoveredTextExtractor;
 import org.cleartk.ml.feature.extractor.FeatureExtractor1;
+import org.cleartk.ml.feature.extractor.TypePathExtractor;
 import org.cleartk.ml.feature.function.FeatureFunctionExtractor;
 
 import com.thoughtworks.xstream.XStream;
@@ -57,7 +58,6 @@ import de.tu.darmstadt.lt.ner.feature.extractor.TopicClass50Feature1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UnsupervisedPosExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.UperCasedTopicClass1FeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.VornameListFeatureExtractor;
-import de.tu.darmstadt.lt.ner.feature.extractor.WordShapeFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.variables.MyFeatureFunctionExtractor;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Token;
 
@@ -201,30 +201,8 @@ public class Features2Xml
 
         // Unsupervised POS tag
 
-     /*   tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new UnsupervisedPosExtractor()), new Preceding(1)));*/
-
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new UnsupervisedPosExtractor()));
-
-/*        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new UnsupervisedPosExtractor()), new Following(1)));*/
-
-        // concat of two unsupos
-        /*
-         * tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class, new
-         * MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(), new
-         * UnsupervisedPosExtractor()), new Ngram(new Preceding(1), new Focus())));
-         * tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class, new
-         * MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(), new
-         * UnsupervisedPosExtractor()), new Ngram(new Focus(), new Following(1))));
-         */
-/*        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new UnsupervisedPosExtractor()), new Ngram(new Preceding(1), new Focus(),
-                        new Following(1))));*/
 
         // Position Feature
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
@@ -234,53 +212,19 @@ public class Features2Xml
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new FreeBaseFeatureExtractor()));
 
-        // SimilarWord1 Feature
-       /* tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new SimilarWord1Extractor()), new Preceding(1)));*/
 
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new SimilarWord1Extractor()));
-
-/*        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new SimilarWord1Extractor()), new Following(1)));*/
-
-        // SimilarWord2 Feature
-/*        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new SimilarWord2Extractor()), new Preceding(1)));
-*/
+        
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new SimilarWord2Extractor()));
 
-/*        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new SimilarWord2Extractor()), new Following(1)));*/
-
-        // SimilarWord3 Feature
-  /*      tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new SimilarWord3Extractor()), new Preceding(1)));*/
 
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new SimilarWord3Extractor()));
 
-     /*   tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new SimilarWord3Extractor()), new Following(1)))*/;
-
-        // SimilarWord4 Feature
-    /*    tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new SimilarWord4Extractor()), new Preceding(1)));
-*/
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new SimilarWord4Extractor()));
-
-/*        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new SimilarWord4Extractor()), new Following(1)));*/
 
         // get the suffix class feature for a token
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
@@ -289,6 +233,8 @@ public class Features2Xml
         // get the Preetree feature for unsupos
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new PretreeUnsuposFeatureExtractor()));
+
+        tokenFeatureExtractors.add(new TypePathExtractor<Token>(Token.class, "pos/PosValue"));
 
         // camelcase an all upercase word
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
@@ -320,21 +266,12 @@ public class Features2Xml
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
                 new CoveredTextExtractor<Token>(), new UperCasedTopicClass1FeatureExtractor()));
 
-/*        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new UperCasedTopicClass1FeatureExtractor()), new Ngram(new Preceding(1),
-                        new Focus(), new Following(1))));*/
-
         // Character Category
 
         tokenFeatureExtractors.add(LTCharacterCategoryPatternFunction
                 .<Token> createExtractor(PatternType.ONE_PER_CHAR));
         tokenFeatureExtractors.add(LTCharacterCategoryPatternFunction
                 .<Token> createExtractor(PatternType.REPEATS_MERGED));
-
-        // word shape features
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new WordShapeFeatureExtractor()));
 
         // Preetree on a training data
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
