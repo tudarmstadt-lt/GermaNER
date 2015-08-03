@@ -36,7 +36,6 @@ import org.apache.uima.util.Logger;
 import de.tu.darmstadt.lt.ner.feature.variables.ClarkPosInduction;
 import de.tu.darmstadt.lt.ner.feature.variables.FreeBaseFeature;
 import de.tu.darmstadt.lt.ner.feature.variables.PositionFeature;
-import de.tu.darmstadt.lt.ner.feature.variables.PretreeTrainFeature;
 import de.tu.darmstadt.lt.ner.feature.variables.PretreeUnsuposFeature;
 import de.tu.darmstadt.lt.ner.feature.variables.SuffixClassFeature;
 import de.tu.darmstadt.lt.ner.preprocessing.Configuration;
@@ -110,15 +109,6 @@ public class NERReader
         if (Configuration.useUnsuposPretree != null) {
             try {
                 trainUnsuposPretree(Configuration.useUnsuposPretree);
-            }
-            catch (Exception e) {
-                // TODO
-            }
-        }
-
-        if (Configuration.useTrainPretree != null) {
-            try {
-                trainClassLabelPretree(Configuration.useTrainPretree);
             }
             catch (Exception e) {
                 // TODO
@@ -344,43 +334,6 @@ public class NERReader
         reader.close();
 
         PretreeUnsuposFeature.pretree.setThresh(0.1);
-    }
-
-    /**
-     * Trains a pretree based on the class label or the equivalent
-     *
-     * @param fileName
-     *            : the training file name for a class label This file should be tab separated as
-     *            word TAB class label
-     * @throws Exception
-     */
-    public static void trainClassLabelPretree(String fileName)
-        throws Exception
-    {
-
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            try {
-                if (line.isEmpty()) {
-                    continue;
-                }
-                String[] sample = line.split("\\t");
-                String word = sample[0];
-                // the class is mostly at the end of the column
-                String wordClass = sample[sample.length - 1];
-                PretreeTrainFeature.pretree.train(word, wordClass);
-            }
-            catch (Exception e) {
-                System.out
-                        .println("Check if the training file used for preetree is in correct format "
-                                + e.getMessage());
-            }
-        }
-
-        reader.close();
-
-        PretreeTrainFeature.pretree.setThresh(0.1);
     }
 
     public static void useClarkPosInduction(String fileName)

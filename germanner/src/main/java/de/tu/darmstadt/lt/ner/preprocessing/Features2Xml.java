@@ -44,7 +44,6 @@ import de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterCategoryPatternFuncti
 import de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterNgramFeatureFunction;
 import de.tu.darmstadt.lt.ner.feature.extractor.LTCharacterNgramFeatureFunction.Orientation;
 import de.tu.darmstadt.lt.ner.feature.extractor.PositionFeatureExtractor;
-import de.tu.darmstadt.lt.ner.feature.extractor.PretreeTrainFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.PretreeUnsuposFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor;
@@ -272,10 +271,6 @@ public class Features2Xml
                 .<Token> createExtractor(PatternType.ONE_PER_CHAR));
         tokenFeatureExtractors.add(LTCharacterCategoryPatternFunction
                 .<Token> createExtractor(PatternType.REPEATS_MERGED));
-
-        // Preetree on a training data
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new PretreeTrainFeatureExtractor()));
 
         // CLARK's POS induction feature
         tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(

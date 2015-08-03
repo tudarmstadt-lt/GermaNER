@@ -6,6 +6,6 @@ public class Configuration
     public static boolean usePosition;
     public static String useUnsuposPretree;
     public static String useSuffixClass;
-    public static String useTrainPretree;
     public static String useClarkPosInduction;
+    public static boolean useMatePosTagger;
 }
