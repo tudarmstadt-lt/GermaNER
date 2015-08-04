@@ -220,6 +220,20 @@ public class TrainNERModel
             }
 
             File outputFile = new File(modelDirectory, "result.tmp");
+            
+            if(Configuration.mode.equals("ft") && Configuration.trainFileName == null
+                    && Configuration.testFileName == null){
+                LOG.error(usage);
+                System.exit(1);
+            }
+            if(Configuration.mode.equals("f") && Configuration.trainFileName == null){
+                LOG.error(usage);
+                System.exit(1);
+            }
+            if(Configuration.mode.equals("t") && Configuration.testFileName == null){
+                LOG.error(usage);
+                System.exit(1);
+            }
 
             if (Configuration.mode.equals("f") && Configuration.trainFileName != null) {
                 c.normalize(Configuration.trainFileName, Configuration.trainFileName
@@ -232,7 +246,8 @@ public class TrainNERModel
                 trainModel(modelDirectory);
                 System.out.println("Start training ---done");
             }
-            else if (Configuration.mode.equals("ft")) {
+            else if (Configuration.mode.equals("ft") && Configuration.trainFileName != null
+                    && Configuration.testFileName != null) {
                 c.normalize(Configuration.trainFileName, Configuration.trainFileName
                         + ".normalized");
                 c.normalize(Configuration.testFileName, Configuration.testFileName + ".normalized");
