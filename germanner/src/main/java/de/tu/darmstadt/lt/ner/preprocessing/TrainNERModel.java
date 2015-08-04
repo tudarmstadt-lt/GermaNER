@@ -220,17 +220,17 @@ public class TrainNERModel
             }
 
             File outputFile = new File(modelDirectory, "result.tmp");
-            
-            if(Configuration.mode.equals("ft") && Configuration.trainFileName == null
-                    && Configuration.testFileName == null){
+
+            if (Configuration.mode.equals("ft") && Configuration.trainFileName == null
+                    && Configuration.testFileName == null) {
                 LOG.error(usage);
                 System.exit(1);
             }
-            if(Configuration.mode.equals("f") && Configuration.trainFileName == null){
+            if (Configuration.mode.equals("f") && Configuration.trainFileName == null) {
                 LOG.error(usage);
                 System.exit(1);
             }
-            if(Configuration.mode.equals("t") && Configuration.testFileName == null){
+            if (Configuration.mode.equals("t") && Configuration.testFileName == null) {
                 LOG.error(usage);
                 System.exit(1);
             }
