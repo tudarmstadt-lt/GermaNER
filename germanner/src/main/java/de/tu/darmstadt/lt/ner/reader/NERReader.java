@@ -238,19 +238,14 @@ public class NERReader
 
         BufferedReader reader = (BufferedReader) getReader("freebase_2502.txt3");
         String line;
-        int lines = 0;
         while ((line = reader.readLine()) != null) {
             try {
                 StringTokenizer st = new StringTokenizer(line, "\t");
                 freebaseMap.put(st.nextToken(), st.nextToken());
-                if (lines % 10000 == 0) {
-                    System.out.println(lines);
-                }
             }
             catch (Exception e) {
-                System.out.println("Check if the freebase list file is correct " + e.getMessage());
+                System.out.println("Warning: check if the freebase list file is correct, Some entries are wrong. " + e.getMessage());
             }
-            lines++;
         }
     }
 
@@ -268,7 +263,7 @@ public class NERReader
                 ClarkPosInduction.posInduction.put(word, wordClass);
             }
             catch (Exception e) {
-                System.out.println("Check if the clark POS induction list file is correct "
+                System.out.println("Warning: check if the clark POS induction list file is correct "
                         + e.getMessage());
             }
         }

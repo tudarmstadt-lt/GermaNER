@@ -22,6 +22,7 @@ import static org.apache.uima.fit.pipeline.SimplePipeline.runPipeline;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,6 +54,17 @@ import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
 public class TrainNERModel
 {
     private static final Logger LOG = Logger.getLogger(TrainNERModel.class.getName());
+    static File modelDirectory;
+    static InputStream configIs;
+    static Properties prop;
+
+    public TrainNERModel()
+        throws IOException
+    {
+        configIs = ClassLoader.getSystemResourceAsStream("config.properties");
+        prop = new Properties();
+        loadConfig();
+    }
 
     /**
      *
@@ -114,6 +126,26 @@ public class TrainNERModel
                         EvaluatedNERWriter.IS_GOLD, false, EvaluatedNERWriter.NOD_OUTPUT_FILE,
                         aNodeResultFile, EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
     }
+    
+    public static void classifyTestFile(File testPosFile, File outputFile,
+            File aNodeResultFile, List<Integer> aSentencesIds, String language)
+        throws UIMAException, IOException
+    {
+        setModelDir();
+        runPipeline(
+                FilesCollectionReader.getCollectionReaderWithSuffixes(
+                        testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW, testPosFile.getName()),
+                createEngine(NERReader.class),
+                createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
+                createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                        modelDirectory.getAbsolutePath() + "/feature.xml",
+                        NERAnnotator.FEATURE_FILE, modelDirectory.getAbsolutePath(),
+                        GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
+                        modelDirectory.getAbsolutePath() + "/model.jar"),
+                createEngine(EvaluatedNERWriter.class, EvaluatedNERWriter.OUTPUT_FILE, outputFile,
+                        EvaluatedNERWriter.IS_GOLD, false, EvaluatedNERWriter.NOD_OUTPUT_FILE,
+                        aNodeResultFile, EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
+    }
 
     /**
      * This is a helper method, can be called from NoD. If you use a DKPro tokenizer during
@@ -148,23 +180,17 @@ public class TrainNERModel
 
         ChangeColon c = new ChangeColon();
 
-        Properties prop = new Properties();
-        InputStream input = null;
         List<String> argList = Arrays.asList(arg);
         try {
 
             if (argList.contains("-cf") && argList.get(argList.indexOf("-cf") + 1) != null) {
                 if (!new File(argList.get(argList.indexOf("-cf") + 1)).exists()) {
                     LOG.error("Default configuration is read from the system\n");
-                    input = ClassLoader.getSystemResourceAsStream("config.properties");
                 }
                 else {
-                    input = new FileInputStream(argList.get(argList.indexOf("-cf") + 1));
+                    configIs = new FileInputStream(argList.get(argList.indexOf("-cf") + 1));
                 }
 
-            }
-            else {
-                input = ClassLoader.getSystemResourceAsStream("config.properties");
             }
 
             if (argList.contains("-testf") && argList.get(argList.indexOf("-testf") + 1) != null) {
@@ -184,13 +210,7 @@ public class TrainNERModel
                 }
             }
             // load a properties file
-            prop.load(input);
-            Configuration.mode = prop.getProperty("mode");
-            Configuration.useClarkPosInduction = prop.getProperty("useClarkPosInduction").equals(
-                    "1") ? true : false;
-            Configuration.usePosition = prop.getProperty("usePosition").equals("1") ? true : false;
-            Configuration.useFreeBase = prop.getProperty("useFreebase").equals("1") ? true : false;
-            Configuration.modelDir = prop.getProperty("modelDir");
+            loadConfig();
         }
         catch (IOException ex) {
             ex.printStackTrace();
@@ -202,27 +222,12 @@ public class TrainNERModel
                 LOG.error(usage);
                 System.exit(1);
             }
-            File modelDirectory = (Configuration.modelDir == null || Configuration.modelDir
-                    .isEmpty()) ? new File("output") : new File(Configuration.modelDir);
-            modelDirectory.mkdirs();
-
-            if (!new File(modelDirectory, "model.jar").exists()) {
-                IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/model.jar"),
-                        new FileOutputStream(new File(modelDirectory, "model.jar")));
-            }
-            if (!new File(modelDirectory, "MANIFEST.MF").exists()) {
-                IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/MANIFEST.MF"),
-                        new FileOutputStream(new File(modelDirectory, "MANIFEST.MF")));
-            }
-            if (!new File(modelDirectory, "feature.xml").exists()) {
-                IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("feature/feature.xml"),
-                        new FileOutputStream(new File(modelDirectory, "feature.xml")));
-            }
+            setModelDir();
 
             File outputFile = new File(modelDirectory, "result.tmp");
 
-            if (Configuration.mode.equals("ft") && Configuration.trainFileName == null
-                    && Configuration.testFileName == null) {
+            if (Configuration.mode.equals("ft")
+                    && (Configuration.trainFileName == null || Configuration.testFileName == null)) {
                 LOG.error(usage);
                 System.exit(1);
             }
@@ -258,10 +263,10 @@ public class TrainNERModel
                 System.out.println("Start training");
                 trainModel(modelDirectory);
                 System.out.println("Start training ---done");
-                System.out.println("Start testing");
+                System.out.println("Start tagging");
                 classifyTestFile(modelDirectory, new File(Configuration.testFileName
                         + ".normalized"), outputFile, null, null, language);
-                System.out.println("Start testing ---done");
+                System.out.println("Start tagging ---done");
 
                 // re-normalized the colon changed text
                 c.deNormalize(outputFile.getAbsolutePath(),
@@ -269,10 +274,14 @@ public class TrainNERModel
             }
             else {
                 c.normalize(Configuration.testFileName, Configuration.testFileName + ".normalized");
-                System.out.println("Start testing");
+                System.out.println("Start tagging");
                 classifyTestFile(modelDirectory, new File(Configuration.testFileName
                         + ".normalized"), outputFile, null, null, language);
-                System.out.println("Start testing ---done");
+                // re-normalized the colon changed text
+                c.deNormalize(outputFile.getAbsolutePath(),
+                        new File(modelDirectory, "result.txt").getAbsolutePath());
+
+                System.out.println("Start tagging ---done");
             }
             long now = System.currentTimeMillis();
             UIMAFramework.getLogger().log(Level.INFO, "Time: " + (now - start) + "ms");
@@ -285,5 +294,38 @@ public class TrainNERModel
         long totalTime = endTime - startTime;
         System.out.println("NER tarin/test done in " + totalTime / 1000 + " seconds");
 
+    }
+
+    private static void setModelDir()
+        throws IOException, FileNotFoundException
+    {
+        modelDirectory = (Configuration.modelDir == null || Configuration.modelDir.isEmpty()) ? new File(
+                "output") : new File(Configuration.modelDir);
+        modelDirectory.mkdirs();
+
+        if (!new File(modelDirectory, "model.jar").exists()) {
+            IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/model.jar"),
+                    new FileOutputStream(new File(modelDirectory, "model.jar")));
+        }
+        if (!new File(modelDirectory, "MANIFEST.MF").exists()) {
+            IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("model/MANIFEST.MF"),
+                    new FileOutputStream(new File(modelDirectory, "MANIFEST.MF")));
+        }
+        if (!new File(modelDirectory, "feature.xml").exists()) {
+            IOUtils.copyLarge(ClassLoader.getSystemResourceAsStream("feature/feature.xml"),
+                    new FileOutputStream(new File(modelDirectory, "feature.xml")));
+        }
+    }
+
+    private static void loadConfig()
+        throws IOException
+    {
+        prop.load(configIs);
+        Configuration.mode = prop.getProperty("mode");
+        Configuration.useClarkPosInduction = prop.getProperty("useClarkPosInduction").equals("1") ? true
+                : false;
+        Configuration.usePosition = prop.getProperty("usePosition").equals("1") ? true : false;
+        Configuration.useFreeBase = prop.getProperty("useFreebase").equals("1") ? true : false;
+        Configuration.modelDir = prop.getProperty("modelDir");
     }
 }
