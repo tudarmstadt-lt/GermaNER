@@ -55,13 +55,13 @@ public class TrainNERModel
 {
     private static final Logger LOG = Logger.getLogger(TrainNERModel.class.getName());
     static File modelDirectory;
-    static InputStream configIs;
+    static InputStream configIs = null;
     static Properties prop;
 
     public static void initNERModel()
         throws IOException
     {
-        configIs = ClassLoader.getSystemResourceAsStream("config.properties");
+        configIs = configIs==null?ClassLoader.getSystemResourceAsStream("config.properties"):configIs;
         prop = new Properties();
         loadConfig();
     }
