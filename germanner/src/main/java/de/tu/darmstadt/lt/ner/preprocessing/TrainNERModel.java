@@ -58,7 +58,7 @@ public class TrainNERModel
     static InputStream configIs;
     static Properties prop;
 
-    public TrainNERModel()
+    public static void initNERModel()
         throws IOException
     {
         configIs = ClassLoader.getSystemResourceAsStream("config.properties");
@@ -131,6 +131,7 @@ public class TrainNERModel
             File aNodeResultFile, List<Integer> aSentencesIds, String language)
         throws UIMAException, IOException
     {
+        initNERModel();
         setModelDir();
         runPipeline(
                 FilesCollectionReader.getCollectionReaderWithSuffixes(
@@ -210,7 +211,7 @@ public class TrainNERModel
                 }
             }
             // load a properties file
-            loadConfig();
+            initNERModel();
         }
         catch (IOException ex) {
             ex.printStackTrace();
