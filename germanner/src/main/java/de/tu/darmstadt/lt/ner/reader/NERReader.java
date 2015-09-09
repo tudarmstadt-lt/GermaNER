@@ -181,7 +181,7 @@ public class NERReader
                 getngramBasedFreebaseList(sentenceSb);
             }
         }
-        System.out.println(FreeBaseFeature.freebaseFeature.size() + " Freebase entries found");
+        
         if (sentence != null && token != null) {
             terminateSentence(sentence, token, docText);
         }

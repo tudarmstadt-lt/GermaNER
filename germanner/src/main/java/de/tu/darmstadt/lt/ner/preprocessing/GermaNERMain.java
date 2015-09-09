@@ -51,17 +51,22 @@ import de.tu.darmstadt.lt.ner.writer.EvaluatedNERWriter;
 import de.tu.darmstadt.lt.ner.writer.SentenceToCRFTestFileWriter;
 import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
 
-public class TrainNERModel
+public class GermaNERMain
 {
-    private static final Logger LOG = Logger.getLogger(TrainNERModel.class.getName());
+    private static final Logger LOG = Logger.getLogger(GermaNERMain.class.getName());
     static File modelDirectory;
-    static InputStream configIs = null;
+    static InputStream configFile = null;
     static Properties prop;
+
+    public static Properties getPropFile()
+    {
+        return prop;
+    }
 
     public static void initNERModel()
         throws IOException
     {
-        configIs = configIs==null?ClassLoader.getSystemResourceAsStream("config.properties"):configIs;
+        configFile = configFile==null?ClassLoader.getSystemResourceAsStream("config.properties"):configFile;
         prop = new Properties();
         loadConfig();
     }
@@ -189,7 +194,7 @@ public class TrainNERModel
                     LOG.error("Default configuration is read from the system\n");
                 }
                 else {
-                    configIs = new FileInputStream(argList.get(argList.indexOf("-cf") + 1));
+                    configFile = new FileInputStream(argList.get(argList.indexOf("-cf") + 1));
                 }
 
             }
@@ -318,10 +323,10 @@ public class TrainNERModel
         }
     }
 
-    private static void loadConfig()
+    public static void loadConfig()
         throws IOException
     {
-        prop.load(configIs);
+        prop.load(configFile);
         Configuration.mode = prop.getProperty("mode");
         Configuration.useClarkPosInduction = prop.getProperty("useClarkPosInduction").equals("1") ? true
                 : false;

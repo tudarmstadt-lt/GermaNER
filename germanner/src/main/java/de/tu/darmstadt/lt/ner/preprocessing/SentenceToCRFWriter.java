@@ -41,6 +41,6 @@ List<String> sentences = new ArrayList<String>();
         }
         sentences.add(line);
     }
-    TrainNERModel.sentenceToCRFFormat(sentences, args[1],"de");
+    GermaNERMain.sentenceToCRFFormat(sentences, args[1],"de");
 }
 }

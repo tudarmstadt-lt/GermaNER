@@ -27,7 +27,6 @@ import org.cleartk.ml.feature.extractor.CleartkExtractor.Following;
 import org.cleartk.ml.feature.extractor.CleartkExtractor.Preceding;
 import org.cleartk.ml.feature.extractor.CoveredTextExtractor;
 import org.cleartk.ml.feature.extractor.FeatureExtractor1;
-import org.cleartk.ml.feature.extractor.TypePathExtractor;
 import org.cleartk.ml.feature.function.FeatureFunctionExtractor;
 
 import com.thoughtworks.xstream.XStream;
@@ -64,203 +63,227 @@ public class Features2Xml
     {
         LTCharacterNgramFeatureFunction.Orientation fromLeft = Orientation.LEFT_TO_RIGHT;
         LTCharacterNgramFeatureFunction.Orientation fromRight = Orientation.RIGHT_TO_LEFT;
-        List<FeatureExtractor1<Token>> tokenFeatureExtractors;
-        tokenFeatureExtractors = new ArrayList<FeatureExtractor1<Token>>();
+        List<FeatureExtractor1<Token>> germaNERfeatures = new ArrayList<FeatureExtractor1<Token>>();
 
         // German Word feature
-        tokenFeatureExtractors.add(new FeatureFunctionExtractor<Token>(
-                new CoveredTextExtractor<Token>()));
+        germaNERfeatures
+                .add(new FeatureFunctionExtractor<Token>(new CoveredTextExtractor<Token>()));
 
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
+        germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                 new CoveredTextExtractor<Token>(), new Preceding(2)));
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
+        germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                 new CoveredTextExtractor<Token>(), new Following(2)));
 
         // Capital Type Feature Function
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
+        germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCapitalTypeFeatureFunction()), new Preceding(2)));
+                        new LTCapitalTypeFeatureFunction()),
+                new Preceding(2)));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new LTCapitalTypeFeatureFunction()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new LTCapitalTypeFeatureFunction()));
 
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
+        germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                 new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCapitalTypeFeatureFunction()), new Following(2)));
+                        new LTCapitalTypeFeatureFunction()),
+                new Following(2)));
 
         // Prefix(1) Feature
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromLeft, 0, 1)), new Preceding(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromLeft, 0, 1)),
+                        new Preceding(1)));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new LTCharacterNgramFeatureFunction(fromLeft, 0,
-                        1)));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new LTCharacterNgramFeatureFunction(fromLeft, 0, 1)));
 
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromLeft, 0, 1)), new Following(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromLeft, 0, 1)),
+                        new Following(1)));
 
         // Prefix(2) Feature
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromLeft, 0, 2)), new Preceding(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromLeft, 0, 2)),
+                        new Preceding(1)));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new LTCharacterNgramFeatureFunction(fromLeft, 0,
-                        2)));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new LTCharacterNgramFeatureFunction(fromLeft, 0, 2)));
 
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromLeft, 0, 2)), new Following(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromLeft, 0, 2)),
+                        new Following(1)));
 
         // Prefix(3) Feature
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromLeft, 0, 3)), new Preceding(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromLeft, 0, 3)),
+                        new Preceding(1)));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new LTCharacterNgramFeatureFunction(fromLeft, 0,
-                        3)));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new LTCharacterNgramFeatureFunction(fromLeft, 0, 3)));
 
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromLeft, 0, 3)), new Following(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromLeft, 0, 3)),
+                        new Following(1)));
         // prefix(4)
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromLeft, 0, 4)), new Preceding(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromLeft, 0, 4)),
+                        new Preceding(1)));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new LTCharacterNgramFeatureFunction(fromLeft, 0,
-                        4)));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new LTCharacterNgramFeatureFunction(fromLeft, 0, 4)));
 
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromLeft, 0, 4)), new Following(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromLeft, 0, 4)),
+                        new Following(1)));
 
         // Suffix(1) Feature
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromRight, 0, 1)), new Preceding(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromRight, 0, 1)),
+                        new Preceding(1)));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new LTCharacterNgramFeatureFunction(fromRight,
-                        0, 1)));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new LTCharacterNgramFeatureFunction(fromRight, 0, 1)));
 
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromRight, 0, 1)), new Following(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromRight, 0, 1)),
+                        new Following(1)));
 
         // Suffix(2) Feature
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromRight, 0, 2)), new Preceding(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromRight, 0, 2)),
+                        new Preceding(1)));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new LTCharacterNgramFeatureFunction(fromRight,
-                        0, 2)));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new LTCharacterNgramFeatureFunction(fromRight, 0, 2)));
 
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromRight, 0, 2)), new Following(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromRight, 0, 2)),
+                        new Following(1)));
 
         // Suffix(3) Feature
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromRight, 0, 3)), new Preceding(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromRight, 0, 3)),
+                        new Preceding(1)));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new LTCharacterNgramFeatureFunction(fromRight,
-                        0, 3)));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new LTCharacterNgramFeatureFunction(fromRight, 0, 3)));
 
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromRight, 0, 3)), new Following(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromRight, 0, 3)),
+                        new Following(1)));
 
         // Suffix (4) feature
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromRight, 0, 4)), new Preceding(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromRight, 0, 4)),
+                        new Preceding(1)));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new LTCharacterNgramFeatureFunction(fromRight,
-                        0, 4)));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new LTCharacterNgramFeatureFunction(fromRight, 0, 4)));
 
-        tokenFeatureExtractors.add(new CleartkExtractor<Token, Token>(Token.class,
-                new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                        new LTCharacterNgramFeatureFunction(fromRight, 0, 4)), new Following(1)));
+        germaNERfeatures
+                .add(new CleartkExtractor<Token, Token>(Token.class,
+                        new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                                new LTCharacterNgramFeatureFunction(fromRight, 0, 4)),
+                        new Following(1)));
 
         // Vorname List Feature
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new VornameListFeatureExtractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new VornameListFeatureExtractor()));
 
         // Position Feature
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new PositionFeatureExtractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new PositionFeatureExtractor()));
         // FreeBase Feature
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new FreeBaseFeatureExtractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new FreeBaseFeatureExtractor()));
 
+        // DT similar word
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new SimilarWord1Extractor()));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new SimilarWord1Extractor()));
-        
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new SimilarWord2Extractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new SimilarWord2Extractor()));
 
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new SimilarWord3Extractor()));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new SimilarWord3Extractor()));
-
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new SimilarWord4Extractor()));
-        tokenFeatureExtractors.add(new TypePathExtractor<Token>(Token.class, "pos/PosValue"));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new SimilarWord4Extractor()));
 
         // camelcase an all upercase word
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new CamelCaseFeatureExtractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new CamelCaseFeatureExtractor()));
 
         // DB Nachnamen
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new DBNachnamenListFeatureExtractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new DBNachnamenListFeatureExtractor()));
         // DB Person list
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new DBPersonListFeatureExtractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new DBPersonListFeatureExtractor()));
         // DB Location
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new DBLocationListFeatureExtractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new DBLocationListFeatureExtractor()));
 
         // topic class features
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new TopicClass1FeatureExtractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new TopicClass1FeatureExtractor()));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new TopicClass50Feature1Extractor()));
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new TopicClass200Feature1Extractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new TopicClass50Feature1Extractor()));
+        
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new TopicClass200Feature1Extractor()));
 
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new TopicClass500Feature1Extractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new TopicClass500Feature1Extractor()));
 
         // topic class features - focused on upper case tokens
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new UperCasedTopicClass1FeatureExtractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new UperCasedTopicClass1FeatureExtractor()));
 
         // Character Category
 
-        tokenFeatureExtractors.add(LTCharacterCategoryPatternFunction
+        germaNERfeatures.add(LTCharacterCategoryPatternFunction
                 .<Token> createExtractor(PatternType.ONE_PER_CHAR));
-        tokenFeatureExtractors.add(LTCharacterCategoryPatternFunction
+        germaNERfeatures.add(LTCharacterCategoryPatternFunction
                 .<Token> createExtractor(PatternType.REPEATS_MERGED));
 
         // CLARK's POS induction feature
-        tokenFeatureExtractors.add(new MyFeatureFunctionExtractor(
-                new CoveredTextExtractor<Token>(), new ClarkPosInductionFeatureExtractor()));
+        germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                new ClarkPosInductionFeatureExtractor()));
 
         XStream xstream = XStreamFactory.createXStream();
-        String x = xstream.toXML(tokenFeatureExtractors);
+        String x = xstream.toXML(germaNERfeatures);
         x = removeLogger(x);
         PrintStream ps = new PrintStream(filename);
         ps.println(x);

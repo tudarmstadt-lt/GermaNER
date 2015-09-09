@@ -33,7 +33,6 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.fit.descriptor.ConfigurationParameter;
 import org.apache.uima.fit.util.JCasUtil;
 import org.apache.uima.jcas.JCas;
-import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.cleartk.ml.CleartkProcessingException;
 import org.cleartk.ml.CleartkSequenceAnnotator;
@@ -41,9 +40,7 @@ import org.cleartk.ml.Instance;
 import org.cleartk.ml.feature.extractor.CleartkExtractor;
 import org.cleartk.ml.feature.extractor.FeatureExtractor1;
 
-import com.thoughtworks.xstream.XStream;
-
-import de.tu.darmstadt.lt.ner.preprocessing.XStreamFactory;
+import de.tu.darmstadt.lt.ner.preprocessing.GermaNERMain;
 import de.tu.darmstadt.lt.ner.types.GoldNamedEntity;
 import de.tudarmstadt.ukp.dkpro.core.api.ner.type.NamedEntity;
 import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
@@ -70,7 +67,7 @@ public class NERAnnotator
     @ConfigurationParameter(name = FEATURE_FILE, mandatory = false)
     private String classifierJarDir = null;
 
-    private List<FeatureExtractor1<Annotation>> featureExtractors;
+    private List<FeatureExtractor1<Token>> featureExtractors;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -78,13 +75,22 @@ public class NERAnnotator
         throws ResourceInitializationException
     {
         super.initialize(context);
-
-        // load the settings from a file
-        // initialize the XStream if a xml file is given:
-        XStream xstream = XStreamFactory.createXStream();
-
-        featureExtractors = (List<FeatureExtractor1<Annotation>>) xstream.fromXML(new File(
-                featureExtractionFile));
+        // load feature settings from a configuration file or from an xml file
+        // if (GermaNERMain.getPropFile() != null) {
+        try {
+            GermaNERMain.loadConfig();
+            featureExtractors = GetFeaturesFromConfigFile.getFeatures(GermaNERMain.getPropFile());
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        // }
+        /*
+         * else { // load the settings from a file // initialize the XStream if a xml file is given:
+         * XStream xstream = XStreamFactory.createXStream(); featureExtractors =
+         * (List<FeatureExtractor1<Token>>) xstream .fromXML(new File(featureExtractionFile)); }
+         */
 
     }
 
@@ -113,7 +119,7 @@ public class NERAnnotator
             List<Instance<String>> instances = new ArrayList<Instance<String>>();
             for (Token token : sentencesTokens.get(sentence)) {
                 Instance<String> instance = new Instance<String>();
-                for (FeatureExtractor1<Annotation> extractor : this.featureExtractors) {
+                for (FeatureExtractor1<Token> extractor : this.featureExtractors) {
                     if (extractor instanceof CleartkExtractor) {
                         instance.addAll((((CleartkExtractor) extractor).extractWithin(jCas, token,
                                 sentence)));
@@ -124,8 +130,8 @@ public class NERAnnotator
                 }
 
                 if (this.isTraining()) {
-                    GoldNamedEntity goldNE = JCasUtil.selectCovered(jCas, GoldNamedEntity.class,
-                            token).get(0);
+                    GoldNamedEntity goldNE = JCasUtil
+                            .selectCovered(jCas, GoldNamedEntity.class, token).get(0);
                     instance.setOutcome(goldNE.getNamedEntityType());
                 }
 
@@ -177,12 +183,12 @@ public class NERAnnotator
     private void classify(JCas jCas, Map<Sentence, Collection<Token>> sentencesTokens,
             Map<Integer, List<Instance<String>>> sentencesInstances, List<Sentence> sentenceList,
             int index, int it, File featureFile)
-        throws CleartkProcessingException
+                throws CleartkProcessingException
     {
         List<String> namedEntities = this.classify(sentencesInstances, featureFile);
         try {
-            FileUtils.copyFile(featureFile, new File(featureFile.getAbsolutePath() + ".test" + it
-                    * index));
+            FileUtils.copyFile(featureFile,
+                    new File(featureFile.getAbsolutePath() + ".test" + it * index));
         }
         catch (IOException e) {
         }
