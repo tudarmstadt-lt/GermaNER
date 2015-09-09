@@ -1,4 +1,4 @@
-# GermaNER
+[# GermaNER](https://github.com/tudarmstadt-lt/GermaNER/wiki)
 A binary is found in https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/GermaNER-04-08-2015.jar
 
 To tag German texts
