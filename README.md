@@ -1,4 +1,4 @@
-#[GermaNER](https://github.com/tudarmstadt-lt/GermaNER/wiki)
+#[GermaNER](https://github.com/tudarmstadt-lt/GermaNER/wiki) - Free Open German Named Entity Recognition Tool
 A binary is found [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/GermaNER-04-08-2015.jar)
 
 To tag German texts
