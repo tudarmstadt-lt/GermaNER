@@ -8,7 +8,7 @@ To tag German texts:
 1. Tokenize your text so that it is one word per line. Sentences should be marked with a blank new line. Read details [here] (https://github.com/tudarmstadt-lt/GermaNER/wiki/File-Format).
 2. Run the jar file as follows (see details [here](https://github.com/tudarmstadt-lt/GermaNER/wiki/User-Guide))
 
-***java -jar GermaNER-09-09-2015.jar -t YOURTOKENIZEDTESTFILE***
+***`java -jar GermaNER-09-09-2015.jar -t YOURTOKENIZEDTESTFILE`***
 
 The tagged document will be under **output/result.tsv**
 
