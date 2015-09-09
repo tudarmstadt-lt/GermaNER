@@ -180,7 +180,7 @@ public class GermaNERMain
         throws Exception
     {
         long startTime = System.currentTimeMillis();
-        String usage = "USAGE: java -jar germanner.jar [-cf config.properties] \n"
+        String usage = "USAGE: java -jar germanner.jar [-c config.properties] \n"
                 + " [-i trainingFileName] -t testFileName -o outputFile";
         long start = System.currentTimeMillis();
 
@@ -189,12 +189,12 @@ public class GermaNERMain
         List<String> argList = Arrays.asList(arg);
         try {
 
-            if (argList.contains("-cf") && argList.get(argList.indexOf("-cf") + 1) != null) {
-                if (!new File(argList.get(argList.indexOf("-cf") + 1)).exists()) {
+            if (argList.contains("-c") && argList.get(argList.indexOf("-c") + 1) != null) {
+                if (!new File(argList.get(argList.indexOf("-c") + 1)).exists()) {
                     LOG.error("Default configuration is read from the system\n");
                 }
                 else {
-                    configFile = new FileInputStream(argList.get(argList.indexOf("-cf") + 1));
+                    configFile = new FileInputStream(argList.get(argList.indexOf("-c") + 1));
                 }
 
             }
@@ -233,15 +233,12 @@ public class GermaNERMain
             File outputtmpFile = new File(modelDirectory, "result.tmp");
             File outputFile = null;
             if (argList.contains("-o") && argList.get(argList.indexOf("-o") + 1) != null) {
-                if (new File(new File(argList.get(argList.indexOf("-o") + 1)).getParent())
-                        .exists()) {
-                    outputFile = new File(argList.get(argList.indexOf("-o") + 1));
-                }
-                else {
-                    LOG.error("The directory for this result file does not exist. Output file "
-                            + "will be found in the current directury under folder \"output\"");
-                    outputFile = new File(modelDirectory, "result.tsv");
-                }
+                outputFile = new File(argList.get(argList.indexOf("-o") + 1));
+            }
+            else {
+                LOG.error("The directory for this output file does not exist. Output file "
+                        + "will be found in the current directury under folder \"output\"");
+                outputFile = new File(modelDirectory, "result.tsv");
             }
 
             if (Configuration.mode.equals("ft") && (Configuration.trainFileName == null
@@ -343,7 +340,7 @@ public class GermaNERMain
         Configuration.useClarkPosInduction = prop.getProperty("useClarkPosInduction").equals("1")
                 ? true : false;
         Configuration.usePosition = prop.getProperty("usePosition").equals("1") ? true : false;
-        Configuration.useFreeBase = prop.getProperty("useFreebase").equals("1") ? true : false;
+        Configuration.useFreeBase = prop.getProperty("useFreeBase").equals("1") ? true : false;
         Configuration.modelDir = prop.getProperty("modelDir");
     }
 }

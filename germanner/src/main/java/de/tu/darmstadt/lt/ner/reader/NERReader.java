@@ -244,7 +244,7 @@ public class NERReader
                 freebaseMap.put(st.nextToken(), st.nextToken());
             }
             catch (Exception e) {
-                System.out.println("Warning: check if the freebase list file is correct, Some entries are wrong. " + e.getMessage());
+               // System.out.println("Warning: check if the freebase list file is correct, Some entries are wrong. " + e.getMessage());
             }
         }
     }
@@ -263,8 +263,8 @@ public class NERReader
                 ClarkPosInduction.posInduction.put(word, wordClass);
             }
             catch (Exception e) {
-                System.out.println("Warning: check if the clark POS induction list file is correct "
-                        + e.getMessage());
+               // System.out.println("Warning: check if the clark POS induction list file is correct "
+                 //       + e.getMessage());
             }
         }
 
