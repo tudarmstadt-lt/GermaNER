@@ -66,7 +66,8 @@ public class GermaNERMain
     public static void initNERModel()
         throws IOException
     {
-        configFile = configFile==null?ClassLoader.getSystemResourceAsStream("config.properties"):configFile;
+        configFile = configFile == null ? ClassLoader.getSystemResourceAsStream("config.properties")
+                : configFile;
         prop = new Properties();
         loadConfig();
     }
@@ -94,8 +95,8 @@ public class GermaNERMain
         throws UIMAException, IOException
     {
         runPipeline(
-                FilesCollectionReader.getCollectionReaderWithSuffixes(
-                        NER_TagFile.getAbsolutePath(), NERReader.CONLL_VIEW, NER_TagFile.getName()),
+                FilesCollectionReader.getCollectionReaderWithSuffixes(NER_TagFile.getAbsolutePath(),
+                        NERReader.CONLL_VIEW, NER_TagFile.getName()),
                 createEngine(NERReader.class),
                 createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                         modelDirectory.getAbsolutePath() + "/feature.xml",
@@ -115,11 +116,11 @@ public class GermaNERMain
 
     public static void classifyTestFile(File aClassifierJarPath, File testPosFile, File outputFile,
             File aNodeResultFile, List<Integer> aSentencesIds, String language)
-        throws UIMAException, IOException
+                throws UIMAException, IOException
     {
         runPipeline(
-                FilesCollectionReader.getCollectionReaderWithSuffixes(
-                        testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW, testPosFile.getName()),
+                FilesCollectionReader.getCollectionReaderWithSuffixes(testPosFile.getAbsolutePath(),
+                        NERReader.CONLL_VIEW, testPosFile.getName()),
                 createEngine(NERReader.class),
                 createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
                 createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
@@ -131,16 +132,16 @@ public class GermaNERMain
                         EvaluatedNERWriter.IS_GOLD, false, EvaluatedNERWriter.NOD_OUTPUT_FILE,
                         aNodeResultFile, EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
     }
-    
-    public static void classifyTestFile(File testPosFile, File outputFile,
-            File aNodeResultFile, List<Integer> aSentencesIds, String language)
-        throws UIMAException, IOException
+
+    public static void classifyTestFile(File testPosFile, File outputFile, File aNodeResultFile,
+            List<Integer> aSentencesIds, String language)
+                throws UIMAException, IOException
     {
         initNERModel();
         setModelDir();
         runPipeline(
-                FilesCollectionReader.getCollectionReaderWithSuffixes(
-                        testPosFile.getAbsolutePath(), NERReader.CONLL_VIEW, testPosFile.getName()),
+                FilesCollectionReader.getCollectionReaderWithSuffixes(testPosFile.getAbsolutePath(),
+                        NERReader.CONLL_VIEW, testPosFile.getName()),
                 createEngine(NERReader.class),
                 createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
                 createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
@@ -166,10 +167,9 @@ public class GermaNERMain
      */
     public static void sentenceToCRFFormat(List<String> sentences, String aCRFFileName,
             String aLanguage)
-        throws UIMAException, IllegalArgumentException, IOException
+                throws UIMAException, IllegalArgumentException, IOException
     {
-        SimplePipeline.runPipeline(
-                JCasFactory.createJCas(),
+        SimplePipeline.runPipeline(JCasFactory.createJCas(),
                 createEngine(SentenceToCRFTestFileWriter.class,
                         SentenceToCRFTestFileWriter.SENTENCE_ITERATOR, sentences,
                         SentenceToCRFTestFileWriter.CRF_TEST_FILE_NAME, aCRFFileName,
@@ -181,7 +181,7 @@ public class GermaNERMain
     {
         long startTime = System.currentTimeMillis();
         String usage = "USAGE: java -jar germanner.jar [-cf config.properties] \n"
-                + " [-trainf trainingFileName] -testf testFileName";
+                + " [-i trainingFileName] -t testFileName -o outputFile";
         long start = System.currentTimeMillis();
 
         ChangeColon c = new ChangeColon();
@@ -199,20 +199,20 @@ public class GermaNERMain
 
             }
 
-            if (argList.contains("-testf") && argList.get(argList.indexOf("-testf") + 1) != null) {
-                if (!new File(argList.get(argList.indexOf("-testf") + 1)).exists()) {
+            if (argList.contains("-t") && argList.get(argList.indexOf("-t") + 1) != null) {
+                if (!new File(argList.get(argList.indexOf("-t") + 1)).exists()) {
                     LOG.error("There is no test file to tag");
                     System.exit(1);
                 }
-                Configuration.testFileName = argList.get(argList.indexOf("-testf") + 1);
+                Configuration.testFileName = argList.get(argList.indexOf("-t") + 1);
             }
 
-            if (argList.contains("-trainf") && argList.get(argList.indexOf("-trainf") + 1) != null) {
-                if (!new File(argList.get(argList.indexOf("-trainf") + 1)).exists()) {
+            if (argList.contains("-i") && argList.get(argList.indexOf("-i") + 1) != null) {
+                if (!new File(argList.get(argList.indexOf("-i") + 1)).exists()) {
                     LOG.error("The system is running in tagging mode. No training data provided");
                 }
                 else {
-                    Configuration.trainFileName = argList.get(argList.indexOf("-trainf") + 1);
+                    Configuration.trainFileName = argList.get(argList.indexOf("-i") + 1);
                 }
             }
             // load a properties file
@@ -230,10 +230,22 @@ public class GermaNERMain
             }
             setModelDir();
 
-            File outputFile = new File(modelDirectory, "result.tmp");
+            File outputtmpFile = new File(modelDirectory, "result.tmp");
+            File outputFile = null;
+            if (argList.contains("-o") && argList.get(argList.indexOf("-o") + 1) != null) {
+                if (new File(new File(argList.get(argList.indexOf("-o") + 1)).getParent())
+                        .exists()) {
+                    outputFile = new File(argList.get(argList.indexOf("-o") + 1));
+                }
+                else {
+                    LOG.error("The directory for this result file does not exist. Output file "
+                            + "will be found in the current directury under folder \"output\"");
+                    outputFile = new File(modelDirectory, "result.tsv");
+                }
+            }
 
-            if (Configuration.mode.equals("ft")
-                    && (Configuration.trainFileName == null || Configuration.testFileName == null)) {
+            if (Configuration.mode.equals("ft") && (Configuration.trainFileName == null
+                    || Configuration.testFileName == null)) {
                 LOG.error(usage);
                 System.exit(1);
             }
@@ -247,8 +259,8 @@ public class GermaNERMain
             }
 
             if (Configuration.mode.equals("f") && Configuration.trainFileName != null) {
-                c.normalize(Configuration.trainFileName, Configuration.trainFileName
-                        + ".normalized");
+                c.normalize(Configuration.trainFileName,
+                        Configuration.trainFileName + ".normalized");
                 System.out.println("Start model generation");
                 writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory,
                         language);
@@ -259,8 +271,8 @@ public class GermaNERMain
             }
             else if (Configuration.mode.equals("ft") && Configuration.trainFileName != null
                     && Configuration.testFileName != null) {
-                c.normalize(Configuration.trainFileName, Configuration.trainFileName
-                        + ".normalized");
+                c.normalize(Configuration.trainFileName,
+                        Configuration.trainFileName + ".normalized");
                 c.normalize(Configuration.testFileName, Configuration.testFileName + ".normalized");
                 System.out.println("Start model generation");
                 writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory,
@@ -270,22 +282,22 @@ public class GermaNERMain
                 trainModel(modelDirectory);
                 System.out.println("Start training ---done");
                 System.out.println("Start tagging");
-                classifyTestFile(modelDirectory, new File(Configuration.testFileName
-                        + ".normalized"), outputFile, null, null, language);
+                classifyTestFile(modelDirectory,
+                        new File(Configuration.testFileName + ".normalized"), outputtmpFile, null,
+                        null, language);
                 System.out.println("Start tagging ---done");
 
                 // re-normalized the colon changed text
-                c.deNormalize(outputFile.getAbsolutePath(),
-                        new File(modelDirectory, "result.txt").getAbsolutePath());
+                c.deNormalize(outputtmpFile.getAbsolutePath(), outputFile.getAbsolutePath());
             }
             else {
                 c.normalize(Configuration.testFileName, Configuration.testFileName + ".normalized");
                 System.out.println("Start tagging");
-                classifyTestFile(modelDirectory, new File(Configuration.testFileName
-                        + ".normalized"), outputFile, null, null, language);
+                classifyTestFile(modelDirectory,
+                        new File(Configuration.testFileName + ".normalized"), outputtmpFile, null,
+                        null, language);
                 // re-normalized the colon changed text
-                c.deNormalize(outputFile.getAbsolutePath(),
-                        new File(modelDirectory, "result.txt").getAbsolutePath());
+                c.deNormalize(outputtmpFile.getAbsolutePath(), outputFile.getAbsolutePath());
 
                 System.out.println("Start tagging ---done");
             }
@@ -305,8 +317,8 @@ public class GermaNERMain
     private static void setModelDir()
         throws IOException, FileNotFoundException
     {
-        modelDirectory = (Configuration.modelDir == null || Configuration.modelDir.isEmpty()) ? new File(
-                "output") : new File(Configuration.modelDir);
+        modelDirectory = (Configuration.modelDir == null || Configuration.modelDir.isEmpty())
+                ? new File("output") : new File(Configuration.modelDir);
         modelDirectory.mkdirs();
 
         if (!new File(modelDirectory, "model.jar").exists()) {
@@ -328,8 +340,8 @@ public class GermaNERMain
     {
         prop.load(configFile);
         Configuration.mode = prop.getProperty("mode");
-        Configuration.useClarkPosInduction = prop.getProperty("useClarkPosInduction").equals("1") ? true
-                : false;
+        Configuration.useClarkPosInduction = prop.getProperty("useClarkPosInduction").equals("1")
+                ? true : false;
         Configuration.usePosition = prop.getProperty("usePosition").equals("1") ? true : false;
         Configuration.useFreeBase = prop.getProperty("useFreebase").equals("1") ? true : false;
         Configuration.modelDir = prop.getProperty("modelDir");
