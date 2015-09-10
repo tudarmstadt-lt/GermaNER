@@ -10,7 +10,8 @@ To tag German texts:
 
 ***`java -jar GermaNER-09-09-2015.jar -t YOURTOKENIZEDTESTFILE`***
                               OR
-  ***`java -jar GermaNER-nofb-09-09-2015.jar -t YOURTOKENIZEDTESTFILE`***
+
+***`java -jar GermaNER-nofb-09-09-2015.jar -t YOURTOKENIZEDTESTFILE`***
 
 The tagged document will be under **output/result.tsv**
 
