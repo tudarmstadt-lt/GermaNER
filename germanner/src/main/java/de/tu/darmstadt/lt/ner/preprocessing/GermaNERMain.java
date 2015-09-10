@@ -181,7 +181,7 @@ public class GermaNERMain
     {
         long startTime = System.currentTimeMillis();
         String usage = "USAGE: java -jar germanner.jar [-c config.properties] \n"
-                + " [-i trainingFileName] -t testFileName -o outputFile";
+                + " [-f trainingFileName] -t testFileName -d ModelOutputDirectory-o outputFile";
         long start = System.currentTimeMillis();
 
         ChangeColon c = new ChangeColon();
@@ -207,12 +207,23 @@ public class GermaNERMain
                 Configuration.testFileName = argList.get(argList.indexOf("-t") + 1);
             }
 
-            if (argList.contains("-i") && argList.get(argList.indexOf("-i") + 1) != null) {
-                if (!new File(argList.get(argList.indexOf("-i") + 1)).exists()) {
+            if (argList.contains("-f") && argList.get(argList.indexOf("-f") + 1) != null) {
+                if (!new File(argList.get(argList.indexOf("-f") + 1)).exists()) {
                     LOG.error("The system is running in tagging mode. No training data provided");
                 }
                 else {
-                    Configuration.trainFileName = argList.get(argList.indexOf("-i") + 1);
+                    Configuration.trainFileName = argList.get(argList.indexOf("-f") + 1);
+                }
+            }
+
+            if (argList.contains("-d") && argList.get(argList.indexOf("-d") + 1) != null) {
+                if (new File(argList.get(argList.indexOf("-d") + 1)).exists()) {
+                    Configuration.modelDir = argList.get(argList.indexOf("-d") + 1);
+                }
+                else {
+                    File dir = new File(argList.get(argList.indexOf("-d") + 1));
+                    dir.mkdirs();
+                    Configuration.modelDir = dir.getAbsolutePath();
                 }
             }
             // load a properties file
@@ -224,10 +235,6 @@ public class GermaNERMain
 
         String language = "de";
         try {
-            if (Configuration.testFileName == null) {
-                LOG.error(usage);
-                System.exit(1);
-            }
             setModelDir();
 
             File outputtmpFile = new File(modelDirectory, "result.tmp");
@@ -336,7 +343,22 @@ public class GermaNERMain
         throws IOException
     {
         prop.load(configFile);
-        Configuration.mode = prop.getProperty("mode");
+        if (Configuration.testFileName != null) {
+            if (Configuration.trainFileName != null) {
+                Configuration.mode = "ft";
+            }
+            else {
+                Configuration.mode = "t";
+            }
+        }
+        if (Configuration.trainFileName != null) {
+            if (Configuration.testFileName != null) {
+                Configuration.mode = "ft";
+            }
+            else {
+                Configuration.mode = "f";
+            }
+        }
         Configuration.useClarkPosInduction = prop.getProperty("useClarkPosInduction").equals("1")
                 ? true : false;
         Configuration.usePosition = prop.getProperty("usePosition").equals("1") ? true : false;
