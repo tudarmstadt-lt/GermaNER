@@ -9,9 +9,9 @@ To tag German texts:
 2. Run the jar file as follows (see details [here](https://github.com/tudarmstadt-lt/GermaNER/wiki/User-Guide))
 
 ***`java -jar GermaNER-09-09-2015.jar -t YOURTOKENIZEDTESTFILE`***
-                              OR
+                              OR (if you have less memmory)
 
-***`java -jar GermaNER-nofb-09-09-2015.jar -t YOURTOKENIZEDTESTFILE`***
+***`java -Xmx1300m -jar GermaNER-nofb-09-09-2015.jar -t YOURTOKENIZEDTESTFILE`***
 
 The tagged document will be under **output/result.tsv**
 
