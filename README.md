@@ -23,4 +23,5 @@ The tagged document will be under **output/result.tsv**
 * [User guide](https://github.com/tudarmstadt-lt/GermaNER/wiki/User-Guide)
 * [File format](https://github.com/tudarmstadt-lt/GermaNER/wiki/File-Format)
 * [Features](https://github.com/tudarmstadt-lt/GermaNER/wiki/Features)
+* [Customizing GermaNER](https://github.com/tudarmstadt-lt/GermaNER/wiki/Customizing-GermaNER)
 
