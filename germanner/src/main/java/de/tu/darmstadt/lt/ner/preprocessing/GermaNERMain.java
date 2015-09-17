@@ -49,7 +49,6 @@ import de.tu.darmstadt.lt.ner.annotator.NERAnnotator;
 import de.tu.darmstadt.lt.ner.reader.NERReader;
 import de.tu.darmstadt.lt.ner.writer.EvaluatedNERWriter;
 import de.tu.darmstadt.lt.ner.writer.SentenceToCRFTestFileWriter;
-import de.tudarmstadt.ukp.dkpro.core.snowball.SnowballStemmer;
 
 public class GermaNERMain
 {
@@ -91,7 +90,7 @@ public class GermaNERMain
      * @throws UIMAException
      * @throws IOException
      */
-    public static void writeModel(File NER_TagFile, File modelDirectory, String language)
+    public static void writeModel(File NER_TagFile, File modelDirectory)
         throws UIMAException, IOException
     {
         runPipeline(
@@ -115,14 +114,13 @@ public class GermaNERMain
     }
 
     public static void classifyTestFile(File aClassifierJarPath, File testPosFile, File outputFile,
-            File aNodeResultFile, List<Integer> aSentencesIds, String language)
+            File aNodeResultFile, List<Integer> aSentencesIds)
                 throws UIMAException, IOException
     {
         runPipeline(
                 FilesCollectionReader.getCollectionReaderWithSuffixes(testPosFile.getAbsolutePath(),
                         NERReader.CONLL_VIEW, testPosFile.getName()),
                 createEngine(NERReader.class),
-                createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
                 createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                         aClassifierJarPath.getAbsolutePath() + "/feature.xml",
                         NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
@@ -134,7 +132,7 @@ public class GermaNERMain
     }
 
     public static void classifyTestFile(File testPosFile, File outputFile, File aNodeResultFile,
-            List<Integer> aSentencesIds, String language)
+            List<Integer> aSentencesIds)
                 throws UIMAException, IOException
     {
         initNERModel();
@@ -143,7 +141,6 @@ public class GermaNERMain
                 FilesCollectionReader.getCollectionReaderWithSuffixes(testPosFile.getAbsolutePath(),
                         NERReader.CONLL_VIEW, testPosFile.getName()),
                 createEngine(NERReader.class),
-                createEngine(SnowballStemmer.class, SnowballStemmer.PARAM_LANGUAGE, language),
                 createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                         modelDirectory.getAbsolutePath() + "/feature.xml",
                         NERAnnotator.FEATURE_FILE, modelDirectory.getAbsolutePath(),
@@ -233,7 +230,6 @@ public class GermaNERMain
             ex.printStackTrace();
         }
 
-        String language = "de";
         try {
             setModelDir();
 
@@ -266,8 +262,7 @@ public class GermaNERMain
                 c.normalize(Configuration.trainFileName,
                         Configuration.trainFileName + ".normalized");
                 System.out.println("Start model generation");
-                writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory,
-                        language);
+                writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory);
                 System.out.println("Start model generation -- done");
                 System.out.println("Start training");
                 trainModel(modelDirectory);
@@ -279,8 +274,7 @@ public class GermaNERMain
                         Configuration.trainFileName + ".normalized");
                 c.normalize(Configuration.testFileName, Configuration.testFileName + ".normalized");
                 System.out.println("Start model generation");
-                writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory,
-                        language);
+                writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory);
                 System.out.println("Start model generation -- done");
                 System.out.println("Start training");
                 trainModel(modelDirectory);
@@ -288,7 +282,7 @@ public class GermaNERMain
                 System.out.println("Start tagging");
                 classifyTestFile(modelDirectory,
                         new File(Configuration.testFileName + ".normalized"), outputtmpFile, null,
-                        null, language);
+                        null);
                 System.out.println("Start tagging ---done");
 
                 // re-normalized the colon changed text
@@ -299,7 +293,7 @@ public class GermaNERMain
                 System.out.println("Start tagging");
                 classifyTestFile(modelDirectory,
                         new File(Configuration.testFileName + ".normalized"), outputtmpFile, null,
-                        null, language);
+                        null);
                 // re-normalized the colon changed text
                 c.deNormalize(outputtmpFile.getAbsolutePath(), outputFile.getAbsolutePath());
 
