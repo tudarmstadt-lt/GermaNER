@@ -25,6 +25,8 @@ import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord2Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord3Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.SimilarWord4Extractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.TemplateBinaryFeatureExtractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.TemplateLookupFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.TopicClass1FeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.TopicClass200Feature1Extractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.TopicClass500Feature1Extractor;
@@ -157,7 +159,6 @@ public class GetFeaturesFromConfigFile
                     new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                             new LTCharacterNgramFeatureFunction(fromRight, 0, 2)),
                     new Following(1)));
-
         }
 
         if (aProp.getProperty("useSuffix3Feature").equals("1")) {
@@ -261,6 +262,17 @@ public class GetFeaturesFromConfigFile
         if (aProp.getProperty("useDBPediaPersonLastNameFeature").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new DBNachnamenListFeatureExtractor()));
+        }
+        
+        /** Below are template features. Add them when fitting your need.*/
+        if (aProp.getProperty("lookUpFeature").equals("1")) {
+            germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                    new TemplateLookupFeatureExtractor()));
+        }
+        
+        if (aProp.getProperty("listFeature").equals("1")) {
+            germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                    new TemplateBinaryFeatureExtractor()));
         }
         
         return germaNERfeatures;
