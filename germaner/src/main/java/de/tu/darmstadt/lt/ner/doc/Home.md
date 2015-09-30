@@ -1,0 +1,7 @@
+**GermaNER** is a freely available statistical German Named Entity Tagger based on conditional random fields(CRF). The tagger is trained and evaluated on the **NoSta-D Named Entity** dataset, which was used in the **[GermEval 2014](https://sites.google.com/site/germeval2014ner/)** for named entity recognition. The tagger comes close to the performance of the best (proprietary) system in the competition with 77% F-measure (this is the latest result; the one reported in the paper is 76%) test set performance on the four standard NER classes (PERson, LOCation, ORGanisation and OTHer). 
+
+We describe a range of features and their influence on German NER classification and provide a comparative evaluation and some analysis of the results. The software components, the training data and all data used for feature generation are distributed under permissive licenses, thus this tagger can be used in academic and commercial settings without restrictions or fees. The tagger is available as a command-line tool and as an Apache UIMA component.
+
+If you want to use GermaNER for your research or work, cite [this paper](https://www.lt.informatik.tu-darmstadt.de/fileadmin/user_upload/Group_LangTech/publications/BenikovaEtAl_gscl2015_GermaNER.pdf):
+
+`GermaNER: Free Open German Named Entity Recognition Tool, Darina Benikova,Seid Muhie Yimam, Prabhakaran Santhanam and Chris Biemann, In: International Conference of the German Society for Computational Linguistics and Language Technology (GSCL-2015), 2015.`
