@@ -3,7 +3,7 @@ How to run GermaNER:
 ###  From Commandline
 
 * Download the jar file from [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/GermaNER-09-09-2015.jar) or if you don't have enough memory, use GermaNER without freebase features from [here] (https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/GermaNER-nofb-09-09-2015.jar) -> the corresponding configuration file is found [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/config-nofreebase.properties)
-* * Download the configuration file from [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/config.properties)
+* Download the configuration file from [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/config.properties)
 * Download a test file [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/test_de.tsv)
 * Download a training file [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/full_train.tsv)
 * To test a file that was trained on our model, run as follows:
