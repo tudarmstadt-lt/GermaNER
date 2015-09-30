@@ -9,7 +9,7 @@ This feature group consists of the first and last character uni-, bi- and trigra
 i.e.. prefixes and suffixes, time-shifted from -2 to +2. 
 
 ### Character Category Pattern
-Similarly, character category pattern features, which are extracted from the current token based on unicode categories from clearTK are used, and were found to be an influential feature for the system. 
+Similarly, character category pattern features, which are extracted from the current token based on unicode categories from clearTK (Bethard et al., 2014) are used, and were found to be an influential feature for the system. 
 
 ### Word Feature
 Further, we use the words themselves as features in a window between -2 and 2
