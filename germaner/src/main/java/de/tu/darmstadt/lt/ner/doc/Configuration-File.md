@@ -1,3 +1,5 @@
+Hi, just trying the edit
+
 The [configuration file](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/config.properties) is used to configure different settings and feature options. 
 
 Below are most important configuration elements.
