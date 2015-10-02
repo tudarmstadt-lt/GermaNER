@@ -1,5 +1,5 @@
 ---LICENSE---
-GermaNER is distributed under Apache Software license. The licenses of its compenents are mixed licensed and are individually listed in Data/Licenses.
+GermaNER is licensed under ASL 2.0 and other lenient licenses, allowing its use for academic and commercial purposes without restrictions. The licenses of its compenents are mixed licensed and are individually listed in Data/Licenses.
 
 Apache License
 
