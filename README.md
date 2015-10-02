@@ -1,5 +1,7 @@
 #[GermaNER](https://github.com/tudarmstadt-lt/GermaNER/blob/master/germaner/src/main/java/de/tu/darmstadt/lt/ner/doc/Home.md) - Free Open German Named Entity Recognition Tool
 
+GermaNER is licensed under ASL 2.0 and other lenient licenses, allowing its use for academic and commercial purposes without restrictions. 
+
 ##GermaNER in three lines
 
 To tag German texts:
