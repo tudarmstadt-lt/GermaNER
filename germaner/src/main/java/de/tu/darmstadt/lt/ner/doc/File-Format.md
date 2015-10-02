@@ -1,5 +1,6 @@
 # Training data
 
+
 The training data should be singe TAB separated, where the first column is the word, and the last column (columns in between will be ignored) is the class of the word. Sentences are marked by a blank new line. The builtin GermaNER is based on the **[GermEval 2014](https://sites.google.com/site/germeval2014ner/)** dataset and where only 4 named entity classes, namely **`ORG`**, **`PER`**, **`LOC`**, and **`OTH`** are used.
 The following is an example of how the training file looks like (tab separated token and lables, sentences separated by new line). The full training file is found [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/full_train.tsv)
 
