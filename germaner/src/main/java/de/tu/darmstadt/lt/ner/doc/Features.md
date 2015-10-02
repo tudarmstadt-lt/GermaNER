@@ -1,7 +1,6 @@
 The creation and selection of features is a crucial part in the development of NER systems. The creation
 of all included features will be presented in feature groups, with explanation of single features if this can be switched off automatically.
-The description on how to switch on and off single features can be found in [User Guide](https://github.com/tudarmstadt-lt/GermaNER/wiki/User-Guide).
-//TODO: Example for every feature
+The description on how to switch on and off single features can be found in [User Guide](https://github.com/tudarmstadt-lt/GermaNER/blob/master/germaner/src/main/java/de/tu/darmstadt/lt/ner/doc/User-Guide.md).
 
 ## Character and Word Features
 ### N-gram Features
