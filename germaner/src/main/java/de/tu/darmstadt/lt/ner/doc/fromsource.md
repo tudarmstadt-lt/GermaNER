@@ -7,7 +7,7 @@
 
 Then call the method as follows on your test file:
 
-classifyTestFile(testFile, outputFile, null, null)
+***classifyTestFile(testFile, outputFile, null, null)***
 
 The first argument is the test file in the Test Data format: (https://github.com/tudarmstadt-lt/GermaNER/blob/master/germaner/src/main/java/de/tu/darmstadt/lt/ner/doc/File-Format.md#test-data)
 
