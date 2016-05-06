@@ -3,7 +3,7 @@
  We don't have it yet in maven central but it is easier to add the jar in your application. 
  Once you have the jar added to your application, import the following
 
-*de.tu.darmstadt.lt.ner.preprocessing.GermaNERMain*
+***de.tu.darmstadt.lt.ner.preprocessing.GermaNERMain***
 
 Then call the method as follows on your test file:
 
