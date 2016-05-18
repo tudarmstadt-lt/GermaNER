@@ -14,6 +14,7 @@ The first argument is the test file in the Test Data format: (https://github.com
 The second argument is the output file (testFile + prediction)
 
 The last argument is the lanaguage, in this case, use **de** for German
+
 The the third and fourth arguments are irrelevant and should be set **null**
 
 Note: If you have less memory use the jar file without the freebase features from [here] (https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/GermaNER-nofb-09-09-2015.jar)
