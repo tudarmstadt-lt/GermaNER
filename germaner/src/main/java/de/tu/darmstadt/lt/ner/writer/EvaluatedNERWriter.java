@@ -74,7 +74,7 @@ public class EvaluatedNERWriter
         throws AnalysisEngineProcessException
     {
         try {
-            FileWriter outputWriter = new FileWriter(OutputFile);
+            FileWriter outputWriter = new FileWriter(OutputFile, true);
             Map<Sentence, Collection<NamedEntity>> sentencesNER = JCasUtil.indexCovered(jCas,
                     Sentence.class, NamedEntity.class);
 

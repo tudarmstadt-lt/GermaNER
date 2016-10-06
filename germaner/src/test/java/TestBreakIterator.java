@@ -15,22 +15,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
+import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
+import static org.apache.uima.fit.factory.CollectionReaderFactory.createReader;
+import static org.apache.uima.fit.pipeline.SimplePipeline.runPipeline;
+
+import java.io.IOException;
+
+
+import org.apache.uima.UIMAException;
+import org.apache.uima.analysis_engine.AnalysisEngine;
+import org.apache.uima.collection.CollectionReader;
 import com.ibm.icu.text.BreakIterator;
+
+import de.tu.darmstadt.lt.ner.reader.NewsleakCSVReader;
+import de.tu.darmstadt.lt.ner.writer.TokensPerSentenceWriter;
+import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 
 public class TestBreakIterator
 {
-
-    public static void main(String args[])
+    public static void main(String args[]) throws UIMAException, IOException
     {
-
-            String stringToExamine = "This is the man. That is the woman. Both are fat";
-            // print each word in order
-            BreakIterator boundary = BreakIterator.getWordInstance();
-            boundary.setText(stringToExamine);
-            printEachForward(boundary, stringToExamine);
-            // print each sentence in reverse order
-            //boundary = BreakIterator.getSentenceInstance(Locale.US);
-           // boundary.setText(stringToExamine);
+    	CollectionReader reader = createReader(NewsleakCSVReader.class,
+    			NewsleakCSVReader.PARAM_DIRECTORY_NAME, "/home/seid/Desktop/tmp/test.csv");
+    	 AnalysisEngine segmenter = createEngine(OpenNlpSegmenter.class, OpenNlpSegmenter.PARAM_LANGUAGE, "en");	
+    	AnalysisEngine tpsWriter = createEngine(TokensPerSentenceWriter.class);
+       runPipeline(reader, segmenter, tpsWriter);
     }
 
     public static void printEachForward(BreakIterator boundary, String source) {
@@ -41,6 +50,5 @@ public class TestBreakIterator
              System.out.print(source.substring(start,end));
         }
     }
-
 
 }

@@ -136,21 +136,37 @@
 			</artifactId>
 		</dependency>
 
+<dependency>
+    <groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+    <artifactId>de.tudarmstadt.ukp.dkpro.core.opennlp-asl</artifactId>
+</dependency>
 
 
 
 
-		<!-- USE PRETREE for unsupos feature suggestion 
+		<!-- USE PRETREE for unsupos feature suggestion <dependency> <groupId>de.uni_leipzig.asv.toolbox</groupId> 
+			<artifactId>de.uni_leipzig.asv.toolbox.pretree</artifactId> <version>1.0</version> 
+			</dependency> -->
 		<dependency>
 			<groupId>de.uni_leipzig.asv.toolbox</groupId>
-			<artifactId>de.uni_leipzig.asv.toolbox.pretree</artifactId>
+			<artifactId>toolbox-utils</artifactId>
 			<version>1.0</version>
-		</dependency> -->
-		<dependency>
-    			<groupId>de.uni_leipzig.asv.toolbox</groupId>
-    			<artifactId>toolbox-utils</artifactId>
-   			<version>1.0</version>
 		</dependency>
+
+		<!-- Open CSV reader -->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>3.7</version>
+		</dependency>
+		
+		<!-- 
+		<dependency>
+			<artifactId>lt.seg</artifactId>
+		    <groupId>de.tudarmstadt</groupId>
+	 	   <version>0.7.0</version>
+		</dependency>
+		 -->
 	</dependencies>
 	<build>
 		<finalName>germanner</finalName>

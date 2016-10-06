@@ -18,6 +18,7 @@
 package de.tu.darmstadt.lt.ner.preprocessing;
 
 import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
+import static org.apache.uima.fit.factory.CollectionReaderFactory.createReader;
 import static org.apache.uima.fit.pipeline.SimplePipeline.runPipeline;
 
 import java.io.File;
@@ -26,6 +27,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -34,6 +36,8 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.apache.uima.UIMAException;
 import org.apache.uima.UIMAFramework;
+import org.apache.uima.analysis_engine.AnalysisEngine;
+import org.apache.uima.collection.CollectionReader;
 import org.apache.uima.fit.factory.JCasFactory;
 import org.apache.uima.fit.pipeline.SimplePipeline;
 import org.apache.uima.resource.ResourceInitializationException;
@@ -47,8 +51,13 @@ import org.cleartk.util.cr.FilesCollectionReader;
 
 import de.tu.darmstadt.lt.ner.annotator.NERAnnotator;
 import de.tu.darmstadt.lt.ner.reader.NERReader;
+import de.tu.darmstadt.lt.ner.reader.NewsleakCSVReader;
+import de.tu.darmstadt.lt.ner.reader.NewsleakInit;
 import de.tu.darmstadt.lt.ner.writer.EvaluatedNERWriter;
+import de.tu.darmstadt.lt.ner.writer.NewsleakNERWriter;
 import de.tu.darmstadt.lt.ner.writer.SentenceToCRFTestFileWriter;
+import de.tu.darmstadt.lt.ner.writer.TokensPerSentenceWriter;
+import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 
 public class GermaNERMain
 {
@@ -150,6 +159,31 @@ public class GermaNERMain
                         EvaluatedNERWriter.IS_GOLD, false, EvaluatedNERWriter.NOD_OUTPUT_FILE,
                         aNodeResultFile, EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
     }
+    
+    public static void classifyNewsleakFile(File aClassifierJarPath, File testPosFile, File outputFile,
+            File aNodeResultFile, List<Integer> aSentencesIds)
+                throws UIMAException, IOException
+    {
+     
+    	// clean it as we append contents from different CAS
+		if (outputFile.exists()) {
+			PrintWriter pw = new PrintWriter(outputFile);
+			pw.close();
+		}
+
+    	CollectionReader reader = createReader(NewsleakCSVReader.class,
+    			NewsleakCSVReader.PARAM_DIRECTORY_NAME, testPosFile); //"/home/seid/Desktop/tmp/test.csv"
+    	 AnalysisEngine newsleakInit = createEngine(NewsleakInit.class);	
+    	 AnalysisEngine segmenter = createEngine(OpenNlpSegmenter.class, OpenNlpSegmenter.PARAM_LANGUAGE, "en");	
+       
+       runPipeline(reader,segmenter,newsleakInit,
+               createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                       aClassifierJarPath.getAbsolutePath() + "/feature.xml",
+                       NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
+                       GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
+                       aClassifierJarPath.getAbsolutePath() + "/model.jar"),
+               createEngine(NewsleakNERWriter.class, NewsleakNERWriter.OUTPUT_FILE, outputFile));
+    }
 
     /**
      * This is a helper method, can be called from NoD. If you use a DKPro tokenizer during
@@ -178,7 +212,7 @@ public class GermaNERMain
     {
         long startTime = System.currentTimeMillis();
         String usage = "USAGE: java -jar germanner.jar [-c config.properties] \n"
-                + " [-f trainingFileName] -t testFileName -d ModelOutputDirectory-o outputFile";
+                + " [-f trainingFileName] -t testFileName -d ModelOutputDirectory -o outputFile";
         long start = System.currentTimeMillis();
 
         ChangeColon c = new ChangeColon();
@@ -280,7 +314,7 @@ public class GermaNERMain
                 trainModel(modelDirectory);
                 System.out.println("Start training ---done");
                 System.out.println("Start tagging");
-                classifyTestFile(modelDirectory,
+                classifyNewsleakFile(modelDirectory,
                         new File(Configuration.testFileName + ".normalized"), outputtmpFile, null,
                         null);
                 System.out.println("Start tagging ---done");
@@ -291,7 +325,7 @@ public class GermaNERMain
             else {
                 c.normalize(Configuration.testFileName, Configuration.testFileName + ".normalized");
                 System.out.println("Start tagging");
-                classifyTestFile(modelDirectory,
+                classifyNewsleakFile(modelDirectory,
                         new File(Configuration.testFileName + ".normalized"), outputtmpFile, null,
                         null);
                 // re-normalized the colon changed text
@@ -312,7 +346,7 @@ public class GermaNERMain
 
     }
 
-    private static void setModelDir()
+    public static void setModelDir()
         throws IOException, FileNotFoundException
     {
         modelDirectory = (Configuration.modelDir == null || Configuration.modelDir.isEmpty())
