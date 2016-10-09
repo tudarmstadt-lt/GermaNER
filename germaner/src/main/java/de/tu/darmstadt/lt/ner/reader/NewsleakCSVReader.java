@@ -4,11 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.uima.UimaContext;
 import org.apache.uima.collection.CollectionException;
 import org.apache.uima.fit.component.JCasCollectionReader_ImplBase;
@@ -21,6 +18,7 @@ import org.apache.uima.util.ProgressImpl;
 import com.opencsv.CSVReader;
 
 import de.tu.darmstadt.lt.ner.types.DocumentNumber;
+import de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.Sentence;
 
 public class NewsleakCSVReader extends JCasCollectionReader_ImplBase {
 
@@ -64,15 +62,21 @@ public class NewsleakCSVReader extends JCasCollectionReader_ImplBase {
 		while ((nextLine = reader.readNext()) != null) {
 			String text = nextLine[1];
 			String dcNum = nextLine[0];
-			DocumentNumber dn = new DocumentNumber(j, begin, begin + text.length());
+			DocumentNumber dn = new DocumentNumber(j, begin, begin + text.length()-1);
 			dn.setNumber(Integer.valueOf(dcNum));
 			dn.setText(text);
 			dn.addToIndexes();
-			sb.append(text + "\n");
+			createSentence(j, begin, begin + text.length()-1);
+			sb.append(text );
 			begin = begin + text.length();
 		}
 		hasNext = false;
 		j.setDocumentText(sb.toString());
 	}
 
+	protected Sentence createSentence(final JCas aJCas, final int aBegin, final int aEnd) {
+		Sentence seg = new Sentence(aJCas, aBegin, aEnd);
+		seg.addToIndexes(aJCas);
+		return seg;
+	}
 }

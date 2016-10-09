@@ -57,6 +57,7 @@ import de.tu.darmstadt.lt.ner.writer.EvaluatedNERWriter;
 import de.tu.darmstadt.lt.ner.writer.NewsleakNERWriter;
 import de.tu.darmstadt.lt.ner.writer.SentenceToCRFTestFileWriter;
 import de.tu.darmstadt.lt.ner.writer.TokensPerSentenceWriter;
+import de.tudarmstadt.ukp.dkpro.core.io.text.TextReader;
 import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 
 public class GermaNERMain
@@ -160,21 +161,21 @@ public class GermaNERMain
                         aNodeResultFile, EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
     }
     
-    public static void classifyNewsleakFile(File aClassifierJarPath, File testPosFile, File outputFile,
-            File aNodeResultFile, List<Integer> aSentencesIds)
+    public static void classifyNewsleakFile(File aClassifierJarPath, File testPosFile, File outputFolder)
                 throws UIMAException, IOException
     {
      
-    	// clean it as we append contents from different CAS
+/*    	// clean it as we append contents from different CAS
 		if (outputFile.exists()) {
 			PrintWriter pw = new PrintWriter(outputFile);
 			pw.close();
-		}
+		}*/
 
     	CollectionReader reader = createReader(NewsleakCSVReader.class,
     			NewsleakCSVReader.PARAM_DIRECTORY_NAME, testPosFile); //"/home/seid/Desktop/tmp/test.csv"
     	 AnalysisEngine newsleakInit = createEngine(NewsleakInit.class);	
-    	 AnalysisEngine segmenter = createEngine(OpenNlpSegmenter.class, OpenNlpSegmenter.PARAM_LANGUAGE, "en");	
+    	 AnalysisEngine segmenter = createEngine(OpenNlpSegmenter.class, 
+    			 OpenNlpSegmenter.PARAM_LANGUAGE, "en", OpenNlpSegmenter.PARAM_WRITE_SENTENCE,false);	
        
        runPipeline(reader,segmenter,newsleakInit,
                createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
@@ -182,7 +183,7 @@ public class GermaNERMain
                        NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
                        GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
                        aClassifierJarPath.getAbsolutePath() + "/model.jar"),
-               createEngine(NewsleakNERWriter.class, NewsleakNERWriter.OUTPUT_FILE, outputFile));
+               createEngine(NewsleakNERWriter.class, NewsleakNERWriter.OUTPUT_DIR, outputFolder));
     }
 
     /**
@@ -216,7 +217,6 @@ public class GermaNERMain
         long start = System.currentTimeMillis();
 
         ChangeColon c = new ChangeColon();
-
         List<String> argList = Arrays.asList(arg);
         try {
 
@@ -267,7 +267,6 @@ public class GermaNERMain
         try {
             setModelDir();
 
-            File outputtmpFile = new File(modelDirectory, "result.tmp");
             File outputFile = null;
             if (argList.contains("-o") && argList.get(argList.indexOf("-o") + 1) != null) {
                 outputFile = new File(argList.get(argList.indexOf("-o") + 1));
@@ -315,21 +314,19 @@ public class GermaNERMain
                 System.out.println("Start training ---done");
                 System.out.println("Start tagging");
                 classifyNewsleakFile(modelDirectory,
-                        new File(Configuration.testFileName + ".normalized"), outputtmpFile, null,
-                        null);
+                        new File(Configuration.testFileName + ".normalized"), outputFile);
                 System.out.println("Start tagging ---done");
 
                 // re-normalized the colon changed text
-                c.deNormalize(outputtmpFile.getAbsolutePath(), outputFile.getAbsolutePath());
+                c.deNormalize(outputFile.getAbsolutePath(), outputFile.getAbsolutePath());
             }
             else {
                 c.normalize(Configuration.testFileName, Configuration.testFileName + ".normalized");
                 System.out.println("Start tagging");
                 classifyNewsleakFile(modelDirectory,
-                        new File(Configuration.testFileName + ".normalized"), outputtmpFile, null,
-                        null);
+                        new File(Configuration.testFileName + ".normalized"), outputFile);
                 // re-normalized the colon changed text
-                c.deNormalize(outputtmpFile.getAbsolutePath(), outputFile.getAbsolutePath());
+                 // c.deNormalize(outputFile.getAbsolutePath(), outputFile.getAbsolutePath());
 
                 System.out.println("Start tagging ---done");
             }
