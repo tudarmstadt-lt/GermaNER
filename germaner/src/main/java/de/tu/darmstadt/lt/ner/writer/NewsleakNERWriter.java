@@ -22,8 +22,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NavigableMap;
+import java.util.TreeMap;
+
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.fit.component.JCasConsumer_ImplBase;
 import org.apache.uima.fit.descriptor.ConfigurationParameter;
@@ -53,11 +57,14 @@ public class NewsleakNERWriter extends JCasConsumer_ImplBase {
 			FileWriter entDocOffsets = new FileWriter(new File(OutputFolder, "entDocOffsets.tsv"));
 			FileWriter docEntity = new FileWriter(new File(OutputFolder, "docEntity.tsv"));
 			FileWriter entity = new FileWriter(new File(OutputFolder, "entity.tsv"));
+
+			FileWriter documentRelationship = new FileWriter(new File(OutputFolder, "documentRelationship.tsv"));
+			FileWriter relationship = new FileWriter(new File(OutputFolder, "relationship.tsv"));
+
 			int sentBegin = 0;
 			int begin = 0, end = 0;
 			for (DocumentNumber dn : JCasUtil.select(jCas, DocumentNumber.class)) {
-
-				Map<Entity, Integer> entityFreqPerDoc = new HashMap<>();
+				NavigableMap<Entity, Integer> entityFreqPerDoc = new TreeMap<>();
 				String prevNeType = "O";
 				StringBuffer namedEntity = new StringBuffer();
 				sentBegin = dn.getBegin();
@@ -94,9 +101,11 @@ public class NewsleakNERWriter extends JCasConsumer_ImplBase {
 					}
 				}
 
-				for (Entity ent : entityFreqPerDoc.keySet()) {
-					docEntity.write(dn.getNumber() + TAB + ent.getId() + TAB + entityFreqPerDoc.get(ent) + LF);
-					ent.setFrequency(ent.getFrequency() + entityFreqPerDoc.get(ent));
+				Map<Relation, Integer> relationFreqPerDoc = createDocEntRel(docEntity, dn, entityFreqPerDoc);
+				for (Relation rel : relationFreqPerDoc.keySet()) {
+					documentRelationship
+							.write(dn.getNumber() + TAB + rel.getId() + TAB + relationFreqPerDoc.get(rel) + LF);
+					rel.setFrequency(rel.getFrequency() + relationFreqPerDoc.get(rel));
 				}
 			}
 
@@ -104,12 +113,41 @@ public class NewsleakNERWriter extends JCasConsumer_ImplBase {
 				entity.write(ent.getId() + TAB + ent.getName() + TAB + ent.getType() + TAB + ent.getFrequency() + TAB
 						+ false + LF);
 			}
+
+			for (Relation rel : rels) {
+				relationship.write(rel.getId() + TAB + rel.getEntity1().getId() + TAB + rel.getEntity2().getId() + TAB
+						+ rel.getFrequency() + TAB + false + LF);
+			}
 			entDocOffsets.close();
 			docEntity.close();
 			entity.close();
+			documentRelationship.close();
+			relationship.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private Map<Relation, Integer> createDocEntRel(FileWriter docEntity, DocumentNumber dn,
+			NavigableMap<Entity, Integer> entityFreqPerDoc) throws IOException {
+		Map<Relation, Integer> relationFreqPerDoc = new HashMap<>();
+		Entity lastEnt = entityFreqPerDoc.lastKey();
+		for (Entity ent1 : entityFreqPerDoc.keySet()) {
+			docEntity.write(dn.getNumber() + TAB + ent1.getId() + TAB + entityFreqPerDoc.get(ent1) + LF);
+			ent1.setFrequency(ent1.getFrequency() + entityFreqPerDoc.get(ent1));
+			// relations
+			Map<Entity, Integer> entity2FreqPerDoc = entityFreqPerDoc.subMap(ent1, false, lastEnt, true);
+			for (Entity ent2 : entity2FreqPerDoc.keySet()) {
+				Relation rel = addRelation(ent1, ent2);
+				if (relationFreqPerDoc.keySet().contains(rel)) {
+					relationFreqPerDoc.put(rel, relationFreqPerDoc.get(rel) + 1);
+				} else {
+					relationFreqPerDoc.put(rel, 1);
+				}
+			}
+		}
+		
+		return relationFreqPerDoc;
 	}
 
 	private void writeEntDocOffsets(FileWriter entDocOffsets, int begin, int end, DocumentNumber dn,
@@ -132,6 +170,20 @@ public class NewsleakNERWriter extends JCasConsumer_ImplBase {
 			newEnt.setId(ents.size() + 1);
 			ents.add(newEnt);
 			return newEnt;
+		}
+	}
+
+	private Relation addRelation(Entity ent1, Entity ent2) {
+		Relation newRel = new Relation(ent1, ent2);
+		Relation newRelRev = new Relation(ent2, ent1);
+		if (rels.contains(newRel)) {
+			return rels.get(rels.indexOf(newRel));
+		} else if (rels.contains(newRelRev)) {
+			return rels.get(rels.indexOf(newRel));
+		} else {
+			newRel.setId(rels.size() + 1);
+			rels.add(newRel);
+			return newRel;
 		}
 	}
 

@@ -1,10 +1,11 @@
 package de.tu.darmstadt.lt.ner.model;
 
-public class Entity {
+public class Entity implements Comparable<Entity> {
 
 	public Entity() {
 
 	}
+
 	public Entity(String name, String type) {
 		this.name = name;
 		this.type = type;
@@ -87,6 +88,9 @@ public class Entity {
 		return true;
 	}
 
+	@Override
+	public int compareTo(Entity o) {
+		return this.name.compareTo(o.name);
+	}
 
-	
 }
