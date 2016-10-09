@@ -92,12 +92,12 @@
 		<dependency>
 			<groupId>org.cleartk</groupId>
 			<artifactId>cleartk-ml-crfsuite</artifactId>
-			<version>2.0.0</version>
+			<version>2.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cleartk</groupId>
 			<artifactId>cleartk-ml</artifactId>
-			<version>2.0.0</version>
+			<version>2.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cleartk</groupId>
@@ -201,7 +201,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>de.tu.darmstadt.lt.ner.preprocessing.TrainNERModel</mainClass>
+							<mainClass>de.tu.darmstadt.lt.ner.preprocessing.GermaNERMain</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -214,7 +214,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>de.tu.darmstadt.lt.ner.preprocessing.TrainNERModel</mainClass>
+							<mainClass>de.tu.darmstadt.lt.ner.preprocessing.GermaNERMain</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

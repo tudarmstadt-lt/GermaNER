@@ -107,6 +107,10 @@ public class NewsleakNERWriter extends JCasConsumer_ImplBase {
 							.write(dn.getNumber() + TAB + rel.getId() + TAB + relationFreqPerDoc.get(rel) + LF);
 					rel.setFrequency(rel.getFrequency() + relationFreqPerDoc.get(rel));
 				}
+				
+				if(dn.getNumber()%100==0){
+					System.out.println("Entit/relation procesed for "+ dn.getNumber()+" documents ");
+				}
 			}
 
 			for (Entity ent : ents) {
