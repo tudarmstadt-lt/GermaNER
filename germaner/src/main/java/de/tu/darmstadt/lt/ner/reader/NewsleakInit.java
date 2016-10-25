@@ -68,6 +68,7 @@ public class NewsleakInit
     public void process(JCas jcas)
         throws AnalysisEngineProcessException
     {
+    	
         if (Configuration.useFreeBase) {
             try {
                 useFreaBase();

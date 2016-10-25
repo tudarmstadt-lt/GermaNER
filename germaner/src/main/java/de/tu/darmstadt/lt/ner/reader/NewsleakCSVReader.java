@@ -49,7 +49,6 @@ public class NewsleakCSVReader extends JCasCollectionReader_ImplBase {
 
 		return hasNext;
 	}
-
 	@Override
 	public Progress[] getProgress() {
 		return new Progress[] { new ProgressImpl(1, 1, Progress.ENTITIES) };
@@ -59,9 +58,17 @@ public class NewsleakCSVReader extends JCasCollectionReader_ImplBase {
 	public void getNext(JCas j) throws IOException, CollectionException {
 		StringBuffer sb = new StringBuffer();
 		int begin = 0;
+		String prev = "";
 		while ((nextLine = reader.readNext()) != null) {
-			String text = nextLine[1];
+			if(nextLine[0].isEmpty()){
+				continue;
+			}
+			try{
 			String dcNum = nextLine[0];
+			System.out.println("Line="+ dcNum);
+			String text = nextLine[1];
+			prev = text;
+			System.out.println("yes");
 			DocumentNumber dn = new DocumentNumber(j, begin, begin + text.length()-1);
 			dn.setNumber(Integer.valueOf(dcNum));
 			dn.setText(text);
@@ -69,6 +76,11 @@ public class NewsleakCSVReader extends JCasCollectionReader_ImplBase {
 			createSentence(j, begin, begin + text.length()-1);
 			sb.append(text );
 			begin = begin + text.length();
+			}
+			catch (Exception e){
+				System.out.println("problem");
+				System.out.println(prev);
+			}
 		}
 		hasNext = false;
 		j.setDocumentText(sb.toString());

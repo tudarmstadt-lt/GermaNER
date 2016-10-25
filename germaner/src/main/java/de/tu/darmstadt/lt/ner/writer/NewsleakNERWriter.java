@@ -22,7 +22,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
@@ -47,8 +46,8 @@ public class NewsleakNERWriter extends JCasConsumer_ImplBase {
 	public static final String LF = System.getProperty("line.separator");
 	public static final String TAB = "\t";
 
-	List<Entity> ents = new ArrayList<Entity>(); // All entities
-	List<Relation> rels = new ArrayList<Relation>();
+	static List<Entity> ents = new ArrayList<Entity>(); // All entities
+	static List<Relation> rels = new ArrayList<Relation>();
 
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {

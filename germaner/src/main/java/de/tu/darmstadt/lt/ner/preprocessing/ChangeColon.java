@@ -32,15 +32,19 @@ public class ChangeColon
     {
         BufferedReader br = new BufferedReader(new FileReader(file1));
         BufferedWriter bw = new BufferedWriter(new FileWriter(file2));
-        String input, output = null;
+        String input;
         while ((input = br.readLine()) != null) {
             if (input.contains(":")) {
-                output = input.replaceAll(":", "__COLON__");
+            	input = input.replaceAll(":", "__COLON__");
             }
-            else {
-                output = input;
+             if (input.contains("\\")) {
+            	 input = input.replaceAll("\\\\", "__BACKSLASH__");
             }
-            bw.write(output + "\n");
+             /*if (input.contains("/")) {
+            	 input = input.replaceAll("/", "__FORWARDSLASH__");
+             }
+*/
+            bw.write(input + "\n");
         }
         bw.flush();
         bw.close();
@@ -52,15 +56,18 @@ public class ChangeColon
     {
         BufferedReader br = new BufferedReader(new FileReader(file1));
         BufferedWriter bw = new BufferedWriter(new FileWriter(file2));
-        String input, output = null;
+        String input;
         while ((input = br.readLine()) != null) {
             if (input.contains("__COLON__")) {
-                output = input.replaceAll("__COLON__", ":");
+            	input = input.replaceAll("__COLON__", ":");
             }
-            else {
-                output = input;
+             if (input.contains("__BACKSLASH__")) {
+            	 input = input.replaceAll("__BACKSLASH__", "\\\\");
             }
-            bw.write(output + "\n");
+           /*  if (input.contains("__FORWARDSLASH__")) {
+            	 input = input.replaceAll("__FORWARDSLASH__", "/");
+             }*/
+            bw.write(input + "\n");
         }
         bw.flush();
         bw.close();

@@ -40,13 +40,15 @@ import de.tu.darmstadt.lt.ner.types.DocumentNumber;
 import de.tudarmstadt.ukp.dkpro.core.api.ner.type.NamedEntity;
 
 @SuppressWarnings("unused")
-public class NewsleakNERWriterPerCasNELists extends JCasConsumer_ImplBase {
+public class NewsleakNERWriterPerCasOnlyNE extends JCasConsumer_ImplBase {
 	public static final String OUTPUT_DIR = "OutputFile";
 	@ConfigurationParameter(name = OUTPUT_DIR, mandatory = true)
 	private File OutputFolder = null;
 
 	public static final String LF = System.getProperty("line.separator");
 	public static final String TAB = "\t";
+
+	Map<String, Integer> entIds = new HashMap<>();
 
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
@@ -60,16 +62,18 @@ public class NewsleakNERWriterPerCasNELists extends JCasConsumer_ImplBase {
 
 			String prevNeType = "O";
 			StringBuffer namedEntity = new StringBuffer();
-			List<String> ents = new ArrayList<>();
 			for (NamedEntity ne : JCasUtil.select(jCas, NamedEntity.class)) {
 				if (ne.getValue().equals("O")) {
 					if (prevNeType.equals("O")) {
 						continue;
 					} else {
-						if (namedEntity.length() < 3)
+						if(namedEntity.length()<3)
 							continue;
-						writeEntities(namedEntity.toString(), prevNeType.substring(2), dn.getNumber(), ents, begin,
-								end);
+						entIds.putIfAbsent(namedEntity.toString().toLowerCase() + prevNeType.substring(2),
+								entIds.size() + 1);
+						int id = entIds.get(namedEntity.toString().toLowerCase() + prevNeType.substring(2));
+						entity.write(id + TAB + namedEntity + TAB + prevNeType.substring(2) + TAB + begin + TAB + end
+								+ TAB + dn.getNumber() + LF);
 						prevNeType = ne.getValue();
 						namedEntity = new StringBuffer();
 					}
@@ -83,9 +87,13 @@ public class NewsleakNERWriterPerCasNELists extends JCasConsumer_ImplBase {
 					end = ne.getEnd();
 					namedEntity.append(" " + ne.getCoveredText());
 				} else {
-					if (namedEntity.length() < 3)
+					if(namedEntity.length()<3)
 						continue;
-					writeEntities(namedEntity.toString(), prevNeType.substring(2), dn.getNumber(), ents, begin, end);
+					entIds.putIfAbsent(namedEntity.toString().toLowerCase() + prevNeType.substring(2),
+							entIds.size() + 1);
+					int id = entIds.get(namedEntity.toString().toLowerCase() + prevNeType.substring(2));
+					entity.write(id + TAB + namedEntity + TAB + prevNeType.substring(2) + TAB + begin + TAB + end + TAB
+							+ dn.getNumber() + LF);
 					prevNeType = ne.getValue();
 					namedEntity = new StringBuffer();
 					namedEntity.append(ne.getCoveredText());
@@ -94,20 +102,11 @@ public class NewsleakNERWriterPerCasNELists extends JCasConsumer_ImplBase {
 
 				}
 			}
-
-			if (ents.size() > 1)
-				entity.write(dn.getNumber() + TAB + StringUtils.join(ents, "%,%") + LF);
 			entity.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
-	static void writeEntities(String namedEntity, String type, long dn, List<String> entity, int begin, int end)
-			throws IOException {
-		if (StringUtils.isAlphanumeric(namedEntity.replace(" ", "").replace("-", "").replace(";", ""))) {
-			entity.add(namedEntity + "%#%" + type + "%#%" + begin + "%#%" + end);
-		}
-	}
+	
 
 }

@@ -18,7 +18,10 @@
 package de.tu.darmstadt.lt.ner.preprocessing;
 
 import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngine;
+import static org.apache.uima.fit.factory.AnalysisEngineFactory.createEngineDescription;
 import static org.apache.uima.fit.factory.CollectionReaderFactory.createReader;
+
+import static org.apache.uima.fit.factory.CollectionReaderFactory.createReaderDescription;
 import static org.apache.uima.fit.pipeline.SimplePipeline.runPipeline;
 
 import java.io.File;
@@ -37,7 +40,10 @@ import org.apache.log4j.Logger;
 import org.apache.uima.UIMAException;
 import org.apache.uima.UIMAFramework;
 import org.apache.uima.analysis_engine.AnalysisEngine;
+import org.apache.uima.analysis_engine.AnalysisEngineDescription;
 import org.apache.uima.collection.CollectionReader;
+import org.apache.uima.collection.CollectionReaderDescription;
+import org.apache.uima.collection.metadata.CpeDescriptorException;
 import org.apache.uima.fit.factory.JCasFactory;
 import org.apache.uima.fit.pipeline.SimplePipeline;
 import org.apache.uima.resource.ResourceInitializationException;
@@ -47,17 +53,22 @@ import org.cleartk.ml.crfsuite.CrfSuiteStringOutcomeDataWriter;
 import org.cleartk.ml.jar.DefaultSequenceDataWriterFactory;
 import org.cleartk.ml.jar.DirectoryDataWriterFactory;
 import org.cleartk.ml.jar.GenericJarClassifierFactory;
+import org.cleartk.util.ae.PlainTextWriter;
 import org.cleartk.util.cr.FilesCollectionReader;
+import org.uimafit.pipeline.CpePipeline;
+import org.xml.sax.SAXException;
 
 import de.tu.darmstadt.lt.ner.annotator.NERAnnotator;
 import de.tu.darmstadt.lt.ner.reader.NERReader;
 import de.tu.darmstadt.lt.ner.reader.NewsleakCSVReader;
+import de.tu.darmstadt.lt.ner.reader.NewsleakCSVReader2ManyCas;
 import de.tu.darmstadt.lt.ner.reader.NewsleakInit;
 import de.tu.darmstadt.lt.ner.writer.EvaluatedNERWriter;
 import de.tu.darmstadt.lt.ner.writer.NewsleakNERWriter;
+import de.tu.darmstadt.lt.ner.writer.NewsleakNERWriterPerCas;
+import de.tu.darmstadt.lt.ner.writer.NewsleakNERWriterPerCasNELists;
+import de.tu.darmstadt.lt.ner.writer.NewsleakNERWriterPerCasOnlyNE;
 import de.tu.darmstadt.lt.ner.writer.SentenceToCRFTestFileWriter;
-import de.tu.darmstadt.lt.ner.writer.TokensPerSentenceWriter;
-import de.tudarmstadt.ukp.dkpro.core.io.text.TextReader;
 import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 
 public class GermaNERMain
@@ -161,8 +172,8 @@ public class GermaNERMain
                         aNodeResultFile, EvaluatedNERWriter.SENTENCES_ID, aSentencesIds));
     }
     
-    public static void classifyNewsleakFile(File aClassifierJarPath, File testPosFile, File outputFolder)
-                throws UIMAException, IOException
+    public static void classifyNewsleakFile1(File aClassifierJarPath, File testPosFile, File outputFolder)
+                throws UIMAException, IOException, SAXException, CpeDescriptorException
     {
      
 /*    	// clean it as we append contents from different CAS
@@ -171,20 +182,71 @@ public class GermaNERMain
 			pw.close();
 		}*/
 
-    	CollectionReader reader = createReader(NewsleakCSVReader.class,
+    	CollectionReader reader = createReader(NewsleakCSVReader2ManyCas.class,
     			NewsleakCSVReader.PARAM_DIRECTORY_NAME, testPosFile); //"/home/seid/Desktop/tmp/test.csv"
-    	 AnalysisEngine newsleakInit = createEngine(NewsleakInit.class);	
-    	 AnalysisEngine segmenter = createEngine(OpenNlpSegmenter.class, 
-    			 OpenNlpSegmenter.PARAM_LANGUAGE, "en", OpenNlpSegmenter.PARAM_WRITE_SENTENCE,false);	
+    	AnalysisEngine newsleakInit = createEngine(NewsleakInit.class);	
+    	AnalysisEngine segmenter = createEngine(OpenNlpSegmenter.class, 
+    			 OpenNlpSegmenter.PARAM_LANGUAGE, "en"/*, OpenNlpSegmenter.PARAM_WRITE_SENTENCE,false*/);	
+    	 
+    	AnalysisEngine nerAnnotator =  createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                  aClassifierJarPath.getAbsolutePath() + "/feature.xml",
+                  NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
+                  GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
+                  aClassifierJarPath.getAbsolutePath() + "/model.jar");
+    	 
+    	AnalysisEngine newsleakwriterv =  createEngine(NewsleakNERWriterPerCasOnlyNE.class,
+    			 NewsleakNERWriterPerCasOnlyNE.OUTPUT_DIR, outputFolder);
        
-       runPipeline(reader,segmenter,newsleakInit,
+    	 
+    	 runPipeline(reader,segmenter,newsleakInit, nerAnnotator,newsleakwriterv );
+       
+    	 
+    	 /*runPipeline(reader,segmenter,newsleakInit,
                createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                        aClassifierJarPath.getAbsolutePath() + "/feature.xml",
                        NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
                        GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
                        aClassifierJarPath.getAbsolutePath() + "/model.jar"),
-               createEngine(NewsleakNERWriter.class, NewsleakNERWriter.OUTPUT_DIR, outputFolder));
+               createEngine(NewsleakNERWriter.class, NewsleakNERWriter.OUTPUT_DIR, outputFolder));*/
     }
+
+    public static void classifyNewsleakFile(File aClassifierJarPath, File testPosFile, File outputFolder)
+            throws UIMAException, IOException, SAXException, CpeDescriptorException
+{
+ 
+/*    	// clean it as we append contents from different CAS
+	if (outputFile.exists()) {
+		PrintWriter pw = new PrintWriter(outputFile);
+		pw.close();
+	}*/
+
+	CollectionReaderDescription reader = createReaderDescription(NewsleakCSVReader2ManyCas.class,
+			NewsleakCSVReader.PARAM_DIRECTORY_NAME, testPosFile); //"/home/seid/Desktop/tmp/test.csv"
+	 AnalysisEngineDescription newsleakInit = createEngineDescription(NewsleakInit.class);	
+	 AnalysisEngineDescription segmenter = createEngineDescription(OpenNlpSegmenter.class, 
+			 OpenNlpSegmenter.PARAM_LANGUAGE, "en"/*, OpenNlpSegmenter.PARAM_WRITE_SENTENCE,false*/);	
+	 
+	 AnalysisEngineDescription nerAnnotator =  createEngineDescription(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+              aClassifierJarPath.getAbsolutePath() + "/feature.xml",
+              NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
+              GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
+              aClassifierJarPath.getAbsolutePath() + "/model.jar");
+	 
+	 AnalysisEngineDescription newsleakwriterv =  createEngineDescription(NewsleakNERWriterPerCasNELists.class,
+			 NewsleakNERWriterPerCasNELists.OUTPUT_DIR, outputFolder);
+   
+	 
+	 CpePipeline.runPipeline(reader,segmenter,newsleakInit, nerAnnotator,newsleakwriterv );
+   
+	 
+	 /*runPipeline(reader,segmenter,newsleakInit,
+           createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
+                   aClassifierJarPath.getAbsolutePath() + "/feature.xml",
+                   NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
+                   GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
+                   aClassifierJarPath.getAbsolutePath() + "/model.jar"),
+           createEngine(NewsleakNERWriter.class, NewsleakNERWriter.OUTPUT_DIR, outputFolder));*/
+}
 
     /**
      * This is a helper method, can be called from NoD. If you use a DKPro tokenizer during
@@ -277,6 +339,11 @@ public class GermaNERMain
                 outputFile = new File(modelDirectory, "result.tsv");
             }
 
+            if(outputFile.isDirectory()){
+            for(File file:outputFile.listFiles()){
+            	new PrintWriter(file).close();
+            }
+        }
             if (Configuration.mode.equals("ft") && (Configuration.trainFileName == null
                     || Configuration.testFileName == null)) {
                 LOG.error(usage);
