@@ -160,6 +160,13 @@
 			<version>3.7</version>
 		</dependency>
 		
+			<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.4</version>
+		</dependency>
+		
 		<!-- 
 		<dependency>
 			<artifactId>lt.seg</artifactId>
