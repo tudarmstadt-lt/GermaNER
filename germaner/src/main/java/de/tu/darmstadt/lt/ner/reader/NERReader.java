@@ -18,6 +18,8 @@
 package de.tu.darmstadt.lt.ner.reader;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -33,6 +35,7 @@ import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
 import org.apache.uima.fit.component.JCasAnnotator_ImplBase;
+import org.apache.uima.fit.descriptor.ConfigurationParameter;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Level;
@@ -55,6 +58,10 @@ public class NERReader
     private Logger logger = null;
     private Map<String, String> freebaseMap = new HashMap<String, String>();
     private Map<String, String> suffixClassMap = new HashMap<String, String>();
+    
+    public static final String DATA_ZIP_FILE = "datazipfile";
+    @ConfigurationParameter(name = DATA_ZIP_FILE, mandatory = false)
+    private static String datazipfile = null;
 
     @Override
     public void initialize(UimaContext context)
@@ -274,8 +281,14 @@ public class NERReader
     public Reader getReader(String aName)
         throws IOException
     {
-
-        InputStream is = ClassLoader.getSystemResourceAsStream("data.zip");
+    	InputStream is;
+    	if (datazipfile!=null) {
+    		 is = new FileInputStream(new File(datazipfile));
+    	}
+    	else{
+    		 is = ClassLoader.getSystemResourceAsStream("data.zip");
+    	}
+        
         ZipInputStream zis = new ZipInputStream(is);
 
         ZipEntry entry = zis.getNextEntry();

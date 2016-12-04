@@ -53,7 +53,7 @@ public class TemplateBinaryFeatureExtractor
             try {
                 NERReader reader = new NERReader();
                 // ListFileName - assumption is to have a file where every feature is presented in a single line
-                br = (BufferedReader) reader.getReader("listFileName.tsv");
+                br = (BufferedReader) reader.getReader("listFile.tsv");
                 String input;
                 
                 // if the features are separated anything than new line, change this code
@@ -84,17 +84,17 @@ public class TemplateBinaryFeatureExtractor
         Object featureValue = feature.getValue();
 
         if (featureValue == null) {
-            return Collections.singletonList(new Feature("BINARYFEATURE", 0));
+            return Collections.singletonList(new Feature("BINARYFEATURE", "false"));
         }
         String value = featureValue.toString();
         if (value == null || value.length() == 0) {
-            return Collections.singletonList(new Feature("BINARYFEATURE", 0));
+            return Collections.singletonList(new Feature("BINARYFEATURE", "false"));
         }
 
         if (list.contains(value)) {
-            return Collections.singletonList(new Feature("BINARYFEATURE", 1));
+            return Collections.singletonList(new Feature("BINARYFEATURE", "true"));
         }
-        return Collections.singletonList(new Feature("BINARYFEATURE", 0));
+        return Collections.singletonList(new Feature("BINARYFEATURE", "false"));
 
     }
 

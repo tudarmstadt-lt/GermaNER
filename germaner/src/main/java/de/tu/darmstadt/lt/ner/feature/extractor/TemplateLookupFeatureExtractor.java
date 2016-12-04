@@ -55,7 +55,7 @@ public class TemplateLookupFeatureExtractor
             try {
                 NERReader reader = new NERReader();
                 // lookUpFileName
-                br = (BufferedReader) reader.getReader("lookUpFileName.tsv");
+                br = (BufferedReader) reader.getReader("lookUpFile.tsv");
                 String input;
                 while ((input = br.readLine()) != null) {                 
                     // assuming the file is separated by TAB character. change it accordingly

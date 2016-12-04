@@ -90,13 +90,13 @@ public class GermaNERMain
      * @throws UIMAException
      * @throws IOException
      */
-    public static void writeModel(File NER_TagFile, File modelDirectory)
+    public static void writeModel(File NER_TagFile, File modelDirectory, String dataZipFile)
         throws UIMAException, IOException
     {
         runPipeline(
                 FilesCollectionReader.getCollectionReaderWithSuffixes(NER_TagFile.getAbsolutePath(),
                         NERReader.CONLL_VIEW, NER_TagFile.getName()),
-                createEngine(NERReader.class),
+                createEngine(NERReader.class, NERReader.DATA_ZIP_FILE, dataZipFile),
                 createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                         modelDirectory.getAbsolutePath() + "/feature.xml",
                         CleartkSequenceAnnotator.PARAM_IS_TRAINING, true,
@@ -114,13 +114,13 @@ public class GermaNERMain
     }
 
     public static void classifyTestFile(File aClassifierJarPath, File testPosFile, File outputFile,
-            File aNodeResultFile, List<Integer> aSentencesIds)
+            File aNodeResultFile, List<Integer> aSentencesIds, String dataZipFile)
                 throws UIMAException, IOException
     {
         runPipeline(
                 FilesCollectionReader.getCollectionReaderWithSuffixes(testPosFile.getAbsolutePath(),
                         NERReader.CONLL_VIEW, testPosFile.getName()),
-                createEngine(NERReader.class),
+                createEngine(NERReader.class, NERReader.DATA_ZIP_FILE, dataZipFile),
                 createEngine(NERAnnotator.class, NERAnnotator.PARAM_FEATURE_EXTRACTION_FILE,
                         aClassifierJarPath.getAbsolutePath() + "/feature.xml",
                         NERAnnotator.FEATURE_FILE, aClassifierJarPath.getAbsolutePath(),
@@ -178,14 +178,23 @@ public class GermaNERMain
     {
         long startTime = System.currentTimeMillis();
         String usage = "USAGE: java -jar germanner.jar [-c config.properties] \n"
-                + " [-f trainingFileName] -t testFileName -d ModelOutputDirectory-o outputFile";
+                + " [-f trainingFileName] -t testFileName -d modelOutputDirectory -o outputFile"
+                + " -r data.zip file containing files used for different features";
         long start = System.currentTimeMillis();
 
         ChangeColon c = new ChangeColon();
-
+        
+        String dataZipeFile = null;
         List<String> argList = Arrays.asList(arg);
         try {
 
+            if (argList.contains("-r") && argList.get(argList.indexOf("-r") + 1) != null) {
+                if (new File(argList.get(argList.indexOf("-r") + 1)).exists()) {
+                   dataZipeFile = argList.get(argList.indexOf("-r") + 1);
+                }
+
+            }
+            
             if (argList.contains("-c") && argList.get(argList.indexOf("-c") + 1) != null) {
                 if (!new File(argList.get(argList.indexOf("-c") + 1)).exists()) {
                     LOG.error("Default configuration is read from the system\n");
@@ -195,6 +204,7 @@ public class GermaNERMain
                 }
 
             }
+
 
             if (argList.contains("-t") && argList.get(argList.indexOf("-t") + 1) != null) {
                 if (!new File(argList.get(argList.indexOf("-t") + 1)).exists()) {
@@ -262,7 +272,7 @@ public class GermaNERMain
                 c.normalize(Configuration.trainFileName,
                         Configuration.trainFileName + ".normalized");
                 System.out.println("Start model generation");
-                writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory);
+                writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory, dataZipeFile);
                 System.out.println("Start model generation -- done");
                 System.out.println("Start training");
                 trainModel(modelDirectory);
@@ -274,7 +284,7 @@ public class GermaNERMain
                         Configuration.trainFileName + ".normalized");
                 c.normalize(Configuration.testFileName, Configuration.testFileName + ".normalized");
                 System.out.println("Start model generation");
-                writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory);
+                writeModel(new File(Configuration.trainFileName + ".normalized"), modelDirectory, dataZipeFile);
                 System.out.println("Start model generation -- done");
                 System.out.println("Start training");
                 trainModel(modelDirectory);
@@ -282,7 +292,7 @@ public class GermaNERMain
                 System.out.println("Start tagging");
                 classifyTestFile(modelDirectory,
                         new File(Configuration.testFileName + ".normalized"), outputtmpFile, null,
-                        null);
+                        null, dataZipeFile);
                 System.out.println("Start tagging ---done");
 
                 // re-normalized the colon changed text
@@ -293,7 +303,7 @@ public class GermaNERMain
                 System.out.println("Start tagging");
                 classifyTestFile(modelDirectory,
                         new File(Configuration.testFileName + ".normalized"), outputtmpFile, null,
-                        null);
+                        null, dataZipeFile);
                 // re-normalized the colon changed text
                 c.deNormalize(outputtmpFile.getAbsolutePath(), outputFile.getAbsolutePath());
 
@@ -357,6 +367,5 @@ public class GermaNERMain
                 ? true : false;
         Configuration.usePosition = prop.getProperty("usePosition").equals("1") ? true : false;
         Configuration.useFreeBase = prop.getProperty("useFreeBase").equals("1") ? true : false;
-        Configuration.modelDir = prop.getProperty("modelDir");
     }
 }
