@@ -18,6 +18,15 @@ To tag German texts:
 
 The tagged document will be under **output/result.tsv**
 
+##Train GermaNER with your own training file and feature files
+
+If you like to train GermaNER with your own training file or our training file from [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/full_train.tsv) but with different feature files, do as followsfr
+
+* Get the data.zip file from [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/data.zip) and change the contents of any files as needed. Once done, zip back as data.zip
+* Get the jar file from [here]()
+* Get the config files [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/config.properties). set useFreeBase=0 if you do not have enough memory. If you have lookup feature files like [this](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/lookUpFile.tsv), set ***lookUpFeature=1***. If you have list feature files like [this](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/listFile.tsv), set ***listFeature=1***. 
+* t
+
 ### Contents
 * Resources including files for feature generation (data.zip) and configuration files (config.properties) are found [here](https://github.com/tudarmstadt-lt/GermaNER/releases/tag/germaNER0.9.1)
 * [System requirements](https://github.com/tudarmstadt-lt/GermaNER/blob/master/germaner/src/main/java/de/tu/darmstadt/lt/ner/doc/System-Requirements.md)
