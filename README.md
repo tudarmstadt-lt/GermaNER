@@ -35,7 +35,7 @@ For training and testing at the same time, run it as follows:
 
 ***`java -jar GermaNER-train-04-12-2016.jar -f YOURTRAINFILE -t YOURTESTFILE -r data.zip -d MODELDIR -o OUTPUTFILENAME -c config.properties`***
 
-For testing, once your run the above command and you have the NER model under MODELDIR, run it without the -f  as follows
+For testing, once your run the above command and you have the NER model under MODELDIR, run it without the -f switch  as follows
 
 ***`java -jar GermaNER-train-04-12-2016.jar -t YOURTESTFILE -r data.zip -d MODELDIR -o OUTPUTFILENAME -c config.properties`***
 
