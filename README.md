@@ -28,11 +28,11 @@ If you like to train GermaNER with your own training file or our training file f
 
 For training and testing at the same time, run it as follows:
 
-*** java -jar GermaNER-train-04-12-2016.jar -f YOURTRAINFILE -t YOURTESTFILE -r data.zip -d MODELDIR -o OUTPUTFILENAME -c config.properties***
+***`java -jar GermaNER-train-04-12-2016.jar -f YOURTRAINFILE -t YOURTESTFILE -r data.zip -d MODELDIR -o OUTPUTFILENAME -c config.properties`***
 
 For testing, once your run the above command, run it without the -f and -o switches
 
-*** java -jar GermaNER-train-04-12-2016.jar -t YOURTESTFILE -r data.zip -d MODELDIR -c config.properties***
+***`java -jar GermaNER-train-04-12-2016.jar -t YOURTESTFILE -r data.zip -d MODELDIR -c config.properties`***
 ### Contents
 * Resources including files for feature generation (data.zip) and configuration files (config.properties) are found [here](https://github.com/tudarmstadt-lt/GermaNER/releases/tag/germaNER0.9.1)
 * [System requirements](https://github.com/tudarmstadt-lt/GermaNER/blob/master/germaner/src/main/java/de/tu/darmstadt/lt/ner/doc/System-Requirements.md)
