@@ -40,7 +40,7 @@ For testing, once your run the above command, run it without the -f and -o switc
 ***`java -jar GermaNER-train-04-12-2016.jar -t YOURTESTFILE -r data.zip -d MODELDIR -c config.properties`***
 
 ```diff
-- END
+- NEW END
 ```
 ### Contents
 * Resources including files for feature generation (data.zip) and configuration files (config.properties) are found [here](https://github.com/tudarmstadt-lt/GermaNER/releases/tag/germaNER0.9.1)
