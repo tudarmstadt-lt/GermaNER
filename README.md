@@ -28,16 +28,16 @@ The tagged document will be under **output/result.tsv**
 If you like to train GermaNER with your own training file or our training file from [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/full_train.tsv) but with different feature files, do as follows
 
 * Get the data.zip file from [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/data.zip) and change the contents of any files as needed. Once done, zip back as data.zip
-* Get the config files [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/config.properties). set ***useFreeBase=0*** if you do not have enough memory. If you have lookup feature files like [this](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/lookUpFile.tsv), set ***lookUpFeature=1***. If you have list feature files like [this](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/listFile.tsv), set ***listFeature=1***. 
-* Get the jar file from [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/GermaNER-train-04-12-2016.jar). This jar file is only meant to train on new dataset or modified features so do not include usable NER model.
+* Get the config file, ***config.properties***, [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/config.properties). set ***useFreeBase=0*** if you do not have enough memory. If you have lookup feature files like [this](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/lookUpFile.tsv), set ***lookUpFeature=1***. If you have list feature files like [this](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/listFile.tsv), set ***listFeature=1***. 
+* Get the GermaNER jar file from [here](https://github.com/tudarmstadt-lt/GermaNER/releases/download/germaNER0.9.1/GermaNER-train-04-12-2016.jar). This jar file is only meant to train an NER model on new dataset or modified features. It does not contain usable NER model.
 
 For training and testing at the same time, run it as follows:
 
 ***`java -jar GermaNER-train-04-12-2016.jar -f YOURTRAINFILE -t YOURTESTFILE -r data.zip -d MODELDIR -o OUTPUTFILENAME -c config.properties`***
 
-For testing, once your run the above command, run it without the -f and -o switches
+For testing, once your run the above command and you have the NER model under MODELDIR, run it without the -f  as follows
 
-***`java -jar GermaNER-train-04-12-2016.jar -t YOURTESTFILE -r data.zip -d MODELDIR -c config.properties`***
+***`java -jar GermaNER-train-04-12-2016.jar -t YOURTESTFILE -r data.zip -d MODELDIR -o OUTPUTFILENAME -c config.properties`***
 
 ```diff
 - NEW END
