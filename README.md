@@ -18,7 +18,6 @@ To tag German texts:
 
 The tagged document will be under **output/result.tsv**
 
-<p style='color:red'>This is some red text.</p>
 
 ##Train GermaNER with your own training file and feature files
 
