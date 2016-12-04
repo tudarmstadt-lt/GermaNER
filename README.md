@@ -18,6 +18,10 @@ To tag German texts:
 
 The tagged document will be under **output/result.tsv**
 
+```diff
+- NEW
+```
+
 
 ##Train GermaNER with your own training file and feature files
 
