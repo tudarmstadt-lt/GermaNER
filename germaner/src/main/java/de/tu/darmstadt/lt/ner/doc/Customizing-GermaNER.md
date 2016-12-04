@@ -3,7 +3,6 @@ GermaNER is easily customizable either for different languages or different appl
 # GermaNER for different langauges
 
 What makes GermaNER German specific is the resources used to generate different features. Some of the features such as the Clark POS induced file, the distributional thesaurus used for similarity, and the topic model class label feature files are solely used for German datasets. To adapt GermaNER for different languages:
-* Download the source code from [GermaNER] 
 * Replace the following datasets (in [data.zip](https://github.com/tudarmstadt-lt/GermaNER/blob/master/germaner/src/main/resources/data.zip)), with the same name and same data format
    * [200k_2d_wordlists](https://github.com/tudarmstadt-lt/GermaNER/wiki/Features#word-similarity)
    * [topicCluster.txt](https://github.com/tudarmstadt-lt/GermaNER/wiki/Features#topic-clusters)
@@ -12,7 +11,12 @@ What makes GermaNER German specific is the resources used to generate different 
    * [topicCluster500.txt](https://github.com/tudarmstadt-lt/GermaNER/wiki/Features#topic-clusters)
    * [uperCasetopicClaster.txt](https://github.com/tudarmstadt-lt/GermaNER/wiki/Features#topic-clusters)
    * [clark10m256](https://github.com/tudarmstadt-lt/GermaNER/wiki/Features#clarks-unsupervised-pos-tagger)
-* Zip the new datasets as data.zip and compile it from source. See [here](https://github.com/tudarmstadt-lt/GermaNER/wiki/User-Guide) how to compile from source code.
+* Zip the new datasets as data.zip and use it for training and testing with an option -r followed by the data.zip file as follows using this jar file.
+
+Training: 
+java -jar 
+
+Test : 
 
 # Extending GermaNER feature extractors
 Extending the existing feature extractors requires changing the source code in a couple of places and re-compiling GermaNER.
