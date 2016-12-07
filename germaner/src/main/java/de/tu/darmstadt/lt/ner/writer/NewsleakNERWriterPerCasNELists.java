@@ -66,12 +66,21 @@ public class NewsleakNERWriterPerCasNELists extends JCasConsumer_ImplBase {
 					if (prevNeType.equals("O")) {
 						continue;
 					} else {
-						if (namedEntity.length() < 3)
-							continue;
-						writeEntities(namedEntity.toString(), prevNeType.substring(2), dn.getNumber(), ents, begin,
-								end);
-						prevNeType = ne.getValue();
-						namedEntity = new StringBuffer();
+						if (namedEntity.length() < 3) {
+							prevNeType = ne.getValue();
+							namedEntity = new StringBuffer();
+							namedEntity.append(ne.getCoveredText());
+							begin = ne.getBegin();
+							end = ne.getEnd();
+						} else {
+							writeEntities(namedEntity.toString(), prevNeType.substring(2), dn.getNumber(), ents, begin,
+									end);
+							prevNeType = ne.getValue();
+							namedEntity = new StringBuffer();
+							namedEntity.append(ne.getCoveredText());
+							begin = ne.getBegin();
+							end = ne.getEnd();
+						}
 					}
 				} else if (prevNeType.equals("O")) {
 					prevNeType = ne.getValue();
@@ -83,14 +92,21 @@ public class NewsleakNERWriterPerCasNELists extends JCasConsumer_ImplBase {
 					end = ne.getEnd();
 					namedEntity.append(" " + ne.getCoveredText());
 				} else {
-					if (namedEntity.length() < 3)
-						continue;
-					writeEntities(namedEntity.toString(), prevNeType.substring(2), dn.getNumber(), ents, begin, end);
-					prevNeType = ne.getValue();
-					namedEntity = new StringBuffer();
-					namedEntity.append(ne.getCoveredText());
-					begin = ne.getBegin();
-					end = ne.getEnd();
+					if (namedEntity.length() < 3) {
+						prevNeType = ne.getValue();
+						namedEntity = new StringBuffer();
+						namedEntity.append(ne.getCoveredText());
+						begin = ne.getBegin();
+						end = ne.getEnd();
+					} else {
+						writeEntities(namedEntity.toString(), prevNeType.substring(2), dn.getNumber(), ents, begin,
+								end);
+						prevNeType = ne.getValue();
+						namedEntity = new StringBuffer();
+						namedEntity.append(ne.getCoveredText());
+						begin = ne.getBegin();
+						end = ne.getEnd();
+					}
 
 				}
 			}
