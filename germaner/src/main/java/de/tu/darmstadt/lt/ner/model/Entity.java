@@ -13,7 +13,7 @@ public class Entity implements Comparable<Entity> {
 
 	String name;
 	String type;
-	long frequency;
+	int frequency;
 	boolean isBlackListed = false;
 	long id;
 
@@ -33,11 +33,11 @@ public class Entity implements Comparable<Entity> {
 		this.type = type;
 	}
 
-	public long getFrequency() {
+	public int getFrequency() {
 		return frequency;
 	}
 
-	public void setFrequency(long frequency) {
+	public void setFrequency(int frequency) {
 		this.frequency = frequency;
 	}
 

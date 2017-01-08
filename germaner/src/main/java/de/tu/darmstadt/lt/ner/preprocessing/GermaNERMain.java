@@ -232,11 +232,16 @@ public class GermaNERMain
               GenericJarClassifierFactory.PARAM_CLASSIFIER_JAR_PATH,
               aClassifierJarPath.getAbsolutePath() + "/model.jar");
 	 
-	 AnalysisEngineDescription newsleakwriterv =  createEngineDescription(NewsleakNERWriterPerCasNELists.class,
-			 NewsleakNERWriterPerCasNELists.OUTPUT_DIR, outputFolder);
+/*	 AnalysisEngineDescription newsleakwriterv =  createEngineDescription(NewsleakNERWriterPerCasNELists.class,
+			 NewsleakNERWriterPerCasNELists.OUTPUT_DIR, outputFolder);*/
+	 
+	 AnalysisEngineDescription newsleakwriter =  createEngineDescription(NewsleakNERWriterPerCas.class,
+			 NewsleakNERWriterPerCas.OUTPUT_DIR, outputFolder);
+	 
+	 
    
 	 
-	 CpePipeline.runPipeline(reader,segmenter,newsleakInit, nerAnnotator,newsleakwriterv );
+	 CpePipeline.runPipeline(reader,segmenter,newsleakInit, nerAnnotator,newsleakwriter );
    
 	 
 	 /*runPipeline(reader,segmenter,newsleakInit,

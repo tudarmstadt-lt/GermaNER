@@ -27,6 +27,8 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.fit.component.JCasConsumer_ImplBase;
 import org.apache.uima.fit.descriptor.ConfigurationParameter;
@@ -41,13 +43,12 @@ import de.tudarmstadt.ukp.dkpro.core.api.ner.type.NamedEntity;
 public class NewsleakNERWriterPerCas extends JCasConsumer_ImplBase {
 	public static final String OUTPUT_DIR = "OutputFile";
 	@ConfigurationParameter(name = OUTPUT_DIR, mandatory = true)
-	private File OutputFolder = null;
+	private File outputFolder = null;
 
 	public static final String LF = System.getProperty("line.separator");
 	public static final String TAB = "\t";
 
 	List<Entity> ents = new ArrayList<Entity>(); // All entities
-	List<Relation> rels = new ArrayList<Relation>();
 
 	@Override
 	public void process(JCas jCas) throws AnalysisEngineProcessException {
@@ -55,29 +56,15 @@ public class NewsleakNERWriterPerCas extends JCasConsumer_ImplBase {
 
 	
 			DocumentNumber dn = JCasUtil.select(jCas, DocumentNumber.class).iterator().next();
-			
-			/*
-			 * FileWriter entDocOffsets = new FileWriter(new File(OutputFolder,
-			 * dn.getNumber()+"_entDocOffsets.tsv")); FileWriter docEntity = new
-			 * FileWriter(new File(OutputFolder,
-			 * dn.getNumber()+"_docEntity.tsv")); FileWriter entity = new
-			 * FileWriter(new File(OutputFolder, dn.getNumber()+"_entity.tsv"));
-			 * 
-			 * FileWriter documentRelationship = new FileWriter(new
-			 * File(OutputFolder, dn.getNumber()+"_documentRelationship.tsv"));
-			 * FileWriter relationship = new FileWriter(new File(OutputFolder,
-			 * dn.getNumber()+"_relationship.tsv"));
-			 */
-			FileWriter entDocOffsets = new FileWriter(new File(OutputFolder, "entDocOffsets.tsv"), true);
-			FileWriter docEntity = new FileWriter(new File(OutputFolder, "docEntity.tsv"), true);
-
-			FileWriter documentRelationship = new FileWriter(new File(OutputFolder, "documentRelationship.tsv"), true);
-
+/*			String entDocOffset = 	new File(outputFolder, "entDocOffsets.tsv.tsv");
+			if (!(new File(outputFolder, "entDocOffsets.tsv").exists())){
+				FileUtils.forceMkdir(outputFolder);
+				new File(outputFolder, "entDocOffsets.tsv.tsv").createNewFile();
+				new File(outputFolder, "docEntity.tsv.tsv").createNewFile();
+			}*/
+			FileWriter entDocOffsets = new FileWriter(new File(outputFolder, "entDocOffsets.tsv"), true);
+			FileWriter docEntity = new FileWriter(new File(outputFolder, "docEntity.tsv"), true);
 			int begin = 0, end = 0;
-
-			/*
-			 * for (Sentence sentence : JCasUtil.select(jCas, Sentence.class)) {
-			 */
 			NavigableMap<Long, Integer> entityFreqPerDoc = new TreeMap<>();
 			Map<Long, Entity> entIds = new HashMap<>();
 			String prevNeType = "O";
@@ -87,11 +74,23 @@ public class NewsleakNERWriterPerCas extends JCasConsumer_ImplBase {
 					if (prevNeType.equals("O")) {
 						continue;
 					} else {
-
-						writeEntDocOffsets(entDocOffsets, begin, end, dn.getNumber(), entityFreqPerDoc, entIds,
-								prevNeType, namedEntity);
-						prevNeType = ne.getValue();
-						namedEntity = new StringBuffer();
+						
+						if (namedEntity.length() < 3) {
+							prevNeType = ne.getValue();
+							namedEntity = new StringBuffer();
+							namedEntity.append(ne.getCoveredText());
+							begin = ne.getBegin();
+							end = ne.getEnd();
+						} else {
+							writeEntDocOffsets(entDocOffsets, begin, end, dn.getNumber(), entityFreqPerDoc, entIds,
+									prevNeType, namedEntity);
+							prevNeType = ne.getValue();
+							namedEntity = new StringBuffer();
+							namedEntity.append(ne.getCoveredText());
+							begin = ne.getBegin();
+							end = ne.getEnd();
+						}				
+						
 					}
 				} else if (prevNeType.equals("O")) {
 					prevNeType = ne.getValue();
@@ -103,35 +102,34 @@ public class NewsleakNERWriterPerCas extends JCasConsumer_ImplBase {
 					end = ne.getEnd();
 					namedEntity.append(" " + ne.getCoveredText());
 				} else {
-
-					writeEntDocOffsets(entDocOffsets, begin, end, dn.getNumber(), entityFreqPerDoc, entIds, prevNeType,
-							namedEntity);
-					prevNeType = ne.getValue();
-					namedEntity = new StringBuffer();
-					namedEntity.append(ne.getCoveredText());
-					begin = ne.getBegin();
-					end = ne.getEnd();
-
+					if (namedEntity.length() < 3) {
+						prevNeType = ne.getValue();
+						namedEntity = new StringBuffer();
+						namedEntity.append(ne.getCoveredText());
+						begin = ne.getBegin();
+						end = ne.getEnd();
+					} else {
+						writeEntDocOffsets(entDocOffsets, begin, end, dn.getNumber(), entityFreqPerDoc, entIds, prevNeType,
+								namedEntity);
+						prevNeType = ne.getValue();
+						namedEntity = new StringBuffer();
+						namedEntity.append(ne.getCoveredText());
+						begin = ne.getBegin();
+						end = ne.getEnd();
+					}					
 				}
 			}
 
 			if (entityFreqPerDoc.size() > 0) {
-				Map<Long, Relation> relIds = new HashMap<>();
-				Map<Long, Integer> relationFreqPerDoc = createDocEntRel(docEntity, dn.getNumber(), entityFreqPerDoc,
-						entIds, relIds);
-				for (long rel : relationFreqPerDoc.keySet()) {
-					documentRelationship.write(dn.getNumber() + TAB + rel + TAB + relationFreqPerDoc.get(rel) + LF);
-					relIds.get(rel).setFrequency(relIds.get(rel).getFrequency() + relationFreqPerDoc.get(rel));
+				
+				for (Long ent : entityFreqPerDoc.keySet()) {
+					docEntity.write(dn.getNumber() + TAB + ent + TAB + entityFreqPerDoc.get(ent) + LF);
+					entIds.get(ent).setFrequency(entIds.get(ent).getFrequency() + entityFreqPerDoc.get(ent));
 				}
 			}
-			/*
-			 * }
-			 */
 
 			entDocOffsets.close();
 			docEntity.close();
-
-			documentRelationship.close();
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -140,58 +138,24 @@ public class NewsleakNERWriterPerCas extends JCasConsumer_ImplBase {
 
 	@Override
 	public void collectionProcessComplete() throws AnalysisEngineProcessException {
-		// TODO Auto-generated method stub
-
 		try {
-			FileWriter entity = new FileWriter(new File(OutputFolder, "entity.tsv"), true);
-			FileWriter relationship = new FileWriter(new File(OutputFolder, "relationship.tsv"), true);
+			if (!(new File(outputFolder, "entity.tsv").exists())){
+				FileUtils.forceMkdir(outputFolder);
+				new File(outputFolder, "entity.tsv").createNewFile();
+			}
+			FileWriter entity = new FileWriter(new File(outputFolder, "entity.tsv"), true);
 
 			for (Entity ent : ents) {
 				entity.write(ent.getId() + TAB + ent.getName() + TAB + ent.getType() + TAB + ent.getFrequency() + TAB
 						+ false + LF);
 			}
-
-			for (Relation rel : rels) {
-				relationship.write(rel.getId() + TAB + rel.getEntity1().getId() + TAB + rel.getEntity2().getId() + TAB
-						+ rel.getFrequency() + TAB + false + LF);
-			}
 			entity.close();
-			relationship.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		super.collectionProcessComplete();
-	}
-
-	private Map<Long, Integer> createDocEntRel(FileWriter docEntity, long dnum,
-			NavigableMap<Long, Integer> entityFreqPerDoc, Map<Long, Entity> EntIds, Map<Long, Relation> relIds)
-			throws IOException {
-		
-		for (Long ent : entityFreqPerDoc.keySet()) {
-			docEntity.write(dnum + TAB + ent + TAB + entityFreqPerDoc.get(ent) + LF);
-			EntIds.get(ent).setFrequency(EntIds.get(ent).getFrequency() + entityFreqPerDoc.get(ent));
-		}
-		
-		Map<Long, Integer> relationFreqPerDoc = new HashMap<>();
-		Long lastEnt = entityFreqPerDoc.lastKey();
-		for (Long ent1 : entityFreqPerDoc.keySet()) {
-			Map<Long, Integer> entity2FreqPerDoc = entityFreqPerDoc.subMap(ent1, false, lastEnt, true);
-			for (Long ent2 : entity2FreqPerDoc.keySet()) {
-				Relation rel = addRelation(EntIds.get(ent1), EntIds.get(ent2));
-				relationFreqPerDoc.put(rel.getId(), Math.max(entityFreqPerDoc.get(ent1), entityFreqPerDoc.get(ent2)));
-				relIds.put(rel.getId(), rel);
-				/*if (relationFreqPerDoc.keySet().contains(rel.getId())) {
-					relationFreqPerDoc.put(rel.getId(), relationFreqPerDoc.get(rel) + 1);
-				} else {
-					relationFreqPerDoc.put(rel.getId(), 1);
-					relIds.put(rel.getId(), rel);
-				}*/
-			}
-		}
-
-		return relationFreqPerDoc;
 	}
 
 	private void writeEntDocOffsets(FileWriter entDocOffsets, int begin, int end, long dnum,
@@ -216,32 +180,5 @@ public class NewsleakNERWriterPerCas extends JCasConsumer_ImplBase {
 			ents.add(newEnt);
 			return newEnt;
 		}
-	}
-
-	private Relation addRelation(Entity ent1, Entity ent2) {
-		Relation newRel = new Relation(ent1, ent2);
-		Relation newRelRev = new Relation(ent2, ent1);
-		if (rels.contains(newRel)) {
-			return rels.get(rels.indexOf(newRel));
-		} else if (rels.contains(newRelRev)) {
-			return rels.get(rels.indexOf(newRel));
-		} else {
-			newRel.setId(rels.size() + 1);
-			rels.add(newRel);
-			return newRel;
-		}
-	}
-
-	private int getEmptyLines(String aText) {
-		String[] tokens = aText.split("(\r\n|\n)");
-		int count = 0;
-		for (String line : tokens) {
-
-			// new sentence if there's a new line
-			if (line.equals("")) {
-				count++;
-			}
-		}
-		return count;
 	}
 }
