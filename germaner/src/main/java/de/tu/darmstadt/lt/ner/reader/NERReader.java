@@ -131,6 +131,7 @@ public class NERReader
                     }
                     positionIndex = 0;
                 }
+                sentence = null;
                 // init new sentence with the next recognized token
                 initSentence = true;
                 sentenceSb = new StringBuffer();
