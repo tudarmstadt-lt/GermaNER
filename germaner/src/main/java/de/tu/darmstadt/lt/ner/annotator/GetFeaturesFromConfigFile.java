@@ -14,6 +14,7 @@ import org.cleartk.ml.feature.function.FeatureFunctionExtractor;
 
 import de.tu.darmstadt.lt.ner.feature.extractor.CamelCaseFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.ClarkPosInductionFeatureExtractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.DBLocationListFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.DBNachnamenListFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.DBPersonListFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.FreeBaseFeatureExtractor;
@@ -219,12 +220,12 @@ public class GetFeaturesFromConfigFile
         
         if (aProp.getProperty("useDBPediaPersonListFeature").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                    new DBNachnamenListFeatureExtractor()));
+                    new DBPersonListFeatureExtractor()));
         }
         
         if (aProp.getProperty("useDBPediaLocationListFeature").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                    new DBPersonListFeatureExtractor()));
+                    new DBLocationListFeatureExtractor()));
         }
         
         if (aProp.getProperty("useTopicClass100Feature").equals("1")) {
