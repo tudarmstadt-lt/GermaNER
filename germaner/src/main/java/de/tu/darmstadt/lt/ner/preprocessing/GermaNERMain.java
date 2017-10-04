@@ -250,7 +250,7 @@ public class GermaNERMain
             }
             else {
                 LOG.error("The directory for this output file does not exist. Output file "
-                        + "will be found in the current directury under folder \"output\"");
+                        + "will be found in the current directory under folder \"output\"");
                 outputFile = new File(modelDirectory, "result.tsv");
             }
 

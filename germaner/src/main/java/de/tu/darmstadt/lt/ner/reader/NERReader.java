@@ -100,7 +100,7 @@ public class NERReader
 
         if (Configuration.useFreeBase) {
             try {
-                useFreaBase();
+                useFreeBase();
             }
             catch (Exception e) {
                 // TODO
@@ -239,7 +239,7 @@ public class NERReader
                         + sentence.getBegin() + "\t" + sentence.getEnd());
     }
 
-    private void useFreaBase()
+    private void useFreeBase()
         throws Exception
     {
 

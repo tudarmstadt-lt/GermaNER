@@ -14,6 +14,7 @@ import org.cleartk.ml.feature.function.FeatureFunctionExtractor;
 
 import de.tu.darmstadt.lt.ner.feature.extractor.CamelCaseFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.ClarkPosInductionFeatureExtractor;
+import de.tu.darmstadt.lt.ner.feature.extractor.DBLocationListFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.DBNachnamenListFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.DBPersonListFeatureExtractor;
 import de.tu.darmstadt.lt.ner.feature.extractor.FreeBaseFeatureExtractor;
@@ -46,22 +47,22 @@ public class GetFeaturesFromConfigFile
         LTCharacterNgramFeatureFunction.Orientation fromRight = Orientation.RIGHT_TO_LEFT;
 
         List<FeatureExtractor1<Token>> germaNERfeatures = new ArrayList<FeatureExtractor1<Token>>();
-        if (aProp.getProperty("usePosition").equals("1")) {
+        if (aProp.getProperty("usePosition", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new PositionFeatureExtractor()));
         }
 
-        if (aProp.getProperty("useFreeBase").equals("1")) {
+        if (aProp.getProperty("useFreeBase", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new FreeBaseFeatureExtractor()));
         }
 
-        if (aProp.getProperty("useClarkPosInduction").equals("1")) {
+        if (aProp.getProperty("useClarkPosInduction", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new ClarkPosInductionFeatureExtractor()));
         }
 
-        if (aProp.getProperty("useWordFeature").equals("1")) {
+        if (aProp.getProperty("useWordFeature", "0").equals("1")) {
             germaNERfeatures
                     .add(new FeatureFunctionExtractor<Token>(new CoveredTextExtractor<Token>()));
             germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
@@ -70,7 +71,7 @@ public class GetFeaturesFromConfigFile
                     new CoveredTextExtractor<Token>(), new Following(2)));
         }
 
-        if (aProp.getProperty("useCapitalFeature").equals("1")) {
+        if (aProp.getProperty("useCapitalFeature", "0").equals("1")) {
             germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                     new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                             new LTCapitalTypeFeatureFunction()),
@@ -83,7 +84,7 @@ public class GetFeaturesFromConfigFile
                     new Following(2)));
         }
 
-        if (aProp.getProperty("usePreffix1Feature").equals("1")) {
+        if (aProp.getProperty("usePreffix1Feature", "0").equals("1")) {
             germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                     new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                             new LTCharacterNgramFeatureFunction(fromLeft, 0, 1)),
@@ -96,7 +97,7 @@ public class GetFeaturesFromConfigFile
                     new Following(1)));
         }
 
-        if (aProp.getProperty("usePreffix2Feature").equals("1")) {
+        if (aProp.getProperty("usePreffix2Feature", "0").equals("1")) {
             germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                     new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                             new LTCharacterNgramFeatureFunction(fromLeft, 0, 2)),
@@ -109,7 +110,7 @@ public class GetFeaturesFromConfigFile
                     new Following(1)));
         }
 
-        if (aProp.getProperty("usePreffix3Feature").equals("1")) {
+        if (aProp.getProperty("usePreffix3Feature", "0").equals("1")) {
             germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                     new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                             new LTCharacterNgramFeatureFunction(fromLeft, 0, 3)),
@@ -122,7 +123,7 @@ public class GetFeaturesFromConfigFile
                     new Following(1)));
         }
 
-        if (aProp.getProperty("usePreffix4Feature").equals("1")) {
+        if (aProp.getProperty("usePreffix4Feature", "0").equals("1")) {
             germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                     new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                             new LTCharacterNgramFeatureFunction(fromLeft, 0, 4)),
@@ -135,7 +136,7 @@ public class GetFeaturesFromConfigFile
                     new Following(1)));
         }
 
-        if (aProp.getProperty("useSuffix1Feature").equals("1")) {
+        if (aProp.getProperty("useSuffix1Feature", "0").equals("1")) {
             germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                     new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                             new LTCharacterNgramFeatureFunction(fromRight, 0, 1)),
@@ -148,7 +149,7 @@ public class GetFeaturesFromConfigFile
                     new Following(1)));
         }
 
-        if (aProp.getProperty("useSuffix2Feature").equals("1")) {
+        if (aProp.getProperty("useSuffix2Feature", "0").equals("1")) {
             germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                     new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                             new LTCharacterNgramFeatureFunction(fromRight, 0, 2)),
@@ -161,7 +162,7 @@ public class GetFeaturesFromConfigFile
                     new Following(1)));
         }
 
-        if (aProp.getProperty("useSuffix3Feature").equals("1")) {
+        if (aProp.getProperty("useSuffix3Feature", "0").equals("1")) {
             germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                     new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                             new LTCharacterNgramFeatureFunction(fromRight, 0, 3)),
@@ -174,7 +175,7 @@ public class GetFeaturesFromConfigFile
                     new Following(1)));
         }
 
-        if (aProp.getProperty("useSuffix4Feature").equals("1")) {
+        if (aProp.getProperty("useSuffix4Feature", "0").equals("1")) {
             germaNERfeatures.add(new CleartkExtractor<Token, Token>(Token.class,
                     new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                             new LTCharacterNgramFeatureFunction(fromRight, 0, 4)),
@@ -187,90 +188,90 @@ public class GetFeaturesFromConfigFile
                     new Following(1)));
         }
 
-        if (aProp.getProperty("useFirstNameFeature").equals("1")) {
+        if (aProp.getProperty("useFirstNameFeature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new VornameListFeatureExtractor()));
         }
 
-        if (aProp.getProperty("useSimilarWord1Feature").equals("1")) {
+        if (aProp.getProperty("useSimilarWord1Feature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new SimilarWord1Extractor()));
         }
 
-        if (aProp.getProperty("useSimilarWord2Feature").equals("1")) {
+        if (aProp.getProperty("useSimilarWord2Feature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new SimilarWord2Extractor()));
         }
 
-        if (aProp.getProperty("useSimilarWord3Feature").equals("1")) {
+        if (aProp.getProperty("useSimilarWord3Feature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new SimilarWord3Extractor()));
         }
 
-        if (aProp.getProperty("useSimilarWord4Feature").equals("1")) {
+        if (aProp.getProperty("useSimilarWord4Feature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new SimilarWord4Extractor()));
         }
 
-        if (aProp.getProperty("useCamelCaseFeature").equals("1")) {
+        if (aProp.getProperty("useCamelCaseFeature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new CamelCaseFeatureExtractor()));
         }
         
-        if (aProp.getProperty("useDBPediaPersonListFeature").equals("1")) {
-            germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
-                    new DBNachnamenListFeatureExtractor()));
-        }
-        
-        if (aProp.getProperty("useDBPediaLocationListFeature").equals("1")) {
+        if (aProp.getProperty("useDBPediaPersonListFeature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new DBPersonListFeatureExtractor()));
         }
         
-        if (aProp.getProperty("useTopicClass100Feature").equals("1")) {
+        if (aProp.getProperty("useDBPediaLocationListFeature", "0").equals("1")) {
+            germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
+                    new DBLocationListFeatureExtractor()));
+        }
+        
+        if (aProp.getProperty("useTopicClass100Feature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new TopicClass1FeatureExtractor()));
         }
         
-        if (aProp.getProperty("useTopicClass50Feature").equals("1")) {
+        if (aProp.getProperty("useTopicClass50Feature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new TopicClass50Feature1Extractor()));
         }
         
-        if (aProp.getProperty("useTopicClass200Feature").equals("1")) {
+        if (aProp.getProperty("useTopicClass200Feature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new TopicClass200Feature1Extractor()));
         }
         
-        if (aProp.getProperty("useTopicClass500Feature").equals("1")) {
+        if (aProp.getProperty("useTopicClass500Feature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new TopicClass500Feature1Extractor()));
         }
         
-        if (aProp.getProperty("useTopicClassUpper100Feature").equals("1")) {
+        if (aProp.getProperty("useTopicClassUpper100Feature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new UperCasedTopicClass1FeatureExtractor()));
         }
         
-        if (aProp.getProperty("useCharacterCategoryFeature").equals("1")) {
+        if (aProp.getProperty("useCharacterCategoryFeature", "0").equals("1")) {
             germaNERfeatures.add(LTCharacterCategoryPatternFunction
                     .<Token> createExtractor(PatternType.ONE_PER_CHAR));
             germaNERfeatures.add(LTCharacterCategoryPatternFunction
                     .<Token> createExtractor(PatternType.REPEATS_MERGED));
         }
         
-        if (aProp.getProperty("useDBPediaPersonLastNameFeature").equals("1")) {
+        if (aProp.getProperty("useDBPediaPersonLastNameFeature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new DBNachnamenListFeatureExtractor()));
         }
         
         /** Below are template features. Add them when fitting your need.*/
-        if (aProp.getProperty("lookUpFeature").equals("1")) {
+        if (aProp.getProperty("lookUpFeature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new TemplateLookupFeatureExtractor()));
         }
         
-        if (aProp.getProperty("listFeature").equals("1")) {
+        if (aProp.getProperty("listFeature", "0").equals("1")) {
             germaNERfeatures.add(new MyFeatureFunctionExtractor(new CoveredTextExtractor<Token>(),
                     new TemplateBinaryFeatureExtractor()));
         }
