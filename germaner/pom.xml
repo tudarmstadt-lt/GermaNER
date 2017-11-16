@@ -18,6 +18,12 @@
 	<artifactId>de.tu-darmstadt.lt.ner</artifactId>
 	<version>0.2.0-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -78,7 +84,7 @@
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.opennlp-model-sentence-en-maxent</artifactId>
 			<version>20120616.1</version>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.opennlp-model-token-de-maxent</artifactId>
 			<version>20120616.1</version>
@@ -112,14 +118,14 @@
 			<artifactId>de.tudarmstadt.ukp.dkpro.core.api.io-asl</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.cleartk</groupId>
-			<artifactId>cleartk-ml-crfsuite</artifactId>
-			<version>2.0.1-SNAPSHOT</version>
+			<groupId>com.github.seyyaw.cleartk</groupId>
+			<artifactId>cleartk-ml</artifactId>
+			<version>master-90ba493c94-1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.cleartk</groupId>
-			<artifactId>cleartk-ml</artifactId>
-			<version>2.0.1-SNAPSHOT</version>
+			<groupId>com.github.seyyaw.cleartk</groupId>
+			<artifactId>cleartk-ml-crfsuite</artifactId>
+			<version>master-90ba493c94-1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.cleartk</groupId>
@@ -158,10 +164,10 @@
 			</artifactId>
 		</dependency>
 
-<dependency>
-    <groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
-    <artifactId>de.tudarmstadt.ukp.dkpro.core.opennlp-asl</artifactId>
-</dependency>
+		<dependency>
+			<groupId>de.tudarmstadt.ukp.dkpro.core</groupId>
+			<artifactId>de.tudarmstadt.ukp.dkpro.core.opennlp-asl</artifactId>
+		</dependency>
 
 
 
@@ -181,21 +187,16 @@
 			<artifactId>opencsv</artifactId>
 			<version>3.7</version>
 		</dependency>
-		
-			<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-csv</artifactId>
 			<version>1.4</version>
 		</dependency>
-		
-		<!-- 
-		<dependency>
-			<artifactId>lt.seg</artifactId>
-		    <groupId>de.tudarmstadt</groupId>
-	 	   <version>0.7.0</version>
-		</dependency>
-		 -->
+
+		<!-- <dependency> <artifactId>lt.seg</artifactId> <groupId>de.tudarmstadt</groupId> 
+			<version>0.7.0</version> </dependency> -->
 	</dependencies>
 	<build>
 		<finalName>germanner</finalName>
