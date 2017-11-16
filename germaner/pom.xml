@@ -198,6 +198,9 @@
 		<!-- <dependency> <artifactId>lt.seg</artifactId> <groupId>de.tudarmstadt</groupId> 
 			<version>0.7.0</version> </dependency> -->
 	</dependencies>
+	<properties>
+    			<skip.rat>true</skip.rat>
+	</properties>
 	<build>
 		<finalName>germanner</finalName>
 		<resources>
