@@ -218,12 +218,12 @@
 		<repository>
 			<id>internal</id>
 			<name>internal</name>
-			<url>http://localhost:8081/artifactory/internal</url>
+			<url>https://localhost:8081/artifactory/internal</url>
 		</repository>
 		<snapshotRepository>
 			<id>snapshot</id>
 			<name>snapshot</name>
-			<url>http://localhost:8081/artifactory/snapshot</url>
+			<url>https://localhost:8081/artifactory/snapshot</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<groupId>de.tudarmstadt.lt</groupId>
